@@ -13,6 +13,7 @@ struct ExpenseRowView: View {
     let onUpdate: (Expense) -> Void
     let onEditingChanged: (Bool) -> Void
     let isCurrentlyEditing: Bool
+    let dailyExpenseRatio: Double // O günkü harcamaların oranı
     
     @State private var isEditing = false
     @State private var editedAmount: String
@@ -20,11 +21,12 @@ struct ExpenseRowView: View {
     @State private var editedSubCategory: String
     @State private var editedDescription: String
     
-    init(expense: Expense, onUpdate: @escaping (Expense) -> Void, onEditingChanged: @escaping (Bool) -> Void, isCurrentlyEditing: Bool) {
+    init(expense: Expense, onUpdate: @escaping (Expense) -> Void, onEditingChanged: @escaping (Bool) -> Void, isCurrentlyEditing: Bool, dailyExpenseRatio: Double) {
         self.expense = expense
         self.onUpdate = onUpdate
         self.onEditingChanged = onEditingChanged
         self.isCurrentlyEditing = isCurrentlyEditing
+        self.dailyExpenseRatio = dailyExpenseRatio
         self._editedAmount = State(initialValue: String(format: "%.2f", expense.amount))
         self._editedCurrency = State(initialValue: expense.currency)
         self._editedSubCategory = State(initialValue: expense.subCategory)
@@ -66,6 +68,24 @@ struct ExpenseRowView: View {
                 }
             }
             
+            // Günlük harcama oranı progress bar'ı
+            HStack {
+                Rectangle()
+                    .fill(Color.purple.opacity(0.3))
+                    .frame(height: 2)
+                    .overlay(
+                        Rectangle()
+                            .fill(Color.purple)
+                            .frame(width: UIScreen.main.bounds.width * 0.7 * dailyExpenseRatio, height: 2)
+                            .animation(.easeInOut(duration: 0.5), value: dailyExpenseRatio),
+                        alignment: .leading
+                    )
+                    .cornerRadius(1)
+                
+                Spacer()
+            }
+            .padding(.leading, 52)
+            
             if !expense.description.isEmpty {
                 Text(expense.description)
                     .font(.subheadline)
@@ -79,6 +99,17 @@ struct ExpenseRowView: View {
                         TextField("Miktar", text: $editedAmount)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .keyboardType(.decimalPad)
+                            .onChange(of: editedAmount) { newValue in
+                                // Sadece sayı ve virgül kabul et
+                                let filtered = newValue.filter { "0123456789.,".contains($0) }
+                                // Birden fazla virgül varsa sadece ilkini al
+                                let components = filtered.components(separatedBy: ",")
+                                if components.count > 2 {
+                                    editedAmount = components[0] + "," + components[1]
+                                } else {
+                                    editedAmount = filtered
+                                }
+                            }
                         
                         TextField("Para Birimi", text: $editedCurrency)
                             .textFieldStyle(RoundedBorderTextFieldStyle())

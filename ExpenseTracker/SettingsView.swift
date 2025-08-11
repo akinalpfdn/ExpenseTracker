@@ -75,6 +75,17 @@ struct SettingsView: View {
                             TextField("0.00", text: $dailyLimit)
                                 .font(.system(size: 18, weight: .medium))
                                 .keyboardType(.decimalPad)
+                                .onChange(of: dailyLimit) { newValue in
+                                    // Sadece sayı ve virgül kabul et
+                                    let filtered = newValue.filter { "0123456789.,".contains($0) }
+                                    // Birden fazla virgül varsa sadece ilkini al
+                                    let components = filtered.components(separatedBy: ",")
+                                    if components.count > 2 {
+                                        dailyLimit = components[0] + "," + components[1]
+                                    } else {
+                                        dailyLimit = filtered
+                                    }
+                                }
                                 .padding()
                                 .background(Color.gray.opacity(0.2))
                                 .cornerRadius(12)
@@ -90,6 +101,17 @@ struct SettingsView: View {
                             TextField("0.00", text: $monthlyLimit)
                                 .font(.system(size: 18, weight: .medium))
                                 .keyboardType(.decimalPad)
+                                .onChange(of: monthlyLimit) { newValue in
+                                    // Sadece sayı ve virgül kabul et
+                                    let filtered = newValue.filter { "0123456789.,".contains($0) }
+                                    // Birden fazla virgül varsa sadece ilkini al
+                                    let components = filtered.components(separatedBy: ",")
+                                    if components.count > 2 {
+                                        monthlyLimit = components[0] + "," + components[1]
+                                    } else {
+                                        monthlyLimit = filtered
+                                    }
+                                }
                                 .padding()
                                 .background(Color.gray.opacity(0.2))
                                 .cornerRadius(12)

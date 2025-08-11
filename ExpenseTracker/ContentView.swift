@@ -17,11 +17,40 @@ struct ContentView: View {
     @State private var showingAddExpense = false
     @State private var showingSettings = false
     @State private var editingExpenseId: UUID? = nil
+    @State private var showingOverLimitAlert = false
     
     // Settings
     @AppStorage("defaultCurrency") private var defaultCurrency = "₺"
     @AppStorage("dailyLimit") private var dailyLimit = ""
     @AppStorage("monthlyLimit") private var monthlyLimit = ""
+    
+    // Computed properties for progress ring
+    private var monthlyLimitValue: Double {
+        return Double(monthlyLimit) ?? 10000.0
+    }
+    
+    private var progressPercentage: Double {
+        if monthlyLimitValue <= 0 { return 0 }
+        return min(totalSpent / monthlyLimitValue, 1.0)
+    }
+    
+    private var isOverLimit: Bool {
+        return totalSpent > monthlyLimitValue && monthlyLimitValue > 0
+    }
+    
+    private var progressColors: [Color] {
+        if isOverLimit {
+            return [.red, .red, .red, .red] // Limit aşıldığında tamamen kırmızı
+        } else if progressPercentage < 0.3 {
+            return [.green, .green, .green, .green] // %30'a kadar tamamen yeşil
+        } else if progressPercentage < 0.6 {
+            return [.green, .green, .yellow, .yellow] // %30-%60 arası yeşilden sarıya
+        } else if progressPercentage < 0.9 {
+            return [.green, .yellow, .orange, .orange] // %60-%90 arası yeşil-sarı-turuncu
+        } else {
+            return [.green, .yellow, .orange, .red] // %90+ yeşil-sarı-turuncu-kırmızı
+        }
+    }
     
     var body: some View {
         NavigationView {
@@ -58,12 +87,13 @@ struct ContentView: View {
                                 .frame(width: 120, height: 120)
                             
                             Circle()
-                                .trim(from: 0, to: min(totalSpent / 10000, 1.0))
+                                .trim(from: 0, to: progressPercentage)
                                 .stroke(
-                                    LinearGradient(
-                                        colors: [.orange, .red],
-                                        startPoint: .topLeading,
-                                        endPoint: .bottomTrailing
+                                    AngularGradient(
+                                        colors: progressColors,
+                                        center: .center,
+                                        startAngle: .degrees(0),
+                                        endAngle: .degrees(360)
                                     ),
                                     style: StrokeStyle(lineWidth: 8, lineCap: .round)
                                 )
@@ -74,10 +104,10 @@ struct ContentView: View {
                             VStack(spacing: 2) {
                                 Text("₺\(String(format: "%.0f", totalSpent))")
                                     .font(.system(size: 18, weight: .bold, design: .rounded))
-                                    .foregroundColor(.white)
+                                    .foregroundColor(isOverLimit ? .red : .white)
                                 Text("Bu ay")
                                     .font(.caption)
-                                    .foregroundColor(.secondary)
+                                    .foregroundColor(isOverLimit ? .red : .secondary)
                             }
                         }
                     }
@@ -120,7 +150,8 @@ struct ContentView: View {
                                             editingExpenseId = nil
                                         }
                                     },
-                                    isCurrentlyEditing: editingExpenseId == expense.id
+                                    isCurrentlyEditing: editingExpenseId == expense.id,
+                                    dailyExpenseRatio: getDailyExpenseRatio(for: expense)
                                 )
                                 .listRowBackground(Color.gray.opacity(0.1))
                                 .listRowSeparator(.hidden)
@@ -157,6 +188,33 @@ struct ContentView: View {
                         .padding(.bottom, 20)
                     }
                 }
+                
+                // Toast notification for over limit
+                if showingOverLimitAlert {
+                    VStack {
+                        HStack {
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .foregroundColor(.white)
+                            Text("Aylık harcama limitinizi aştınız!")
+                                .font(.subheadline)
+                                .fontWeight(.medium)
+                                .foregroundColor(.white)
+                            Spacer()
+                            Button(action: { showingOverLimitAlert = false }) {
+                                Image(systemName: "xmark")
+                                    .foregroundColor(.white)
+                            }
+                        }
+                        .padding()
+                        .background(Color.red)
+                        .cornerRadius(12)
+                        .padding(.horizontal, 20)
+                        .padding(.top, 20)
+                        Spacer()
+                    }
+                    .transition(.move(edge: .top).combined(with: .opacity))
+                    .animation(.easeInOut(duration: 0.3), value: showingOverLimitAlert)
+                }
             }
             .navigationTitle("Trackizer")
             .navigationBarTitleDisplayMode(.large)
@@ -191,7 +249,38 @@ struct ContentView: View {
     }
     
     private func calculateTotal() {
+        let previousTotal = totalSpent
         totalSpent = expenses.reduce(0) { $0 + $1.amount }
+        
+        // Check if we just went over the limit
+        if !isOverLimit && totalSpent > monthlyLimitValue && monthlyLimitValue > 0 {
+            showingOverLimitAlert = true
+            
+            // Auto-hide toast after 5 seconds
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                showingOverLimitAlert = false
+            }
+        }
+    }
+    
+    // Günlük harcama oranını hesapla
+    private func getDailyExpenseRatio(for expense: Expense) -> Double {
+        let calendar = Calendar.current
+        let expenseDate = calendar.startOfDay(for: expense.date)
+        
+        // Aynı gündeki tüm harcamaları bul
+        let sameDayExpenses = expenses.filter { expense in
+            calendar.startOfDay(for: expense.date) == expenseDate
+        }
+        
+        // O günkü toplam harcama
+        let dailyTotal = sameDayExpenses.reduce(0) { $0 + $1.amount }
+        
+        // Bu harcamanın o günkü toplam içindeki oranı
+        if dailyTotal > 0 {
+            return expense.amount / dailyTotal
+        }
+        return 1.0 // Tek harcama varsa %100
     }
 }
 

@@ -56,6 +56,17 @@ struct AddExpenseView: View {
                             TextField("0.00", text: $amount)
                                 .font(.system(size: 20, weight: .bold, design: .rounded))
                                 .keyboardType(.decimalPad)
+                                .onChange(of: amount) { newValue in
+                                    // Sadece sayı ve virgül kabul et
+                                    let filtered = newValue.filter { "0123456789.,".contains($0) }
+                                    // Birden fazla virgül varsa sadece ilkini al
+                                    let components = filtered.components(separatedBy: ",")
+                                    if components.count > 2 {
+                                        amount = components[0] + "," + components[1]
+                                    } else {
+                                        amount = filtered
+                                    }
+                                }
                                 .padding(.horizontal, 16)
                                 .padding(.vertical, 12)
                                 .background(Color.gray.opacity(0.2))
