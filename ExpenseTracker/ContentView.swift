@@ -45,6 +45,7 @@ struct ContentView: View {
     @State private var expenses: [Expense] = []
     @State private var totalSpent: Double = 0
     @State private var showingAddExpense = false
+    @State private var editingExpenseId: UUID? = nil
     
     // Alt kategori listesi
     private let subCategories: [ExpenseSubCategory] = [
@@ -210,12 +211,23 @@ struct ContentView: View {
                     } else {
                         List {
                             ForEach(expenses) { expense in
-                                ExpenseRowView(expense: expense) { updatedExpense in
-                                    if let index = expenses.firstIndex(where: { $0.id == expense.id }) {
-                                        expenses[index] = updatedExpense
-                                        calculateTotal()
-                                    }
-                                }
+                                ExpenseRowView(
+                                    expense: expense,
+                                    onUpdate: { updatedExpense in
+                                        if let index = expenses.firstIndex(where: { $0.id == expense.id }) {
+                                            expenses[index] = updatedExpense
+                                            calculateTotal()
+                                        }
+                                    },
+                                    onEditingChanged: { isEditing in
+                                        if isEditing {
+                                            editingExpenseId = expense.id
+                                        } else {
+                                            editingExpenseId = nil
+                                        }
+                                    },
+                                    isCurrentlyEditing: editingExpenseId == expense.id
+                                )
                                 .listRowBackground(Color.gray.opacity(0.1))
                                 .listRowSeparator(.hidden)
                             }
@@ -328,6 +340,8 @@ func getCategoryForSubCategory(_ subCategory: String) -> ExpenseCategory {
 struct ExpenseRowView: View {
     let expense: Expense
     let onUpdate: (Expense) -> Void
+    let onEditingChanged: (Bool) -> Void
+    let isCurrentlyEditing: Bool
     
     @State private var isEditing = false
     @State private var editedAmount: String
@@ -335,9 +349,11 @@ struct ExpenseRowView: View {
     @State private var editedSubCategory: String
     @State private var editedDescription: String
     
-    init(expense: Expense, onUpdate: @escaping (Expense) -> Void) {
+    init(expense: Expense, onUpdate: @escaping (Expense) -> Void, onEditingChanged: @escaping (Bool) -> Void, isCurrentlyEditing: Bool) {
         self.expense = expense
         self.onUpdate = onUpdate
+        self.onEditingChanged = onEditingChanged
+        self.isCurrentlyEditing = isCurrentlyEditing
         self._editedAmount = State(initialValue: String(format: "%.2f", expense.amount))
         self._editedCurrency = State(initialValue: expense.currency)
         self._editedSubCategory = State(initialValue: expense.subCategory)
@@ -402,23 +418,35 @@ struct ExpenseRowView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     
                     HStack(spacing: 12) {
-                        Button("Kaydet") {
-                            saveChanges()
+                        Button(action: saveChanges) {
+                            Text("Kaydet")
+                                .font(.headline)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 12)
+                                .background(
+                                    LinearGradient(
+                                        colors: [.orange, .red],
+                                        startPoint: .leading,
+                                        endPoint: .trailing
+                                    )
+                                )
+                                .cornerRadius(12)
                         }
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 10)
-                        .background(Color.blue)
-                        .cornerRadius(10)
+                        .buttonStyle(PlainButtonStyle())
                         
-                        Button("İptal") {
-                            cancelEdit()
+                        Button(action: cancelEdit) {
+                            Text("İptal")
+                                .font(.headline)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 12)
+                                .background(Color.gray.opacity(0.3))
+                                .cornerRadius(12)
                         }
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 10)
-                        .background(Color.gray)
-                        .cornerRadius(10)
+                        .buttonStyle(PlainButtonStyle())
                     }
                 }
                 .padding(.top, 8)
@@ -428,8 +456,16 @@ struct ExpenseRowView: View {
         .padding(.horizontal, 16)
         .background(Color.gray.opacity(0.1))
         .cornerRadius(16)
-        .onTapGesture {
-            isEditing = true
+                                        .onTapGesture {
+            if !isEditing && !isCurrentlyEditing {
+                isEditing = true
+                onEditingChanged(true)
+            }
+        }
+        .onChange(of: isCurrentlyEditing) { newValue in
+            if !newValue && isEditing {
+                isEditing = false
+            }
         }
     }
     
@@ -466,7 +502,12 @@ struct ExpenseRowView: View {
     }
     
     private func saveChanges() {
-        guard let amount = Double(editedAmount) else { return }
+        guard let amount = Double(editedAmount) else { 
+            print("Invalid amount: \(editedAmount)")
+            return 
+        }
+        
+        print("Saving changes - Amount: \(amount), Currency: \(editedCurrency), Category: \(editedSubCategory)")
         
         let updatedExpense = Expense(
             amount: amount,
@@ -478,14 +519,17 @@ struct ExpenseRowView: View {
         
         onUpdate(updatedExpense)
         isEditing = false
+        onEditingChanged(false)
     }
     
     private func cancelEdit() {
+        print("Canceling edit")
         editedAmount = String(format: "%.2f", expense.amount)
         editedCurrency = expense.currency
         editedSubCategory = expense.subCategory
         editedDescription = expense.description
         isEditing = false
+        onEditingChanged(false)
     }
 }
 
