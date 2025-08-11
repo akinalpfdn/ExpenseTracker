@@ -12,6 +12,7 @@ struct MonthlyProgressRingView: View {
     let progressPercentage: Double
     let progressColors: [Color]
     let isOverLimit: Bool
+    let onTap: () -> Void
     
     var body: some View {
         VStack(spacing: 8) {
@@ -48,6 +49,9 @@ struct MonthlyProgressRingView: View {
             Text("Aylık Limit")
                 .font(.caption)
                 .foregroundColor(.secondary)
+        }
+        .onTapGesture {
+            onTap()
         }
     }
 }

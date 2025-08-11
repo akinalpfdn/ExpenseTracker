@@ -26,6 +26,7 @@ struct ContentView: View {
     @State private var editingExpenseId: UUID? = nil
     @State private var showingOverLimitAlert = false
     @State private var selectedDate: Date = Date()
+    @State private var showingMonthlyCalendar = false
     
     // Settings
     @AppStorage("defaultCurrency") private var defaultCurrency = "₺"
@@ -144,64 +145,45 @@ struct ContentView: View {
                 Color.black.ignoresSafeArea()
                 
                 VStack(spacing: 0) {
-                    // Header with total
-                    VStack(spacing: 16) {
-                        HStack {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text("Toplam Harcama")
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
-                                Text("₺\(String(format: "%.2f", totalSpent))")
-                                    .font(.system(size: 32, weight: .bold, design: .rounded))
-                                    .foregroundColor(.white)
-                            }
-                            Spacer()
-                            
-                            // Settings button
-                            Button(action: { showingSettings = true }) {
-                                Image(systemName: "gearshape.fill")
-                                    .font(.title2)
-                                    .foregroundColor(.secondary)
-                            }
+                    // Günlük tarihçe
+                    DailyHistoryView(
+                        dailyData: dailyHistoryData,
+                        selectedDate: selectedDate,
+                        onDateSelected: { date in
+                            selectedDate = date
                         }
-                        
-                        // Günlük tarihçe
-                        DailyHistoryView(
-                            dailyData: dailyHistoryData,
-                            selectedDate: selectedDate,
-                            onDateSelected: { date in
-                                selectedDate = date
-                            }
-                        )
-                        
-                        // Charts TabView with Paging
-                        TabView {
-                            // Aylık Progress Ring
+                    )
+                    
+                    // Charts TabView with Paging
+                    TabView {
+                                                    // Aylık Progress Ring
                             MonthlyProgressRingView(
                                 totalSpent: totalSpent,
                                 progressPercentage: progressPercentage,
                                 progressColors: progressColors,
-                                isOverLimit: isOverLimit
+                                isOverLimit: isOverLimit,
+                                onTap: {
+                                    showingMonthlyCalendar = true
+                                }
                             )
-                            
-                            // Günlük Progress Ring
-                            DailyProgressRingView(
-                                dailyProgressPercentage: dailyProgressPercentage,
-                                isOverDailyLimit: isOverDailyLimit,
-                                dailyLimitValue: dailyLimitValue,
-                                selectedDate: selectedDate
-                            )
-                            
-                            // Kategori Dağılımı Chart
-                            CategoryDistributionView(
-                                dailyExpensesByCategory: dailyExpensesByCategory
-                            )
-                        }
-                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                        .frame(height: 160)
+                        
+                        // Günlük Progress Ring
+                        DailyProgressRingView(
+                            dailyProgressPercentage: dailyProgressPercentage,
+                            isOverDailyLimit: isOverDailyLimit,
+                            dailyLimitValue: dailyLimitValue,
+                            selectedDate: selectedDate
+                        )
+                        
+                        // Kategori Dağılımı Chart
+                        CategoryDistributionView(
+                            dailyExpensesByCategory: dailyExpensesByCategory
+                        )
                     }
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                    .frame(height: 160)
                     .padding(.horizontal, 20)
-                    .padding(.top, 20)
+                    .padding(.top, 10)
                     
                     // Expenses list
                     if getExpensesForDate(selectedDate).isEmpty {
@@ -252,11 +234,27 @@ struct ContentView: View {
                     }
                 }
                 
-                // Floating Action Button
+                // Floating Action Buttons
                 VStack {
                     Spacer()
                     HStack {
+                        // Settings Button (Floating)
+                        Button(action: { showingSettings = true }) {
+                            Image(systemName: "gearshape.fill")
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.white)
+                                .frame(width: 50, height: 50)
+                                .background(Color.gray.opacity(0.3))
+                                .clipShape(Circle())
+                                .shadow(color: .black.opacity(0.2), radius: 8, x: 0, y: 4)
+                        }
+                        .padding(.leading, 20)
+                        .padding(.bottom, 20)
+                        
                         Spacer()
+                        
+                        // Add Expense Button (Floating)
                         Button(action: { showingAddExpense = true }) {
                             Image(systemName: "plus")
                                 .font(.title2)
@@ -327,6 +325,21 @@ struct ContentView: View {
                     monthlyLimit: $monthlyLimit
                 )
                 .presentationDetents([.medium])
+                .presentationDragIndicator(.visible)
+            }
+            .sheet(isPresented: $showingMonthlyCalendar) {
+                MonthlyCalendarView(
+                    expenses: expenses,
+                    selectedDate: selectedDate,
+                    onDateSelected: { date in
+                        selectedDate = date
+                        showingMonthlyCalendar = false
+                    },
+                    onDismiss: {
+                        showingMonthlyCalendar = false
+                    }
+                )
+                .presentationDetents([.large])
                 .presentationDragIndicator(.visible)
             }
             .onAppear {

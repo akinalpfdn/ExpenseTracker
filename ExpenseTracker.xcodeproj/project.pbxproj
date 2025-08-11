@@ -24,6 +24,7 @@
 		F4FE0AB62E4A119B00DBCB51 /* MonthlyProgressRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0AB52E4A119B00DBCB51 /* MonthlyProgressRingView.swift */; };
 		F4FE0AB82E4A16E700DBCB51 /* DailyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0AB72E4A16E700DBCB51 /* DailyData.swift */; };
 		F4FE0ABA2E4A16EE00DBCB51 /* DailyHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0AB92E4A16EE00DBCB51 /* DailyHistoryView.swift */; };
+		F4FE0ABC2E4A1F3B00DBCB51 /* MonthlyCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0ABB2E4A1F3B00DBCB51 /* MonthlyCalendarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		F4FE0AB52E4A119B00DBCB51 /* MonthlyProgressRingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyProgressRingView.swift; sourceTree = "<group>"; };
 		F4FE0AB72E4A16E700DBCB51 /* DailyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyData.swift; sourceTree = "<group>"; };
 		F4FE0AB92E4A16EE00DBCB51 /* DailyHistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyHistoryView.swift; sourceTree = "<group>"; };
+		F4FE0ABB2E4A1F3B00DBCB51 /* MonthlyCalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyCalendarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 		F4FE0A6F2E49C6CA00DBCB51 /* ExpenseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				F4FE0ABB2E4A1F3B00DBCB51 /* MonthlyCalendarView.swift */,
 				F4FE0AB92E4A16EE00DBCB51 /* DailyHistoryView.swift */,
 				F4FE0AB72E4A16E700DBCB51 /* DailyData.swift */,
 				F4FE0AB52E4A119B00DBCB51 /* MonthlyProgressRingView.swift */,
@@ -295,6 +298,7 @@
 				F4FE0AB22E4A119000DBCB51 /* CategoryDistributionView.swift in Sources */,
 				F4FE0AB82E4A16E700DBCB51 /* DailyData.swift in Sources */,
 				F4FE0A732E49C6CA00DBCB51 /* ContentView.swift in Sources */,
+				F4FE0ABC2E4A1F3B00DBCB51 /* MonthlyCalendarView.swift in Sources */,
 				F4FE0A712E49C6CA00DBCB51 /* ExpenseTrackerApp.swift in Sources */,
 				F4FE0AAA2E49FF5700DBCB51 /* AddExpenseView.swift in Sources */,
 				F4FE0AAE2E49FF6500DBCB51 /* ExpenseRowView.swift in Sources */,

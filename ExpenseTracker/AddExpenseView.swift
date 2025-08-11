@@ -190,6 +190,9 @@ struct AddExpenseView: View {
     private func addExpense() {
         guard let amountValue = Double(amount) else { return }
         
+        // Gelecek tarihlere ekleme yapılamaz
+        guard selectedDate <= Date() else { return }
+        
         let expense = Expense(
             amount: amountValue,
             currency: selectedCurrency,
