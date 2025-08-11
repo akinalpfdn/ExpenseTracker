@@ -14,6 +14,11 @@
 		F4FE0A832E49C6CB00DBCB51 /* ExpenseTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0A822E49C6CB00DBCB51 /* ExpenseTrackerTests.swift */; };
 		F4FE0A8D2E49C6CB00DBCB51 /* ExpenseTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0A8C2E49C6CB00DBCB51 /* ExpenseTrackerUITests.swift */; };
 		F4FE0A8F2E49C6CB00DBCB51 /* ExpenseTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0A8E2E49C6CB00DBCB51 /* ExpenseTrackerUITestsLaunchTests.swift */; };
+		F4FE0AA82E49FF3100DBCB51 /* CategoryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0AA72E49FF3100DBCB51 /* CategoryHelper.swift */; };
+		F4FE0AAA2E49FF5700DBCB51 /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0AA92E49FF5700DBCB51 /* AddExpenseView.swift */; };
+		F4FE0AAC2E49FF5F00DBCB51 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0AAB2E49FF5F00DBCB51 /* Expense.swift */; };
+		F4FE0AAE2E49FF6500DBCB51 /* ExpenseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0AAD2E49FF6500DBCB51 /* ExpenseRowView.swift */; };
+		F4FE0AB02E49FF6E00DBCB51 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0AAF2E49FF6E00DBCB51 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +50,11 @@
 		F4FE0A882E49C6CB00DBCB51 /* ExpenseTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpenseTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4FE0A8C2E49C6CB00DBCB51 /* ExpenseTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerUITests.swift; sourceTree = "<group>"; };
 		F4FE0A8E2E49C6CB00DBCB51 /* ExpenseTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F4FE0AA72E49FF3100DBCB51 /* CategoryHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryHelper.swift; sourceTree = "<group>"; };
+		F4FE0AA92E49FF5700DBCB51 /* AddExpenseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
+		F4FE0AAB2E49FF5F00DBCB51 /* Expense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		F4FE0AAD2E49FF6500DBCB51 /* ExpenseRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseRowView.swift; sourceTree = "<group>"; };
+		F4FE0AAF2E49FF6E00DBCB51 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +105,11 @@
 		F4FE0A6F2E49C6CA00DBCB51 /* ExpenseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				F4FE0AAF2E49FF6E00DBCB51 /* SettingsView.swift */,
+				F4FE0AAD2E49FF6500DBCB51 /* ExpenseRowView.swift */,
+				F4FE0AAB2E49FF5F00DBCB51 /* Expense.swift */,
+				F4FE0AA92E49FF5700DBCB51 /* AddExpenseView.swift */,
+				F4FE0AA72E49FF3100DBCB51 /* CategoryHelper.swift */,
 				F4FE0A702E49C6CA00DBCB51 /* ExpenseTrackerApp.swift */,
 				F4FE0A722E49C6CA00DBCB51 /* ContentView.swift */,
 				F4FE0A742E49C6CB00DBCB51 /* Assets.xcassets */,
@@ -259,8 +274,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4FE0AB02E49FF6E00DBCB51 /* SettingsView.swift in Sources */,
+				F4FE0AA82E49FF3100DBCB51 /* CategoryHelper.swift in Sources */,
 				F4FE0A732E49C6CA00DBCB51 /* ContentView.swift in Sources */,
 				F4FE0A712E49C6CA00DBCB51 /* ExpenseTrackerApp.swift in Sources */,
+				F4FE0AAA2E49FF5700DBCB51 /* AddExpenseView.swift in Sources */,
+				F4FE0AAE2E49FF6500DBCB51 /* ExpenseRowView.swift in Sources */,
+				F4FE0AAC2E49FF5F00DBCB51 /* Expense.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
