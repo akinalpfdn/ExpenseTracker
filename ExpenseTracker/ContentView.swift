@@ -15,9 +15,6 @@ extension Array {
     }
 }
 
-// Explicit imports for our custom types
-// Note: In SwiftUI, files in the same target should be automatically accessible
-
 struct ContentView: View {
     @State private var expenses: [Expense] = []
     @State private var totalSpent: Double = 0
@@ -121,7 +118,6 @@ struct ContentView: View {
     private var dailyHistoryData: [DailyData] {
         let calendar = Calendar.current
         let today = Date()
-        let dailyLimitValue = Double(dailyLimit) ?? 0.0
         
         return (0..<7).map { dayOffset in
             let date = calendar.date(byAdding: .day, value: -dayOffset, to: today) ?? today
@@ -129,235 +125,233 @@ struct ContentView: View {
             let totalAmount = dayExpenses.reduce(0) { $0 + $1.amount }
             let expenseCount = dayExpenses.count
             
+            // O günkü harcamaların ortalama limit değerini hesapla
+            let averageDailyLimit: Double
+            if dayExpenses.isEmpty {
+                averageDailyLimit = Double(dailyLimit) ?? 0.0 // Harcama yoksa güncel limit
+            } else {
+                let totalLimit = dayExpenses.reduce(0) { $0 + $1.dailyLimitAtCreation }
+                averageDailyLimit = totalLimit / Double(dayExpenses.count)
+            }
+            
             return DailyData(
                 date: date,
                 totalAmount: totalAmount,
                 expenseCount: expenseCount,
-                dailyLimit: dailyLimitValue
+                dailyLimit: averageDailyLimit
             )
         }.reversed() // En eski günden en yeni güne sırala
     }
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                // Background
-                Color.black.ignoresSafeArea()
-                
-                VStack(spacing: 0) {
-                    // Günlük tarihçe
-                    DailyHistoryView(
-                        dailyData: dailyHistoryData,
-                        selectedDate: selectedDate,
-                        onDateSelected: { date in
-                            selectedDate = date
-                        }
-                    )
-                    
-                    // Charts TabView with Paging
-                    TabView {
-                                                    // Aylık Progress Ring
-                            MonthlyProgressRingView(
-                                totalSpent: totalSpent,
-                                progressPercentage: progressPercentage,
-                                progressColors: progressColors,
-                                isOverLimit: isOverLimit,
-                                onTap: {
-                                    showingMonthlyCalendar = true
-                                }
-                            )
-                        
-                        // Günlük Progress Ring
-                        DailyProgressRingView(
-                            dailyProgressPercentage: dailyProgressPercentage,
-                            isOverDailyLimit: isOverDailyLimit,
-                            dailyLimitValue: dailyLimitValue,
-                            selectedDate: selectedDate
-                        )
-                        
-                        // Kategori Dağılımı Chart
-                        CategoryDistributionView(
-                            dailyExpensesByCategory: dailyExpensesByCategory
-                        )
-                    }
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                    .frame(height: 160)
-                    .padding(.horizontal, 20)
-                    .padding(.top, 10)
-                    
-                    // Expenses list
-                    if getExpensesForDate(selectedDate).isEmpty {
-                        VStack(spacing: 16) {
-                            Spacer()
-                            Image(systemName: "creditcard")
-                                .font(.system(size: 60))
-                                .foregroundColor(.gray)
-                            Text(Calendar.current.isDateInToday(selectedDate) ? "Henüz harcama yok" : "Bu günde harcama yok")
-                                .font(.title2)
-                                .fontWeight(.medium)
-                                .foregroundColor(.white)
-                            Text(Calendar.current.isDateInToday(selectedDate) ? "İlk harcamanızı eklemek için + butonuna basın" : "Bu güne harcama eklemek için + butonuna basın")
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
-                                .multilineTextAlignment(.center)
-                            Spacer()
-                        }
-                        .padding(.horizontal, 40)
-                    } else {
-                        List {
-                            ForEach(getExpensesForDate(selectedDate)) { expense in
-                                ExpenseRowView(
-                                    expense: expense,
-                                    onUpdate: { updatedExpense in
-                                        if let index = expenses.firstIndex(where: { $0.id == expense.id }) {
-                                            expenses[index] = updatedExpense
-                                            calculateTotal()
-                                        }
-                                    },
-                                    onEditingChanged: { isEditing in
-                                        if isEditing {
-                                            editingExpenseId = expense.id
-                                        } else {
-                                            editingExpenseId = nil
-                                        }
-                                    },
-                                    isCurrentlyEditing: editingExpenseId == expense.id,
-                                    dailyExpenseRatio: getDailyExpenseRatio(for: expense)
-                                )
-                                .listRowBackground(Color.gray.opacity(0.1))
-                                .listRowSeparator(.hidden)
-                            }
-                            .onDelete(perform: deleteExpense)
-                        }
-                        .listStyle(PlainListStyle())
-                        .background(Color.clear)
-                    }
-                }
-                
-                // Floating Action Buttons
-                VStack {
-                    Spacer()
-                    HStack {
-                        // Settings Button (Floating)
-                        Button(action: { showingSettings = true }) {
-                            Image(systemName: "gearshape.fill")
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.white)
-                                .frame(width: 50, height: 50)
-                                .background(Color.gray.opacity(0.3))
-                                .clipShape(Circle())
-                                .shadow(color: .black.opacity(0.2), radius: 8, x: 0, y: 4)
-                        }
-                        .padding(.leading, 20)
-                        .padding(.bottom, 20)
-                        
-                        Spacer()
-                        
-                        // Add Expense Button (Floating)
-                        Button(action: { showingAddExpense = true }) {
-                            Image(systemName: "plus")
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.white)
-                                .frame(width: 56, height: 56)
-                                .background(
-                                    LinearGradient(
-                                        colors: [.orange, .red],
-                                        startPoint: .topLeading,
-                                        endPoint: .bottomTrailing
-                                    )
-                                )
-                                .clipShape(Circle())
-                                .shadow(color: .orange.opacity(0.3), radius: 10, x: 0, y: 5)
-                        }
-                        .padding(.trailing, 20)
-                        .padding(.bottom, 20)
-                    }
-                }
-                
-                // Toast notification for over limit
-                if showingOverLimitAlert {
-                    VStack {
-                        HStack {
-                            Image(systemName: "exclamationmark.triangle.fill")
-                                .foregroundColor(.white)
-                            Text("Aylık harcama limitinizi aştınız!")
-                                .font(.subheadline)
-                                .fontWeight(.medium)
-                                .foregroundColor(.white)
-                            Spacer()
-                            Button(action: { showingOverLimitAlert = false }) {
-                                Image(systemName: "xmark")
-                                    .foregroundColor(.white)
-                            }
-                        }
-                        .padding()
-                        .background(Color.red)
-                        .cornerRadius(12)
-                        .padding(.horizontal, 20)
-                        .padding(.top, 20)
-                        Spacer()
-                    }
-                    .transition(.move(edge: .top).combined(with: .opacity))
-                    .animation(.easeInOut(duration: 0.3), value: showingOverLimitAlert)
-                }
-            }
-            .navigationTitle("Trackizer")
-            .navigationBarTitleDisplayMode(.large)
-            .navigationBarHidden(true)
-            .sheet(isPresented: $showingAddExpense) {
-                AddExpenseView(
-                    subCategories: CategoryHelper.subCategories,
-                    onAdd: { newExpense in
-                        expenses.append(newExpense)
-                        calculateTotal()
-                    },
-                    selectedDate: selectedDate
-                )
-                .presentationDetents([.medium])
-                .presentationDragIndicator(.visible)
-            }
-            .sheet(isPresented: $showingSettings) {
-                SettingsView(
-                    defaultCurrency: $defaultCurrency,
-                    dailyLimit: $dailyLimit,
-                    monthlyLimit: $monthlyLimit
-                )
-                .presentationDetents([.medium])
-                .presentationDragIndicator(.visible)
-            }
-            .sheet(isPresented: $showingMonthlyCalendar) {
-                MonthlyCalendarView(
-                    expenses: expenses,
+        ZStack {
+            // Background
+            Color.black.ignoresSafeArea()
+            
+            VStack(spacing: 0) {
+                // Günlük tarihçe
+                DailyHistoryView(
+                    dailyData: dailyHistoryData,
                     selectedDate: selectedDate,
                     onDateSelected: { date in
                         selectedDate = date
-                        showingMonthlyCalendar = false
-                    },
-                    onDismiss: {
-                        showingMonthlyCalendar = false
                     }
                 )
-                .presentationDetents([.large])
-                .presentationDragIndicator(.visible)
+                
+                // Charts TabView with Paging
+                TabView {
+                    // Aylık Progress Ring
+                    MonthlyProgressRingView(
+                        totalSpent: totalSpent,
+                        progressPercentage: progressPercentage,
+                        progressColors: progressColors,
+                        isOverLimit: isOverLimit,
+                        onTap: {
+                            showingMonthlyCalendar = true
+                        }
+                    )
+                    
+                    // Günlük Progress Ring
+                    DailyProgressRingView(
+                        dailyProgressPercentage: dailyProgressPercentage,
+                        isOverDailyLimit: isOverDailyLimit,
+                        dailyLimitValue: dailyLimitValue,
+                        selectedDate: selectedDate
+                    )
+                    
+                    // Kategori Dağılımı Chart
+                    CategoryDistributionView(
+                        dailyExpensesByCategory: dailyExpensesByCategory
+                    )
+                }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .frame(height: 160)
+                .padding(.horizontal, 20)
+                .padding(.top, 10)
+                
+                // Expenses list
+                if getExpensesForDate(selectedDate).isEmpty {
+                    VStack(spacing: 16) {
+                        Spacer()
+                        Image(systemName: "creditcard")
+                            .font(.system(size: 60))
+                            .foregroundColor(.gray)
+                        Text(Calendar.current.isDateInToday(selectedDate) ? "Henüz harcama yok" : "Bu günde harcama yok")
+                            .font(.title2)
+                            .fontWeight(.medium)
+                            .foregroundColor(.white)
+                        Text(Calendar.current.isDateInToday(selectedDate) ? "İlk harcamanızı eklemek için + butonuna basın" : "Bu güne harcama eklemek için + butonuna basın")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                        Spacer()
+                    }
+                    .padding(.horizontal, 40)
+                } else {
+                    List {
+                        ForEach(getExpensesForDate(selectedDate)) { expense in
+                            ExpenseRowView(
+                                expense: expense,
+                                onUpdate: { updatedExpense in
+                                    if let index = expenses.firstIndex(where: { $0.id == expense.id }) {
+                                        expenses[index] = updatedExpense
+                                        calculateTotal()
+                                    }
+                                },
+                                onEditingChanged: { isEditing in
+                                    if isEditing {
+                                        editingExpenseId = expense.id
+                                    } else {
+                                        editingExpenseId = nil
+                                    }
+                                },
+                                onDelete: {
+                                    if let index = expenses.firstIndex(where: { $0.id == expense.id }) {
+                                        expenses.remove(at: index)
+                                        calculateTotal()
+                                    }
+                                },
+                                isCurrentlyEditing: editingExpenseId == expense.id,
+                                dailyExpenseRatio: getDailyExpenseRatio(for: expense)
+                            )
+                            .listRowBackground(Color.gray.opacity(0.1))
+                            .listRowSeparator(.hidden)
+                        }
+                    }
+                    .listStyle(PlainListStyle())
+                    .background(Color.clear)
+                }
             }
-            .onAppear {
-                calculateTotal()
+            
+            // Floating Action Buttons
+            VStack {
+                Spacer()
+                HStack {
+                    // Settings Button (Floating)
+                    Button(action: { showingSettings = true }) {
+                        Image(systemName: "gearshape.fill")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .frame(width: 50, height: 50)
+                            .background(Color.gray.opacity(0.3))
+                            .clipShape(Circle())
+                            .shadow(color: .black.opacity(0.2), radius: 8, x: 0, y: 4)
+                    }
+                    .padding(.leading, 20)
+                    .padding(.bottom, 20)
+                    
+                    Spacer()
+                    
+                    // Add Expense Button (Floating)
+                    Button(action: { showingAddExpense = true }) {
+                        Image(systemName: "plus")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .frame(width: 56, height: 56)
+                            .background(
+                                LinearGradient(
+                                    colors: [.orange, .red],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
+                            .clipShape(Circle())
+                            .shadow(color: .orange.opacity(0.3), radius: 10, x: 0, y: 5)
+                    }
+                    .padding(.trailing, 20)
+                    .padding(.bottom, 20)
+                }
             }
+            
+            // Toast notification for over limit
+            if showingOverLimitAlert {
+                VStack {
+                    HStack {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                            .foregroundColor(.white)
+                        Text("Aylık harcama limitinizi aştınız!")
+                            .font(.subheadline)
+                            .fontWeight(.medium)
+                            .foregroundColor(.white)
+                        Spacer()
+                        Button(action: { showingOverLimitAlert = false }) {
+                            Image(systemName: "xmark")
+                                .foregroundColor(.white)
+                        }
+                    }
+                    .padding()
+                    .background(Color.red)
+                    .cornerRadius(12)
+                    .padding(.horizontal, 20)
+                    .padding(.top, 20)
+                    Spacer()
+                }
+                .transition(.move(edge: .top).combined(with: .opacity))
+                .animation(.easeInOut(duration: 0.3), value: showingOverLimitAlert)
+            }
+        }
+        .sheet(isPresented: $showingAddExpense) {
+            AddExpenseView(
+                subCategories: CategoryHelper.subCategories,
+                onAdd: { newExpense in
+                    expenses.append(newExpense)
+                    calculateTotal()
+                },
+                selectedDate: selectedDate
+            )
+            .presentationDetents([.medium])
+            .presentationDragIndicator(.visible)
+        }
+        .sheet(isPresented: $showingSettings) {
+            SettingsView(
+                defaultCurrency: $defaultCurrency,
+                dailyLimit: $dailyLimit,
+                monthlyLimit: $monthlyLimit
+            )
+            .presentationDetents([.medium])
+            .presentationDragIndicator(.visible)
+        }
+        .sheet(isPresented: $showingMonthlyCalendar) {
+            MonthlyCalendarView(
+                expenses: expenses,
+                selectedDate: selectedDate,
+                onDateSelected: { date in
+                    selectedDate = date
+                    showingMonthlyCalendar = false
+                },
+                onDismiss: {
+                    showingMonthlyCalendar = false
+                }
+            )
+            .presentationDetents([.large])
+            .presentationDragIndicator(.visible)
+        }
+        .onAppear {
+            calculateTotal()
         }
         .preferredColorScheme(.dark)
-    }
-    
-    private func deleteExpense(at offsets: IndexSet) {
-        let selectedDayExpenses = getExpensesForDate(selectedDate)
-        for index in offsets {
-            if let expenseToDelete = selectedDayExpenses[safe: index],
-               let globalIndex = expenses.firstIndex(where: { $0.id == expenseToDelete.id }) {
-                expenses.remove(at: globalIndex)
-            }
-        }
-        calculateTotal()
     }
     
     private func calculateTotal() {

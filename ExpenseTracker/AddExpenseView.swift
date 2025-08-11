@@ -193,12 +193,18 @@ struct AddExpenseView: View {
         // Gelecek tarihlere ekleme yapılamaz
         guard selectedDate <= Date() else { return }
         
+        // O günkü limit değerlerini al
+        let dailyLimit = Double(UserDefaults.standard.string(forKey: "dailyLimit") ?? "0") ?? 0
+        let monthlyLimit = Double(UserDefaults.standard.string(forKey: "monthlyLimit") ?? "0") ?? 0
+        
         let expense = Expense(
             amount: amountValue,
             currency: selectedCurrency,
             subCategory: selectedSubCategory,
             description: description,
-            date: selectedDate
+            date: selectedDate,
+            dailyLimitAtCreation: dailyLimit,
+            monthlyLimitAtCreation: monthlyLimit
         )
         
         onAdd(expense)

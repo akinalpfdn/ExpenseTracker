@@ -13,7 +13,7 @@ struct DailyData: Identifiable {
     let date: Date
     let totalAmount: Double
     let expenseCount: Int
-    let dailyLimit: Double
+    let dailyLimit: Double // O günkü ortalama limit
     
     var progressPercentage: Double {
         if dailyLimit <= 0 { return 0 }

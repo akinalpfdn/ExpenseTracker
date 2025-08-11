@@ -31,11 +31,21 @@ struct MonthlyCalendarView: View {
             let totalAmount = dayExpenses.reduce(0) { $0 + $1.amount }
             let expenseCount = dayExpenses.count
             
+            // O günkü harcamaların ortalama limit değerini hesapla
+            let averageDailyLimit: Double
+            if dayExpenses.isEmpty {
+                averageDailyLimit = Double(UserDefaults.standard.string(forKey: "dailyLimit") ?? "0") ?? 0.0
+            } else {
+                let totalLimit = dayExpenses.reduce(0) { $0 + $1.dailyLimitAtCreation }
+                averageDailyLimit = totalLimit / Double(dayExpenses.count)
+            }
+            
             days.append(MonthlyDayData(
                 date: currentDate,
                 totalAmount: totalAmount,
                 expenseCount: expenseCount,
-                isCurrentMonth: true
+                isCurrentMonth: true,
+                dailyLimit: averageDailyLimit
             ))
             
             currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate) ?? currentDate
@@ -143,6 +153,7 @@ struct MonthlyDayData: Identifiable {
     let totalAmount: Double
     let expenseCount: Int
     let isCurrentMonth: Bool
+    let dailyLimit: Double
     
     var dayNumber: String {
         let formatter = DateFormatter()
@@ -151,13 +162,11 @@ struct MonthlyDayData: Identifiable {
     }
     
     var progressPercentage: Double {
-        let dailyLimit = Double(UserDefaults.standard.string(forKey: "dailyLimit") ?? "0") ?? 0
         if dailyLimit <= 0 { return 0 }
         return min(totalAmount / dailyLimit, 1.0)
     }
     
     var isOverLimit: Bool {
-        let dailyLimit = Double(UserDefaults.standard.string(forKey: "dailyLimit") ?? "0") ?? 0
         return totalAmount > dailyLimit && dailyLimit > 0
     }
     

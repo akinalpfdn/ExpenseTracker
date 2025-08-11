@@ -36,6 +36,8 @@ struct Expense: Identifiable {
     var subCategory: String
     var description: String
     var date: Date
+    var dailyLimitAtCreation: Double // Harcama oluşturulduğunda günlük limit
+    var monthlyLimitAtCreation: Double // Harcama oluşturulduğunda aylık limit
     
     var category: ExpenseCategory {
         return CategoryHelper.getCategoryForSubCategory(subCategory)

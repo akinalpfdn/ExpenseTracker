@@ -12,6 +12,7 @@ struct ExpenseRowView: View {
     let expense: Expense
     let onUpdate: (Expense) -> Void
     let onEditingChanged: (Bool) -> Void
+    let onDelete: () -> Void
     let isCurrentlyEditing: Bool
     let dailyExpenseRatio: Double // O günkü harcamaların oranı
     
@@ -21,10 +22,11 @@ struct ExpenseRowView: View {
     @State private var editedSubCategory: String
     @State private var editedDescription: String
     
-    init(expense: Expense, onUpdate: @escaping (Expense) -> Void, onEditingChanged: @escaping (Bool) -> Void, isCurrentlyEditing: Bool, dailyExpenseRatio: Double) {
+    init(expense: Expense, onUpdate: @escaping (Expense) -> Void, onEditingChanged: @escaping (Bool) -> Void, onDelete: @escaping () -> Void, isCurrentlyEditing: Bool, dailyExpenseRatio: Double) {
         self.expense = expense
         self.onUpdate = onUpdate
         self.onEditingChanged = onEditingChanged
+        self.onDelete = onDelete
         self.isCurrentlyEditing = isCurrentlyEditing
         self.dailyExpenseRatio = dailyExpenseRatio
         self._editedAmount = State(initialValue: String(format: "%.2f", expense.amount))
@@ -169,6 +171,14 @@ struct ExpenseRowView: View {
                 isEditing = false
             }
         }
+        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+            Button(role: .destructive) {
+                onDelete()
+            } label: {
+                Label("Sil", systemImage: "trash")
+            }
+            .tint(.red)
+        }
     }
     
     private func saveChanges() {
@@ -184,7 +194,9 @@ struct ExpenseRowView: View {
             currency: editedCurrency,
             subCategory: editedSubCategory,
             description: editedDescription,
-            date: expense.date
+            date: expense.date,
+            dailyLimitAtCreation: expense.dailyLimitAtCreation,
+            monthlyLimitAtCreation: expense.monthlyLimitAtCreation
         )
         
         onUpdate(updatedExpense)
