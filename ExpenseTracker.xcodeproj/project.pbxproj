@@ -19,6 +19,11 @@
 		F4FE0AAC2E49FF5F00DBCB51 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0AAB2E49FF5F00DBCB51 /* Expense.swift */; };
 		F4FE0AAE2E49FF6500DBCB51 /* ExpenseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0AAD2E49FF6500DBCB51 /* ExpenseRowView.swift */; };
 		F4FE0AB02E49FF6E00DBCB51 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0AAF2E49FF6E00DBCB51 /* SettingsView.swift */; };
+		F4FE0AB22E4A119000DBCB51 /* CategoryDistributionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0AB12E4A119000DBCB51 /* CategoryDistributionView.swift */; };
+		F4FE0AB42E4A119500DBCB51 /* DailyProgressRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0AB32E4A119500DBCB51 /* DailyProgressRingView.swift */; };
+		F4FE0AB62E4A119B00DBCB51 /* MonthlyProgressRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0AB52E4A119B00DBCB51 /* MonthlyProgressRingView.swift */; };
+		F4FE0AB82E4A16E700DBCB51 /* DailyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0AB72E4A16E700DBCB51 /* DailyData.swift */; };
+		F4FE0ABA2E4A16EE00DBCB51 /* DailyHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0AB92E4A16EE00DBCB51 /* DailyHistoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +60,11 @@
 		F4FE0AAB2E49FF5F00DBCB51 /* Expense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		F4FE0AAD2E49FF6500DBCB51 /* ExpenseRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseRowView.swift; sourceTree = "<group>"; };
 		F4FE0AAF2E49FF6E00DBCB51 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F4FE0AB12E4A119000DBCB51 /* CategoryDistributionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryDistributionView.swift; sourceTree = "<group>"; };
+		F4FE0AB32E4A119500DBCB51 /* DailyProgressRingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyProgressRingView.swift; sourceTree = "<group>"; };
+		F4FE0AB52E4A119B00DBCB51 /* MonthlyProgressRingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyProgressRingView.swift; sourceTree = "<group>"; };
+		F4FE0AB72E4A16E700DBCB51 /* DailyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyData.swift; sourceTree = "<group>"; };
+		F4FE0AB92E4A16EE00DBCB51 /* DailyHistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyHistoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +115,11 @@
 		F4FE0A6F2E49C6CA00DBCB51 /* ExpenseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				F4FE0AB92E4A16EE00DBCB51 /* DailyHistoryView.swift */,
+				F4FE0AB72E4A16E700DBCB51 /* DailyData.swift */,
+				F4FE0AB52E4A119B00DBCB51 /* MonthlyProgressRingView.swift */,
+				F4FE0AB32E4A119500DBCB51 /* DailyProgressRingView.swift */,
+				F4FE0AB12E4A119000DBCB51 /* CategoryDistributionView.swift */,
 				F4FE0AAF2E49FF6E00DBCB51 /* SettingsView.swift */,
 				F4FE0AAD2E49FF6500DBCB51 /* ExpenseRowView.swift */,
 				F4FE0AAB2E49FF5F00DBCB51 /* Expense.swift */,
@@ -274,13 +289,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4FE0AB42E4A119500DBCB51 /* DailyProgressRingView.swift in Sources */,
 				F4FE0AB02E49FF6E00DBCB51 /* SettingsView.swift in Sources */,
 				F4FE0AA82E49FF3100DBCB51 /* CategoryHelper.swift in Sources */,
+				F4FE0AB22E4A119000DBCB51 /* CategoryDistributionView.swift in Sources */,
+				F4FE0AB82E4A16E700DBCB51 /* DailyData.swift in Sources */,
 				F4FE0A732E49C6CA00DBCB51 /* ContentView.swift in Sources */,
 				F4FE0A712E49C6CA00DBCB51 /* ExpenseTrackerApp.swift in Sources */,
 				F4FE0AAA2E49FF5700DBCB51 /* AddExpenseView.swift in Sources */,
 				F4FE0AAE2E49FF6500DBCB51 /* ExpenseRowView.swift in Sources */,
+				F4FE0ABA2E4A16EE00DBCB51 /* DailyHistoryView.swift in Sources */,
 				F4FE0AAC2E49FF5F00DBCB51 /* Expense.swift in Sources */,
+				F4FE0AB62E4A119B00DBCB51 /* MonthlyProgressRingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

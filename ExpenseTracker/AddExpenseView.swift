@@ -11,6 +11,7 @@ import Foundation
 struct AddExpenseView: View {
     let subCategories: [ExpenseSubCategory]
     let onAdd: (Expense) -> Void
+    let selectedDate: Date
     
     @Environment(\.presentationMode) var presentationMode
     @State private var amount = ""
@@ -24,9 +25,10 @@ struct AddExpenseView: View {
     // Para birimleri listesi
     private let currencies = ["₺", "$", "€", "£", "¥", "₹", "₽", "₩", "₪", "₦", "₨", "₴", "₸", "₼", "₾", "₿"]
     
-    init(subCategories: [ExpenseSubCategory], onAdd: @escaping (Expense) -> Void) {
+    init(subCategories: [ExpenseSubCategory], onAdd: @escaping (Expense) -> Void, selectedDate: Date) {
         self.subCategories = subCategories
         self.onAdd = onAdd
+        self.selectedDate = selectedDate
         self._selectedCurrency = State(initialValue: UserDefaults.standard.string(forKey: "defaultCurrency") ?? "₺")
     }
     
@@ -193,7 +195,7 @@ struct AddExpenseView: View {
             currency: selectedCurrency,
             subCategory: selectedSubCategory,
             description: description,
-            date: Date()
+            date: selectedDate
         )
         
         onAdd(expense)

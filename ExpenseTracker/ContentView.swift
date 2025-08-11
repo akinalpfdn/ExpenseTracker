@@ -8,6 +8,13 @@
 import SwiftUI
 import Foundation
 
+// Array extension for safe index access
+extension Array {
+    subscript(safe index: Index) -> Element? {
+        return indices.contains(index) ? self[index] : nil
+    }
+}
+
 // Explicit imports for our custom types
 // Note: In SwiftUI, files in the same target should be automatically accessible
 
@@ -18,6 +25,7 @@ struct ContentView: View {
     @State private var showingSettings = false
     @State private var editingExpenseId: UUID? = nil
     @State private var showingOverLimitAlert = false
+    @State private var selectedDate: Date = Date()
     
     // Settings
     @AppStorage("defaultCurrency") private var defaultCurrency = "₺"
@@ -52,6 +60,83 @@ struct ContentView: View {
         }
     }
     
+    // Günlük limit hesaplama
+    private var dailyLimitValue: Double {
+        return Double(dailyLimit) ?? 0.0
+    }
+    
+    private var dailyProgressPercentage: Double {
+        if dailyLimitValue <= 0 { return 0 }
+        let selectedDayExpenses = getExpensesForDate(selectedDate)
+        let selectedDayTotal = selectedDayExpenses.reduce(0) { $0 + $1.amount }
+        return min(selectedDayTotal / dailyLimitValue, 1.0)
+    }
+    
+    private var isOverDailyLimit: Bool {
+        let selectedDayExpenses = getExpensesForDate(selectedDate)
+        let selectedDayTotal = selectedDayExpenses.reduce(0) { $0 + $1.amount }
+        return selectedDayTotal > dailyLimitValue && dailyLimitValue > 0
+    }
+    
+    // Günlük harcamaları kategoriye göre grupla
+    private var dailyExpensesByCategory: [(category: ExpenseCategory, amount: Double, percentage: Double)] {
+        let selectedDayExpenses = getExpensesForDate(selectedDate)
+        let selectedDayTotal = selectedDayExpenses.reduce(0) { $0 + $1.amount }
+        
+        if selectedDayTotal <= 0 { return [] }
+        
+        var categoryTotals: [ExpenseCategory: Double] = [:]
+        
+        for expense in selectedDayExpenses {
+            categoryTotals[expense.category, default: 0] += expense.amount
+        }
+        
+        return categoryTotals.map { (category, amount) in
+            (category: category, amount: amount, percentage: amount / selectedDayTotal)
+        }.sorted { $0.amount > $1.amount }
+    }
+    
+    // Bugünkü harcamaları getir
+    private func getTodayExpenses() -> [Expense] {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        
+        return expenses.filter { expense in
+            calendar.startOfDay(for: expense.date) == today
+        }
+    }
+    
+    // Seçili günün harcamalarını getir
+    private func getExpensesForDate(_ date: Date) -> [Expense] {
+        let calendar = Calendar.current
+        let startOfDay = calendar.startOfDay(for: date)
+        
+        return expenses.filter { expense in
+            calendar.startOfDay(for: expense.date) == startOfDay
+        }
+    }
+    
+    // Son 7 günün verilerini oluştur
+    private var dailyHistoryData: [DailyData] {
+        let calendar = Calendar.current
+        let today = Date()
+        let dailyLimitValue = Double(dailyLimit) ?? 0.0
+        
+        return (0..<7).map { dayOffset in
+            let date = calendar.date(byAdding: .day, value: -dayOffset, to: today) ?? today
+            let dayExpenses = getExpensesForDate(date)
+            let totalAmount = dayExpenses.reduce(0) { $0 + $1.amount }
+            let expenseCount = dayExpenses.count
+            
+            return DailyData(
+                date: date,
+                totalAmount: totalAmount,
+                expenseCount: expenseCount,
+                dailyLimit: dailyLimitValue
+            )
+        }.reversed() // En eski günden en yeni güne sırala
+    }
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -80,52 +165,56 @@ struct ContentView: View {
                             }
                         }
                         
-                        // Progress ring
-                        ZStack {
-                            Circle()
-                                .stroke(Color.gray.opacity(0.3), lineWidth: 8)
-                                .frame(width: 120, height: 120)
-                            
-                            Circle()
-                                .trim(from: 0, to: progressPercentage)
-                                .stroke(
-                                    AngularGradient(
-                                        colors: progressColors,
-                                        center: .center,
-                                        startAngle: .degrees(0),
-                                        endAngle: .degrees(360)
-                                    ),
-                                    style: StrokeStyle(lineWidth: 8, lineCap: .round)
-                                )
-                                .frame(width: 120, height: 120)
-                                .rotationEffect(.degrees(-90))
-                                .animation(.easeInOut(duration: 1), value: totalSpent)
-                            
-                            VStack(spacing: 2) {
-                                Text("₺\(String(format: "%.0f", totalSpent))")
-                                    .font(.system(size: 18, weight: .bold, design: .rounded))
-                                    .foregroundColor(isOverLimit ? .red : .white)
-                                Text("Bu ay")
-                                    .font(.caption)
-                                    .foregroundColor(isOverLimit ? .red : .secondary)
+                        // Günlük tarihçe
+                        DailyHistoryView(
+                            dailyData: dailyHistoryData,
+                            selectedDate: selectedDate,
+                            onDateSelected: { date in
+                                selectedDate = date
                             }
+                        )
+                        
+                        // Charts TabView with Paging
+                        TabView {
+                            // Aylık Progress Ring
+                            MonthlyProgressRingView(
+                                totalSpent: totalSpent,
+                                progressPercentage: progressPercentage,
+                                progressColors: progressColors,
+                                isOverLimit: isOverLimit
+                            )
+                            
+                            // Günlük Progress Ring
+                            DailyProgressRingView(
+                                dailyProgressPercentage: dailyProgressPercentage,
+                                isOverDailyLimit: isOverDailyLimit,
+                                dailyLimitValue: dailyLimitValue,
+                                selectedDate: selectedDate
+                            )
+                            
+                            // Kategori Dağılımı Chart
+                            CategoryDistributionView(
+                                dailyExpensesByCategory: dailyExpensesByCategory
+                            )
                         }
+                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                        .frame(height: 160)
                     }
                     .padding(.horizontal, 20)
                     .padding(.top, 20)
                     
                     // Expenses list
-                    if expenses.isEmpty {
+                    if getExpensesForDate(selectedDate).isEmpty {
                         VStack(spacing: 16) {
                             Spacer()
                             Image(systemName: "creditcard")
                                 .font(.system(size: 60))
                                 .foregroundColor(.gray)
-                            Text("Henüz harcama yok")
+                            Text(Calendar.current.isDateInToday(selectedDate) ? "Henüz harcama yok" : "Bu günde harcama yok")
                                 .font(.title2)
                                 .fontWeight(.medium)
                                 .foregroundColor(.white)
-                            Text("İlk harcamanızı eklemek için + butonuna basın")
+                            Text(Calendar.current.isDateInToday(selectedDate) ? "İlk harcamanızı eklemek için + butonuna basın" : "Bu güne harcama eklemek için + butonuna basın")
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
                                 .multilineTextAlignment(.center)
@@ -134,7 +223,7 @@ struct ContentView: View {
                         .padding(.horizontal, 40)
                     } else {
                         List {
-                            ForEach(expenses) { expense in
+                            ForEach(getExpensesForDate(selectedDate)) { expense in
                                 ExpenseRowView(
                                     expense: expense,
                                     onUpdate: { updatedExpense in
@@ -220,10 +309,14 @@ struct ContentView: View {
             .navigationBarTitleDisplayMode(.large)
             .navigationBarHidden(true)
             .sheet(isPresented: $showingAddExpense) {
-                AddExpenseView(subCategories: CategoryHelper.subCategories) { newExpense in
-                    expenses.append(newExpense)
-                    calculateTotal()
-                }
+                AddExpenseView(
+                    subCategories: CategoryHelper.subCategories,
+                    onAdd: { newExpense in
+                        expenses.append(newExpense)
+                        calculateTotal()
+                    },
+                    selectedDate: selectedDate
+                )
                 .presentationDetents([.medium])
                 .presentationDragIndicator(.visible)
             }
@@ -244,12 +337,17 @@ struct ContentView: View {
     }
     
     private func deleteExpense(at offsets: IndexSet) {
-        expenses.remove(atOffsets: offsets)
+        let selectedDayExpenses = getExpensesForDate(selectedDate)
+        for index in offsets {
+            if let expenseToDelete = selectedDayExpenses[safe: index],
+               let globalIndex = expenses.firstIndex(where: { $0.id == expenseToDelete.id }) {
+                expenses.remove(at: globalIndex)
+            }
+        }
         calculateTotal()
     }
     
     private func calculateTotal() {
-        let previousTotal = totalSpent
         totalSpent = expenses.reduce(0) { $0 + $1.amount }
         
         // Check if we just went over the limit
