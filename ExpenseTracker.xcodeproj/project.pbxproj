@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F479E3982E7BBEDF0070AAE7 /* ExpenseTracker in Resources */ = {isa = PBXBuildFile; fileRef = F479E3932E7BBEDF0070AAE7 /* ExpenseTracker */; };
+		F479E3992E7BBEDF0070AAE7 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = F479E3942E7BBEDF0070AAE7 /* en.lproj */; };
+		F479E39A2E7BBEDF0070AAE7 /* tr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = F479E3952E7BBEDF0070AAE7 /* tr.lproj */; };
+		F479E39B2E7BBEDF0070AAE7 /* ExpenseTrackerTests in Resources */ = {isa = PBXBuildFile; fileRef = F479E3962E7BBEDF0070AAE7 /* ExpenseTrackerTests */; };
+		F479E39C2E7BBEDF0070AAE7 /* ExpenseTrackerUITests in Resources */ = {isa = PBXBuildFile; fileRef = F479E3972E7BBEDF0070AAE7 /* ExpenseTrackerUITests */; };
 		F4FE0A712E49C6CA00DBCB51 /* ExpenseTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0A702E49C6CA00DBCB51 /* ExpenseTrackerApp.swift */; };
 		F4FE0A732E49C6CA00DBCB51 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0A722E49C6CA00DBCB51 /* ContentView.swift */; };
 		F4FE0A752E49C6CB00DBCB51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4FE0A742E49C6CB00DBCB51 /* Assets.xcassets */; };
@@ -45,6 +50,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F479E3932E7BBEDF0070AAE7 /* ExpenseTracker */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ExpenseTracker; sourceTree = "<group>"; };
+		F479E3942E7BBEDF0070AAE7 /* en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = en.lproj; sourceTree = "<group>"; };
+		F479E3952E7BBEDF0070AAE7 /* tr.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tr.lproj; sourceTree = "<group>"; };
+		F479E3962E7BBEDF0070AAE7 /* ExpenseTrackerTests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ExpenseTrackerTests; sourceTree = "<group>"; };
+		F479E3972E7BBEDF0070AAE7 /* ExpenseTrackerUITests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ExpenseTrackerUITests; sourceTree = "<group>"; };
 		F4FE0A6D2E49C6CA00DBCB51 /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4FE0A702E49C6CA00DBCB51 /* ExpenseTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerApp.swift; sourceTree = "<group>"; };
 		F4FE0A722E49C6CA00DBCB51 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -97,9 +107,14 @@
 		F4FE0A642E49C6CA00DBCB51 = {
 			isa = PBXGroup;
 			children = (
+				F479E3942E7BBEDF0070AAE7 /* en.lproj */,
 				F4FE0A6F2E49C6CA00DBCB51 /* ExpenseTracker */,
 				F4FE0A812E49C6CB00DBCB51 /* ExpenseTrackerTests */,
 				F4FE0A8B2E49C6CB00DBCB51 /* ExpenseTrackerUITests */,
+				F479E3932E7BBEDF0070AAE7 /* ExpenseTracker */,
+				F479E3962E7BBEDF0070AAE7 /* ExpenseTrackerTests */,
+				F479E3972E7BBEDF0070AAE7 /* ExpenseTrackerUITests */,
+				F479E3952E7BBEDF0070AAE7 /* tr.lproj */,
 				F4FE0A6E2E49C6CA00DBCB51 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -266,8 +281,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F479E39B2E7BBEDF0070AAE7 /* ExpenseTrackerTests in Resources */,
+				F479E39C2E7BBEDF0070AAE7 /* ExpenseTrackerUITests in Resources */,
+				F479E3992E7BBEDF0070AAE7 /* en.lproj in Resources */,
 				F4FE0A792E49C6CB00DBCB51 /* Preview Assets.xcassets in Resources */,
 				F4FE0A752E49C6CB00DBCB51 /* Assets.xcassets in Resources */,
+				F479E39A2E7BBEDF0070AAE7 /* tr.lproj in Resources */,
+				F479E3982E7BBEDF0070AAE7 /* ExpenseTracker in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
