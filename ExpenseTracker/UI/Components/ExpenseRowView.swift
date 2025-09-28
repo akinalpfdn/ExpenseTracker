@@ -171,17 +171,18 @@ extension ExpenseRowView {
 
     @ViewBuilder
     private var exchangeRateInfo: some View {
-        if let exchangeRate = expense.exchangeRate {
-            VStack(alignment: .trailing, spacing: 1) {
-                Text("exchange_rate".localized + ": \(String(format: "%.4f", exchangeRate))")
-                    .font(.system(size: 12))
-                    .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
-
-                Text("\(defaultCurrency) \(NumberFormatter.formatAmount(expense.getAmountInDefaultCurrency(defaultCurrency: defaultCurrency)))")
-                    .font(.system(size: 12))
-                    .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
-            }
-        }
+        if let exchangeRate = expense.exchangeRate{
+            if exchangeRate>0{
+                VStack(alignment: .trailing, spacing: 1) {
+                    Text("exchange_rate".localized + ": \(String(format: "%.4f", exchangeRate))")
+                        .font(.system(size: 12))
+                        .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
+                    
+                    Text("\(defaultCurrency) \(NumberFormatter.formatAmount(expense.getAmountInDefaultCurrency(defaultCurrency: defaultCurrency)))")
+                        .font(.system(size: 12))
+                        .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
+                }
+            }}
     }
 
     private var dateText: some View {

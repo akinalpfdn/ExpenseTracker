@@ -129,7 +129,7 @@ extension Expense {
         entity.date = self.date
         entity.dailyLimitAtCreation = self.dailyLimitAtCreation
         entity.monthlyLimitAtCreation = self.monthlyLimitAtCreation
-        entity.exchangeRate = self.exchangeRate ?? 1
+        entity.exchangeRate = self.exchangeRate ?? 0
         entity.recurrenceType = self.recurrenceType.rawValue
         entity.endDate = self.endDate
         entity.recurrenceGroupId = self.recurrenceGroupId

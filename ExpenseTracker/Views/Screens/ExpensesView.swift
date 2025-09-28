@@ -403,12 +403,12 @@ extension ExpensesView {
             Spacer()
 
             VStack(spacing: 8) {
-                Text(searchText.isEmpty ? "no_expenses_for_date".localized : "no_search_results".localized)
+                Text(searchText.isEmpty ? "no_expenses_today".localized : "no_search_results_found".localized)
                     .font(.system(size: 18, weight: .medium))
                     .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
                     .multilineTextAlignment(.center)
 
-                Text(searchText.isEmpty ? "add_your_first_expense".localized : "search_no_results_description".localized.replacingOccurrences(of: "%s", with: searchText))
+                Text(searchText.isEmpty ? "first_expense_hint".localized : "no_search_results_description".localized.replacingOccurrences(of: "%s", with: searchText))
                     .font(.system(size: 14))
                     .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
                     .multilineTextAlignment(.center)
@@ -453,6 +453,7 @@ extension ExpensesView {
                 }
             },
             onDismiss: {
+                showingAddExpense = false
                 viewModel.editingExpenseId = nil
             },
             editingExpense: viewModel.editingExpenseId != nil ? viewModel.expenses.first { $0.id == viewModel.editingExpenseId } : nil

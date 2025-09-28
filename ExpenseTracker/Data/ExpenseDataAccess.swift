@@ -54,7 +54,7 @@ class ExpenseDataAccess {
             entity.date = expense.date
             entity.dailyLimitAtCreation = expense.dailyLimitAtCreation
             entity.monthlyLimitAtCreation = expense.monthlyLimitAtCreation
-            entity.exchangeRate = expense.exchangeRate ?? 1
+            entity.exchangeRate = expense.exchangeRate ?? 0
             entity.recurrenceType = expense.recurrenceType.rawValue
             entity.endDate = expense.endDate
             entity.recurrenceGroupId = expense.recurrenceGroupId

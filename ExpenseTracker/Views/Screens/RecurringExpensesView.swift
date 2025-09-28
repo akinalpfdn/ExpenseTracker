@@ -270,6 +270,8 @@ struct RecurringExpenseCard: View {
     @State private var showDeleteConfirmation = false
     @State private var showEndDatePicker = false
     @State private var tempEndDate = Date()
+    @State private var dragOffset: CGFloat = 0
+    @State private var isDeleting = false
 
     private var category: Category? {
         viewModel.categories.first { $0.id == expense.categoryId }
@@ -280,15 +282,42 @@ struct RecurringExpenseCard: View {
     }
 
     var body: some View {
-        VStack(spacing: 0) {
-            if isEditing {
-                editingView
-            } else {
-                displayView
+        ZStack {
+            // Background delete indicator
+            HStack {
+                Spacer()
+                VStack {
+                    Image(systemName: "trash.fill")
+                        .font(.system(size: 20))
+                        .foregroundColor(.white)
+                    Text("delete".localized)
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundColor(.white)
+                }
+                .padding(.trailing, 20)
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.red)
+            .cornerRadius(12)
+            .opacity(abs(dragOffset) > 50 ? 1 : 0)
+            .animation(.easeInOut(duration: 0.2), value: dragOffset)
+
+            // Main card content
+            VStack(spacing: 0) {
+                if isEditing {
+                    editingView
+                } else {
+                    displayView
+                }
+            }
+            .background(ThemeColors.getCardBackgroundColor(isDarkTheme: isDarkTheme))
+            .cornerRadius(12)
+            .offset(x: dragOffset)
+            .scaleEffect(isDeleting ? 0.9 : 1.0)
+            .opacity(isDeleting ? 0.6 : 1.0)
+            .animation(.spring(response: 0.4, dampingFraction: 0.8), value: dragOffset)
+            .animation(.easeInOut(duration: 0.2), value: isDeleting)
         }
-        .background(ThemeColors.getCardBackgroundColor(isDarkTheme: isDarkTheme))
-        .cornerRadius(12)
         .onAppear {
             initializeEditState()
         }
@@ -374,10 +403,11 @@ struct RecurringExpenseCard: View {
                         .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
 
                     if let exchangeRate = expense.exchangeRate {
-                        Text("exchange_rate".localized + " \(String(format: "%.4f", exchangeRate))")
-                            .font(.system(size: 11))
-                            .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
-                    }
+                        if exchangeRate>0{
+                            Text("exchange_rate".localized + " \(String(format: "%.4f", exchangeRate))")
+                                .font(.system(size: 11))
+                                .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
+                        }}
                 }
             }
             .padding(12)
@@ -395,16 +425,33 @@ struct RecurringExpenseCard: View {
             }
             .gesture(
                 DragGesture()
-                    .onChanged { (value: DragGesture.Value) in
+                    .onChanged { value in
                         // Only allow left swipe (negative translation)
                         if value.translation.width < 0 {
-                            // You could add swipe animation here if needed
+                            withAnimation(.interactiveSpring()) {
+                                dragOffset = max(value.translation.width, -120) // Limit max swipe distance
+                            }
                         }
                     }
-                    .onEnded { (value: DragGesture.Value) in
-                        // If swiped left more than 150 points, show delete confirmation
-                        if value.translation.width < -150 {
-                            showDeleteConfirmation = true
+                    .onEnded { value in
+                        // If swiped left more than 80 points, show delete confirmation
+                        if value.translation.width < -80 {
+                            withAnimation(.spring()) {
+                                isDeleting = true
+                            }
+
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                showDeleteConfirmation = true
+                                withAnimation(.spring()) {
+                                    dragOffset = 0
+                                    isDeleting = false
+                                }
+                            }
+                        } else {
+                            // Snap back to original position
+                            withAnimation(.spring()) {
+                                dragOffset = 0
+                            }
                         }
                     }
             )
