@@ -72,10 +72,13 @@ struct ProgressRingView: View {
                 colors: [
                     Color.green,
                     Color.green,
+                    Color.green,
+                    Color.yellow,
                     Color.yellow,
                     Color.yellow,
                     Color.red,
-                    Color.red
+                    Color.red,
+                    Color.gray.opacity(0.2),
                 ],
                 center: .center,
                 startAngle: .degrees(0),

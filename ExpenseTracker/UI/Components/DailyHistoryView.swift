@@ -82,18 +82,18 @@ struct DailyHistoryItem: View {
     let onClick: () -> Void
 
     var body: some View {
-        VStack(alignment: .center, spacing: 4) {
-            dayNameText
-            progressRingSection
-            amountText
+        Button(action: onClick) {
+            VStack(alignment: .center, spacing: 4) {
+                dayNameText
+                progressRingSection
+                amountText
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 8)
+            .background(selectionBackground)
+            .cornerRadius(12)
         }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 1)
-        .background(selectionBackground)
-        .cornerRadius(12)
-        .onTapGesture {
-            onClick()
-        }
+        .buttonStyle(PlainButtonStyle())
     }
 }
 
