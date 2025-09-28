@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23605" systemVersion="23J21" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
+        <attribute name="colorHex" attributeType="String"/>
+        <attribute name="iconName" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="isCustom" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isDefault" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="expenses" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Expense" inverseName="category" inverseEntity="Expense"/>
+        <relationship name="subcategories" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="category" inverseEntity="SubCategory"/>
+    </entity>
+    <entity name="Expense" representedClassName="Expense" syncable="YES" codeGenerationType="class">
+        <attribute name="amount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="categoryId" attributeType="String"/>
+        <attribute name="currency" attributeType="String"/>
+        <attribute name="dailyLimitAtCreation" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="desc" optional="YES" attributeType="String"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="exchangeRate" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="monthlyLimitAtCreation" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="recurrenceGroupId" attributeType="String"/>
+        <attribute name="recurrenceTpe" optional="YES" attributeType="String"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="expenses" inverseEntity="Category"/>
+        <relationship name="subcategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="expenses" inverseEntity="SubCategory"/>
+    </entity>
+    <entity name="FinancialPlan" representedClassName="FinancialPlan" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="defaultCurrency" attributeType="String"/>
+        <attribute name="durationInMonths" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="inflationRate" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="interestRate" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="interestType" attributeType="String"/>
+        <attribute name="isInflationApplied" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isInterestApplied" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="manualMonthlyExpenses" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="monthlyIncome" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="startDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="updatedAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="useAppExpenseData" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="monthlyBreakdowns" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlanMonthlyBreakDown" inverseName="plan" inverseEntity="PlanMonthlyBreakDown"/>
+    </entity>
+    <entity name="PlanMonthlyBreakDown" representedClassName="PlanMonthlyBreakDown" syncable="YES" codeGenerationType="class">
+        <attribute name="averageExpenses" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="cumulativeNet" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="fixedExpenses" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="interestEarned" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="monthIndex" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="netAmount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="planId" attributeType="String"/>
+        <attribute name="projectedIncome" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="totalProjectedExpenses" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="plan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FinancialPlan" inverseName="monthlyBreakdowns" inverseEntity="FinancialPlan"/>
+    </entity>
+    <entity name="SubCategory" representedClassName="SubCategory" syncable="YES" codeGenerationType="class">
+        <attribute name="categoryId" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="isCustom" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isDefault" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="subcategories" inverseEntity="Category"/>
+        <relationship name="expenses" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Expense" inverseName="subcategory" inverseEntity="Expense"/>
+    </entity>
+</model>
