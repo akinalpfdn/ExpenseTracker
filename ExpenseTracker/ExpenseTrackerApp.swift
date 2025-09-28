@@ -41,7 +41,7 @@ struct ExpenseTrackerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainContentView()
                 .environmentObject(preferencesManager)
                 .environmentObject(expenseViewModel)
                 .environmentObject(planningViewModel)

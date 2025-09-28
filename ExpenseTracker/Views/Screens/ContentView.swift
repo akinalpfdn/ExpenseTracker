@@ -16,27 +16,20 @@ extension Array {
 }
 
 struct ContentView: View {
-    
-    
-  
-   
-    
-    
-    
     var body: some View {
-        ZStack {
-            // Background
-            Color.black.ignoresSafeArea()
-            
-            
-        }
+        MainContentView()
     }
-               
-         
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
+        let preferencesManager = PreferencesManager()
+        let expenseViewModel = ExpenseViewModel()
+        let planningViewModel = PlanningViewModel()
+
         ContentView()
+            .environmentObject(preferencesManager)
+            .environmentObject(expenseViewModel)
+            .environmentObject(planningViewModel)
     }
 }
