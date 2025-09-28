@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-struct SubCategory: Identifiable, Codable {
+struct SubCategory: Identifiable, Codable,Equatable {
     let id: String
     let name: String
     let categoryId: String
