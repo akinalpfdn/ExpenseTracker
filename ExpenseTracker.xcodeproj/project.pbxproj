@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F4ED37732E8916C500AF45D2 /* LocalizationManager 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED37722E8916C500AF45D2 /* LocalizationManager 2.swift */; };
+		F4ED37772E8917DD00AF45D2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F4ED37752E8917DD00AF45D2 /* Localizable.strings */; };
+		F4ED377B2E8917E900AF45D2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F4ED37792E8917E900AF45D2 /* Localizable.strings */; };
 		F4FE0A712E49C6CA00DBCB51 /* ExpenseTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0A702E49C6CA00DBCB51 /* ExpenseTrackerApp.swift */; };
 		F4FE0A732E49C6CA00DBCB51 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0A722E49C6CA00DBCB51 /* ContentView.swift */; };
 		F4FE0A752E49C6CB00DBCB51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4FE0A742E49C6CB00DBCB51 /* Assets.xcassets */; };
@@ -45,6 +48,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F4ED37722E8916C500AF45D2 /* LocalizationManager 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizationManager 2.swift"; sourceTree = "<group>"; };
+		F4ED37742E8917DD00AF45D2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
+		F4ED37782E8917E900AF45D2 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = Localizable.strings; sourceTree = "<group>"; };
 		F4FE0A6D2E49C6CA00DBCB51 /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4FE0A702E49C6CA00DBCB51 /* ExpenseTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerApp.swift; sourceTree = "<group>"; };
 		F4FE0A722E49C6CA00DBCB51 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -94,6 +100,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F4ED37762E8917DD00AF45D2 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				F4ED37752E8917DD00AF45D2 /* Localizable.strings */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		F4ED377A2E8917E900AF45D2 /* tr.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				F4ED37792E8917E900AF45D2 /* Localizable.strings */,
+			);
+			path = tr.lproj;
+			sourceTree = "<group>";
+		};
 		F4FE0A642E49C6CA00DBCB51 = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +139,8 @@
 		F4FE0A6F2E49C6CA00DBCB51 /* ExpenseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				F4ED377A2E8917E900AF45D2 /* tr.lproj */,
+				F4ED37762E8917DD00AF45D2 /* en.lproj */,
 				F4FE0ABB2E4A1F3B00DBCB51 /* MonthlyCalendarView.swift */,
 				F4FE0AB92E4A16EE00DBCB51 /* DailyHistoryView.swift */,
 				F4FE0AB72E4A16E700DBCB51 /* DailyData.swift */,
@@ -133,6 +157,7 @@
 				F4FE0A742E49C6CB00DBCB51 /* Assets.xcassets */,
 				F4FE0A762E49C6CB00DBCB51 /* ExpenseTracker.entitlements */,
 				F4FE0A772E49C6CB00DBCB51 /* Preview Content */,
+				F4ED37722E8916C500AF45D2 /* LocalizationManager 2.swift */,
 			);
 			path = ExpenseTracker;
 			sourceTree = "<group>";
@@ -248,6 +273,7 @@
 			knownRegions = (
 				en,
 				Base,
+				tr,
 			);
 			mainGroup = F4FE0A642E49C6CA00DBCB51;
 			productRefGroup = F4FE0A6E2E49C6CA00DBCB51 /* Products */;
@@ -267,6 +293,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4FE0A792E49C6CB00DBCB51 /* Preview Assets.xcassets in Resources */,
+				F4ED377B2E8917E900AF45D2 /* Localizable.strings in Resources */,
+				F4ED37772E8917DD00AF45D2 /* Localizable.strings in Resources */,
 				F4FE0A752E49C6CB00DBCB51 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,6 +322,7 @@
 			files = (
 				F4FE0AB42E4A119500DBCB51 /* DailyProgressRingView.swift in Sources */,
 				F4FE0AB02E49FF6E00DBCB51 /* SettingsView.swift in Sources */,
+				F4ED37732E8916C500AF45D2 /* LocalizationManager 2.swift in Sources */,
 				F4FE0AA82E49FF3100DBCB51 /* CategoryHelper.swift in Sources */,
 				F4FE0AB22E4A119000DBCB51 /* CategoryDistributionView.swift in Sources */,
 				F4FE0AB82E4A16E700DBCB51 /* DailyData.swift in Sources */,
@@ -339,6 +368,25 @@
 			targetProxy = F4FE0A892E49C6CB00DBCB51 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F4ED37752E8917DD00AF45D2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F4ED37742E8917DD00AF45D2 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		F4ED37792E8917E900AF45D2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F4ED37782E8917E900AF45D2 /* tr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F4FE0A902E49C6CB00DBCB51 /* Debug */ = {

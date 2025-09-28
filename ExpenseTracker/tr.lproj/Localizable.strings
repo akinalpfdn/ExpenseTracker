@@ -1,0 +1,375 @@
+/*
+   Localizable.strings (Turkish)
+   ExpenseTracker
+
+   Created by migration from Android strings.xml
+*/
+
+// MARK: - General
+"app_name" = "Expense Tracker";
+"general_settings" = "Genel Ayarlar";
+"categories" = "Kategoriler";
+"default_currency" = "Varsayılan Para Birimi";
+"currency_description" = "Yeni harcamalar için kullanılacak varsayılan para birimi";
+"daily_spending_limit" = "Günlük Harcama Limiti";
+"enter_daily_limit" = "Günlük limit girin";
+"daily_limit_description" = "Her güne özel harcama limitiniz. Boş bırakılırsa limit uygulanmaz";
+"monthly_spending_limit" = "Aylık Harcama Limiti";
+"enter_monthly_limit" = "Aylık limit girin";
+"monthly_limit_description" = "Aylık toplam harcama limitiniz. Progress ring bu değere göre gösterilir";
+"theme" = "Tema";
+"dark_theme" = "Koyu Tema";
+"light_theme" = "Açık Tema";
+"theme_description" = "Uygulamanın görünümünü değiştirin";
+"cancel" = "İptal";
+"save" = "Kaydet";
+
+// MARK: - RecurringExpensesScreen
+"recurring_expenses" = "Tekrar Eden Harcamalar";
+"sort" = "Sort";
+"search" = "Search";
+"back" = "Back";
+"amount_high_to_low" = "Miktar: Büyükten Küçüğe";
+"amount_low_to_high" = "Miktar: Küçükten Büyüğe";
+"description_a_to_z" = "Açıklama: A-Z";
+"description_z_to_a" = "Açıklama: Z-A";
+"category_a_to_z" = "Kategori: A-Z";
+"category_z_to_a" = "Kategori: Z-A";
+"end_date_recurring" = "Bitiş: %@";
+"search_placeholder" = "Açıklama, miktar veya kategoriye göre ara...";
+"no_search_results" = "Arama sonucu bulunamadı";
+"search_no_results_description" = "\"%@\" için sonuç bulunamadı. Farklı bir arama terimi deneyin.";
+"no_recurring_expenses" = "Henüz tekrar eden harcama yok";
+"recurring_expenses_hint" = "Tekrar eden harcama eklemek için + butonuna basın";
+"results_found" = "%d sonuç bulundu";
+"daily" = "Her gün";
+"weekdays" = "Hafta içi";
+"weekly" = "Haftalık";
+"monthly" = "Aylık";
+"exchange_rate" = "Kur: %@";
+"delete" = "Sil";
+"amount" = "Miktar";
+"description" = "Açıklama";
+"exchange_rate_field" = "Döviz Kuru";
+"select_date" = "Tarih Seç";
+"delete_recurring_expense" = "Tekrar Eden Harcamayı Sil";
+"delete_recurring_confirmation" = "Bu tekrar eden harcamayı bugünden itibaren silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.";
+"ok" = "Tamam";
+
+// MARK: - PlanningScreen
+"financial_planning" = "Finansal Planlama";
+"planning_description" = "Gelecek planlarınızı oluşturun ve takip edin";
+"no_plans_yet" = "Henüz plan yok";
+"create_first_plan" = "İlk finansal planınızı oluşturmak için + butonuna basın";
+"add_plan" = "Plan Ekle";
+"delete_plan" = "Planı Sil";
+"delete_plan_confirmation" = "\"%@\" planını silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.";
+
+// MARK: - ExpensesScreen
+"results_count" = "%d sonuç";
+"search_expenses_placeholder" = "Açıklama, miktar veya kategoriye göre ara...";
+"monthly_limit_exceeded" = "⚠️ Aylık harcama limitinizi aştınız!";
+"time_newest_first" = "Tarih: Yeniden Eskiye";
+"time_oldest_first" = "Tarih: Eskiden Yeniye";
+
+// MARK: - AnalysisScreen
+"current_period_total" = "Bu Dönem Toplam Harcama";
+"vs_previous_month" = "Önceki aya göre";
+"vs_6_month_average" = "6 ay ortalamasına göre";
+"no_expenses_this_period" = "Bu dönem henüz harcama yok";
+"analysis_will_appear" = "Harcama eklediğinizde analiz burada görünecek";
+"previous_month" = "Önceki ay";
+"next_month" = "Sonraki ay";
+"select_date_range" = "Tarih aralığı seçin";
+"fixed_expenses" = "Sabit Harcamalar";
+"recurring_expenses_description" = "3+ ay devam edecek olan harcamalar";
+"recurring_expenses_cd" = "Tekrarlayan harcamalar";
+"pick_date_range" = "Tarih aralığı seçin";
+
+// MARK: - AddExpenseScreen
+"enter_expense_details" = "Harcama detaylarını girin";
+"expense_amount_placeholder" = "0.00";
+"search_placeholder_category" = "ara...";
+"description_optional" = "Açıklama (İsteğe bağlı)";
+"add_description_placeholder" = "Açıklama ekleyin...";
+"recurrence_type" = "Tekrar Türü";
+"end_date" = "Bitiş Tarihi";
+"exchange_rate_label" = "Döviz Kuru (1 %@ = ? %@)";
+"exchange_rate_example" = "Örn: 0.035 (1 %@ = 0.035 %@)";
+"exchange_rate_note" = "Bu kur, progress hesaplamaları için kullanılacak";
+"add_expense" = "Harcama Ekle";
+"update_expense" = "Harcama Güncelle";
+"none" = "Yok";
+"one_time" = "Tek seferlik";
+"every_day" = "Her gün";
+"weekdays_only" = "Hafta içi her gün";
+"once_per_week" = "Haftada 1 kez";
+"once_per_month" = "Ayda 1 kez";
+"edit_expense" = "Harcamayı Düzenle";
+"new_expense" = "Yeni Harcama";
+"selectCategory" = "Kategori seçim";
+"single_time" = "Tek seferlik";
+"okay" = "Tamam";
+
+// MARK: - SubCategoryDetailBottomSheet
+"parent_category" = "Ana Kategori";
+"total_amount" = "Toplam Tutar";
+"expense_count" = "Harcama Sayısı";
+"average" = "Ortalama";
+"expenses" = "Harcamalar";
+"recurring_label" = "Tekrarlayan";
+
+// MARK: - ProgressRingComponent
+"monthly_label" = "Aylık";
+"daily_label" = "Günlük";
+
+// MARK: - PlanDetailBottomSheet
+"update_expense_data" = "Harcama Verilerini Güncelle";
+"update_expense_data_description" = "Mevcut ve gelecek ayları güncel verilerle yeniden hesaplar";
+"total_net_value" = "Toplam Net Değer";
+"month" = "Ay";
+"income" = "Gelir";
+"expense" = "Gider";
+"net" = "Net";
+"total" = "Toplam";
+
+// MARK: - PlanCard
+"avg_monthly_income" = "Ort. Aylık Gelir";
+"avg_monthly_expense" = "Ort. Aylık Gider";
+"current_net" = "Şu Anki Net";
+"target_net" = "Hedef Net";
+
+// MARK: - MonthlyLineChart
+"all" = "Tümü";
+"one_time_expense" = "Tek Seferlik";
+"period_expense_trend" = "Dönemlik Harcama Trendi";
+"expand" = "Genişlet";
+"collapse" = "Daralt";
+"no_data_found" = "Veri bulunamadı";
+"highest" = "En yüksek";
+
+// MARK: - MonthlyExpensesView
+"no_expenses_this_month" = "Bu ayda harcama yok";
+"add_expense_for_month" = "Bu aya harcama eklemek için ana ekranda + butonuna basın";
+
+// MARK: - MonthlyCalendarView - Day headers
+"monday_short" = "P";
+"tuesday_short" = "S";
+"wednesday_short" = "Ç";
+"thursday_short" = "P";
+"friday_short" = "C";
+"saturday_short" = "C";
+"sunday_short" = "P";
+
+// MARK: - MonthlyAnalysisPieChart
+"category_distribution" = "Kategori Dağılımı";
+"tap_chart_to_select_category" = "Kategori seçmek için grafiğe dokunun";
+
+// MARK: - ExpenseRowView
+"unknown" = "Bilinmeyen";
+"delete_expense" = "Harcamayı Sil";
+"delete_expense_confirmation" = "Bu harcamayı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.";
+
+// MARK: - DailyCategoryDetailBottomSheet
+"amount_high_to_low_arrow" = "Tutar (Yüksek → Düşük)";
+"amount_low_to_high_arrow" = "Tutar (Düşük → Yüksek)";
+"time_newest_first_arrow" = "Zaman (Yeni → Eski)";
+"time_oldest_first_arrow" = "Zaman (Eski → Yeni)";
+"description_a_to_z_arrow" = "Açıklama (A → Z)";
+"description_z_to_a_arrow" = "Açıklama (Z → A)";
+"total_spending" = "Toplam Harcama";
+"no_expenses_in_category" = "Bu kategoride harcama bulunamadı";
+"expense_singular" = "Harcama";
+
+// MARK: - CreatePlanDialog
+"create_new_plan" = "Yeni Plan Oluştur";
+"plan_name" = "Plan Adı";
+"plan_name_example" = "Örn: 2024 Tasarruf Planı";
+"plan_duration" = "Plan Süresi";
+"apply_interest_to_savings" = "Faiz Uygula (Birikime)";
+"simple_interest" = "Basit Faiz";
+"compound_interest" = "Bileşik Faiz";
+"annual_interest_rate" = "Yıllık faiz oranı %";
+"interest_applied_to_positive_savings" = "Pozitif birikime faiz uygulanır";
+"interest_type" = "Faiz Türü";
+"monthly_income_currency" = "Aylık Gelir (%@)";
+"use_app_expense_data" = "Uygulamanın harcama verilerini kullan";
+"monthly_expenses_currency" = "Aylık Harcama (%@)";
+"manual_monthly_expense_amount" = "Manuel aylık harcama miktarı";
+"enter_manual_expense_amount" = "Manuel harcama miktarını girin";
+"apply_inflation" = "Enflasyon Uygula";
+"annual_percentage_rate" = "Yıllık % oran";
+"create" = "Oluştur";
+
+// MARK: - CategorySummarySection
+"category_details" = "Kategori Detayları";
+"main_categories" = "Ana Kategoriler";
+"sub_categories" = "Alt Kategoriler";
+"expense_lowercase" = "harcama";
+"see_details" = "Detayları gör";
+
+// MARK: - CategoryPopupLines
+"vs_previous_month_colon" = "Önceki aya göre:";
+"vs_average_colon" = "Ortalamaya göre:";
+
+// MARK: - CategoryManagementScreen
+"add_new_main_category" = "Yeni Ana Kategori Ekle";
+"add_main_category_content_desc" = "Add Main Category";
+"category_name_hint" = "Kategori adı girin";
+"unique_category_name_note" = "Kategori için benzersiz bir isim belirleyin";
+"icon_selection" = "İkon Seçimi";
+"color_selection" = "Renk Seçimi";
+"add_button" = "Ekle";
+"main_category" = "Ana Kategori";
+"select_category" = "Kategori seçin";
+"subcategory_name" = "Alt Kategori Adı";
+"subcategory_name_hint" = "Alt kategori adı girin";
+"unique_subcategory_name_note" = "Alt kategori için benzersiz bir isim belirleyin";
+"edit_subcategory" = "Alt Kategori Düzenle";
+"edit_category" = "Kategori Düzenle";
+"edit" = "Düzenle";
+"enter_name_hint" = "Ad girin";
+"delete_confirmation" = "Silme Onayı";
+"delete_item_confirmation" = "\"%@\" öğesini silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.";
+"this_item" = "Bu öğe";
+"collapse_desc" = "Collapse";
+"expand_desc" = "Expand";
+"edit_category_desc" = "Edit Category";
+"delete_category_desc" = "Delete Category";
+"add_subcategory" = "Alt Kategori Ekle";
+"add_subcategory_desc" = "Add Subcategory";
+"edit_subcategory_desc" = "Edit Subcategory";
+"delete_subcategory_desc" = "Delete Subcategory";
+"selected" = "Selected";
+
+// MARK: - CategoryDistributionChart
+"no_data" = "Veri yok";
+"category" = "Kategori";
+
+// MARK: - CategoryDetailBottomSheet
+"sort_amount_desc" = "Tutara Göre (Yüksek → Düşük)";
+"sort_amount_asc" = "Tutara Göre (Düşük → Yüksek)";
+"sort_date_desc" = "Tarihe Göre (Yeni → Eski)";
+"sort_date_asc" = "Tarihe Göre (Eski → Yeni)";
+"sort_name_asc" = "Açıklamaya Göre (A → Z)";
+"sort_name_desc" = "Açıklamaya Göre (Z → A)";
+
+// MARK: - SubCategory - Default subcategories
+// Food & Drink
+"subcategory_restaurant" = "Restoran";
+"subcategory_kitchen_shopping" = "Mutfak alışverişi";
+
+// Housing
+"subcategory_rent" = "Kira";
+"subcategory_dues" = "Aidat";
+"subcategory_mortgage" = "Mortgage ödemesi";
+"subcategory_electricity" = "Elektrik faturası";
+"subcategory_water" = "Su faturası";
+"subcategory_heating" = "Isınma";
+"subcategory_internet_phone" = "İnternet ve telefon";
+"subcategory_other_bills" = "Diğer Faturalar";
+"subcategory_general_shopping" = "Genel Market alışverişi";
+
+// Transportation
+"subcategory_fuel" = "Akaryakıt";
+"subcategory_public_transport" = "Toplu taşıma";
+"subcategory_car_maintenance" = "Araç bakımı";
+"subcategory_car_rental" = "Oto kiralama";
+"subcategory_taxi_uber" = "Taksi/Uber";
+"subcategory_car_insurance" = "Araç sigortası";
+"subcategory_mtv" = "MTV";
+"subcategory_parking_fees" = "Park ücretleri";
+
+// Health
+"subcategory_doctor_appointment" = "Doktor randevusu";
+"subcategory_medicines" = "İlaçlar";
+"subcategory_gym_membership" = "Spor salonu üyeliği";
+"subcategory_cosmetics" = "Kozmatik";
+
+// Entertainment
+"subcategory_cinema_theater" = "Sinema ve tiyatro";
+"subcategory_concerts_events" = "Konser ve etkinlikler";
+"subcategory_subscriptions" = "Abonelikler";
+"subcategory_books_magazines" = "Kitaplar ve dergiler";
+"subcategory_travel_vacation" = "Seyahat ve tatil";
+"subcategory_games_apps" = "Oyunlar ve uygulamalar";
+
+// Education
+"subcategory_course_fees" = "Kurs ücretleri";
+"subcategory_education_materials" = "Eğitim materyalleri";
+"subcategory_seminars" = "Seminerler";
+"subcategory_online_courses" = "Online kurslar";
+
+// Shopping
+"subcategory_electronics" = "Elektronik";
+"subcategory_clothing" = "Giyim";
+"subcategory_home_goods" = "Ev eşyaları";
+"subcategory_gifts" = "Hediyeler";
+"subcategory_perfume" = "Parfüm";
+
+// Pets
+"subcategory_pet_food_toys" = "Mama ve oyuncaklar";
+"subcategory_vet_services" = "Veteriner hizmetleri";
+"subcategory_pet_insurance" = "Evcil hayvan sigortası";
+
+// Work
+"subcategory_work_meals" = "İş yemekleri";
+"subcategory_office_supplies" = "Ofis malzemeleri";
+"subcategory_business_travel" = "İş seyahatleri";
+"subcategory_work_education" = "Eğitim ve seminerler";
+"subcategory_freelance_payments" = "Freelance iş ödemeleri";
+
+// Tax
+"subcategory_tax_payments" = "Vergi ödemeleri";
+
+// Others
+"subcategory_other_expenses" = "Diğer Harcamalar";
+
+// MARK: - ExpensesScreen - Empty state messages
+"no_search_results_found" = "Arama sonucu bulunamadı";
+"no_expenses_yet" = "Henüz harcama yok";
+"no_expenses_today" = "Bugün harcama yok";
+"no_search_results_description" = "\"%@\" için sonuç bulunamadı. Farklı bir arama terimi deneyin.";
+"first_expense_hint" = "İlk harcamanızı eklemek için + butonuna basın";
+"add_expense_for_day_hint" = "Bu güne harcama eklemek için + butonuna basın";
+"calendar_tab" = "Takvim";
+"expenses_tab" = "Harcamalar";
+
+// MARK: - Category - Default categories
+"category_food" = "Gıda ve İçecek";
+"category_housing" = "Konut";
+"category_transportation" = "Ulaşım";
+"category_health" = "Sağlık ve Kişisel Bakım";
+"category_entertainment" = "Eğlence ve Hobiler";
+"category_education" = "Eğitim";
+"category_shopping" = "Alışveriş";
+"category_pets" = "Evcil Hayvan";
+"category_work" = "İş ve Profesyonel Harcamalar";
+"category_tax" = "Vergi ve Hukuki Harcamalar";
+"category_donations" = "Bağışlar ve Yardımlar";
+"category_others" = "Diğer Ödemeler";
+
+// MARK: - PlanningUtils - Plan status and validation
+"plan_status_not_started" = "Başlamadı";
+"plan_status_completed" = "Tamamlandı";
+"plan_status_active" = "Aktif";
+"validation_plan_name_empty" = "Plan adı boş olamaz";
+"validation_monthly_income_positive" = "Aylık gelir 0'dan büyük olmalıdır";
+"validation_duration_positive" = "Plan süresi 0'dan büyük olmalıdır";
+"validation_duration_max_10_years" = "Plan süresi 10 yıldan fazla olamaz";
+"validation_inflation_rate_range" = "Enflasyon oranı -%50%% ile %100%% arasında olmalıdır";
+"duration_3_months" = "3 Ay";
+"duration_6_months" = "6 Ay";
+"duration_1_year" = "1 Yıl";
+"duration_1_5_years" = "1,5 Yıl";
+"duration_2_years" = "2 Yıl";
+"duration_3_years" = "3 Yıl";
+"duration_5_years" = "5 Yıl";
+
+// MARK: - PlanningViewModel - Error messages
+"error_loading_plan" = "Plan yüklenirken hata: %@";
+"error_creating_plan" = "Plan oluşturulurken hata: %@";
+"error_deleting_plan" = "Plan silinirken hata: %@";
+"error_updating_expense_data" = "Harcama verileri güncellenirken hata: %@";
+"error_updating_plan_calculations" = "Plan hesaplamaları güncellenirken hata: %@";
+"error_saving_changes" = "Değişiklikler kaydedilirken hata: %@";
