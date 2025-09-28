@@ -34,13 +34,13 @@ struct MainContentView: View {
                     AnalysisView(isDarkTheme: isDarkTheme)
                         .environmentObject(expenseViewModel)
                         .tag(1)
-/*
+
                     PlanningView(
                         isDarkTheme: isDarkTheme,
                         defaultCurrency: expenseViewModel.defaultCurrency
                     )
                     .environmentObject(planningViewModel)
-                    .tag(2)*/
+                    .tag(2)
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 
