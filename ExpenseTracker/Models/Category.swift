@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import CoreData
 
-struct Category: Identifiable, Codable {
+struct Category: Identifiable, Codable, Hashable {
     let id: String
     let name: String
     let colorHex: String
