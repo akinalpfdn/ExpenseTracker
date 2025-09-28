@@ -95,13 +95,13 @@ struct ExpensesView: View {
                 DailyHistoryView(
                     weeklyData: viewModel.weeklyHistoryData,
                     selectedDate: viewModel.selectedDate,
-                    isDarkTheme: isDarkTheme,
                     onDateSelected: { date in
                         viewModel.updateSelectedDate(date)
                     },
                     onWeekNavigate: { direction in
                         viewModel.navigateToWeek(direction: direction)
-                    }
+                    },
+                    isDarkTheme: isDarkTheme
                 )
 
                 Spacer().frame(height: 6)
@@ -192,19 +192,17 @@ extension ExpensesView {
                 isOverDailyLimit: viewModel.isOverDailyLimit,
                 selectedDateTotal: getSelectedDayTotal(),
                 currency: viewModel.defaultCurrency,
-                isDarkTheme: isDarkTheme,
-                selectedDate: viewModel.selectedDate
+                isDarkTheme: isDarkTheme
             )
             .tag(1)
 
             // Category Distribution
             CategoryDistributionChart(
                 categoryExpenses: viewModel.dailyExpensesByCategory,
-                isDarkTheme: isDarkTheme,
-                onCategoryTap: { category in
+                onCategoryClick: { category in
                     selectedCategoryForDetail = category
                     showingDailyCategoryDetail = true
-                }
+                }, isDarkTheme: isDarkTheme
             )
             .tag(2)
         }
@@ -269,7 +267,7 @@ extension ExpensesView {
                             Circle()
                                 .fill(
                                     RadialGradient(
-                                        colors: [Color(0xFF101010), Color(0xFF101010)],
+                                        colors: [Color(red: 0.063, green: 0.063, blue: 0.063), Color(red: 0.063, green: 0.063, blue: 0.063)],
                                         center: .center,
                                         startRadius: 5,
                                         endRadius: 30
@@ -296,7 +294,7 @@ extension ExpensesView {
                             Circle()
                                 .fill(
                                     RadialGradient(
-                                        colors: [Color(0xFF3F51B5), Color(0xFF9C27B0)],
+                                        colors: [Color(red: 0.247, green: 0.318, blue: 0.710), Color(red: 0.612, green: 0.153, blue: 0.690)],
                                         center: .center,
                                         startRadius: 5,
                                         endRadius: 30
@@ -316,7 +314,7 @@ extension ExpensesView {
                             Circle()
                                 .fill(
                                     RadialGradient(
-                                        colors: [Color(0xFFFF9500), Color(0xFFFF3B30)],
+                                        colors: [Color(red: 1.0, green: 0.584, blue: 0.0), Color(red: 1.0, green: 0.231, blue: 0.188)],
                                         center: .center,
                                         startRadius: 5,
                                         endRadius: 30
@@ -386,7 +384,9 @@ extension ExpensesView {
                                 isCurrentlyEditing: viewModel.editingExpenseId == expense.id,
                                 dailyExpenseRatio: getDailyExpenseRatio(expense),
                                 defaultCurrency: viewModel.defaultCurrency,
-                                isDarkTheme: isDarkTheme
+                                isDarkTheme: isDarkTheme,
+                                categories: viewModel.categories,
+                                subCategories: viewModel.subCategories
                             )
                             .environmentObject(viewModel)
                         }
@@ -480,8 +480,12 @@ extension ExpensesView {
 
     private var dailyCategoryDetailSheet: some View {
         DailyCategoryDetailBottomSheet(
-            category: selectedCategoryForDetail,
+            category: selectedCategoryForDetail ?? Category.getDefaultCategories()[0],
+            selectedDateExpenses: selectedDateExpenses,
+            subCategories: viewModel.subCategories,
             selectedDate: viewModel.selectedDate,
+            defaultCurrency: viewModel.defaultCurrency,
+            isDarkTheme: isDarkTheme,
             onDismiss: {
                 showingDailyCategoryDetail = false
                 selectedCategoryForDetail = nil

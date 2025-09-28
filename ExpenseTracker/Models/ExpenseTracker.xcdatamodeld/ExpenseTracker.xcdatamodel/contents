@@ -21,9 +21,9 @@
         <attribute name="exchangeRate" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="monthlyLimitAtCreation" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="recurrenceGroupId" attributeType="String"/>
-        <attribute name="recurrenceType" optional="YES" attributeType="String"/>
-        <attribute name="subCategoryId" optional="YES" attributeType="String"/>
+        <attribute name="recurrenceGroupId" optional="YES" attributeType="String"/>
+        <attribute name="recurrenceType" attributeType="String"/>
+        <attribute name="subCategoryId" attributeType="String"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CategoryEntity" inverseName="expenses" inverseEntity="CategoryEntity"/>
         <relationship name="subcategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubCategoryEntity" inverseName="expenses" inverseEntity="SubCategoryEntity"/>
     </entity>
