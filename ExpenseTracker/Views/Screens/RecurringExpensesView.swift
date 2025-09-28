@@ -307,23 +307,7 @@ struct RecurringExpenseCard: View {
 
     private var displayView: some View {
         ZStack {
-            // Delete background (appears when swiping)
-            HStack {
-                Spacer()
-
-                VStack(spacing: 8) {
-                    Image(systemName: "trash")
-                        .font(.system(size: 24))
-                        .foregroundColor(.white)
-
-                    Text("delete".localized)
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(.white)
-                }
-                .padding(.trailing, 16)
-            }
-            .background(Color.red.opacity(0.8))
-            .cornerRadius(12)
+           
 
             // Main card content
             HStack(spacing: 12) {
@@ -350,7 +334,7 @@ struct RecurringExpenseCard: View {
                                 .lineLimit(1)
                         }
 
-                        if expense.description != nil && !expense.description.isEmpty {
+                        if !expense.description.isEmpty {
                             Text(expense.description)
                                 .font(.system(size: 13))
                                 .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
@@ -372,6 +356,13 @@ struct RecurringExpenseCard: View {
                                 .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
                         }
                     }
+                }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                    Button(role: .destructive) {
+                        onDelete()
+                    } label: {
+                        Label("Sil", systemImage: "trash")
+                    }
+                    .tint(.red)
                 }
 
                 Spacer()
