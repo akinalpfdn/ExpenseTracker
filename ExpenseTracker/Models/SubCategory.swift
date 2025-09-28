@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 struct SubCategory: Identifiable, Codable {
     let id: String
@@ -93,5 +94,26 @@ struct SubCategory: Identifiable, Codable {
             // Diğer
             SubCategory(name: "subcategory_other_expenses".localized, categoryId: "others", isDefault: true)
         ]
+    }
+}
+
+// MARK: - Core Data Conversion
+extension SubCategory {
+    init(from entity: SubCategoryEntity) {
+        self.id = entity.id ?? ""
+        self.name = entity.name ?? ""
+        self.categoryId = entity.categoryId ?? ""
+        self.isDefault = entity.isDefault
+        self.isCustom = entity.isCustom
+    }
+
+    func toCoreData(context: NSManagedObjectContext) -> SubCategoryEntity {
+        let entity = SubCategoryEntity(context: context)
+        entity.id = self.id
+        entity.name = self.name
+        entity.categoryId = self.categoryId
+        entity.isDefault = self.isDefault
+        entity.isCustom = self.isCustom
+        return entity
     }
 }

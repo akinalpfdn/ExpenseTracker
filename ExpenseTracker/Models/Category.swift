@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import CoreData
 
 struct Category: Identifiable, Codable {
     let id: String
@@ -191,5 +192,28 @@ extension Color {
             blue:  Double(b) / 255,
             opacity: Double(a) / 255
         )
+    }
+}
+
+// MARK: - Core Data Conversion
+extension Category {
+    init(from entity: CategoryEntity) {
+        self.id = entity.id ?? ""
+        self.name = entity.name ?? ""
+        self.colorHex = entity.colorHex ?? ""
+        self.iconName = entity.iconName ?? ""
+        self.isDefault = entity.isDefault
+        self.isCustom = entity.isCustom
+    }
+
+    func toCoreData(context: NSManagedObjectContext) -> CategoryEntity {
+        let entity = CategoryEntity(context: context)
+        entity.id = self.id
+        entity.name = self.name
+        entity.colorHex = self.colorHex
+        entity.iconName = self.iconName
+        entity.isDefault = self.isDefault
+        entity.isCustom = self.isCustom
+        return entity
     }
 }

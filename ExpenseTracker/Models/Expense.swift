@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 enum RecurrenceType: String, Codable {
     case NONE           // Tek seferlik
@@ -56,5 +57,42 @@ struct Expense: Identifiable, Codable {
     func isActiveOnDate(targetDate: Date) -> Bool {
         let calendar = Calendar.current
         return calendar.isDate(date, inSameDayAs: targetDate)
+    }
+}
+
+// MARK: - Core Data Conversion
+extension Expense {
+    init(from entity: ExpenseEntity) {
+        self.id = entity.id ?? ""
+        self.amount = entity.amount
+        self.currency = entity.currency ?? ""
+        self.categoryId = entity.categoryId ?? ""
+        self.subCategoryId = entity.subCategoryId ?? ""
+        self.description = entity.desc ?? ""
+        self.date = entity.date ?? Date()
+        self.dailyLimitAtCreation = entity.dailyLimitAtCreation
+        self.monthlyLimitAtCreation = entity.monthlyLimitAtCreation
+        self.exchangeRate = entity.exchangeRate
+        self.recurrenceType = RecurrenceType(rawValue: entity.recurrenceType ?? "NONE") ?? .NONE
+        self.endDate = entity.endDate
+        self.recurrenceGroupId = entity.recurrenceGroupId
+    }
+
+    func toCoreData(context: NSManagedObjectContext) -> ExpenseEntity {
+        let entity = ExpenseEntity(context: context)
+        entity.id = self.id
+        entity.amount = self.amount
+        entity.currency = self.currency
+        entity.categoryId = self.categoryId
+        entity.subCategoryId = self.subCategoryId
+        entity.desc = self.description
+        entity.date = self.date
+        entity.dailyLimitAtCreation = self.dailyLimitAtCreation
+        entity.monthlyLimitAtCreation = self.monthlyLimitAtCreation
+        entity.exchangeRate = self.exchangeRate ?? 1
+        entity.recurrenceType = self.recurrenceType.rawValue
+        entity.endDate = self.endDate
+        entity.recurrenceGroupId = self.recurrenceGroupId
+        return entity
     }
 }

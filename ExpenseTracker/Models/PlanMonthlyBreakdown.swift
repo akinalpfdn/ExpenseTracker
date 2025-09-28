@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 struct PlanMonthlyBreakdown: Identifiable, Codable {
     let id: String
@@ -46,5 +47,36 @@ struct PlanMonthlyBreakdown: Identifiable, Codable {
         } else {
             return 0.0
         }
+    }
+}
+
+// MARK: - Core Data Conversion
+extension PlanMonthlyBreakdown {
+    init(from entity: PlanMonthlyBreakdownEntity) {
+        self.id = entity.id ?? ""
+        self.planId = entity.planId ?? ""
+        self.monthIndex = Int(entity.monthIndex)
+        self.projectedIncome = entity.projectedIncome
+        self.fixedExpenses = entity.fixedExpenses
+        self.averageExpenses = entity.averageExpenses
+        self.totalProjectedExpenses = entity.totalProjectedExpenses
+        self.netAmount = entity.netAmount
+        self.interestEarned = entity.interestEarned
+        self.cumulativeNet = entity.cumulativeNet
+    }
+
+    func toCoreData(context: NSManagedObjectContext) -> PlanMonthlyBreakdownEntity {
+        let entity = PlanMonthlyBreakdownEntity(context: context)
+        entity.id = self.id
+        entity.planId = self.planId
+        entity.monthIndex = Int32(self.monthIndex)
+        entity.projectedIncome = self.projectedIncome
+        entity.fixedExpenses = self.fixedExpenses
+        entity.averageExpenses = self.averageExpenses
+        entity.totalProjectedExpenses = self.totalProjectedExpenses
+        entity.netAmount = self.netAmount
+        entity.interestEarned = self.interestEarned
+        entity.cumulativeNet = self.cumulativeNet
+        return entity
     }
 }

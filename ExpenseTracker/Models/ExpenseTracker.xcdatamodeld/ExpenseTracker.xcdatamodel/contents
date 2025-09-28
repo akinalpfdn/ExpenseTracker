@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23605" systemVersion="23J21" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
-    <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
+    <entity name="CategoryEntity" representedClassName="CategoryEntity" syncable="YES" codeGenerationType="class">
         <attribute name="colorHex" attributeType="String"/>
         <attribute name="iconName" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="isCustom" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isDefault" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
-        <relationship name="expenses" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Expense" inverseName="category" inverseEntity="Expense"/>
-        <relationship name="subcategories" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="category" inverseEntity="SubCategory"/>
+        <relationship name="expenses" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExpenseEntity" inverseName="category" inverseEntity="ExpenseEntity"/>
+        <relationship name="subcategories" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubCategoryEntity" inverseName="category" inverseEntity="SubCategoryEntity"/>
     </entity>
-    <entity name="Expense" representedClassName="Expense" syncable="YES" codeGenerationType="class">
+    <entity name="ExpenseEntity" representedClassName="ExpenseEntity" syncable="YES" codeGenerationType="class">
         <attribute name="amount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="categoryId" attributeType="String"/>
         <attribute name="currency" attributeType="String"/>
@@ -22,11 +22,12 @@
         <attribute name="id" attributeType="String"/>
         <attribute name="monthlyLimitAtCreation" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="recurrenceGroupId" attributeType="String"/>
-        <attribute name="recurrenceTpe" optional="YES" attributeType="String"/>
-        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="expenses" inverseEntity="Category"/>
-        <relationship name="subcategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="expenses" inverseEntity="SubCategory"/>
+        <attribute name="recurrenceType" optional="YES" attributeType="String"/>
+        <attribute name="subCategoryId" optional="YES" attributeType="String"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CategoryEntity" inverseName="expenses" inverseEntity="CategoryEntity"/>
+        <relationship name="subcategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubCategoryEntity" inverseName="expenses" inverseEntity="SubCategoryEntity"/>
     </entity>
-    <entity name="FinancialPlan" representedClassName="FinancialPlan" syncable="YES" codeGenerationType="class">
+    <entity name="FinancialPlanEntity" representedClassName="FinancialPlanEntity" syncable="YES" codeGenerationType="class">
         <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="defaultCurrency" attributeType="String"/>
         <attribute name="durationInMonths" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
@@ -42,9 +43,9 @@
         <attribute name="startDate" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="updatedAt" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="useAppExpenseData" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="monthlyBreakdowns" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlanMonthlyBreakDown" inverseName="plan" inverseEntity="PlanMonthlyBreakDown"/>
+        <relationship name="monthlyBreakdowns" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlanMonthlyBreakdownEntity" inverseName="plan" inverseEntity="PlanMonthlyBreakdownEntity"/>
     </entity>
-    <entity name="PlanMonthlyBreakDown" representedClassName="PlanMonthlyBreakDown" syncable="YES" codeGenerationType="class">
+    <entity name="PlanMonthlyBreakdownEntity" representedClassName="PlanMonthlyBreakdownEntity" syncable="YES" codeGenerationType="class">
         <attribute name="averageExpenses" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="cumulativeNet" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="fixedExpenses" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -55,15 +56,15 @@
         <attribute name="planId" attributeType="String"/>
         <attribute name="projectedIncome" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="totalProjectedExpenses" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="plan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FinancialPlan" inverseName="monthlyBreakdowns" inverseEntity="FinancialPlan"/>
+        <relationship name="plan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FinancialPlanEntity" inverseName="monthlyBreakdowns" inverseEntity="FinancialPlanEntity"/>
     </entity>
-    <entity name="SubCategory" representedClassName="SubCategory" syncable="YES" codeGenerationType="class">
+    <entity name="SubCategoryEntity" representedClassName="SubCategoryEntity" syncable="YES" codeGenerationType="class">
         <attribute name="categoryId" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="isCustom" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isDefault" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="subcategories" inverseEntity="Category"/>
-        <relationship name="expenses" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Expense" inverseName="subcategory" inverseEntity="Expense"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CategoryEntity" inverseName="subcategories" inverseEntity="CategoryEntity"/>
+        <relationship name="expenses" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExpenseEntity" inverseName="subcategory" inverseEntity="ExpenseEntity"/>
     </entity>
 </model>

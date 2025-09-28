@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 struct FinancialPlan: Identifiable, Codable {
     let id: String
@@ -84,5 +85,46 @@ struct FinancialPlan: Identifiable, Codable {
     func getProgressPercentage() -> Float {
         let elapsed = getMonthsElapsed()
         return Float(elapsed) / Float(durationInMonths)
+    }
+}
+
+// MARK: - Core Data Conversion
+extension FinancialPlan {
+    init(from entity: FinancialPlanEntity) {
+        self.id = entity.id ?? ""
+        self.name = entity.name ?? ""
+        self.startDate = entity.startDate ?? Date()
+        self.durationInMonths = Int(entity.durationInMonths)
+        self.monthlyIncome = entity.monthlyIncome
+        self.manualMonthlyExpenses = entity.manualMonthlyExpenses
+        self.useAppExpenseData = entity.useAppExpenseData
+        self.isInflationApplied = entity.isInflationApplied
+        self.inflationRate = entity.inflationRate
+        self.isInterestApplied = entity.isInterestApplied
+        self.interestRate = entity.interestRate
+        self.interestType = InterestType(rawValue: entity.interestType ?? "COMPOUND") ?? .compound
+        self.createdAt = entity.createdAt ?? Date()
+        self.updatedAt = entity.updatedAt ?? Date()
+        self.defaultCurrency = entity.defaultCurrency ?? ""
+    }
+
+    func toCoreData(context: NSManagedObjectContext) -> FinancialPlanEntity {
+        let entity = FinancialPlanEntity(context: context)
+        entity.id = self.id
+        entity.name = self.name
+        entity.startDate = self.startDate
+        entity.durationInMonths = Int32(self.durationInMonths)
+        entity.monthlyIncome = self.monthlyIncome
+        entity.manualMonthlyExpenses = self.manualMonthlyExpenses
+        entity.useAppExpenseData = self.useAppExpenseData
+        entity.isInflationApplied = self.isInflationApplied
+        entity.inflationRate = self.inflationRate
+        entity.isInterestApplied = self.isInterestApplied
+        entity.interestRate = self.interestRate
+        entity.interestType = self.interestType.rawValue
+        entity.createdAt = self.createdAt
+        entity.updatedAt = self.updatedAt
+        entity.defaultCurrency = self.defaultCurrency
+        return entity
     }
 }
