@@ -353,7 +353,7 @@ class ExpenseViewModel: ObservableObject {
 
 // MARK: - Supporting Data Structures
 
-struct CategoryExpense {
+struct CategoryExpense: Equatable {
     let category: Category
     let amount: Double
     let percentage: Double
