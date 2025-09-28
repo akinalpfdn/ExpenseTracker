@@ -56,7 +56,32 @@ struct Expense: Identifiable, Codable, Equatable {
 
     func isActiveOnDate(targetDate: Date) -> Bool {
         let calendar = Calendar.current
-        return calendar.isDate(date, inSameDayAs: targetDate)
+
+        if targetDate < calendar.startOfDay(for: date) {
+            return false
+        }
+
+        if let endDate = endDate, targetDate > endDate {
+            return false
+        }
+
+        switch recurrenceType {
+        case .DAILY:
+            return true
+        case .WEEKDAYS:
+            let weekday = calendar.component(.weekday, from: targetDate)
+            return weekday >= 2 && weekday <= 6
+        case .WEEKLY:
+            let startWeekday = calendar.component(.weekday, from: date)
+            let targetWeekday = calendar.component(.weekday, from: targetDate)
+            return startWeekday == targetWeekday
+        case .MONTHLY:
+            let startDay = calendar.component(.day, from: date)
+            let targetDay = calendar.component(.day, from: targetDate)
+            return startDay == targetDay
+        case .NONE:
+            return calendar.isDate(date, inSameDayAs: targetDate)
+        }
     }
 }
 
