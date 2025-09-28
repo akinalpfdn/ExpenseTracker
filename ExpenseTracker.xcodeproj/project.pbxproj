@@ -54,6 +54,7 @@
 		F4ED379C2E891FA100AF45D2 /* Theme */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Theme; sourceTree = "<group>"; };
 		F4ED379E2E891FA100AF45D2 /* Utils */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Utils; sourceTree = "<group>"; };
 		F4ED37AA2E891FA100AF45D2 /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
+		F4ED37E72E894BB300AF45D2 /* ViewModels */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModels; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +105,7 @@
 		F4FE0A6F2E49C6CA00DBCB51 /* ExpenseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				F4ED37E72E894BB300AF45D2 /* ViewModels */,
 				F4ED378D2E891FA100AF45D2 /* Components */,
 				F4ED378E2E891FA100AF45D2 /* Data */,
 				F4ED37942E891FA100AF45D2 /* Localization */,
@@ -169,6 +171,7 @@
 				F4ED379C2E891FA100AF45D2 /* Theme */,
 				F4ED379E2E891FA100AF45D2 /* Utils */,
 				F4ED37AA2E891FA100AF45D2 /* Views */,
+				F4ED37E72E894BB300AF45D2 /* ViewModels */,
 			);
 			name = ExpenseTracker;
 			productName = ExpenseTracker;
