@@ -349,6 +349,85 @@ class ExpenseViewModel: ObservableObject {
             return false
         }
     }
+
+    // MARK: - Category Management
+
+    func createCustomCategory(name: String, colorHex: String, iconName: String) {
+        Task {
+            do {
+                let category = Category(
+                    id: UUID().uuidString,
+                    name: name,
+                    colorHex: colorHex, iconName: iconName,
+                    isCustom: true
+                )
+                try await categoryRepository.insertCategory(category)
+                await loadCategories()
+            } catch {
+                print("Error creating category: \(error)")
+            }
+        }
+    }
+
+    func createCustomSubCategory(name: String, categoryId: String) {
+        Task {
+            do {
+                let subCategory = SubCategory(
+                    id: UUID().uuidString,
+                    name: name, categoryId: categoryId,
+                    isCustom: true
+                )
+                try await categoryRepository.insertSubCategory(subCategory)
+                await loadCategories()
+            } catch {
+                print("Error creating subcategory: \(error)")
+            }
+        }
+    }
+
+    func updateCategory(_ category: Category) {
+        Task {
+            do {
+                try await categoryRepository.updateCategory(category)
+                await loadCategories()
+            } catch {
+                print("Error updating category: \(error)")
+            }
+        }
+    }
+
+    func updateSubCategory(_ subCategory: SubCategory) {
+        Task {
+            do {
+                try await categoryRepository.updateSubCategory(subCategory)
+                await loadCategories()
+            } catch {
+                print("Error updating subcategory: \(error)")
+            }
+        }
+    }
+
+    func deleteCategory(_ category: Category) {
+        Task {
+            do {
+                try await categoryRepository.deleteCategory(category)
+                await loadCategories()
+            } catch {
+                print("Error deleting category: \(error)")
+            }
+        }
+    }
+
+    func deleteSubCategory(_ subCategory: SubCategory) {
+        Task {
+            do {
+                try await categoryRepository.deleteSubCategory(subCategory)
+                await loadCategories()
+            } catch {
+                print("Error deleting subcategory: \(error)")
+            }
+        }
+    }
 }
 
 // MARK: - Supporting Data Structures

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PlanRepository {
+class PlanRepository:ObservableObject {
     private let planDataAccess: PlanDataAccess
     private let expenseRepository: ExpenseRepository
 

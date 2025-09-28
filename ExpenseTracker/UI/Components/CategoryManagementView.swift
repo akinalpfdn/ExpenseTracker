@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CategoryManagementView: View {
-    @ObservedObject var viewModel: ExpenseViewModel
+    @EnvironmentObject var viewModel: ExpenseViewModel
     let isDarkTheme: Bool
 
     @State private var expandedCategories: Set<String> = []
@@ -20,8 +20,7 @@ struct CategoryManagementView: View {
     @State private var selectedCategory: Category?
     @State private var selectedSubcategory: SubCategory?
 
-    init(viewModel: ExpenseViewModel, isDarkTheme: Bool = true) {
-        self.viewModel = viewModel
+    init(isDarkTheme: Bool = true) {
         self.isDarkTheme = isDarkTheme
     }
 
@@ -78,8 +77,7 @@ struct CategoryManagementView: View {
                     if let subcat = selectedSubcategory {
                         let updatedSubCategory = SubCategory(
                             id: subcat.id,
-                            categoryId: subcat.categoryId,
-                            name: newName,
+                            name: newName, categoryId: subcat.categoryId,
                             isCustom: subcat.isCustom
                         )
                         viewModel.updateSubCategory(updatedSubCategory)
@@ -87,8 +85,7 @@ struct CategoryManagementView: View {
                         let updatedCategory = Category(
                             id: cat.id,
                             name: newName,
-                            iconName: icon,
-                            colorHex: color,
+                            colorHex: color, iconName: icon,
                             isCustom: cat.isCustom
                         )
                         viewModel.updateCategory(updatedCategory)
@@ -359,11 +356,9 @@ struct CategoryManagementView_Previews: PreviewProvider {
     static var previews: some View {
         let sampleViewModel = ExpenseViewModel()
 
-        CategoryManagementView(
-            viewModel: sampleViewModel,
-            isDarkTheme: true
-        )
-        .padding()
-        .previewLayout(.sizeThatFits)
+        CategoryManagementView(isDarkTheme: true)
+            .environmentObject(sampleViewModel)
+            .padding()
+            .previewLayout(.sizeThatFits)
     }
 }

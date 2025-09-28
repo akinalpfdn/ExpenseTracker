@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CategoryRepository {
+class CategoryRepository:ObservableObject {
     private let categoryDataAccess: CategoryDataAccess
 
     init(categoryDataAccess: CategoryDataAccess = CategoryDataAccess()) {
