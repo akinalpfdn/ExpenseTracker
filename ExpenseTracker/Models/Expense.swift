@@ -14,6 +14,21 @@ enum RecurrenceType: String, Codable {
     case WEEKDAYS       // Hafta içi her gün (Pazartesi-Cuma)
     case WEEKLY        // Haftada 1 kez
     case MONTHLY         // Ayda 1 kez
+
+    var displayName: String {
+        switch self {
+        case .NONE:
+            return "one_time".localized
+        case .DAILY:
+            return "daily".localized
+        case .WEEKDAYS:
+            return "weekdays".localized
+        case .WEEKLY:
+            return "weekly".localized
+        case .MONTHLY:
+            return "monthly".localized
+        }
+    }
 }
 struct Expense: Identifiable, Codable, Equatable {
     let id: String
