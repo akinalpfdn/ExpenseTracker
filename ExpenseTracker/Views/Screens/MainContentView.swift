@@ -30,11 +30,11 @@ struct MainContentView: View {
                     ExpensesView()
                         .environmentObject(expenseViewModel)
                         .tag(0)
-/*
+
                     AnalysisView(isDarkTheme: isDarkTheme)
                         .environmentObject(expenseViewModel)
                         .tag(1)
-
+/*
                     PlanningView(
                         isDarkTheme: isDarkTheme,
                         defaultCurrency: expenseViewModel.defaultCurrency
