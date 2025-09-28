@@ -2,44 +2,59 @@
 //  Expense.swift
 //  ExpenseTracker
 //
-//  Created by Akinalp Fidan on 11.08.2025.
+//  Created by migration from Android Expense.kt
 //
 
 import Foundation
 
-// MARK: - Expense Category
-enum ExpenseCategory: String, CaseIterable {
-    case food = "Gıda ve İçecek"
-    case housing = "Konut"
-    case transportation = "Ulaşım"
-    case health = "Sağlık ve Kişisel Bakım"
-    case entertainment = "Eğlence ve Hobiler"
-    case education = "Eğitim"
-    case shopping = "Alışveriş"
-    case pets = "Evcil Hayvan"
-    case work = "İş ve Profesyonel Harcamalar"
-    case tax = "Vergi ve Hukuki Harcamalar"
-    case donations = "Bağışlar ve Yardımlar"
+enum RecurrenceType: String, Codable {
+    case NONE           // Tek seferlik
+    case DAILY         // Her gün
+    case WEEKDAYS       // Hafta içi her gün (Pazartesi-Cuma)
+    case WEEKLY        // Haftada 1 kez
+    case MONTHLY         // Ayda 1 kez
 }
+struct Expense: Identifiable, Codable {
+    let id: String
+    let amount: Double
+    let currency: String
+    let categoryId: String
+    let subCategoryId: String
+    let description: String
+    let date: Date
+    let dailyLimitAtCreation: Double
+    let monthlyLimitAtCreation: Double
+    let exchangeRate: Double?
+    let recurrenceType: RecurrenceType
+    let endDate: Date?
+    let recurrenceGroupId: String?
 
-// MARK: - Expense Sub Category
-struct ExpenseSubCategory {
-    let name: String
-    let category: ExpenseCategory
-}
+    init(id: String = UUID().uuidString, amount: Double, currency: String, categoryId: String, subCategoryId: String, description: String, date: Date, dailyLimitAtCreation: Double, monthlyLimitAtCreation: Double, exchangeRate: Double? = nil, recurrenceType: RecurrenceType = .NONE, endDate: Date? = nil, recurrenceGroupId: String? = nil) {
+        self.id = id
+        self.amount = amount
+        self.currency = currency
+        self.categoryId = categoryId
+        self.subCategoryId = subCategoryId
+        self.description = description
+        self.date = date
+        self.dailyLimitAtCreation = dailyLimitAtCreation
+        self.monthlyLimitAtCreation = monthlyLimitAtCreation
+        self.exchangeRate = exchangeRate
+        self.recurrenceType = recurrenceType
+        self.endDate = endDate
+        self.recurrenceGroupId = recurrenceGroupId
+    }
 
-// MARK: - Expense Model
-struct Expense: Identifiable {
-    let id = UUID()
-    var amount: Double
-    var currency: String
-    var subCategory: String
-    var description: String
-    var date: Date
-    var dailyLimitAtCreation: Double // Harcama oluşturulduğunda günlük limit
-    var monthlyLimitAtCreation: Double // Harcama oluşturulduğunda aylık limit
-    
-    var category: ExpenseCategory {
-        return CategoryHelper.getCategoryForSubCategory(subCategory)
+    func getAmountInDefaultCurrency(defaultCurrency: String) -> Double {
+        if currency == defaultCurrency || exchangeRate == nil {
+            return amount
+        } else {
+            return amount * (exchangeRate ?? 1.0)
+        }
+    }
+
+    func isActiveOnDate(targetDate: Date) -> Bool {
+        let calendar = Calendar.current
+        return calendar.isDate(date, inSameDayAs: targetDate)
     }
 }
