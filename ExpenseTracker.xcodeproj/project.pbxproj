@@ -10,6 +10,10 @@
 		F4ED37732E8916C500AF45D2 /* LocalizationManager 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED37722E8916C500AF45D2 /* LocalizationManager 2.swift */; };
 		F4ED37772E8917DD00AF45D2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F4ED37752E8917DD00AF45D2 /* Localizable.strings */; };
 		F4ED377B2E8917E900AF45D2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F4ED37792E8917E900AF45D2 /* Localizable.strings */; };
+		F4ED377D2E89193C00AF45D2 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED377C2E89193C00AF45D2 /* AppColors.swift */; };
+		F4ED377F2E891A9300AF45D2 /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED377E2E891A9300AF45D2 /* ThemeColors.swift */; };
+		F4ED37812E891BF700AF45D2 /* AppTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED37802E891BF700AF45D2 /* AppTypography.swift */; };
+		F4ED37832E891D5F00AF45D2 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED37822E891D5F00AF45D2 /* AppTheme.swift */; };
 		F4FE0A712E49C6CA00DBCB51 /* ExpenseTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0A702E49C6CA00DBCB51 /* ExpenseTrackerApp.swift */; };
 		F4FE0A732E49C6CA00DBCB51 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0A722E49C6CA00DBCB51 /* ContentView.swift */; };
 		F4FE0A752E49C6CB00DBCB51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4FE0A742E49C6CB00DBCB51 /* Assets.xcassets */; };
@@ -51,6 +55,10 @@
 		F4ED37722E8916C500AF45D2 /* LocalizationManager 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizationManager 2.swift"; sourceTree = "<group>"; };
 		F4ED37742E8917DD00AF45D2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		F4ED37782E8917E900AF45D2 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = Localizable.strings; sourceTree = "<group>"; };
+		F4ED377C2E89193C00AF45D2 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		F4ED377E2E891A9300AF45D2 /* ThemeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
+		F4ED37802E891BF700AF45D2 /* AppTypography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTypography.swift; sourceTree = "<group>"; };
+		F4ED37822E891D5F00AF45D2 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		F4FE0A6D2E49C6CA00DBCB51 /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4FE0A702E49C6CA00DBCB51 /* ExpenseTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerApp.swift; sourceTree = "<group>"; };
 		F4FE0A722E49C6CA00DBCB51 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -139,6 +147,10 @@
 		F4FE0A6F2E49C6CA00DBCB51 /* ExpenseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				F4ED37822E891D5F00AF45D2 /* AppTheme.swift */,
+				F4ED37802E891BF700AF45D2 /* AppTypography.swift */,
+				F4ED377E2E891A9300AF45D2 /* ThemeColors.swift */,
+				F4ED377C2E89193C00AF45D2 /* AppColors.swift */,
 				F4ED377A2E8917E900AF45D2 /* tr.lproj */,
 				F4ED37762E8917DD00AF45D2 /* en.lproj */,
 				F4FE0ABB2E4A1F3B00DBCB51 /* MonthlyCalendarView.swift */,
@@ -321,8 +333,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4FE0AB42E4A119500DBCB51 /* DailyProgressRingView.swift in Sources */,
+				F4ED377F2E891A9300AF45D2 /* ThemeColors.swift in Sources */,
 				F4FE0AB02E49FF6E00DBCB51 /* SettingsView.swift in Sources */,
+				F4ED37832E891D5F00AF45D2 /* AppTheme.swift in Sources */,
 				F4ED37732E8916C500AF45D2 /* LocalizationManager 2.swift in Sources */,
+				F4ED377D2E89193C00AF45D2 /* AppColors.swift in Sources */,
 				F4FE0AA82E49FF3100DBCB51 /* CategoryHelper.swift in Sources */,
 				F4FE0AB22E4A119000DBCB51 /* CategoryDistributionView.swift in Sources */,
 				F4FE0AB82E4A16E700DBCB51 /* DailyData.swift in Sources */,
@@ -332,6 +347,7 @@
 				F4FE0AAA2E49FF5700DBCB51 /* AddExpenseView.swift in Sources */,
 				F4FE0AAE2E49FF6500DBCB51 /* ExpenseRowView.swift in Sources */,
 				F4FE0ABA2E4A16EE00DBCB51 /* DailyHistoryView.swift in Sources */,
+				F4ED37812E891BF700AF45D2 /* AppTypography.swift in Sources */,
 				F4FE0AAC2E49FF5F00DBCB51 /* Expense.swift in Sources */,
 				F4FE0AB62E4A119B00DBCB51 /* MonthlyProgressRingView.swift in Sources */,
 			);
