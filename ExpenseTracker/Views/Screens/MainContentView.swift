@@ -24,13 +24,13 @@ struct MainContentView: View {
                 // Background
                 ThemeColors.getBackgroundColor(isDarkTheme: isDarkTheme)
                     .ignoresSafeArea()
-/*
+
                 // Main content with TabView
                 TabView(selection: $selectedTab) {
                     ExpensesView()
                         .environmentObject(expenseViewModel)
                         .tag(0)
-
+/*
                     AnalysisView(isDarkTheme: isDarkTheme)
                         .environmentObject(expenseViewModel)
                         .tag(1)
@@ -40,10 +40,10 @@ struct MainContentView: View {
                         defaultCurrency: expenseViewModel.defaultCurrency
                     )
                     .environmentObject(planningViewModel)
-                    .tag(2)
+                    .tag(2)*/
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                */
+                
                 // Custom page indicator at the bottom
                 VStack {
                     Spacer()

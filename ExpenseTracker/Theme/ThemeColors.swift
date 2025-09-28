@@ -93,6 +93,13 @@ struct ThemeColors {
     static func getDialogBackgroundColor(isDarkTheme: Bool) -> Color {
         return isDarkTheme ? AppColors.dialogBackgroundDark : AppColors.dialogBackgroundLight
     }
+
+    /// Returns bottom sheet background color based on current theme
+    /// - Parameter isDarkTheme: Whether dark theme is active
+    /// - Returns: Appropriate bottom sheet background color
+    static func getBottomSheetBackgroundColor(isDarkTheme: Bool) -> Color {
+        return isDarkTheme ? AppColors.backgroundBlack : AppColors.backgroundWhite
+    }
 }
 
 // MARK: - SwiftUI Environment Integration
