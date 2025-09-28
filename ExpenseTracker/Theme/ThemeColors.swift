@@ -15,7 +15,7 @@ struct ThemeColors {
     /// Returns background color based on current theme
     /// - Parameter isDarkTheme: Whether dark theme is active
     /// - Returns: Appropriate background color
-    static func backgroundColor(isDarkTheme: Bool) -> Color {
+    static func getBackgroundColor(isDarkTheme: Bool) -> Color {
         return isDarkTheme ? AppColors.backgroundBlack : AppColors.backgroundWhite
     }
 
@@ -24,14 +24,14 @@ struct ThemeColors {
     /// Returns primary text color based on current theme
     /// - Parameter isDarkTheme: Whether dark theme is active
     /// - Returns: Appropriate text color
-    static func textColor(isDarkTheme: Bool) -> Color {
+    static func getTextColor(isDarkTheme: Bool) -> Color {
         return isDarkTheme ? AppColors.textWhite : AppColors.textBlack
     }
 
     /// Returns secondary/gray text color based on current theme
     /// - Parameter isDarkTheme: Whether dark theme is active
     /// - Returns: Appropriate gray text color
-    static func textGrayColor(isDarkTheme: Bool) -> Color {
+    static func getTextGrayColor(isDarkTheme: Bool) -> Color {
         return isDarkTheme ? AppColors.textGray : AppColors.textGrayLight
     }
 
@@ -40,7 +40,7 @@ struct ThemeColors {
     /// Returns card background color based on current theme
     /// - Parameter isDarkTheme: Whether dark theme is active
     /// - Returns: Appropriate card background color
-    static func cardBackgroundColor(isDarkTheme: Bool) -> Color {
+    static func getCardBackgroundColor(isDarkTheme: Bool) -> Color {
         return isDarkTheme ? AppColors.cardBackground : AppColors.cardBackgroundLight
     }
 
@@ -49,14 +49,14 @@ struct ThemeColors {
     /// Returns input field background color based on current theme
     /// - Parameter isDarkTheme: Whether dark theme is active
     /// - Returns: Appropriate input background color
-    static func inputBackgroundColor(isDarkTheme: Bool) -> Color {
+    static func getInputBackgroundColor(isDarkTheme: Bool) -> Color {
         return isDarkTheme ? AppColors.inputBackground : AppColors.inputBackgroundLight
     }
 
     /// Returns focused input field background color based on current theme
     /// - Parameter isDarkTheme: Whether dark theme is active
     /// - Returns: Appropriate focused input background color
-    static func inputBackgroundFocusedColor(isDarkTheme: Bool) -> Color {
+    static func getInputBackgroundFocusedColor(isDarkTheme: Bool) -> Color {
         return isDarkTheme ? AppColors.inputBackgroundFocused : AppColors.inputBackgroundFocusedLight
     }
 
@@ -65,7 +65,7 @@ struct ThemeColors {
     /// Returns disabled button color based on current theme
     /// - Parameter isDarkTheme: Whether dark theme is active
     /// - Returns: Appropriate disabled button color
-    static func buttonDisabledColor(isDarkTheme: Bool) -> Color {
+    static func getButtonDisabledColor(isDarkTheme: Bool) -> Color {
         return isDarkTheme ? AppColors.buttonDisabled : AppColors.buttonDisabledLight
     }
 
@@ -74,14 +74,14 @@ struct ThemeColors {
     /// Returns delete/danger color based on current theme
     /// - Parameter isDarkTheme: Whether dark theme is active
     /// - Returns: Appropriate delete red color
-    static func deleteRedColor(isDarkTheme: Bool) -> Color {
+    static func getDeleteRedColor(isDarkTheme: Bool) -> Color {
         return isDarkTheme ? AppColors.deleteRed : AppColors.deleteRedLight
     }
 
     /// Returns success color based on current theme
     /// - Parameter isDarkTheme: Whether dark theme is active
     /// - Returns: Appropriate success green color
-    static func successGreenColor(isDarkTheme: Bool) -> Color {
+    static func getSuccessGreenColor(isDarkTheme: Bool) -> Color {
         return isDarkTheme ? AppColors.successGreen : AppColors.successGreenLight
     }
 
@@ -90,7 +90,7 @@ struct ThemeColors {
     /// Returns dialog background color based on current theme
     /// - Parameter isDarkTheme: Whether dark theme is active
     /// - Returns: Appropriate dialog background color
-    static func dialogBackgroundColor(isDarkTheme: Bool) -> Color {
+    static func getDialogBackgroundColor(isDarkTheme: Bool) -> Color {
         return isDarkTheme ? AppColors.dialogBackgroundDark : AppColors.dialogBackgroundLight
     }
 }

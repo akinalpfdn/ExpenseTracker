@@ -114,51 +114,51 @@ extension AppTheme {
     // MARK: - Background Colors
 
     var backgroundColor: Color {
-        ThemeColors.backgroundColor(isDarkTheme: isDarkMode)
+        ThemeColors.getBackgroundColor(isDarkTheme: isDarkMode)
     }
 
     var cardBackgroundColor: Color {
-        ThemeColors.cardBackgroundColor(isDarkTheme: isDarkMode)
+        ThemeColors.getBackgroundColor(isDarkTheme: isDarkMode)
     }
 
     var dialogBackgroundColor: Color {
-        ThemeColors.dialogBackgroundColor(isDarkTheme: isDarkMode)
+        ThemeColors.getDialogBackgroundColor(isDarkTheme: isDarkMode)
     }
 
     // MARK: - Text Colors
 
     var textColor: Color {
-        ThemeColors.textColor(isDarkTheme: isDarkMode)
+        ThemeColors.getTextColor(isDarkTheme: isDarkMode)
     }
 
     var textGrayColor: Color {
-        ThemeColors.textGrayColor(isDarkTheme: isDarkMode)
+        ThemeColors.getTextGrayColor(isDarkTheme: isDarkMode)
     }
 
     // MARK: - Input Colors
 
     var inputBackgroundColor: Color {
-        ThemeColors.inputBackgroundColor(isDarkTheme: isDarkMode)
+        ThemeColors.getInputBackgroundColor(isDarkTheme: isDarkMode)
     }
 
     var inputBackgroundFocusedColor: Color {
-        ThemeColors.inputBackgroundFocusedColor(isDarkTheme: isDarkMode)
+        ThemeColors.getInputBackgroundFocusedColor(isDarkTheme: isDarkMode)
     }
 
     // MARK: - Button Colors
 
     var buttonDisabledColor: Color {
-        ThemeColors.buttonDisabledColor(isDarkTheme: isDarkMode)
+        ThemeColors.getButtonDisabledColor(isDarkTheme: isDarkMode)
     }
 
     // MARK: - Status Colors
 
     var deleteRedColor: Color {
-        ThemeColors.deleteRedColor(isDarkTheme: isDarkMode)
+        ThemeColors.getDeleteRedColor(isDarkTheme: isDarkMode)
     }
 
     var successGreenColor: Color {
-        ThemeColors.successGreenColor(isDarkTheme: isDarkMode)
+        ThemeColors.getSuccessGreenColor(isDarkTheme: isDarkMode)
     }
 
     // MARK: - Static Colors (theme-independent)

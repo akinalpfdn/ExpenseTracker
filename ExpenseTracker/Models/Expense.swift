@@ -15,7 +15,7 @@ enum RecurrenceType: String, Codable {
     case WEEKLY        // Haftada 1 kez
     case MONTHLY         // Ayda 1 kez
 }
-struct Expense: Identifiable, Codable {
+struct Expense: Identifiable, Codable, Equatable {
     let id: String
     let amount: Double
     let currency: String
