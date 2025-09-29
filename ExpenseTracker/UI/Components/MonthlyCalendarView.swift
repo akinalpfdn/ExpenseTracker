@@ -331,9 +331,10 @@ extension Calendar {
     }
 
     func startOfWeek(for date: Date) -> Date {
-        let components = dateComponents([.yearForWeekOfYear, .weekOfYear], from: date)
-        let startOfWeek = self.date(from: components) ?? date
-        return self.date(byAdding: .day, value: 1, to: startOfWeek) ?? date // Monday start
+        var calendar = self
+        calendar.firstWeekday = 2 // Monday = 2
+        let components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: date)
+        return calendar.date(from: components) ?? date
     }
 
     func endOfWeek(for date: Date) -> Date {
