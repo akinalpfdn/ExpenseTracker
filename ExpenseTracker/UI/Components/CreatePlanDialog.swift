@@ -163,7 +163,7 @@ extension CreatePlanDialog {
 
     private var monthlyIncomeSection: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("monthly_income_currency".localized.replacingOccurrences(of: "%s", with: defaultCurrency))
+            Text("monthly_income_currency".localized.replacingOccurrences(of: "%@", with: defaultCurrency))
                 .font(.system(size: 14, weight: .medium))
                 .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
 
@@ -191,7 +191,7 @@ extension CreatePlanDialog {
 
             if !useAppExpenseData {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("monthly_expenses_currency".localized.replacingOccurrences(of: "%s", with: defaultCurrency))
+                    Text("monthly_expenses_currency".localized.replacingOccurrences(of: "%@", with: defaultCurrency))
                         .font(.system(size: 14, weight: .medium))
                         .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
 

@@ -174,7 +174,7 @@ extension ExpenseRowView {
         if let exchangeRate = expense.exchangeRate{
             if exchangeRate>0{
                 VStack(alignment: .trailing, spacing: 1) {
-                    Text("exchange_rate".localized + ": \(String(format: "%.4f", exchangeRate))")
+                    Text(expense.currency + ": \(String(format: "%.2f", exchangeRate)) " + defaultCurrency)
                         .font(.system(size: 12))
                         .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
                     

@@ -112,8 +112,8 @@ struct CategoryManagementView: View {
                 selectedSubcategory = nil
             }
         } message: {
-            let itemName = selectedSubcategory?.name ?? selectedCategory?.name ?? "this_item".localized
-            Text("delete_item_confirmation".localized.replacingOccurrences(of: "%s", with: itemName))
+            let itemName = selectedSubcategory?.name ?? selectedCategory?.name ?? ""
+            Text("delete_item_confirmation".localized.replacingOccurrences(of: "%@", with: itemName))
         }
     }
 }

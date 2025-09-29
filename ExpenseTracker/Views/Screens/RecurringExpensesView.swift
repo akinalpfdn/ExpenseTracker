@@ -196,7 +196,7 @@ extension RecurringExpensesView {
                     .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
                     .multilineTextAlignment(.center)
 
-                Text(searchText.isEmpty ? "recurring_expenses_hint".localized : "search_no_results_description".localized.replacingOccurrences(of: "%s", with: searchText))
+                Text(searchText.isEmpty ? "recurring_expenses_hint".localized : "search_no_results_description".localized.replacingOccurrences(of: "%@", with: searchText))
                     .font(.system(size: 14))
                     .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
                     .multilineTextAlignment(.center)
@@ -379,11 +379,6 @@ struct RecurringExpenseCard: View {
 
                         Spacer()
 
-                        if let endDate = expense.endDate {
-                            Text("end_date_recurring".localized.replacingOccurrences(of: "%s", with: endDate.formatted(date: .abbreviated, time: .omitted)))
-                                .font(.system(size: 12))
-                                .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
-                        }
                     }
                 }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
                     Button(role: .destructive) {
@@ -404,10 +399,20 @@ struct RecurringExpenseCard: View {
 
                     if let exchangeRate = expense.exchangeRate {
                         if exchangeRate>0{
-                            Text("exchange_rate".localized + " \(String(format: "%.4f", exchangeRate))")
+                            Text(expense.currency + ": \(String(format: "%.2f", exchangeRate)) " + viewModel.defaultCurrency)
                                 .font(.system(size: 11))
                                 .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
+                            
+                            Text("\(viewModel.defaultCurrency) \(NumberFormatter.formatAmount(expense.getAmountInDefaultCurrency(defaultCurrency: viewModel.defaultCurrency)))")
+                                .font(.system(size: 12))
+                                .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
                         }}
+                    
+                    if let endDate = expense.endDate {
+                        Text("end_date_recurring".localized.replacingOccurrences(of: "%@", with: endDate.formatted(date: .abbreviated, time: .omitted)))
+                            .font(.system(size: 12))
+                            .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
+                    }
                 }
             }
             .padding(12)

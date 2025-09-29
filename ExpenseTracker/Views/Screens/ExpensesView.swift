@@ -417,7 +417,7 @@ extension ExpensesView {
                     .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
                     .multilineTextAlignment(.center)
 
-                Text(searchText.isEmpty ? "first_expense_hint".localized : "no_search_results_description".localized.replacingOccurrences(of: "%s", with: searchText))
+                Text(searchText.isEmpty ? "first_expense_hint".localized : "no_search_results_description".localized.replacingOccurrences(of: "%@", with: searchText))
                     .font(.system(size: 14))
                     .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
                     .multilineTextAlignment(.center)

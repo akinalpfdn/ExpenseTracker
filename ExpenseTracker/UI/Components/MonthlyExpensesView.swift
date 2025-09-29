@@ -212,7 +212,7 @@ extension MonthlyExpensesView {
                 .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
                 .multilineTextAlignment(.center)
 
-            Text(searchText.isEmpty ? "add_expense_for_month".localized : "search_no_results_description".localized.replacingOccurrences(of: "%s", with: searchText))
+            Text(searchText.isEmpty ? "add_expense_for_month".localized : "search_no_results_description".localized.replacingOccurrences(of: "%@", with: searchText))
                 .font(.system(size: 16))
                 .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
                 .multilineTextAlignment(.center)
