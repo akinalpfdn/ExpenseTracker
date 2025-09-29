@@ -271,7 +271,9 @@ extension CalendarDayView {
                 ProgressRingView(
                     progress: dayData.progressPercentage,
                     isLimitOver: dayData.isOverLimit,
-                    strokeWidth: 3
+                    strokeWidth: 3,
+                    onClick: {
+                        onDateSelected(dayData.date)}
                 )
                 .frame(width: 40, height: 40)
             }

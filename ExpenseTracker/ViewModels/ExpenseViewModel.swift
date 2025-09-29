@@ -81,6 +81,11 @@ class ExpenseViewModel: ObservableObject {
             await loadExpenses()
             await loadCategories()
             await initializeDefaultDataIfNeeded()
+
+            // Force weekly data update after initial load
+            await MainActor.run {
+                selectedDate = selectedDate
+            }
         }
     }
 
@@ -265,6 +270,11 @@ class ExpenseViewModel: ObservableObject {
 
                 await loadExpenses()
 
+                // Force UI update
+                await MainActor.run {
+                    selectedDate = selectedDate
+                }
+
                 // Check if over limit
                 if !isOverLimit && totalSpent > monthlyLimitValue && monthlyLimitValue > 0 {
                     await MainActor.run {
@@ -282,6 +292,11 @@ class ExpenseViewModel: ObservableObject {
             do {
                 try await expenseRepository.updateExpense(expense)
                 await loadExpenses()
+
+                // Force UI update
+                await MainActor.run {
+                    selectedDate = selectedDate
+                }
             } catch {
                 print("Error updating expense: \(error)")
             }
@@ -293,6 +308,11 @@ class ExpenseViewModel: ObservableObject {
             do {
                 try await expenseRepository.deleteExpense(expense)
                 await loadExpenses()
+
+                // Force UI update
+                await MainActor.run {
+                    selectedDate = selectedDate
+                }
             } catch {
                 print("Error deleting expense: \(error)")
             }
