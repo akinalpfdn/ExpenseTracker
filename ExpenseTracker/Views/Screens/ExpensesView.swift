@@ -91,11 +91,21 @@ struct ExpensesView: View {
             VStack(spacing: 0) {
                 Spacer().frame(height: 16)
 
+                // Debug button (temporary)
+                Button("Debug DB") {
+                    viewModel.printAllExpenses()
+                }
+                .padding()
+                .background(Color.red)
+                .foregroundColor(.white)
+                .cornerRadius(8)
+
                 // Daily History
                 DailyHistoryView(
                     weeklyData: viewModel.weeklyHistoryData,
                     selectedDate: viewModel.selectedDate,
                     onDateSelected: { date in
+                        print("ExpensesView: Date selected: \(date)")
                         viewModel.updateSelectedDate(date)
                     },
                     onWeekNavigate: { direction in

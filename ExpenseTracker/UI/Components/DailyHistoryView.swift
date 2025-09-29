@@ -50,12 +50,17 @@ extension DailyHistoryView {
     private func weekView(weekData: [DailyData]) -> some View {
         HStack(spacing: 8) {
             ForEach(weekData, id: \.id) { dayData in
-                DailyHistoryItem(
-                    data: dayData,
-                    isSelected: Calendar.current.isDate(selectedDate, inSameDayAs: dayData.date),
-                    isDarkTheme: isDarkTheme,
-                    onClick: { onDateSelected(dayData.date) }
-                )
+                Button(action: {
+                    print("ForEach Button clicked: \(dayData.dayName)")
+                    onDateSelected(dayData.date)
+                }) {
+                    DailyHistoryItem(
+                        data: dayData,
+                        isSelected: Calendar.current.isDate(selectedDate, inSameDayAs: dayData.date),
+                        isDarkTheme: isDarkTheme
+                    )
+                }
+                .buttonStyle(PlainButtonStyle())
                 .frame(maxWidth: .infinity)
             }
         }
@@ -79,21 +84,18 @@ struct DailyHistoryItem: View {
     let data: DailyData
     let isSelected: Bool
     let isDarkTheme: Bool
-    let onClick: () -> Void
 
     var body: some View {
-        Button(action: onClick) {
-            VStack(alignment: .center, spacing: 4) {
-                dayNameText
-                progressRingSection
-                amountText
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, 8)
-            .background(selectionBackground)
-            .cornerRadius(12)
+        VStack(alignment: .center, spacing: 4) {
+            dayNameText
+            progressRingSection
+            amountText
         }
-        .buttonStyle(PlainButtonStyle())
+        .frame(maxWidth: .infinity, minHeight: 90)
+        .padding(.horizontal, 4)
+        .padding(.vertical, 8)
+        .background(selectionBackground)
+        .cornerRadius(12)
     }
 }
 

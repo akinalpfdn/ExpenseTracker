@@ -37,7 +37,7 @@ struct MonthlyCalendarBottomSheet: View {
     @State private var selectedTabIndex = 0
     @State private var currentMonth: Date
 
-    private let tabs = ["calendar".localized, "monthly_expenses".localized]
+    private let tabs = ["calendar".localized, "expenses".localized]
 
     private var isDarkTheme: Bool {
         viewModel.theme == "dark"
@@ -85,10 +85,7 @@ extension MonthlyCalendarBottomSheet {
 
     private var header: some View {
         HStack {
-            Text("monthly_view".localized)
-                .font(.system(size: 20, weight: .bold))
-                .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
-
+             
             Spacer()
 
             Button("done".localized) {

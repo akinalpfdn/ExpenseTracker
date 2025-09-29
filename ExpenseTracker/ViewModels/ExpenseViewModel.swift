@@ -227,6 +227,20 @@ class ExpenseViewModel: ObservableObject {
         currentWeekOffset = 0
     }
 
+    // MARK: - Debug Methods
+
+    func printAllExpenses() {
+        print("=== ALL EXPENSES (\(expenses.count)) ===")
+        expenses.sorted { $0.date > $1.date }.forEach { expense in
+            print("ID: \(expense.id)")
+            print("Amount: \(expense.amount) \(expense.currency)")
+            print("Description: \(expense.description)")
+            print("Date: \(expense.date)")
+            print("ExchangeRate: \(expense.exchangeRate ?? 0)")
+            print("---")
+        }
+    }
+
     func navigateToWeek(direction: Int) {
         currentWeekOffset += direction
     }
