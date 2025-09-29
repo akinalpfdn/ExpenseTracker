@@ -104,8 +104,7 @@ struct ExpensesView: View {
                 DailyHistoryView(
                     weeklyData: viewModel.weeklyHistoryData,
                     selectedDate: viewModel.selectedDate,
-                    onDateSelected: { date in
-                        print("ExpensesView: Date selected: \(date)")
+                    onDateSelected: { date in 
                         viewModel.updateSelectedDate(date)
                     },
                     onWeekNavigate: { direction in

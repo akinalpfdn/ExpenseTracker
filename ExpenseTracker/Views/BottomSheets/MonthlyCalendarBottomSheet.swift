@@ -132,6 +132,7 @@ extension MonthlyCalendarBottomSheet {
                 expenses: viewModel.expenses,
                 onDateSelected: { date in
                     viewModel.updateSelectedDate(date)
+                    onDismiss()
                 },
                 defaultCurrency: viewModel.defaultCurrency,
                 dailyLimit: viewModel.dailyLimit,

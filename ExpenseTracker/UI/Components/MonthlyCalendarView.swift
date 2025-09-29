@@ -252,6 +252,7 @@ struct CalendarDayView: View {
             }
         }
         .onTapGesture {
+            
             onDateSelected(dayData.date)
         }
     }

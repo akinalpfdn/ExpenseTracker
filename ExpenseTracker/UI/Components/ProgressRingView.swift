@@ -143,6 +143,8 @@ struct MonthlyProgressRingView: View {
             Text(formattedDate)
                 .font(.system(size: 19))
                 .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
+        }.onTapGesture {
+            onTap()
         }
     }
 
