@@ -442,6 +442,14 @@ class ExpenseViewModel: ObservableObject {
             }
         }
     }
+
+    // MARK: - Helper Methods for UI Components
+
+    func getDailyExpenseRatio(_ expense: Expense) -> Double {
+        let dailyTotal = getExpensesForDate(expense.date).reduce(0) { $0 + $1.getAmountInDefaultCurrency(defaultCurrency: defaultCurrency) }
+        if dailyLimitValue <= 0 { return 0.0 }
+        return min(dailyTotal / dailyLimitValue, 1.0)
+    }
 }
 
 // MARK: - Supporting Data Structures

@@ -145,20 +145,12 @@ extension MonthlyCalendarBottomSheet {
     }
 
     private var monthlyExpensesTab: some View {
-        ScrollView {
-            VStack(spacing: 16) {
-                // Month Navigation
-                monthNavigationHeader
-
-                // Monthly Summary
-                monthlySummaryCard
-
-                // Expense List
-                monthlyExpenseList
-            }
-            .padding(.horizontal, 20)
-            .padding(.bottom, 20)
-        }
+        MonthlyExpensesView(
+            currentMonth: currentMonth,
+            expenses: viewModel.expenses,
+            isDarkTheme: isDarkTheme
+        )
+        .environmentObject(viewModel)
     }
 
     private var monthNavigationHeader: some View {
@@ -189,94 +181,6 @@ extension MonthlyCalendarBottomSheet {
         .cornerRadius(12)
     }
 
-    private var monthlySummaryCard: some View {
-        VStack(spacing: 12) {
-            HStack {
-                Text("monthly_total".localized)
-                    .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
-
-                Spacer()
-
-                Text("\(viewModel.defaultCurrency)\(NumberFormatter.formatAmount(getMonthlyTotal()))")
-                    .font(.system(size: 18, weight: .bold))
-                    .foregroundColor(AppColors.primaryOrange)
-            }
-
-            // Monthly limit progress if set
-            if let monthlyLimit = Double(viewModel.monthlyLimit), monthlyLimit > 0 {
-                VStack(spacing: 8) {
-                    HStack {
-                        Text("monthly_limit".localized)
-                            .font(.system(size: 14))
-                            .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
-
-                        Spacer()
-
-                        Text("\(viewModel.defaultCurrency)\(NumberFormatter.formatAmount(monthlyLimit))")
-                            .font(.system(size: 14, weight: .medium))
-                            .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
-                    }
-
-                    ProgressView(value: min(getMonthlyTotal() / monthlyLimit, 1.0))
-                        .progressViewStyle(LinearProgressViewStyle(tint: getMonthlyTotal() > monthlyLimit ? .red : AppColors.primaryOrange))
-                        .scaleEffect(x: 1, y: 2, anchor: .center)
-                }
-            }
-        }
-        .padding(16)
-        .background(ThemeColors.getCardBackgroundColor(isDarkTheme: isDarkTheme))
-        .cornerRadius(12)
-    }
-
-    private var monthlyExpenseList: some View {
-        VStack(spacing: 12) {
-            HStack {
-                Text("expenses_this_month".localized)
-                    .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
-
-                Spacer()
-
-                Text("\(monthlyExpenses.count) \("expenses".localized)")
-                    .font(.system(size: 14))
-                    .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
-            }
-
-            if monthlyExpenses.isEmpty {
-                VStack(spacing: 8) {
-                    Text("no_expenses_this_month".localized)
-                        .font(.system(size: 14, weight: .medium))
-                        .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
-                        .multilineTextAlignment(.center)
-
-                    Text("add_expense_to_start_tracking".localized)
-                        .font(.system(size: 12))
-                        .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
-                        .multilineTextAlignment(.center)
-                }
-                .padding(.vertical, 32)
-            } else {
-                LazyVStack(spacing: 8) {
-                    ForEach(monthlyExpenses.sorted { $0.date > $1.date }, id: \.id) { expense in
-                        MonthlyExpenseRowView(
-                            expense: expense,
-                            defaultCurrency: viewModel.defaultCurrency,
-                            isDarkTheme: isDarkTheme,
-                            onTap: {
-                                viewModel.updateSelectedDate(expense.date)
-                                onDismiss()
-                            }
-                        )
-                        .environmentObject(viewModel)
-                    }
-                }
-            }
-        }
-        .padding(16)
-        .background(ThemeColors.getCardBackgroundColor(isDarkTheme: isDarkTheme))
-        .cornerRadius(12)
-    }
 }
 
 // MARK: - Helper Methods
@@ -288,16 +192,6 @@ extension MonthlyCalendarBottomSheet {
         return formatter.string(from: currentMonth)
     }
 
-    private var monthlyExpenses: [Expense] {
-        let calendar = Calendar.current
-        return viewModel.expenses.filter { expense in
-            calendar.isDate(expense.date, equalTo: currentMonth, toGranularity: .month)
-        }
-    }
-
-    private func getMonthlyTotal() -> Double {
-        return monthlyExpenses.reduce(0) { $0 + $1.getAmountInDefaultCurrency(defaultCurrency: viewModel.defaultCurrency) }
-    }
 
     private func previousMonth() {
         withAnimation(.easeInOut(duration: 0.3)) {
