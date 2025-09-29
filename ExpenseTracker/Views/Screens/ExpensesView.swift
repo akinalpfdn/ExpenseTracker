@@ -90,7 +90,7 @@ struct ExpensesView: View {
 
             VStack(spacing: 0) {
                 Spacer().frame(height: 16)
-
+/*
                 // Debug button (temporary)
                 Button("Debug DB") {
                     viewModel.printAllExpenses()
@@ -99,7 +99,7 @@ struct ExpensesView: View {
                 .background(Color.red)
                 .foregroundColor(.white)
                 .cornerRadius(8)
-
+*/
                 // Daily History
                 DailyHistoryView(
                     weeklyData: viewModel.weeklyHistoryData,
@@ -266,11 +266,12 @@ extension ExpensesView {
 
     private var floatingActionButtons: some View {
         VStack {
-            Spacer().frame(height: 200) // Position over charts
+            Spacer().frame(height: 170) // Position over charts
 
             HStack {
                 // Settings Button (Left)
                 VStack {
+                    Spacer().frame(height: 70) // Position over charts
                     Button(action: { showingSettings = true }) {
                         ZStack {
                             Circle()
@@ -290,7 +291,7 @@ extension ExpensesView {
                         }
                     }
 
-                    Spacer().frame(height: 35) // Spacing between buttons
+                    //Spacer().frame(height: 25) // Spacing between buttons
                 }
 
                 Spacer()
@@ -303,7 +304,7 @@ extension ExpensesView {
                             Circle()
                                 .fill(
                                     RadialGradient(
-                                        colors: [Color(red: 0.247, green: 0.318, blue: 0.710), Color(red: 0.612, green: 0.153, blue: 0.690)],
+                                        colors: [AppColors.recurringButtonStart, AppColors.recurringButtonEnd],
                                         center: .center,
                                         startRadius: 5,
                                         endRadius: 30

@@ -243,7 +243,8 @@ struct CalendarDayView: View {
 
     var body: some View {
         VStack(spacing: 4) {
-            if !dayData.isCurrentMonth && dayData.expenseCount == 0 {
+            if !dayData.isCurrentMonth //&& dayData.expenseCount == 0
+            {
                 Spacer()
                     .frame(height: 50)
             } else {
@@ -272,7 +273,7 @@ extension CalendarDayView {
                     isLimitOver: dayData.isOverLimit,
                     strokeWidth: 3
                 )
-                .frame(width: 50, height: 50)
+                .frame(width: 40, height: 40)
             }
 
             Text(dayNumber)
@@ -283,7 +284,7 @@ extension CalendarDayView {
 
     private var amountText: some View {
         Text("\(defaultCurrency)\(NumberFormatter.formatAmount(dayData.totalAmount))")
-            .font(.system(size: 10, weight: .medium))
+            .font(.system(size: 9, weight: .medium))
             .foregroundColor(amountTextColor)
             .multilineTextAlignment(.center)
     }
