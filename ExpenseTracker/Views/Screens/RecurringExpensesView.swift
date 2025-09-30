@@ -50,21 +50,23 @@ struct RecurringExpensesView: View {
         viewModel.theme == "dark"
     }
 
-    // Get only recurring expenses that still have future occurrences
+    // Get only recurring expenses that have occurrences from selected date onwards
     private var baseRecurringExpenses: [Expense] {
-        let today = Date()
+        let selectedDate = viewModel.selectedDate
         let calendar = Calendar.current
 
         return Dictionary(grouping: viewModel.expenses.filter { $0.recurrenceType != .NONE }, by: { $0.recurrenceGroupId })
             .compactMap { (_, groupExpenses) -> Expense? in
-                let baseExpense = groupExpenses.first!
-
-                // Check if this recurring expense still has future occurrences
-                let hasFutureOccurrences = groupExpenses.contains { expense in
-                    calendar.compare(expense.date, to: calendar.startOfDay(for: today), toGranularity: .day) != .orderedAscending
+                // Get expenses from selected date onwards
+                let futureExpenses = groupExpenses.filter { expense in
+                    calendar.compare(expense.date, to: calendar.startOfDay(for: selectedDate), toGranularity: .day) != .orderedAscending
                 }
 
-                return hasFutureOccurrences ? baseExpense : nil
+                // If no future expenses, don't show this group
+                guard !futureExpenses.isEmpty else { return nil }
+
+                // Return the earliest expense from selected date onwards
+                return futureExpenses.sorted { $0.date < $1.date }.first!
             }
     }
 
