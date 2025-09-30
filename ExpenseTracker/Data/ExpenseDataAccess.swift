@@ -41,7 +41,7 @@ class ExpenseDataAccess {
 
     func insertExpense(_ expense: Expense) async throws {
         try await context.perform {
-            let entity = expense.toCoreData(context: self.context)
+            _ = expense.toCoreData(context: self.context)
             try self.context.save()
         }
     }

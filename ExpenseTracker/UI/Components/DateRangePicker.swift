@@ -63,7 +63,7 @@ extension DateRangePicker {
 
             Spacer()
 
-            if let range = selectedRange {
+            if selectedRange != nil {
                 Button(action: clearSelection) {
                     Image(systemName: "xmark.circle.fill")
                         .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))

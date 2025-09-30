@@ -58,7 +58,7 @@ struct PlanningView: View {
             deleteConfirmationAlert
         }
         .onReceive(planningViewModel.$error) { error in
-            if let error = error {
+            if error != nil {
                 // Handle error display - could use a toast or alert
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     planningViewModel.clearError()

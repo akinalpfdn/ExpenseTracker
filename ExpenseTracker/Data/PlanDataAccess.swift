@@ -35,7 +35,7 @@ class PlanDataAccess {
     }
 
     func insertPlan(_ plan: FinancialPlan) async throws {
-        let entity = plan.toCoreData(context: context)
+        _ = plan.toCoreData(context: context)
         try context.save()
     }
 
@@ -98,7 +98,7 @@ class PlanDataAccess {
     }
 
     func insertBreakdown(_ breakdown: PlanMonthlyBreakdown) async throws {
-        let entity = breakdown.toCoreData(context: context)
+        _ = breakdown.toCoreData(context: context)
         try context.save()
     }
 

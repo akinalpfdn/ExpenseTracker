@@ -241,7 +241,7 @@ struct MonthlyExpenseRowView: View {
 
                 // Content
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(expense.description ?? "")
+                    Text(expense.description)
                         .font(.system(size: 14, weight: .medium))
                         .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
                         .lineLimit(1)

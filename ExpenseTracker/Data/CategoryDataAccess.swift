@@ -53,7 +53,7 @@ class CategoryDataAccess {
     }
 
     func insertCategory(_ category: Category) async throws {
-        let entity = category.toCoreData(context: context)
+        _ = category.toCoreData(context: context)
         try context.save()
     }
 
@@ -149,7 +149,7 @@ class CategoryDataAccess {
     }
 
     func insertSubCategory(_ subCategory: SubCategory) async throws {
-        let entity = subCategory.toCoreData(context: context)
+        _ = subCategory.toCoreData(context: context)
         try context.save()
     }
 

@@ -92,9 +92,9 @@ struct RecurringExpensesView: View {
         case .amountLowToHigh:
             return filteredExpenses.sorted { $0.getAmountInDefaultCurrency(defaultCurrency: viewModel.defaultCurrency) < $1.getAmountInDefaultCurrency(defaultCurrency: viewModel.defaultCurrency) }
         case .descriptionAToZ:
-            return filteredExpenses.sorted { ($0.description ?? "").lowercased() < ($1.description ?? "").lowercased() }
+            return filteredExpenses.sorted { ($0.description).lowercased() < ($1.description).lowercased() }
         case .descriptionZToA:
-            return filteredExpenses.sorted { ($0.description ?? "").lowercased() > ($1.description ?? "").lowercased() }
+            return filteredExpenses.sorted { ($0.description).lowercased() > ($1.description).lowercased() }
         case .categoryAToZ:
             return filteredExpenses.sorted { expense1, expense2 in
                 let subCategory1 = viewModel.subCategories.first { $0.id == expense1.subCategoryId }
@@ -578,7 +578,7 @@ struct RecurringExpenseCard: View {
 
     private func initializeEditState() {
         editAmount = String(expense.amount)
-        editDescription = expense.description ?? ""
+        editDescription = expense.description
         editExchangeRate = expense.exchangeRate?.description ?? ""
         tempEndDate = expense.endDate ?? Calendar.current.date(byAdding: .year, value: 1, to: Date()) ?? Date()
     }

@@ -306,12 +306,7 @@ extension AppTypography {
 
 extension Text {
 
-    /// Apply custom line spacing
-    /// - Parameter spacing: Line spacing value
-    /// - Returns: Text with custom line spacing
-    func lineSpacing(_ spacing: CGFloat) -> some View {
-        self.lineSpacing(spacing)
-    }
+    
 
     /// Apply custom letter spacing (tracking)
     /// - Parameter spacing: Letter spacing value
