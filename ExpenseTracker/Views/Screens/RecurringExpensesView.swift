@@ -609,7 +609,7 @@ struct RecurringExpenseCard: View {
             recurrenceGroupId: expense.recurrenceGroupId
         )
 
-        viewModel.updateExpense(updatedExpense)
+        viewModel.updateRecurringExpenseFromDate(updatedExpense, fromDate: Date())
         isEditing = false
     }
 }

@@ -505,6 +505,50 @@ class ExpenseViewModel: ObservableObject {
             }
         }
     }
+
+    func updateRecurringExpenseFromDate(_ expense: Expense, fromDate: Date) {
+        guard let groupId = expense.recurrenceGroupId else {
+            updateExpense(expense)
+            return
+        }
+
+        Task {
+            do {
+                // Update all instances from the selected date onwards
+                let calendar = Calendar.current
+                let expensesToUpdate = expenses.filter { exp in
+                    exp.recurrenceGroupId == groupId &&
+                    exp.date >= calendar.startOfDay(for: fromDate)
+                }
+
+                for expenseToUpdate in expensesToUpdate {
+                    let updatedExpense = Expense(
+                        id: expenseToUpdate.id,
+                        amount: expense.amount,
+                        currency: expenseToUpdate.currency,
+                        categoryId: expenseToUpdate.categoryId,
+                        subCategoryId: expenseToUpdate.subCategoryId,
+                        description: expense.description,
+                        date: expenseToUpdate.date,
+                        dailyLimitAtCreation: expenseToUpdate.dailyLimitAtCreation,
+                        monthlyLimitAtCreation: expenseToUpdate.monthlyLimitAtCreation,
+                        exchangeRate: expense.exchangeRate,
+                        recurrenceType: expenseToUpdate.recurrenceType,
+                        endDate: expense.endDate,
+                        recurrenceGroupId: expenseToUpdate.recurrenceGroupId
+                    )
+                    try await expenseRepository.updateExpense(updatedExpense)
+                }
+
+                await loadExpenses()
+                await MainActor.run {
+                    selectedDate = selectedDate
+                }
+            } catch {
+                print("Error updating recurring expenses: \(error)")
+            }
+        }
+    }
 }
 
 // MARK: - Supporting Data Structures
