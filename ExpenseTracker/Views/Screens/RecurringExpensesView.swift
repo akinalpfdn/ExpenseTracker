@@ -228,7 +228,7 @@ extension RecurringExpensesView {
                             expense: expense,
                             isDarkTheme: isDarkTheme,
                             onDelete: {
-                                viewModel.deleteRecurringExpenseFromDate(expense, fromDate: Date())
+                                viewModel.deleteRecurringExpenseFromDate(expense, fromDate: viewModel.selectedDate)
                             }
                         )
                         .environmentObject(viewModel)
@@ -609,7 +609,7 @@ struct RecurringExpenseCard: View {
             recurrenceGroupId: expense.recurrenceGroupId
         )
 
-        viewModel.updateRecurringExpenseFromDate(updatedExpense, fromDate: Date())
+        viewModel.updateRecurringExpenseFromDate(updatedExpense, fromDate: viewModel.selectedDate)
         isEditing = false
     }
 }
