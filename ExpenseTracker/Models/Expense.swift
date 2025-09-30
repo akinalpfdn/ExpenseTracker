@@ -103,7 +103,7 @@ extension Expense {
         entity.currency = self.currency
         entity.categoryId = self.categoryId
         entity.subCategoryId = self.subCategoryId
-        entity.desc = self.description.isEmpty ? " " : self.description
+        entity.desc = self.description.isEmpty ? "-" : self.description.count>1 ?self.description:"-"
         entity.date = self.date
         entity.dailyLimitAtCreation = self.dailyLimitAtCreation
         entity.monthlyLimitAtCreation = self.monthlyLimitAtCreation

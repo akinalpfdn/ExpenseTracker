@@ -261,8 +261,12 @@ class ExpenseViewModel: ObservableObject {
             do {
                 if expense.recurrenceType != .NONE && expense.recurrenceGroupId != nil {
                     let recurringExpenses = generateRecurringExpenses(expense)
-                    for individualExpense in recurringExpenses {
-                        try await expenseRepository.insertExpense(individualExpense)
+                    // Batch insert to avoid context conflicts
+                    for batch in recurringExpenses.chunked(into: 50) {
+                        for individualExpense in batch {
+                            try await expenseRepository.insertExpense(individualExpense)
+                        }
+                        try await Task.sleep(nanoseconds: 10_000_000) // 10ms delay
                     }
                 } else {
                     try await expenseRepository.insertExpense(expense)
@@ -470,6 +474,37 @@ class ExpenseViewModel: ObservableObject {
         if dailyLimitValue <= 0 { return 0.0 }
         return min(dailyTotal / dailyLimitValue, 1.0)
     }
+
+    // MARK: - Recurring Expense Management
+
+    func deleteRecurringExpenseFromDate(_ expense: Expense, fromDate: Date) {
+        guard let groupId = expense.recurrenceGroupId else {
+            deleteExpense(expense)
+            return
+        }
+
+        Task {
+            do {
+                // Delete all instances from the selected date onwards
+                let calendar = Calendar.current
+                let expensesToDelete = expenses.filter { exp in
+                    exp.recurrenceGroupId == groupId &&
+                    exp.date >= calendar.startOfDay(for: fromDate)
+                }
+
+                for expenseToDelete in expensesToDelete {
+                    try await expenseRepository.deleteExpense(expenseToDelete)
+                }
+
+                await loadExpenses()
+                await MainActor.run {
+                    selectedDate = selectedDate
+                }
+            } catch {
+                print("Error deleting recurring expenses: \(error)")
+            }
+        }
+    }
 }
 
 // MARK: - Supporting Data Structures
@@ -478,4 +513,12 @@ struct CategoryExpense: Equatable {
     let category: Category
     let amount: Double
     let percentage: Double
+}
+
+extension Array {
+    func chunked(into size: Int) -> [[Element]] {
+        return stride(from: 0, to: count, by: size).map {
+            Array(self[$0..<Swift.min($0 + size, count)])
+        }
+    }
 }

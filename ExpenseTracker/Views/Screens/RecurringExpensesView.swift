@@ -228,7 +228,7 @@ extension RecurringExpensesView {
                             expense: expense,
                             isDarkTheme: isDarkTheme,
                             onDelete: {
-                                deleteRecurringExpense(expense)
+                                viewModel.deleteRecurringExpenseFromDate(expense, fromDate: Date())
                             }
                         )
                         .environmentObject(viewModel)

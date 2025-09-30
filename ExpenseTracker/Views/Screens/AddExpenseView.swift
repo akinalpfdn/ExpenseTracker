@@ -32,6 +32,7 @@ struct AddExpenseView: View {
     @State private var selectedRecurrenceType: RecurrenceType
     @State private var endDate: Date
     @State private var showEndDatePicker = false
+    @State private var isLoading = false
 
     private let currencies = ["₺", "$", "€", "£"]
 
@@ -471,7 +472,12 @@ extension AddExpenseView {
             .background(isFormValid ? AppColors.primaryOrange : ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
             .foregroundColor(.white)
             .cornerRadius(16)
-            .disabled(!isFormValid)
+            .disabled(!isFormValid || isLoading)
+            .overlay(
+                isLoading ? ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                    .scaleEffect(0.8) : nil
+            )
         }
     }
 
@@ -500,11 +506,13 @@ extension AddExpenseView {
     private func addOrUpdateExpense() {
         guard let amountValue = Double(amount) else { return }
 
+        isLoading = true
+
         let finalExchangeRate: Double?
         if selectedCurrency != defaultCurrency {
             finalExchangeRate = Double(exchangeRate)
         } else {
-            finalExchangeRate = nil
+            finalExchangeRate = 0
         }
 
         let expense: Expense
@@ -531,7 +539,7 @@ extension AddExpenseView {
                 currency: selectedCurrency,
                 categoryId: selectedCategoryId,
                 subCategoryId: selectedSubCategoryId,
-                description:   description,
+                description:   description.count > 1 ? description : "-",
                 date: selectedDate,
                 dailyLimitAtCreation: Double(dailyLimit) ?? 0.0,
                 monthlyLimitAtCreation: Double(monthlyLimit) ?? 0.0,
@@ -543,7 +551,12 @@ extension AddExpenseView {
         }
 
         onExpenseAdded(expense)
-        onDismiss()
+
+        // Loading will be handled by the parent view when expense is added
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            isLoading = false
+            onDismiss()
+        }
     }
 
     private func hideKeyboard() {

@@ -18,11 +18,16 @@ class ExpenseDataAccess {
     // MARK: - Expense Operations
 
     func getAllExpenses() async throws -> [Expense] {
-        let request: NSFetchRequest<ExpenseEntity> = ExpenseEntity.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+        return try await context.perform {
+            let request: NSFetchRequest<ExpenseEntity> = ExpenseEntity.fetchRequest()
+            request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
 
-        let entities = try context.fetch(request)
-        return entities.map { Expense(from: $0) }
+            let entities = try self.context.fetch(request)
+            return entities.compactMap { entity in
+                guard !entity.isDeleted else { return nil }
+                return Expense(from: entity)
+            }
+        }
     }
 
     func getExpensesForDateRange(startDate: Date, endDate: Date) async throws -> [Expense] {
@@ -35,42 +40,48 @@ class ExpenseDataAccess {
     }
 
     func insertExpense(_ expense: Expense) async throws {
-        let entity = expense.toCoreData(context: context)
-        try context.save()
+        try await context.perform {
+            let entity = expense.toCoreData(context: self.context)
+            try self.context.save()
+        }
     }
 
     func updateExpense(_ expense: Expense) async throws {
-        let request: NSFetchRequest<ExpenseEntity> = ExpenseEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "id == %@", expense.id)
-        request.fetchLimit = 1
+        try await context.perform {
+            let request: NSFetchRequest<ExpenseEntity> = ExpenseEntity.fetchRequest()
+            request.predicate = NSPredicate(format: "id == %@", expense.id)
+            request.fetchLimit = 1
 
-        let entities = try context.fetch(request)
-        if let entity = entities.first {
-            entity.amount = expense.amount
-            entity.currency = expense.currency
-            entity.categoryId = expense.categoryId
-            entity.subCategoryId = expense.subCategoryId
-            entity.desc = expense.description
-            entity.date = expense.date
-            entity.dailyLimitAtCreation = expense.dailyLimitAtCreation
-            entity.monthlyLimitAtCreation = expense.monthlyLimitAtCreation
-            entity.exchangeRate = expense.exchangeRate ?? 0
-            entity.recurrenceType = expense.recurrenceType.rawValue
-            entity.endDate = expense.endDate
-            entity.recurrenceGroupId = expense.recurrenceGroupId
-            try context.save()
+            let entities = try self.context.fetch(request)
+            if let entity = entities.first {
+                entity.amount = expense.amount
+                entity.currency = expense.currency
+                entity.categoryId = expense.categoryId
+                entity.subCategoryId = expense.subCategoryId
+                entity.desc = expense.description.isEmpty ? nil : expense.description
+                entity.date = expense.date
+                entity.dailyLimitAtCreation = expense.dailyLimitAtCreation
+                entity.monthlyLimitAtCreation = expense.monthlyLimitAtCreation
+                entity.exchangeRate = expense.exchangeRate ?? 0
+                entity.recurrenceType = expense.recurrenceType.rawValue
+                entity.endDate = expense.endDate
+                entity.recurrenceGroupId = expense.recurrenceGroupId
+                try self.context.save()
+            }
         }
     }
 
     func deleteExpense(_ expense: Expense) async throws {
-        let request: NSFetchRequest<ExpenseEntity> = ExpenseEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "id == %@", expense.id)
+        try await context.perform {
+            let request: NSFetchRequest<ExpenseEntity> = ExpenseEntity.fetchRequest()
+            request.predicate = NSPredicate(format: "id == %@", expense.id)
 
-        let entities = try context.fetch(request)
-        for entity in entities {
-            context.delete(entity)
+            let entities = try self.context.fetch(request)
+            for entity in entities {
+                self.context.delete(entity)
+            }
+            try self.context.save()
         }
-        try context.save()
     }
 
     func deleteExpenseById(_ expenseId: String) async throws {
