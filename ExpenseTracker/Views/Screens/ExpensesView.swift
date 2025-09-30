@@ -172,8 +172,19 @@ struct ExpensesView: View {
         .sheet(isPresented: $showingRecurringExpenses) {
             recurringExpensesSheet
         }
-        .sheet(isPresented: $showingDailyCategoryDetail) {
-            dailyCategoryDetailSheet
+        .sheet(item: $selectedCategoryForDetail) { category in
+            DailyCategoryDetailBottomSheet(
+                category: category,
+                selectedDateExpenses: selectedDateExpenses,
+                subCategories: viewModel.subCategories,
+                selectedDate: viewModel.selectedDate,
+                defaultCurrency: viewModel.defaultCurrency,
+                isDarkTheme: isDarkTheme,
+                onDismiss: {
+                    selectedCategoryForDetail = nil
+                }
+            )
+            .environmentObject(viewModel)
         }
     }
 }
@@ -210,7 +221,6 @@ extension ExpensesView {
                 categoryExpenses: viewModel.dailyExpensesByCategory,
                 onCategoryClick: { category in
                     selectedCategoryForDetail = category
-                    showingDailyCategoryDetail = true
                 }, isDarkTheme: isDarkTheme
             )
             .tag(2)
@@ -489,20 +499,27 @@ extension ExpensesView {
             .environmentObject(viewModel)
     }
 
+    @ViewBuilder
     private var dailyCategoryDetailSheet: some View {
-        DailyCategoryDetailBottomSheet(
-            category: selectedCategoryForDetail ?? Category.getDefaultCategories()[0],
-            selectedDateExpenses: selectedDateExpenses,
-            subCategories: viewModel.subCategories,
-            selectedDate: viewModel.selectedDate,
-            defaultCurrency: viewModel.defaultCurrency,
-            isDarkTheme: isDarkTheme,
-            onDismiss: {
-                showingDailyCategoryDetail = false
-                selectedCategoryForDetail = nil
-            }
-        )
-        .environmentObject(viewModel)
+        let _ = print("Sheet opened with category: \(selectedCategoryForDetail?.name)")
+        
+        if let category = selectedCategoryForDetail {
+            DailyCategoryDetailBottomSheet(
+                category: category,
+                selectedDateExpenses: selectedDateExpenses,
+                subCategories: viewModel.subCategories,
+                selectedDate: viewModel.selectedDate,
+                defaultCurrency: viewModel.defaultCurrency,
+                isDarkTheme: isDarkTheme,
+                onDismiss: {
+                    showingDailyCategoryDetail = false
+                    selectedCategoryForDetail = nil
+                }
+            )
+            .environmentObject(viewModel)
+        } else {
+            EmptyView()
+        }
     }
 }
 
