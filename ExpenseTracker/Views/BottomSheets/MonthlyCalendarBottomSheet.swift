@@ -146,12 +146,16 @@ extension MonthlyCalendarBottomSheet {
     }
 
     private var monthlyExpensesTab: some View {
+        VStack{
+            monthNavigationHeader
+        
         MonthlyExpensesView(
             currentMonth: currentMonth,
             expenses: viewModel.expenses,
             isDarkTheme: isDarkTheme
         )
         .environmentObject(viewModel)
+    }
     }
 
     private var monthNavigationHeader: some View {

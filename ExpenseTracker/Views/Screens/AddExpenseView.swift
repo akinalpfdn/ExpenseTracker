@@ -369,10 +369,8 @@ extension AddExpenseView {
 
     private var exchangeRateSection: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("exchange_rate".localized)
-                .font(.system(size: 14, weight: .medium))
-                .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
-
+            
+            exchangeLabel
             TextField("1.0", text: $exchangeRate)
                 .textFieldStyle(CustomTextFieldStyle(isDarkTheme: isDarkTheme))
                 .keyboardType(.decimalPad)
@@ -390,7 +388,12 @@ extension AddExpenseView {
                 }
         }
     }
-
+    private var exchangeLabel: some View {
+        let labelText = "exchange_rate".localized.replacingOccurrences(of: "%@", with: " (1 " + selectedCurrency + " = ? " + defaultCurrency + ")") 
+        return Text(labelText)
+            .font(.system(size: 14, weight: .medium))
+            .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
+    }
     private var recurrenceSection: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("recurrence".localized)
