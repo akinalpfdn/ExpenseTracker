@@ -283,6 +283,23 @@ struct RecurringExpenseCard: View {
         viewModel.subCategories.first { $0.id == expense.subCategoryId }
     }
 
+    private var expenseAmounts: (total: Double, remaining: Double) {
+        guard let groupId = expense.recurrenceGroupId else { return (0, 0) }
+
+        let allGroupExpenses = viewModel.expenses.filter { $0.recurrenceGroupId == groupId }
+        let selectedDate = viewModel.selectedDate
+        let calendar = Calendar.current
+
+        let totalAmount = allGroupExpenses.reduce(0) { $0 + $1.getAmountInDefaultCurrency(defaultCurrency: viewModel.defaultCurrency) }
+
+        let remainingExpenses = allGroupExpenses.filter { exp in
+            calendar.compare(exp.date, to: calendar.startOfDay(for: selectedDate), toGranularity: .day) != .orderedAscending
+        }
+        let remainingAmount = remainingExpenses.reduce(0) { $0 + $1.getAmountInDefaultCurrency(defaultCurrency: viewModel.defaultCurrency) }
+
+        return (total: totalAmount, remaining: remainingAmount)
+    }
+
     var body: some View {
         ZStack {
             // Background delete indicator
@@ -390,8 +407,9 @@ struct RecurringExpenseCard: View {
                     }
                     .tint(.red)
                 }
+                .layoutPriority(1) // daha düşük öncelik
 
-                Spacer()
+             //   Spacer()
 
                 // Amount section
                 VStack(alignment: .trailing, spacing: 2) {
@@ -415,7 +433,19 @@ struct RecurringExpenseCard: View {
                             .font(.system(size: 12))
                             .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
                     }
+
+                    // Expense amounts
+                        Text("total_amount_recurring".localized.replacingOccurrences(of: "%@", with: "\(viewModel.defaultCurrency)\(NumberFormatter.formatAmount(expenseAmounts.total))"))
+                            .font(.system(size: 11))
+                            .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
+ 
+
+                        Text("remaining_amount_recurring".localized.replacingOccurrences(of: "%@", with: "\(viewModel.defaultCurrency)\(NumberFormatter.formatAmount(expenseAmounts.remaining))"))
+                            .font(.system(size: 11))
+                            .foregroundColor(AppColors.primaryOrange)
+                     
                 }
+                .layoutPriority(2) // daha düşük öncelik
             }
             .padding(12)
             .background(ThemeColors.getCardBackgroundColor(isDarkTheme: isDarkTheme))

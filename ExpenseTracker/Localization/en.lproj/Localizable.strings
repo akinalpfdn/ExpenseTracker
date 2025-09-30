@@ -55,6 +55,8 @@
 "delete_recurring_expense" = "Delete Recurring Expense";
 "delete_recurring_confirmation" = "Are you sure you want to delete this recurring expense from today onwards? This action cannot be undone.";
 "ok" = "OK";
+"remaining_amount_recurring" = "Remaining Amount: %@";
+"total_amount_recurring" = "Total Amount: %@";
 
 // MARK: - PlanningScreen
 "financial_planning" = "Financial Planning";

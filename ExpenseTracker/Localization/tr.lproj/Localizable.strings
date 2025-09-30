@@ -55,6 +55,8 @@
 "delete_recurring_expense" = "Tekrar Eden Harcamayı Sil";
 "delete_recurring_confirmation" = "Bu tekrar eden harcamayı bugünden itibaren silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.";
 "ok" = "Tamam";
+"remaining_amount_recurring" = "Kalan Miktar: %@";
+"total_amount_recurring" = "Toplam Miktar: %@";
 
 // MARK: - PlanningScreen
 "financial_planning" = "Finansal Planlama";
