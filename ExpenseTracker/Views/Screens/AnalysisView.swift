@@ -15,10 +15,8 @@ struct AnalysisView: View {
     let isDarkTheme: Bool
 
     @State private var selectedMonth = Calendar.current.dateComponents([.year, .month], from: Date())
-    @State private var showCategoryDialog = false
-    @State private var selectedCategory: CategoryAnalysisData?
-    @State private var showSubCategoryDialog = false
-    @State private var selectedSubCategory: SubCategoryAnalysisData?
+    @State private var selectedCategoryForDetail: CategoryAnalysisData?
+    @State private var selectedSubCategoryForDetail: SubCategoryAnalysisData?
     @State private var sortOption: SortOption = .dateDesc
     @State private var showSortMenu = false
     @State private var selectedSegment: Int?
@@ -139,12 +137,10 @@ struct AnalysisView: View {
                                     defaultCurrency: viewModel.defaultCurrency,
                                     isDarkTheme: isDarkTheme,
                                     onCategoryClick: { categoryData in
-                                        selectedCategory = categoryData
-                                        showCategoryDialog = true
+                                        selectedCategoryForDetail = categoryData
                                     },
                                     onSubCategoryClick: { subCategoryData in
-                                        selectedSubCategory = subCategoryData
-                                        showSubCategoryDialog = true
+                                        selectedSubCategoryForDetail = subCategoryData
                                     }
                                 )
                             }
@@ -168,8 +164,7 @@ struct AnalysisView: View {
                                     ),
                                     popupScale: popupScale,
                                     onCategoryClick: { categoryData in
-                                        selectedCategory = categoryData
-                                        showCategoryDialog = true
+                                        selectedCategoryForDetail = categoryData
                                     },
                                     isDarkTheme: isDarkTheme
                                 )
@@ -214,11 +209,31 @@ struct AnalysisView: View {
                 }
             }
         }
-        .sheet(isPresented: $showCategoryDialog) {
-            categoryDetailSheet
+        .sheet(item: $selectedCategoryForDetail) { categoryData in
+            CategoryDetailBottomSheet(
+                categoryData: categoryData,
+                subCategories: viewModel.subCategories,
+                defaultCurrency: viewModel.defaultCurrency,
+                isDarkTheme: isDarkTheme,
+                viewModel: viewModel,
+                selectedMonth: selectedMonthDate,
+                selectedFilterType: selectedMonthlyExpenseType,
+                onSortOptionChanged: { newOption in
+                    sortOption = newOption
+                }
+            )
+            .environmentObject(viewModel)
         }
-        .sheet(isPresented: $showSubCategoryDialog) {
-            subCategoryDetailSheet
+        .sheet(item: $selectedSubCategoryForDetail) { subCategoryData in
+            SubCategoryDetailBottomSheet(
+                subCategoryData: subCategoryData,
+                defaultCurrency: viewModel.defaultCurrency,
+                isDarkTheme: isDarkTheme,
+                viewModel: viewModel,
+                selectedMonth: selectedMonthDate,
+                selectedFilterType: selectedMonthlyExpenseType
+            )
+            .environmentObject(viewModel)
         }
         .sheet(isPresented: $showDateRangePicker) {
             dateRangePickerSheet
@@ -379,39 +394,6 @@ extension AnalysisView {
     }
 
     // MARK: - Sheet Views
-    @ViewBuilder
-    private var categoryDetailSheet: some View {
-        if let selectedCategory = selectedCategory {
-            CategoryDetailBottomSheet(
-                categoryData: selectedCategory,
-                subCategories: viewModel.subCategories,
-                defaultCurrency: viewModel.defaultCurrency,
-                isDarkTheme: isDarkTheme,
-                viewModel: viewModel,
-                selectedMonth: selectedMonthDate,
-                selectedFilterType: selectedMonthlyExpenseType,
-                onSortOptionChanged: { newOption in
-                    sortOption = newOption
-                }
-            )
-            .environmentObject(viewModel)
-        }
-    }
-
-    @ViewBuilder
-    private var subCategoryDetailSheet: some View {
-        if let selectedSubCategory = selectedSubCategory {
-            SubCategoryDetailBottomSheet(
-                subCategoryData: selectedSubCategory,
-                defaultCurrency: viewModel.defaultCurrency,
-                isDarkTheme: isDarkTheme,
-                viewModel: viewModel,
-                selectedMonth: selectedMonthDate,
-                selectedFilterType: selectedMonthlyExpenseType
-            )
-            .environmentObject(viewModel)
-        }
-    }
 
     private var dateRangePickerSheet: some View {
         DateRangePicker(
