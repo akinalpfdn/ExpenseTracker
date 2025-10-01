@@ -11,20 +11,23 @@ struct CategoryPopupLines: View {
     let segmentIndex: Int
     let animatedPercentages: [Float]
     let selectedCategory: CategoryAnalysisData
-    let lineAnimationProgress: Double
+    let line1Progress: Double
+    let line2Progress: Double
     let isDarkTheme: Bool
 
     init(
         segmentIndex: Int,
         animatedPercentages: [Float],
         selectedCategory: CategoryAnalysisData,
-        lineAnimationProgress: Double = 1.0,
+        line1Progress: Double = 1.0,
+        line2Progress: Double = 1.0,
         isDarkTheme: Bool = true
     ) {
         self.segmentIndex = segmentIndex
         self.animatedPercentages = animatedPercentages
         self.selectedCategory = selectedCategory
-        self.lineAnimationProgress = lineAnimationProgress
+        self.line1Progress = line1Progress
+        self.line2Progress = line2Progress
         self.isDarkTheme = isDarkTheme
     }
 
@@ -35,7 +38,7 @@ struct CategoryPopupLines: View {
         .frame(maxWidth: .infinity)
         .frame(height: 160)
         .offset(y: -150)
-        .opacity(lineAnimationProgress)
+        .opacity(max(line1Progress, line2Progress))
     }
 }
 
@@ -97,9 +100,11 @@ extension CategoryPopupLines {
 
     private func drawLine1(context: GraphicsContext, from start: CGPoint, to end: CGPoint) {
         // Draw first line (angled connector) with animation
+        guard line1Progress > 0 else { return }
+
         let animatedEnd = CGPoint(
-            x: start.x + (end.x - start.x) * min(lineAnimationProgress * 2, 1.0),
-            y: start.y + (end.y - start.y) * min(lineAnimationProgress * 2, 1.0)
+            x: start.x + (end.x - start.x) * line1Progress,
+            y: start.y + (end.y - start.y) * line1Progress
         )
 
         var path = Path()
@@ -110,10 +115,9 @@ extension CategoryPopupLines {
     }
 
     private func drawLine2(context: GraphicsContext, from start: CGPoint, to end: CGPoint) {
-        // Draw second line (vertical) only after first line is complete
-        guard lineAnimationProgress > 0.5 else { return }
+        // Draw second line (vertical) only after first line starts and if line2Progress > 0
+        guard line2Progress > 0 && line1Progress >= 1.0 else { return }
 
-        let line2Progress = max(0, (lineAnimationProgress - 0.5) * 2)
         let animatedEnd = CGPoint(
             x: start.x,
             y: start.y + (end.y - start.y) * line2Progress
@@ -322,7 +326,8 @@ struct CategoryPopupLines_Previews: PreviewProvider {
                     segmentIndex: 0,
                     animatedPercentages: [0.35, 0.25, 0.4],
                     selectedCategory: sampleCategoryData,
-                    lineAnimationProgress: 1.0
+                    line1Progress: 1.0,
+                    line2Progress: 1.0
                 )
             }
 

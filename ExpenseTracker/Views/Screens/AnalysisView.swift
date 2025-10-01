@@ -155,21 +155,30 @@ struct AnalysisView: View {
                             VStack {
                                 Spacer().frame(height: 360) // Position relative to pie chart
 
-                                CategoryPopupCard(
-                                    selectedCategory: selectedData,
-                                    defaultCurrency: viewModel.defaultCurrency,
-                                    comparisonData: CategoryComparisonData(
-                                        vsLastMonth: calculateCategoryComparison(selectedData.category.id).vsLastMonth,
-                                        vsAverage: calculateCategoryComparison(selectedData.category.id).vsAverage
-                                    ),
-                                    popupScale: popupScale,
-                                    onCategoryClick: { categoryData in
-                                        selectedCategoryForDetail = categoryData
-                                    },
-                                    isDarkTheme: isDarkTheme
-                                )
-                                .scaleEffect(popupScale)
-                                .opacity(popupScale)
+                                ZStack {
+                                    CategoryPopupLines(
+                                        segmentIndex: selectedSegment,
+                                        animatedPercentages: categoryAnalysisData.map { Float($0.percentage) },
+                                        selectedCategory: selectedData,
+                                        line1Progress: line1Progress,
+                                        line2Progress: line2Progress,
+                                        isDarkTheme: isDarkTheme
+                                    )
+
+                                    CategoryPopupCard(
+                                        selectedCategory: selectedData,
+                                        defaultCurrency: viewModel.defaultCurrency,
+                                        comparisonData: CategoryComparisonData(
+                                            vsLastMonth: calculateCategoryComparison(selectedData.category.id).vsLastMonth,
+                                            vsAverage: calculateCategoryComparison(selectedData.category.id).vsAverage
+                                        ),
+                                        popupScale: popupScale,
+                                        onCategoryClick: { categoryData in
+                                            selectedCategoryForDetail = categoryData
+                                        },
+                                        isDarkTheme: isDarkTheme
+                                    )
+                                }
 
                                 Spacer()
                             }
