@@ -76,8 +76,8 @@
 
 // MARK: - AnalysisScreen
 "current_period_total" = "Current Period Total Spending";
-"vs_previous_month" = "Compared to previous month";
-"vs_6_month_average" = "Compared to 6-month average";
+"vs_previous_month" = "vs. last month";
+"vs_6_month_average" = "vs. average";
 "no_expenses_this_period" = "No expenses this period yet";
 "analysis_will_appear" = "Analysis will appear here when you add expenses";
 "previous_month" = "Previous month";
@@ -211,8 +211,8 @@
 "see_details" = "See details";
 
 // MARK: - CategoryPopupLines
-"vs_previous_month_colon" = "Compared to previous month:";
-"vs_average_colon" = "Compared to average:";
+"vs_previous_month_colon" = "vs. last month:";
+"vs_average_colon" = "vs. average:";
 
 // MARK: - CategoryManagementScreen
 "add_new_main_category" = "Add New Main Category";

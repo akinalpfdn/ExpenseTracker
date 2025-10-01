@@ -296,7 +296,7 @@ extension AnalysisView {
         VStack(spacing: 16) {
             HStack {
                 Text("current_period_total".localized)
-                    .font(.system(size: 20, weight: .bold))
+                    .font(.system(size: 16, weight: .bold))
                     .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
 
                 Spacer()
