@@ -19,20 +19,22 @@ struct CategoryAnalysisData: Identifiable, Equatable {
 struct MonthlyAnalysisPieChart: View {
     let categoryData: [CategoryAnalysisData]
     let isDarkTheme: Bool
+    let selectedSegment: Int?
     let onSegmentSelected: (Int?) -> Void
 
     @State private var isCollapsed = false
-    @State private var selectedSegment: Int?
     @State private var animationProgress: Double = 0
     @State private var segmentScales: [Double] = []
 
     init(
         categoryData: [CategoryAnalysisData],
         isDarkTheme: Bool = true,
+        selectedSegment: Int? = nil,
         onSegmentSelected: @escaping (Int?) -> Void = { _ in }
     ) {
         self.categoryData = categoryData
         self.isDarkTheme = isDarkTheme
+        self.selectedSegment = selectedSegment
         self.onSegmentSelected = onSegmentSelected
         self._segmentScales = State(initialValue: Array(repeating: 1.0, count: categoryData.count))
     }
@@ -168,17 +170,14 @@ extension MonthlyAnalysisPieChart {
             isCollapsed.toggle()
         }
         if isCollapsed {
-            selectedSegment = nil
             onSegmentSelected(nil)
         }
     }
 
     private func handleSegmentTap(index: Int) {
         if selectedSegment == index {
-            selectedSegment = nil
             onSegmentSelected(nil)
         } else {
-            selectedSegment = index
             onSegmentSelected(index)
         }
     }

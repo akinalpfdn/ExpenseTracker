@@ -110,6 +110,7 @@ struct AnalysisView: View {
                                 MonthlyAnalysisPieChart(
                                     categoryData: categoryAnalysisData,
                                     isDarkTheme: isDarkTheme,
+                                    selectedSegment: selectedSegment,
                                     onSegmentSelected: { segment in
                                         withAnimation(.easeInOut(duration: 0.3)) {
                                             selectedSegment = segment
@@ -146,6 +147,14 @@ struct AnalysisView: View {
                             }
                             .padding(.horizontal, 16)
                         }
+                        .simultaneousGesture(
+                            DragGesture()
+                                .onChanged { _ in
+                                    if selectedSegment != nil {
+                                        selectedSegment = nil
+                                    }
+                                }
+                        )
 
                         // Overlay popup that appears above everything (matching Kotlin)
                         if let selectedSegment = selectedSegment,
