@@ -24,11 +24,6 @@ struct AddExpenseView: View {
     @State private var selectedSubCategoryId = ""
     @State private var description = ""
     @State private var exchangeRate = ""
-    @State private var showCurrencyMenu = false
-    @State private var showCategoryMenu = false
-    @State private var showRecurrenceMenu = false
-    @State private var categorySearchText = ""
-    @State private var selectedCategoryFilter = "ALL"
     @State private var selectedRecurrenceType: RecurrenceType
     @State private var endDate: Date
     @State private var showEndDatePicker = false
@@ -67,18 +62,6 @@ struct AddExpenseView: View {
 
     private var selectedCategoryId: String {
         viewModel.subCategories.first { $0.id == selectedSubCategoryId }?.categoryId ?? ""
-    }
-
-    private var filteredSubCategories: [SubCategory] {
-        var filtered = viewModel.subCategories
-
-        if !categorySearchText.isEmpty {
-            filtered = filtered.filter { subCategory in
-                subCategory.name.localizedCaseInsensitiveContains(categorySearchText)
-            }
-        }
-
-        return filtered.sorted { $0.name < $1.name }
     }
 
     private var isFormValid: Bool {
@@ -161,12 +144,15 @@ extension AddExpenseView {
                         // Filter input to only allow numbers, comma and period
                         let filtered = newValue.filter { "0123456789.,".contains($0) }
 
+                        // Limit to 12 characters
+                        let limited = String(filtered.prefix(12))
+
                         // Limit to one decimal separator
-                        let components = filtered.components(separatedBy: CharacterSet(charactersIn: ".,"))
+                        let components = limited.components(separatedBy: CharacterSet(charactersIn: ".,"))
                         if components.count > 2 {
                             amount = components[0] + "," + (components[1].isEmpty ? "" : components[1])
                         } else {
-                            amount = filtered
+                            amount = limited
                         }
                     }
             }
@@ -213,7 +199,17 @@ extension AddExpenseView {
                 .font(.system(size: 14, weight: .medium))
                 .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
 
-            Button(action: { showCategoryMenu = true }) {
+            Menu {
+                ForEach(viewModel.categories, id: \.id) { category in
+                    Menu(category.name) {
+                        ForEach(viewModel.subCategories.filter { $0.categoryId == category.id }.sorted { $0.name < $1.name }, id: \.id) { subCategory in
+                            Button(subCategory.name) {
+                                selectedSubCategoryId = subCategory.id
+                            }
+                        }
+                    }
+                }
+            } label: {
                 HStack {
                     Text(viewModel.subCategories.first { $0.id == selectedSubCategoryId }?.name ?? "select_category".localized)
                         .font(.system(size: 14))
@@ -232,128 +228,6 @@ extension AddExpenseView {
                 )
             }
         }
-        .sheet(isPresented: $showCategoryMenu) {
-            categorySelectionSheet
-        }
-    }
-
-    private var categorySelectionSheet: some View {
-        NavigationView {
-            VStack(spacing: 16) {
-                // Search field
-                TextField("search_categories".localized, text: $categorySearchText)
-                    .textFieldStyle(CustomTextFieldStyle(isDarkTheme: isDarkTheme))
-                    .padding(.horizontal)
-
-                // Category filter
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 8) {
-                        FilterChip(
-                            text: "all".localized,
-                            isSelected: selectedCategoryFilter == "ALL",
-                            isDarkTheme: isDarkTheme
-                        ) {
-                            selectedCategoryFilter = "ALL"
-                        }
-
-                        ForEach(viewModel.categories, id: \.id) { category in
-                            FilterChip(
-                                text: category.name,
-                                isSelected: selectedCategoryFilter == category.id,
-                                isDarkTheme: isDarkTheme
-                            ) {
-                                selectedCategoryFilter = category.id
-                            }
-                        }
-                    }
-                    .padding(.horizontal)
-                }
-
-                // Subcategories list
-                ScrollView {
-                    LazyVStack(spacing: 8) {
-                        ForEach(filteredSubCategoriesWithFilter, id: \.id) { subCategory in
-                            Button(action: {
-                                selectedSubCategoryId = subCategory.id
-                                showCategoryMenu = false
-                                categorySearchText = ""
-                                selectedCategoryFilter = "ALL"
-                            }) {
-                                HStack {
-                                    // Category color indicator
-                                    if let category = viewModel.categories.first(where: { $0.id == subCategory.categoryId }) {
-                                        Circle()
-                                            .fill(category.getColor())
-                                            .frame(width: 12, height: 12)
-                                    }
-
-                                    VStack(alignment: .leading, spacing: 2) {
-                                        Text(subCategory.name)
-                                            .font(.system(size: 14, weight: .medium))
-                                            .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
-
-                                        if let category = viewModel.categories.first(where: { $0.id == subCategory.categoryId }) {
-                                            Text(category.name)
-                                                .font(.system(size: 12))
-                                                .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
-                                        }
-                                    }
-
-                                    Spacer()
-
-                                    if selectedSubCategoryId == subCategory.id {
-                                        Image(systemName: "checkmark")
-                                            .foregroundColor(AppColors.primaryOrange)
-                                            .font(.system(size: 14, weight: .bold))
-                                    }
-                                }
-                                .padding(.horizontal, 16)
-                                .padding(.vertical, 12)
-                                .background(
-                                    selectedSubCategoryId == subCategory.id ?
-                                    AppColors.primaryOrange.opacity(0.1) :
-                                    Color.clear
-                                )
-                                .cornerRadius(8)
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                        }
-                    }
-                    .padding(.horizontal)
-                }
-
-                Spacer()
-            }
-            .navigationTitle("select_category".localized)
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(
-                trailing: Button("done".localized) {
-                    showCategoryMenu = false
-                    categorySearchText = ""
-                    selectedCategoryFilter = "ALL"
-                }
-            )
-            .background(ThemeColors.getBackgroundColor(isDarkTheme: isDarkTheme))
-        }
-    }
-
-    private var filteredSubCategoriesWithFilter: [SubCategory] {
-        var filtered = viewModel.subCategories
-
-        // Apply category filter
-        if selectedCategoryFilter != "ALL" {
-            filtered = filtered.filter { $0.categoryId == selectedCategoryFilter }
-        }
-
-        // Apply search filter
-        if !categorySearchText.isEmpty {
-            filtered = filtered.filter { subCategory in
-                subCategory.name.localizedCaseInsensitiveContains(categorySearchText) ||
-                (viewModel.categories.first { $0.id == subCategory.categoryId }?.name.localizedCaseInsensitiveContains(categorySearchText) ?? false)
-            }
-        }
-
-        return filtered.sorted { $0.name < $1.name }
     }
 
     private var descriptionSection: some View {
@@ -378,12 +252,15 @@ extension AddExpenseView {
                     // Filter input to only allow numbers, comma and period
                     let filtered = newValue.filter { "0123456789.,".contains($0) }
 
+                    // Limit to 12 characters
+                    let limited = String(filtered.prefix(12))
+
                     // Limit to one decimal separator
-                    let components = filtered.components(separatedBy: CharacterSet(charactersIn: ".,"))
+                    let components = limited.components(separatedBy: CharacterSet(charactersIn: ".,"))
                     if components.count > 2 {
                         exchangeRate = components[0] + "," + (components[1].isEmpty ? "" : components[1])
                     } else {
-                        exchangeRate = filtered
+                        exchangeRate = limited
                     }
                 }
         }

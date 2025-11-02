@@ -147,14 +147,6 @@ struct AnalysisView: View {
                             }
                             .padding(.horizontal, 16)
                         }
-                        .simultaneousGesture(
-                            DragGesture()
-                                .onChanged { _ in
-                                    if selectedSegment != nil {
-                                        selectedSegment = nil
-                                    }
-                                }
-                        )
 
                         // Overlay popup that appears above everything (matching Kotlin)
                         if let selectedSegment = selectedSegment,

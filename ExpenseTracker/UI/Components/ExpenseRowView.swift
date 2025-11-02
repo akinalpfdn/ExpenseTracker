@@ -241,6 +241,21 @@ extension ExpenseRowView {
             keyboardType: .decimalPad,
             isDarkTheme: isDarkTheme
         )
+        .onChange(of: editAmount) { newValue in
+            // Filter input to only allow numbers, comma and period
+            let filtered = newValue.filter { "0123456789.,".contains($0) }
+
+            // Limit to 12 characters
+            let limited = String(filtered.prefix(12))
+
+            // Limit to one decimal separator
+            let components = limited.components(separatedBy: CharacterSet(charactersIn: ".,"))
+            if components.count > 2 {
+                editAmount = components[0] + "," + (components[1].isEmpty ? "" : components[1])
+            } else {
+                editAmount = limited
+            }
+        }
     }
 
     private var descriptionField: some View {
@@ -258,6 +273,21 @@ extension ExpenseRowView {
             keyboardType: .decimalPad,
             isDarkTheme: isDarkTheme
         )
+        .onChange(of: editExchangeRate) { newValue in
+            // Filter input to only allow numbers, comma and period
+            let filtered = newValue.filter { "0123456789.,".contains($0) }
+
+            // Limit to 12 characters
+            let limited = String(filtered.prefix(12))
+
+            // Limit to one decimal separator
+            let components = limited.components(separatedBy: CharacterSet(charactersIn: ".,"))
+            if components.count > 2 {
+                editExchangeRate = components[0] + "," + (components[1].isEmpty ? "" : components[1])
+            } else {
+                editExchangeRate = limited
+            }
+        }
     }
 
     private var actionButtons: some View {
