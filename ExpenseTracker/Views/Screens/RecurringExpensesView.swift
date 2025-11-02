@@ -346,7 +346,7 @@ struct RecurringExpenseCard: View {
             }
             Button("cancel".localized, role: .cancel) { }
         } message: {
-            Text("delete_recurring_expense_confirmation".localized)
+            Text("delete_recurring_confirmation".localized)
         }
         .sheet(isPresented: $showEndDatePicker) {
             endDatePickerSheet

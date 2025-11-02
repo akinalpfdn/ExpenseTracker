@@ -24,9 +24,7 @@ struct AnalysisView: View {
     @State private var showDateRangePicker = false
     @State private var selectedDateRange: DateRange?
 
-    // Animation states for popup (matching Kotlin implementation)
-    @State private var line1Progress: Double = 0
-    @State private var line2Progress: Double = 0
+    // Animation states for popup
     @State private var popupScale: Double = 0
 
     private var selectedMonthDate: Date {
@@ -156,30 +154,19 @@ struct AnalysisView: View {
                             VStack {
                                 Spacer().frame(height: 360) // Position relative to pie chart
 
-                                ZStack {
-                                    CategoryPopupLines(
-                                        segmentIndex: selectedSegment,
-                                        animatedPercentages: categoryAnalysisData.map { Float($0.percentage) },
-                                        selectedCategory: selectedData,
-                                        line1Progress: line1Progress,
-                                        line2Progress: line2Progress,
-                                        isDarkTheme: isDarkTheme
-                                    )
-
-                                    CategoryPopupCard(
-                                        selectedCategory: selectedData,
-                                        defaultCurrency: viewModel.defaultCurrency,
-                                        comparisonData: CategoryComparisonData(
-                                            vsLastMonth: calculateCategoryComparison(selectedData.category.id).vsLastMonth,
-                                            vsAverage: calculateCategoryComparison(selectedData.category.id).vsAverage
-                                        ),
-                                        popupScale: popupScale,
-                                        onCategoryClick: { categoryData in
-                                            selectedCategoryForDetail = categoryData
-                                        },
-                                        isDarkTheme: isDarkTheme
-                                    )
-                                }
+                                CategoryPopupCard(
+                                    selectedCategory: selectedData,
+                                    defaultCurrency: viewModel.defaultCurrency,
+                                    comparisonData: CategoryComparisonData(
+                                        vsLastMonth: calculateCategoryComparison(selectedData.category.id).vsLastMonth,
+                                        vsAverage: calculateCategoryComparison(selectedData.category.id).vsAverage
+                                    ),
+                                    popupScale: popupScale,
+                                    onCategoryClick: { categoryData in
+                                        selectedCategoryForDetail = categoryData
+                                    },
+                                    isDarkTheme: isDarkTheme
+                                )
 
                                 Spacer()
                             }
@@ -200,22 +187,14 @@ struct AnalysisView: View {
             }
         }
         .onChange(of: selectedSegment) { newValue in
-            // Animate popup appearance/disappearance (matching Kotlin)
+            // Animate popup appearance/disappearance
             if newValue != nil {
-                withAnimation(.easeOut(duration: 0.4)) {
-                    line1Progress = 1.0
-                }
-                withAnimation(.easeOut(duration: 0.3).delay(0.1)) {
-                    line2Progress = 1.0
-                }
-                withAnimation(.spring(response: 0.6, dampingFraction: 0.7).delay(0.2)) {
+                withAnimation(.spring(response: 0.6, dampingFraction: 0.7)) {
                     popupScale = 1.0
                 }
             } else {
                 withAnimation(.easeIn(duration: 0.15)) {
                     popupScale = 0.0
-                    line2Progress = 0.0
-                    line1Progress = 0.0
                 }
             }
         }
