@@ -14,11 +14,15 @@ struct ExpensesView: View {
     @State private var showingSettings = false
     @State private var showingMonthlyCalendar = false
     @State private var showingRecurringExpenses = false
-    @State private var currentCalendarMonth = Calendar.current.dateInterval(of: .month, for: Date())?.start ?? Date()
 
     // Daily category detail bottom sheet state
     @State private var showingDailyCategoryDetail = false
     @State private var selectedCategoryForDetail: Category?
+
+    // Computed property that updates based on selectedDate
+    private var currentCalendarMonth: Date {
+        Calendar.current.dateInterval(of: .month, for: viewModel.selectedDate)?.start ?? viewModel.selectedDate
+    }
 
     // Search and sorting state
     @State private var searchText = ""
