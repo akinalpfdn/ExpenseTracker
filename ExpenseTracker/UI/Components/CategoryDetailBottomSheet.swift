@@ -72,13 +72,13 @@ struct CategoryDetailBottomSheet: View {
     }
 
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: 12) {
             headerSection
             sortSection
             expensesList
         }
+        .padding(20)
         .background(categoryData.category.getColor().opacity(0.1))
-        .padding(16)
     }
 }
 
@@ -114,7 +114,7 @@ extension CategoryDetailBottomSheet {
 // MARK: - View Components
 extension CategoryDetailBottomSheet {
     private var headerSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: 16) {
             categoryHeaderRow
             categoryMetrics
             comparisonIndicators
@@ -122,10 +122,10 @@ extension CategoryDetailBottomSheet {
     }
 
     private var categoryHeaderRow: some View {
-        HStack(alignment: .center) {
+        HStack(alignment: .center, spacing: 12) {
             categoryIcon
 
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: 6) {
                 Text(categoryData.category.name)
                     .font(.system(size: 22, weight: .bold))
                     .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
@@ -141,11 +141,11 @@ extension CategoryDetailBottomSheet {
         ZStack {
             Circle()
                 .fill(categoryData.category.getColor().opacity(0.2))
-                .frame(width: 32, height: 32)
+                .frame(width: 48, height: 48)
 
             Image(systemName: categoryData.category.getIcon())
                 .foregroundColor(categoryData.category.getColor())
-                .font(.system(size: 18))
+                .font(.system(size: 24))
         }
     }
 
@@ -166,7 +166,7 @@ extension CategoryDetailBottomSheet {
     }
 
     private var comparisonIndicators: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 12) {
             DetailComparisonIndicator(
                 amount: comparison.vsLastMonth,
                 currency: defaultCurrency,

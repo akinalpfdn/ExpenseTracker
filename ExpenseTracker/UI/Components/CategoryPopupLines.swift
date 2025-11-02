@@ -184,32 +184,32 @@ struct CategoryPopupCard: View {
 // MARK: - Category Popup Card Components
 extension CategoryPopupCard {
     private var cardContent: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: 16) {
             categoryIcon
             categoryInfo
             Spacer()
             amountInfo
         }
-        .padding(12)
-        .frame(height: 120)
+        .padding(16)
+        .frame(minHeight: 120)
         .background(selectedCategory.category.getColor())
-        .cornerRadius(12)
+        .cornerRadius(16)
     }
 
     private var categoryIcon: some View {
         ZStack {
             Circle()
                 .fill(Color.white.opacity(0.3))
-                .frame(width: 36, height: 36)
+                .frame(width: 48, height: 48)
 
             Image(systemName: selectedCategory.category.getIcon())
                 .foregroundColor(.white)
-                .font(.system(size: 20))
+                .font(.system(size: 24))
         }
     }
 
     private var categoryInfo: some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: 6) {
             categoryName
             categoryStats
             if let comparison = comparisonData {
@@ -232,7 +232,7 @@ extension CategoryPopupCard {
     }
 
     private func comparisonIndicators(_ comparison: CategoryComparisonData) -> some View {
-        VStack(alignment: .leading, spacing: 2) {
+        VStack(alignment: .leading, spacing: 4) {
             ComparisonIndicator(
                 percentage: comparison.vsLastMonth,
                 label: "vs_previous_month_colon".localized,
@@ -261,10 +261,10 @@ struct ComparisonIndicator: View {
     let textColor: Color
 
     var body: some View {
-        HStack(spacing: 2) {
+        HStack(spacing: 4) {
             Text(label)
                 .font(.system(size: 12))
-                .foregroundColor(textColor.opacity(0.6))
+                .foregroundColor(textColor.opacity(0.7))
 
             Text(formattedPercentage)
                 .font(.system(size: 12, weight: .medium))
