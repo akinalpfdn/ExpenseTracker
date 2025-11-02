@@ -308,7 +308,7 @@ struct SubCategoryComparisonIndicator: View {
         if amount == 0.0 {
             return "±0"
         } else {
-            let sign = amount > 0 ? "+" : ""
+            let sign = amount > 0 ? "+" : amount <   0 ?"-" : ""
             return "\(sign)\(currency) \(NumberFormatter.formatAmount(abs(amount)))"
         }
     }

@@ -306,7 +306,7 @@ extension AnalysisView {
                 Spacer()
 
                 Text("\(viewModel.defaultCurrency) \(NumberFormatter.formatAmount(totalMonthlyAmount))")
-                    .font(.system(size: 18, weight: .bold))
+                    .font(.system(size: 22, weight: .bold))
                     .foregroundColor(AppColors.primaryOrange)
             }
 
@@ -657,7 +657,7 @@ struct TotalComparisonIndicator: View {
         if amount == 0.0 {
             return "±0"
         } else {
-            let prefix = amount > 0 ? "+" : ""
+            let prefix = amount > 0 ? "+" : amount <   0 ?"-" : ""
             return "\(prefix)\(currency) \(NumberFormatter.formatAmount(abs(amount)))"
         }
     }

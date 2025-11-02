@@ -120,28 +120,28 @@ extension PlanDetailBottomSheet {
     }
 
     private var tableView: some View {
-        VStack(spacing: 0) {
-            tableHeader
-            Rectangle()
-                .fill(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme).opacity(0.2))
-                .frame(height: 1)
-            tableContent
+        ScrollView(.horizontal, showsIndicators: false) {
+            VStack(spacing: 0) {
+                tableHeader
+                Rectangle()
+                    .fill(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme).opacity(0.2))
+                    .frame(height: 1)
+                tableContent
+            }
         }
     }
 
     private var tableHeader: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 0) {
-                Spacer().frame(width: 26) // For edit button space
+        HStack(spacing: 0) {
+            Spacer().frame(width: 26) // For edit button space
 
-                headerCell("income".localized, weight: 1.6)
-                headerCell("expense".localized, weight: 1.6)
-                headerCell("net".localized, weight: 1.6)
-                headerCell("total".localized, weight: 1.6)
-                headerCell("month".localized, weight: 1.0)
-            }
-            .frame(width: 400)
+            headerCell("income".localized, weight: 1.6)
+            headerCell("expense".localized, weight: 1.6)
+            headerCell("net".localized, weight: 1.6)
+            headerCell("total".localized, weight: 1.6)
+            headerCell("month".localized, weight: 1.0)
         }
+        .frame(minWidth: 400)
         .background(
             ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme).opacity(0.1)
         )
@@ -160,7 +160,7 @@ extension PlanDetailBottomSheet {
     }
 
     private var tableContent: some View {
-        ScrollView {
+        ScrollView(.vertical) {
             LazyVStack(spacing: 1) {
                 ForEach(Array(breakdowns.enumerated()), id: \.offset) { index, breakdown in
                     tableRow(breakdown: breakdown, index: index)
@@ -170,17 +170,15 @@ extension PlanDetailBottomSheet {
     }
 
     private func tableRow(breakdown: PlanMonthlyBreakdown, index: Int) -> some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 0) {
-                editButtonSection(breakdown: breakdown, index: index)
-                incomeCell(breakdown: breakdown, index: index)
-                expensesCell(breakdown: breakdown, index: index)
-                netCell(breakdown: breakdown, index: index)
-                cumulativeCell(breakdown: breakdown)
-                monthCell(breakdown: breakdown)
-            }
-            .frame(width: 400)
+        HStack(spacing: 0) {
+            editButtonSection(breakdown: breakdown, index: index)
+            incomeCell(breakdown: breakdown, index: index)
+            expensesCell(breakdown: breakdown, index: index)
+            netCell(breakdown: breakdown, index: index)
+            cumulativeCell(breakdown: breakdown)
+            monthCell(breakdown: breakdown)
         }
+        .frame(minWidth: 400)
         .background(
             index % 2 == 0 ? Color.clear :
             ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme).opacity(0.05)
