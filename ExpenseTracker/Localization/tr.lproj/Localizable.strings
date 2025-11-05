@@ -375,3 +375,14 @@
 "error_updating_expense_data" = "Harcama verileri güncellenirken hata: %@";
 "error_updating_plan_calculations" = "Plan hesaplamaları güncellenirken hata: %@";
 "error_saving_changes" = "Değişiklikler kaydedilirken hata: %@";
+
+// MARK: - Welcome Screen
+"welcome_skip" = "Atla";
+"welcome_next" = "İleri";
+"welcome_get_started" = "Başlayın";
+"welcome_page1_title" = "ExpenseTracker'a Hoş Geldiniz";
+"welcome_page1_description" = "Günlük harcamalarınızı kolayca takip edin ve mali durumunuzu kontrol altına alın. Basit, hızlı ve tamamen özel.";
+"welcome_page2_title" = "Akıllı Analizler";
+"welcome_page2_description" = "Harcamalarınızı güzel grafiklerle görselleştirin. Kategori dökümleri ve aylık trendlerle paranızın nereye gittiğini görün.";
+"welcome_page3_title" = "Gizliliğiniz Önemlidir";
+"welcome_page3_description" = "Tüm verileriniz cihazınızda kalır. Bulut depolama yok, izleme yok, reklam yok. Finansal bilgileriniz tamamen gizlidir.";

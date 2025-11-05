@@ -29,9 +29,9 @@ struct DailyData: Identifiable {
     
     var dayName: String {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "tr_TR")
-        formatter.dateFormat = "E"
-        return formatter.string(from: date).prefix(1).uppercased()
+        formatter.locale = Locale.current
+        formatter.dateFormat = "EEEEE"  // Single letter day format
+        return formatter.string(from: date).uppercased()
     }
     
     var dayNumber: String {

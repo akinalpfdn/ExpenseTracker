@@ -375,3 +375,14 @@
 "category_tax" = "Tax and Legal Expenses";
 "category_donations" = "Donations and Aid";
 "category_others" = "Other Payments";
+
+// MARK: - Welcome Screen
+"welcome_skip" = "Skip";
+"welcome_next" = "Next";
+"welcome_get_started" = "Get Started";
+"welcome_page1_title" = "Welcome to Expense Tracker";
+"welcome_page1_description" = "Track your daily expenses easily and take control of your finances. Simple, fast, and completely private.";
+"welcome_page2_title" = "Smart Analytics";
+"welcome_page2_description" = "Visualize your spending with beautiful charts. See where your money goes with category breakdowns and monthly trends.";
+"welcome_page3_title" = "Your Privacy Matters";
+"welcome_page3_description" = "All your data stays on your device. No cloud storage, no tracking, no ads. Your financial information is completely private.";

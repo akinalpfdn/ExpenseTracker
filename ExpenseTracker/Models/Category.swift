@@ -111,7 +111,7 @@ struct Category: Identifiable, Codable, Hashable {
             Category(
                 id: "health",
                 name: "category_health".localized,
-                colorHex: "#FF2D92",
+                colorHex: "#4ECDC4",
                 iconName: "local_hospital",
                 isDefault: true
             ),
@@ -132,7 +132,7 @@ struct Category: Identifiable, Codable, Hashable {
             Category(
                 id: "shopping",
                 name: "category_shopping".localized,
-                colorHex: "#FF3B30",
+                colorHex: "#F7DC6F",
                 iconName: "shopping_cart",
                 isDefault: true
             ),

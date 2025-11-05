@@ -19,6 +19,32 @@ struct MainContentView: View {
     }
 
     var body: some View {
+        Group {
+            // Show loading or welcome screen based on state
+            if let isFirstLaunch = preferencesManager.isFirstLaunch {
+                if isFirstLaunch {
+                    // First launch - show welcome screen
+                    WelcomeScreen(
+                        onFinish: {
+                            preferencesManager.completeFirstLaunch()
+                        },
+                        isDarkTheme: isDarkTheme
+                    )
+                } else {
+                    // Not first launch - show main app
+                    mainAppContent
+                }
+            } else {
+                // Loading state - show splash
+                ZStack {
+                    ThemeColors.getBackgroundColor(isDarkTheme: false)
+                        .ignoresSafeArea()
+                }
+            }
+        }
+    }
+
+    private var mainAppContent: some View {
         GeometryReader { geometry in
             ZStack {
                 // Background
@@ -43,7 +69,7 @@ struct MainContentView: View {
                     .tag(2)
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                
+
                 // Custom page indicator at the bottom
                 VStack {
                     Spacer()

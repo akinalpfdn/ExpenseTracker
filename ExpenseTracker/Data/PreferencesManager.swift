@@ -37,6 +37,14 @@ class PreferencesManager: ObservableObject {
         }
     }
 
+    @Published var isFirstLaunch: Bool? {
+        didSet {
+            if let value = isFirstLaunch {
+                userDefaults.set(value, forKey: Keys.isFirstLaunch)
+            }
+        }
+    }
+
     // MARK: - Keys
 
     private enum Keys {
@@ -44,6 +52,7 @@ class PreferencesManager: ObservableObject {
         static let dailyLimit = "daily_limit"
         static let monthlyLimit = "monthly_limit"
         static let theme = "theme"
+        static let isFirstLaunch = "is_first_launch"
     }
 
     // MARK: - Initialization
@@ -53,6 +62,13 @@ class PreferencesManager: ObservableObject {
         self.dailyLimit = userDefaults.string(forKey: Keys.dailyLimit) ?? ""
         self.monthlyLimit = userDefaults.string(forKey: Keys.monthlyLimit) ?? ""
         self.theme = userDefaults.string(forKey: Keys.theme) ?? "dark"
+
+        // Check if first launch key exists
+        if userDefaults.object(forKey: Keys.isFirstLaunch) == nil {
+            self.isFirstLaunch = true
+        } else {
+            self.isFirstLaunch = userDefaults.bool(forKey: Keys.isFirstLaunch)
+        }
     }
 
     // MARK: - Methods
@@ -71,6 +87,10 @@ class PreferencesManager: ObservableObject {
 
     func setTheme(_ newTheme: String) {
         theme = newTheme
+    }
+
+    func completeFirstLaunch() {
+        isFirstLaunch = false
     }
 
     // MARK: - Computed Properties
