@@ -14,6 +14,7 @@ struct ExpensesView: View {
     @State private var showingSettings = false
     @State private var showingMonthlyCalendar = false
     @State private var showingRecurringExpenses = false
+    @State private var showingPurchase = false
 
     // Daily category detail bottom sheet state
     @State private var showingDailyCategoryDetail = false
@@ -176,6 +177,9 @@ struct ExpensesView: View {
         .sheet(isPresented: $showingRecurringExpenses) {
             recurringExpensesSheet
         }
+        .sheet(isPresented: $showingPurchase) {
+            purchaseSheet
+        }
         .sheet(item: $selectedCategoryForDetail) { category in
             DailyCategoryDetailBottomSheet(
                 category: category,
@@ -283,9 +287,31 @@ extension ExpensesView {
             Spacer().frame(height: 170) // Position over charts
 
             HStack {
-                // Settings Button (Left)
-                VStack {
-                    Spacer().frame(height: 70) // Position over charts
+                // Left side buttons (vertical stack)
+                VStack(spacing: 12) {
+                     
+
+                    // Purchase/Donation Button
+                    Button(action: { showingPurchase = true }) {
+                        ZStack {
+                            Circle()
+                                .fill(
+                                    RadialGradient(
+                                        colors: [Color(red: 0.063, green: 0.063, blue: 0.063), Color(red: 0.063, green: 0.063, blue: 0.063)],
+                                        center: .center,
+                                        startRadius: 5,
+                                        endRadius: 30
+                                    )
+                                )
+                                .frame(width: 60, height: 60)
+
+                            Image(systemName: "heart")
+                                .font(.system(size: 30))
+                                .foregroundColor(.white)
+                        }
+                    }
+
+                    // Settings Button
                     Button(action: { showingSettings = true }) {
                         ZStack {
                             Circle()
@@ -304,8 +330,6 @@ extension ExpensesView {
                                 .foregroundColor(.white)
                         }
                     }
-
-                    //Spacer().frame(height: 25) // Spacing between buttons
                 }
 
                 Spacer()
@@ -501,6 +525,13 @@ extension ExpensesView {
     private var recurringExpensesSheet: some View {
         RecurringExpensesView(onDismiss: { showingRecurringExpenses = false })
             .environmentObject(viewModel)
+    }
+
+    private var purchaseSheet: some View {
+        PurchaseBottomSheet(
+            isDarkTheme: viewModel.preferencesManager.isDarkTheme,
+            onDismiss: { showingPurchase = false }
+        )
     }
 
     @ViewBuilder

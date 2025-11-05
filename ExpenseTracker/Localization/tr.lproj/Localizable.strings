@@ -386,3 +386,22 @@
 "welcome_page2_description" = "Harcamalarınızı güzel grafiklerle görselleştirin. Kategori dökümleri ve aylık trendlerle paranızın nereye gittiğini görün.";
 "welcome_page3_title" = "Gizliliğiniz Önemlidir";
 "welcome_page3_description" = "Tüm verileriniz cihazınızda kalır. Bulut depolama yok, izleme yok, reklam yok. Finansal bilgileriniz tamamen gizlidir.";
+
+// MARK: - Purchase/Donation Screen
+"no_add_text" = "Seni saçma reklamlar ile boğmak istemiyorum ve tüm özelliklere premium versiyon olmadan ulaşabilmeni istiyorum. Eğer çalışmamı desteklemek istersen buradan bana bir şeyler ısmarlayabilirsin :)";
+"buy_water" = "Su ısmarla";
+"buy_bagel" = "Simit ısmarla";
+"buy_tea" = "Çay ısmarla";
+"buy_coffee" = "Kahve ısmarla";
+"buy_wrap" = "Hatay dürüm ısmarla";
+"buy_burger" = "Burger ısmarla";
+"buy_doner" = "İskender ısmarla";
+"max_donation" = "Şaşırt beni";
+"water_price" = "5 TL";
+"tea_price" = "10 TL";
+"bagel_price" = "25 TL";
+"coffee_price" = "50 TL";
+"wrap_price" = "100 TL";
+"burger_price" = "250 TL";
+"doner_price" = "400 TL";
+"max_price" = "500 TL";

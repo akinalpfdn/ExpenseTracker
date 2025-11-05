@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class ExpenseViewModel: ObservableObject {
-    private let preferencesManager: PreferencesManager
+    public let preferencesManager: PreferencesManager
     private let expenseRepository: ExpenseRepository
     private let categoryRepository: CategoryRepository
 

@@ -386,3 +386,22 @@
 "welcome_page2_description" = "Visualize your spending with beautiful charts. See where your money goes with category breakdowns and monthly trends.";
 "welcome_page3_title" = "Your Privacy Matters";
 "welcome_page3_description" = "All your data stays on your device. No cloud storage, no tracking, no ads. Your financial information is completely private.";
+
+// MARK: - Purchase/Donation Screen
+"no_add_text" = "I don't want to bombard you with silly ads, so if you'd like to support my work, you can buy me something here :)";
+"buy_water" = "tip a water";
+"buy_bagel" = "tip a bagel";
+"buy_tea" = "tip a tea";
+"buy_coffee" = "tip a coffee";
+"buy_wrap" = "tip a wrap";
+"buy_burger" = "tip a burger";
+"buy_doner" = "tip a doner";
+"max_donation" = "surprise me";
+"water_price" = "0.5 USD";
+"tea_price" = "0.24 USD";
+"bagel_price" = "0.60 USD";
+"coffee_price" = "1.20 USD";
+"wrap_price" = "2.40 USD";
+"burger_price" = "6 USD";
+"doner_price" = "9.60 USD";
+"max_price" = "12 USD";
