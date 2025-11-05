@@ -1,0 +1,159 @@
+{
+  "appPolicies" : {
+    "eula" : "",
+    "policies" : [
+      {
+        "locale" : "en_US",
+        "policyText" : "",
+        "policyURL" : ""
+      }
+    ]
+  },
+  "identifier" : "C6F8E1A3",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "0.24",
+      "familyShareable" : false,
+      "internalID" : "A43E64C2",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "su_donation",
+      "referenceName" : "Water",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "0.6",
+      "familyShareable" : false,
+      "internalID" : "29666D31",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "tea_donation",
+      "referenceName" : "Tea",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "1.5",
+      "familyShareable" : false,
+      "internalID" : "CE7D2D70",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "bagel_donation",
+      "referenceName" : "Bagel",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "2",
+      "familyShareable" : false,
+      "internalID" : "3DDD0627",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "coffee_donation",
+      "referenceName" : "Coffee",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "3",
+      "familyShareable" : false,
+      "internalID" : "B26AED22",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "wrap_donation",
+      "referenceName" : "Wrap",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "6",
+      "familyShareable" : false,
+      "internalID" : "3282A0C5",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "burger_donation",
+      "referenceName" : "Burger",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "9",
+      "familyShareable" : false,
+      "internalID" : "9CEBFC89",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "doner_donation",
+      "referenceName" : "Doner",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "12",
+      "familyShareable" : false,
+      "internalID" : "F74A62D1",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "max_donation",
+      "referenceName" : "Surprise",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+    "_askToBuyEnabled" : false,
+    "_billingGracePeriodEnabled" : false,
+    "_billingIssuesEnabled" : false,
+    "_disableDialogs" : false,
+    "_failTransactionsEnabled" : false,
+    "_locale" : "en_US",
+    "_renewalBillingIssuesEnabled" : false,
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+
+    ],
+    "_timeRate" : 0
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}

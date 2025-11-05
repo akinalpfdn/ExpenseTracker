@@ -9,6 +9,8 @@ import Foundation
 import Combine
 
 class PreferencesManager: ObservableObject {
+    static let shared = PreferencesManager()
+
     private let userDefaults = UserDefaults.standard
 
     // MARK: - Published Properties
@@ -53,6 +55,7 @@ class PreferencesManager: ObservableObject {
         static let monthlyLimit = "monthly_limit"
         static let theme = "theme"
         static let isFirstLaunch = "is_first_launch"
+        static let tutorialCompleted = "tutorial_completed"
     }
 
     // MARK: - Initialization
@@ -91,6 +94,20 @@ class PreferencesManager: ObservableObject {
 
     func completeFirstLaunch() {
         isFirstLaunch = false
+    }
+
+    // MARK: - Tutorial Methods
+
+    func isTutorialCompleted() -> Bool {
+        return userDefaults.bool(forKey: Keys.tutorialCompleted)
+    }
+
+    func setTutorialCompleted() {
+        userDefaults.set(true, forKey: Keys.tutorialCompleted)
+    }
+
+    func resetTutorial() {
+        userDefaults.set(false, forKey: Keys.tutorialCompleted)
     }
 
     // MARK: - Computed Properties

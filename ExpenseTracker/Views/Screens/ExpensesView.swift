@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ExpensesView: View {
     @EnvironmentObject var viewModel: ExpenseViewModel
+    @StateObject private var tutorialManager: TutorialManager
 
     @State private var showingAddExpense = false
     @State private var showingSettings = false
@@ -19,6 +20,12 @@ struct ExpensesView: View {
     // Daily category detail bottom sheet state
     @State private var showingDailyCategoryDetail = false
     @State private var selectedCategoryForDetail: Category?
+
+    init() {
+        // Initialize tutorial manager with preferences
+        let preferencesManager = PreferencesManager.shared
+        _tutorialManager = StateObject(wrappedValue: TutorialManager(preferencesManager: preferencesManager))
+    }
 
     // Computed property that updates based on selectedDate
     private var currentCalendarMonth: Date {
@@ -109,7 +116,7 @@ struct ExpensesView: View {
                 DailyHistoryView(
                     weeklyData: viewModel.weeklyHistoryData,
                     selectedDate: viewModel.selectedDate,
-                    onDateSelected: { date in 
+                    onDateSelected: { date in
                         viewModel.updateSelectedDate(date)
                     },
                     onWeekNavigate: { direction in
@@ -117,6 +124,7 @@ struct ExpensesView: View {
                     },
                     isDarkTheme: isDarkTheme
                 )
+                .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .dailyHistory)
 
                 Spacer().frame(height: 6)
 
@@ -194,6 +202,23 @@ struct ExpensesView: View {
             )
             .environmentObject(viewModel)
         }
+        .overlay {
+            // Tutorial overlay
+            TutorialOverlay(
+                tutorialState: tutorialManager.state,
+                onNext: { tutorialManager.nextStep() },
+                onSkip: { tutorialManager.skipTutorial() },
+                isDarkTheme: isDarkTheme
+            )
+        }
+        .onAppear {
+            // Start tutorial if not completed
+            if !viewModel.preferencesManager.isTutorialCompleted() {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    tutorialManager.startTutorial()
+                }
+            }
+        }
     }
 }
 
@@ -206,12 +231,18 @@ extension ExpensesView {
                 totalSpent: getMonthlyTotal(),
                 progressPercentage: getMonthlyProgressPercentage(),
                 isOverLimit: isMonthlyOverLimit(),
-                onTap: { showingMonthlyCalendar = true },
+                onTap: {
+                    if tutorialManager.state.isActive {
+                        tutorialManager.nextStep()
+                    }
+                    showingMonthlyCalendar = true
+                },
                 currency: viewModel.defaultCurrency,
                 isDarkTheme: isDarkTheme,
                 month: monthFormatter.string(from: currentCalendarMonth),
                 selectedDate: viewModel.selectedDate
             )
+            .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .calendar)
             .tag(0)
 
             // Daily Progress Ring
@@ -292,7 +323,12 @@ extension ExpensesView {
                      
 
                     // Purchase/Donation Button
-                    Button(action: { showingPurchase = true }) {
+                    Button(action: {
+                        if tutorialManager.state.isActive {
+                            tutorialManager.nextStep()
+                        }
+                        showingPurchase = true
+                    }) {
                         ZStack {
                             Circle()
                                 .fill(
@@ -309,10 +345,16 @@ extension ExpensesView {
                                 .font(.system(size: 30))
                                 .foregroundColor(.white)
                         }
+                        .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .secretArea)
                     }
 
                     // Settings Button
-                    Button(action: { showingSettings = true }) {
+                    Button(action: {
+                        if tutorialManager.state.isActive {
+                            tutorialManager.nextStep()
+                        }
+                        showingSettings = true
+                    }) {
                         ZStack {
                             Circle()
                                 .fill(
@@ -329,6 +371,7 @@ extension ExpensesView {
                                 .font(.system(size: 30))
                                 .foregroundColor(.white)
                         }
+                        .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .settings)
                     }
                 }
 
@@ -337,7 +380,12 @@ extension ExpensesView {
                 // Right side buttons (vertical stack)
                 VStack(spacing: 12) {
                     // Recurring Expenses Button
-                    Button(action: { showingRecurringExpenses = true }) {
+                    Button(action: {
+                        if tutorialManager.state.isActive {
+                            tutorialManager.nextStep()
+                        }
+                        showingRecurringExpenses = true
+                    }) {
                         ZStack {
                             Circle()
                                 .fill(
@@ -354,10 +402,16 @@ extension ExpensesView {
                                 .font(.system(size: 30))
                                 .foregroundColor(.white)
                         }
+                        .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .recurringExpenses)
                     }
 
                     // Add Expense Button
-                    Button(action: { showingAddExpense = true }) {
+                    Button(action: {
+                        if tutorialManager.state.isActive {
+                            tutorialManager.nextStep()
+                        }
+                        showingAddExpense = true
+                    }) {
                         ZStack {
                             Circle()
                                 .fill(
@@ -374,6 +428,7 @@ extension ExpensesView {
                                 .font(.system(size: 30, weight: .medium))
                                 .foregroundColor(.white)
                         }
+                        .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .addExpense)
                     }
                 }
             }

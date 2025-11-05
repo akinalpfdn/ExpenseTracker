@@ -405,3 +405,29 @@
 "burger_price" = "250 TL";
 "doner_price" = "400 TL";
 "max_price" = "500 TL";
+
+// MARK: - Purchase States
+"purchase_loading" = "İşleniyor...";
+"purchase_success" = "🎉 Desteğiniz için teşekkürler!";
+"purchase_error" = "⚠️ Satın alma başarısız: %@";
+"purchase_cancelled" = "Satın alma iptal edildi";
+
+// MARK: - Tutorial
+"tutorial_add_expense_title" = "Harcama Ekle";
+"tutorial_add_expense_message" = "Harcama eklemek için buraya dokunun";
+"tutorial_recurring_expenses_title" = "Tekrarlayan Harcamalar";
+"tutorial_recurring_expenses_message" = "Tekrarlayan harcamaları buradan listeleyin ve düzenleyin";
+"tutorial_calendar_title" = "Aylık İlerleme";
+"tutorial_calendar_message" = "Aylık harcama ilerlemenizi görüntüleyin. Aylık takviminizi ve harcama geçmişinizi görmek için orta halkaya dokunun. Günlük ilerlemeyi ve kategori grafiklerini görmek için sola kaydırın";
+"tutorial_daily_history_title" = "Günlük Geçmiş";
+"tutorial_daily_history_message" = "Günlük harcama geçmişinize buradan erişin";
+"tutorial_settings_title" = "Ayarlar";
+"tutorial_settings_message" = "Para birimini, harcama limitlerini, temayı, kategorileri özelleştirin ve veri yedeklemenizi yönetin";
+"tutorial_secret_title" = "Destek";
+"tutorial_secret_message" = "ÇOK GİZLİ BÖLGE";
+"tutorial_expense_list_title" = "Harcamalarınız";
+"tutorial_expense_list_message" = "Harcamalarınız burada listelenir. Harcama analizlerini ve grafikleri görmek için ana ekranda sola kaydırın. Finansal planlama ekranına erişmek için tekrar sola kaydırın";
+"tutorial_skip" = "Atla";
+"tutorial_next" = "İleri";
+"tutorial_finish" = "Bitir";
+"tutorial_tap_to_continue" = "Devam etmek için dokunun";

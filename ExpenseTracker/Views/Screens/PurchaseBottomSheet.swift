@@ -19,10 +19,13 @@ struct PurchaseBottomSheet: View {
     let isDarkTheme: Bool
     let onDismiss: () -> Void
 
+    @StateObject private var storeManager = StoreManager()
     @State private var displayText = ""
     @State private var isAnimationComplete = false
     @State private var pressedCardId: UUID?
     @State private var animationTask: Task<Void, Never>?
+    @State private var showPurchaseAlert = false
+    @State private var purchaseAlertMessage = ""
 
     private let fullText = "no_add_text".localized
 
@@ -89,11 +92,69 @@ struct PurchaseBottomSheet: View {
             .padding(24)
         }
         .background(ThemeColors.getBackgroundColor(isDarkTheme: isDarkTheme))
+        .overlay {
+            if case .loading = storeManager.purchaseState {
+                ZStack {
+                    Color.black.opacity(0.4)
+                        .ignoresSafeArea()
+
+                    VStack(spacing: 16) {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                            .scaleEffect(1.5)
+
+                        Text("purchase_loading".localized)
+                            .font(.system(size: 16, weight: .medium))
+                            .foregroundColor(.white)
+                    }
+                    .padding(32)
+                    .background(
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(ThemeColors.getCardBackgroundColor(isDarkTheme: isDarkTheme))
+                    )
+                }
+            }
+        }
+        .alert(isPresented: $showPurchaseAlert) {
+            Alert(
+                title: Text(getPurchaseAlertTitle()),
+                message: Text(purchaseAlertMessage),
+                dismissButton: .default(Text("OK"))
+            )
+        }
+        .onChange(of: storeManager.purchaseState) { newState in
+            switch newState {
+            case .success(let productId):
+                purchaseAlertMessage = String(format: "purchase_success".localized, productId)
+                showPurchaseAlert = true
+            case .failed(let error):
+                purchaseAlertMessage = String(format: "purchase_error".localized, error)
+                showPurchaseAlert = true
+            case .cancelled:
+                purchaseAlertMessage = "purchase_cancelled".localized
+                showPurchaseAlert = true
+            default:
+                break
+            }
+        }
         .onAppear {
             startTypewriterAnimation()
         }
         .onDisappear {
             animationTask?.cancel()
+        }
+    }
+
+    private func getPurchaseAlertTitle() -> String {
+        switch storeManager.purchaseState {
+        case .success:
+            return "🎉"
+        case .failed:
+            return "⚠️"
+        case .cancelled:
+            return "❌"
+        default:
+            return ""
         }
     }
 
@@ -197,11 +258,12 @@ struct PurchaseBottomSheet: View {
     private func handlePurchase(_ option: PurchaseOption) {
         pressedCardId = option.id
 
-        // TODO: Implement StoreKit purchase flow
-        print("Purchase tapped: \(option.productId)")
+        Task {
+            await storeManager.purchase(productId: option.productId)
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-            pressedCardId = nil
+            await MainActor.run {
+                pressedCardId = nil
+            }
         }
     }
 }

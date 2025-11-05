@@ -405,3 +405,29 @@
 "burger_price" = "6 USD";
 "doner_price" = "9.60 USD";
 "max_price" = "12 USD";
+
+// MARK: - Purchase States
+"purchase_loading" = "Processing...";
+"purchase_success" = "🎉 Thank you for your support!";
+"purchase_error" = "⚠️ Purchase failed: %@";
+"purchase_cancelled" = "Purchase cancelled";
+
+// MARK: - Tutorial
+"tutorial_add_expense_title" = "Add Expense";
+"tutorial_add_expense_message" = "Tap here to add expenses";
+"tutorial_recurring_expenses_title" = "Recurring Expenses";
+"tutorial_recurring_expenses_message" = "List and edit recurring expenses here";
+"tutorial_calendar_title" = "Monthly Progress";
+"tutorial_calendar_message" = "View your monthly spending progress. Tap the center ring to view your monthly calendar and spending history. Swipe left to see daily progress and category charts";
+"tutorial_daily_history_title" = "Daily History";
+"tutorial_daily_history_message" = "Access your daily spending history here";
+"tutorial_settings_title" = "Settings";
+"tutorial_settings_message" = "Customize currency, spending limits, theme, categories and manage your data backup";
+"tutorial_secret_title" = "Support";
+"tutorial_secret_message" = "ULTIMATE TOP SECRET AREA";
+"tutorial_expense_list_title" = "Your Expenses";
+"tutorial_expense_list_message" = "Your expenses are listed here. Swipe left on the main screen to see spending analytics and charts. Swipe left again to access financial planning screen";
+"tutorial_skip" = "Skip";
+"tutorial_next" = "Next";
+"tutorial_finish" = "Finish";
+"tutorial_tap_to_continue" = "Tap to continue";
