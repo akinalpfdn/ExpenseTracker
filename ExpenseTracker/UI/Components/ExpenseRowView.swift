@@ -374,9 +374,13 @@ extension ExpenseRowView {
     }
 
     private func setupEditFields() {
-        editAmount = String(expense.amount)
+        editAmount = CurrencyInputFormatter.format(expense.amount)
         editDescription = expense.description
-        editExchangeRate = expense.exchangeRate?.description ?? ""
+        if let rate = expense.exchangeRate, rate > 0 {
+            editExchangeRate = CurrencyInputFormatter.format(rate)
+        } else {
+            editExchangeRate = ""
+        }
     }
 
     private func saveChanges() {

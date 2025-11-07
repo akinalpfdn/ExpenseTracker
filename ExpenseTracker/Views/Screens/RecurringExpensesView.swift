@@ -615,18 +615,24 @@ struct RecurringExpenseCard: View {
     }
 
     private func initializeEditState() {
-        editAmount = String(expense.amount)
+        editAmount = CurrencyInputFormatter.format(expense.amount)
         editDescription = expense.description
-        editExchangeRate = expense.exchangeRate?.description ?? ""
+        if let rate = expense.exchangeRate, rate > 0 {
+            editExchangeRate = CurrencyInputFormatter.format(rate)
+        } else {
+            editExchangeRate = ""
+        }
         tempEndDate = expense.endDate ?? Calendar.current.date(byAdding: .year, value: 1, to: Date()) ?? Date()
     }
 
     private func saveChanges() {
-        guard let amountValue = Double(editAmount) else { return }
+        let amountValue = CurrencyInputFormatter.parseDouble(editAmount)
+        guard amountValue > 0 else { return }
 
         let finalExchangeRate: Double?
         if expense.currency != viewModel.defaultCurrency {
-            finalExchangeRate = Double(editExchangeRate)
+            let rate = CurrencyInputFormatter.parseDouble(editExchangeRate)
+            finalExchangeRate = rate > 0 ? rate : nil
         } else {
             finalExchangeRate = nil
         }

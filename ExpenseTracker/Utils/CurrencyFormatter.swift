@@ -77,26 +77,31 @@ struct CurrencyInputFormatter {
     /// - Parameter formattedString: String with locale-specific separators
     /// - Returns: Double value
     static func parseDouble(_ formattedString: String) -> Double {
+        // First, try with current locale formatter
         let formatter = NumberFormatter()
         formatter.locale = locale
         formatter.numberStyle = .decimal
+        formatter.usesGroupingSeparator = true
 
-        // Try parsing with formatter first
         if let number = formatter.number(from: formattedString) {
             return number.doubleValue
         }
 
-        // Fallback: manual parsing
-        // Remove all grouping separators
+        // Fallback: Try to intelligently parse
+        // If the string contains our locale's grouping separator, it's a formatted number
+        // Remove grouping separator and parse decimal separator correctly
         var cleanString = formattedString
-        for separator in [",", ".", " ", "'"] {
-            if separator != decimalSeparator {
-                cleanString = cleanString.replacingOccurrences(of: separator, with: "")
-            }
-        }
 
-        // Replace decimal separator with dot for standard parsing
+        // Remove the grouping separator
+        cleanString = cleanString.replacingOccurrences(of: groupingSeparator, with: "")
+
+        // Now we should have either just digits, or digits + decimal separator + decimals
+        // Replace locale's decimal separator with standard dot
         cleanString = cleanString.replacingOccurrences(of: decimalSeparator, with: ".")
+
+        // Clean any remaining non-numeric characters except dot
+        let allowedChars = "0123456789."
+        cleanString = String(cleanString.filter { allowedChars.contains($0) })
 
         return Double(cleanString) ?? 0.0
     }
@@ -109,5 +114,19 @@ struct CurrencyInputFormatter {
     /// Returns user's locale grouping separator for display purposes
     static var localizedGroupingSeparator: String {
         return groupingSeparator
+    }
+
+    /// Formats a Double value to locale-specific string with separators
+    /// - Parameter value: Double value to format
+    /// - Returns: Formatted string ready for display/editing
+    static func format(_ value: Double) -> String {
+        let formatter = NumberFormatter()
+        formatter.locale = locale
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 2
+        formatter.usesGroupingSeparator = true
+
+        return formatter.string(from: NSNumber(value: value)) ?? String(value)
     }
 }
