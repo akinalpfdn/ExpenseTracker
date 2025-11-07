@@ -65,11 +65,13 @@ struct AddExpenseView: View {
     }
 
     private var isFormValid: Bool {
-        guard let amountValue = Double(amount), amountValue > 0 else { return false }
+        let amountValue = CurrencyInputFormatter.parseDouble(amount)
+        guard amountValue > 0 else { return false }
         guard !selectedSubCategoryId.isEmpty else { return false }
 
         if selectedCurrency != defaultCurrency {
-            guard let exchangeRateValue = Double(exchangeRate), exchangeRateValue > 0 else { return false }
+            let exchangeRateValue = CurrencyInputFormatter.parseDouble(exchangeRate)
+            guard exchangeRateValue > 0 else { return false }
         }
 
         return true
@@ -141,19 +143,7 @@ extension AddExpenseView {
                     .textFieldStyle(CustomTextFieldStyle(isDarkTheme: isDarkTheme))
                     .keyboardType(.decimalPad)
                     .onChange(of: amount) { newValue in
-                        // Filter input to only allow numbers, comma and period
-                        let filtered = newValue.filter { "0123456789.,".contains($0) }
-
-                        // Limit to 12 characters
-                        let limited = String(filtered.prefix(12))
-
-                        // Limit to one decimal separator
-                        let components = limited.components(separatedBy: CharacterSet(charactersIn: ".,"))
-                        if components.count > 2 {
-                            amount = components[0] + "," + (components[1].isEmpty ? "" : components[1])
-                        } else {
-                            amount = limited
-                        }
+                        amount = CurrencyInputFormatter.formatInput(newValue)
                     }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -384,7 +374,8 @@ extension AddExpenseView {
     }
 
     private func addOrUpdateExpense() {
-        guard let amountValue = Double(amount) else { return }
+        let amountValue = CurrencyInputFormatter.parseDouble(amount)
+        guard amountValue > 0 else { return }
 
         isLoading = true
 
@@ -442,6 +433,7 @@ extension AddExpenseView {
     private func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
+
 }
 
 // MARK: - Preview

@@ -192,7 +192,7 @@ extension CategoryPopupCard {
         }
         .padding(16)
         .frame(minHeight: 120)
-        .background(selectedCategory.category.getColor().)
+        .background(selectedCategory.category.getColor().lighten(by:0.5))
         .cornerRadius(16)
     }
 

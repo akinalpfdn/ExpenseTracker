@@ -388,7 +388,9 @@
 "welcome_page3_description" = "Tüm verileriniz cihazınızda kalır. Bulut depolama yok, izleme yok, reklam yok. Finansal bilgileriniz tamamen gizlidir.";
 
 // MARK: - Purchase/Donation Screen
-"no_add_text" = "Seni saçma reklamlar ile boğmak istemiyorum ve tüm özelliklere premium versiyon olmadan ulaşabilmeni istiyorum. Eğer çalışmamı desteklemek istersen buradan bana bir şeyler ısmarlayabilirsin :)";
+"no_add_text" = "Seni saçma reklamlar ile boğmak istemiyorum ve tüm özelliklere premium versiyon olmadan ulaşabilmeni istiyorum.
+Ama geliştirme yapabilmem için gelire ihtiyacım var.
+Uygulamamı beğendiysen ve destek olmak istersen bir çayını içerim(Fiyatlara enflasyon etki etmiyor burada) :).";
 "buy_water" = "Su ısmarla";
 "buy_bagel" = "Simit ısmarla";
 "buy_tea" = "Çay ısmarla";
