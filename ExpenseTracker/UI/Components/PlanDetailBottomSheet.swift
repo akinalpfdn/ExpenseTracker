@@ -217,6 +217,9 @@ extension PlanDetailBottomSheet {
                             .stroke(AppColors.primaryOrange, lineWidth: 1)
                     )
                     .cornerRadius(6)
+                    .onChange(of: editedValue) { newValue in
+                        editedValue = CurrencyInputFormatter.formatInput(newValue)
+                    }
             } else {
                 Button(action: { startEditingIncome(breakdown: breakdown, index: index) }) {
                     Text(NumberFormatter.formatAmount(breakdown.projectedIncome))
@@ -246,6 +249,9 @@ extension PlanDetailBottomSheet {
                             .stroke(AppColors.primaryOrange, lineWidth: 1)
                     )
                     .cornerRadius(6)
+                    .onChange(of: editedValue) { newValue in
+                        editedValue = CurrencyInputFormatter.formatInput(newValue)
+                    }
             } else {
                 Button(action: { startEditingExpenses(breakdown: breakdown, index: index) }) {
                     Text(NumberFormatter.formatAmount(breakdown.totalProjectedExpenses))
@@ -261,9 +267,9 @@ extension PlanDetailBottomSheet {
 
     private func netCell(breakdown: PlanMonthlyBreakdown, index: Int) -> some View {
         let currentIncome = isEditingIncome(index: index) ?
-            (Double(editedValue) ?? breakdown.projectedIncome) : breakdown.projectedIncome
+            CurrencyInputFormatter.parseDouble(editedValue) : breakdown.projectedIncome
         let currentExpenses = isEditingExpenses(index: index) ?
-            (Double(editedValue) ?? breakdown.totalProjectedExpenses) : breakdown.totalProjectedExpenses
+            CurrencyInputFormatter.parseDouble(editedValue) : breakdown.totalProjectedExpenses
         let netAmount = currentIncome - currentExpenses
 
         return Text(NumberFormatter.formatAmount(netAmount))
@@ -313,16 +319,16 @@ extension PlanDetailBottomSheet {
 
     private func startEditingIncome(breakdown: PlanMonthlyBreakdown, index: Int) {
         editingCell = EditingCell(rowIndex: index, cellType: "income")
-        editedValue = String(format: "%.2f", breakdown.projectedIncome)
+        editedValue = CurrencyInputFormatter.format(breakdown.projectedIncome)
     }
 
     private func startEditingExpenses(breakdown: PlanMonthlyBreakdown, index: Int) {
         editingCell = EditingCell(rowIndex: index, cellType: "expenses")
-        editedValue = String(format: "%.2f", breakdown.totalProjectedExpenses)
+        editedValue = CurrencyInputFormatter.format(breakdown.totalProjectedExpenses)
     }
 
     private func saveEdit(breakdown: PlanMonthlyBreakdown, index: Int) {
-        guard let newValue = Double(editedValue) else { return }
+        let newValue = CurrencyInputFormatter.parseDouble(editedValue)
 
         let updatedBreakdown: PlanMonthlyBreakdown
 

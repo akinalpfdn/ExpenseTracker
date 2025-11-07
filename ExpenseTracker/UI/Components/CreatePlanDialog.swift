@@ -170,6 +170,9 @@ extension CreatePlanDialog {
             TextField("0", text: $monthlyIncome)
                 .textFieldStyle(CustomTextFieldStyle(isDarkTheme: isDarkTheme))
                 .keyboardType(.decimalPad)
+                .onChange(of: monthlyIncome) { newValue in
+                    monthlyIncome = CurrencyInputFormatter.formatInput(newValue)
+                }
         }
     }
 
@@ -198,6 +201,9 @@ extension CreatePlanDialog {
                     TextField("manual_monthly_expense_amount".localized, text: $monthlyExpenses)
                         .textFieldStyle(CustomTextFieldStyle(isDarkTheme: isDarkTheme))
                         .keyboardType(.decimalPad)
+                        .onChange(of: monthlyExpenses) { newValue in
+                            monthlyExpenses = CurrencyInputFormatter.formatInput(newValue)
+                        }
 
                     Text("enter_manual_expense_amount".localized)
                         .font(.system(size: 12))
@@ -259,8 +265,8 @@ extension CreatePlanDialog {
 // MARK: - Helper Methods
 extension CreatePlanDialog {
     private func createPlan() {
-        let income = Double(monthlyIncome) ?? 0.0
-        let expenses = Double(monthlyExpenses) ?? 0.0
+        let income = CurrencyInputFormatter.parseDouble(monthlyIncome)
+        let expenses = CurrencyInputFormatter.parseDouble(monthlyExpenses)
         let inflation = isInflationApplied ? (Double(inflationRate) ?? 0.0) : 0.0
         let interest = isInterestApplied ? (Double(interestRate) ?? 0.0) : 0.0
 
