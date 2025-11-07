@@ -46,7 +46,10 @@ struct PlanningView: View {
                 return PlanDetailSheetItem(planId: planId)
             },
             set: { item in
-                selectedPlanForDetail = item?.planId
+                if item == nil {
+                    selectedPlanForDetail = nil
+                    planningViewModel.clearSelectedPlan()
+                }
             }
         )) { item in
             planDetailSheet(planId: item.planId)
@@ -135,8 +138,10 @@ extension PlanningView {
                         index: index,
                         planWithBreakdowns: planWithBreakdowns,
                         onCardClick: {
-                            planningViewModel.selectPlan(planId: planWithBreakdowns.plan.id)
-                            selectedPlanForDetail = planWithBreakdowns.plan.id
+                            if selectedPlanForDetail == nil {
+                                planningViewModel.selectPlan(planId: planWithBreakdowns.plan.id)
+                                selectedPlanForDetail = planWithBreakdowns.plan.id
+                            }
                         },
                         onDeleteClick: {
                             planToDelete = planWithBreakdowns.plan.id
@@ -283,7 +288,7 @@ struct AnimatedPlanCard: View {
 
 // MARK: - Helper Types
 struct PlanDetailSheetItem: Identifiable {
-    let id = UUID()
+    var id: String { planId }
     let planId: String
 }
 

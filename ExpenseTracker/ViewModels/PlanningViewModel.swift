@@ -192,9 +192,12 @@ class PlanningViewModel: ObservableObject {
             do {
                 try await planRepository.updateExpenseData(planId: planId)
 
-                // Refresh selected plan if it's the current one
+                // Refresh selected plan if it's the current one without re-triggering the sheet
                 if selectedPlan?.plan.id == planId {
-                    selectPlan(planId: planId)
+                    let updatedPlanWithBreakdowns = try await planRepository.getPlanWithBreakdowns(planId: planId)
+                    await MainActor.run {
+                        selectedPlan = updatedPlanWithBreakdowns
+                    }
                 }
 
                 await MainActor.run {
@@ -220,9 +223,12 @@ class PlanningViewModel: ObservableObject {
                 let planId = updatedBreakdown.planId
                 try await planRepository.recalculateCumulativeAmounts(planId: planId)
 
-                // Refresh the selected plan to show updated values
+                // Refresh the selected plan to show updated values without re-triggering the sheet
                 if selectedPlan?.plan.id == planId {
-                    selectPlan(planId: planId)
+                    let updatedPlanWithBreakdowns = try await planRepository.getPlanWithBreakdowns(planId: planId)
+                    await MainActor.run {
+                        selectedPlan = updatedPlanWithBreakdowns
+                    }
                 }
 
                 await MainActor.run {
