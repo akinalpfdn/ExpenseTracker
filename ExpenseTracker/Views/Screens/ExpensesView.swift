@@ -332,18 +332,13 @@ extension ExpensesView {
                         ZStack {
                             Circle()
                                 .fill(
-                                    RadialGradient(
-                                        colors: [Color(red: 0.063, green: 0.063, blue: 0.063), Color(red: 0.063, green: 0.063, blue: 0.063)],
-                                        center: .center,
-                                        startRadius: 5,
-                                        endRadius: 30
-                                    )
+                                    ThemeColors.getCardBackgroundColor(isDarkTheme: isDarkTheme)
                                 )
                                 .frame(width: 60, height: 60)
 
                             Image(systemName: "heart")
                                 .font(.system(size: 30))
-                                .foregroundColor(.white)
+                                .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
                         }
                         .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .secretArea)
                     }
@@ -358,18 +353,13 @@ extension ExpensesView {
                         ZStack {
                             Circle()
                                 .fill(
-                                    RadialGradient(
-                                        colors: [Color(red: 0.063, green: 0.063, blue: 0.063), Color(red: 0.063, green: 0.063, blue: 0.063)],
-                                        center: .center,
-                                        startRadius: 5,
-                                        endRadius: 30
-                                    )
+                                    ThemeColors.getCardBackgroundColor(isDarkTheme: isDarkTheme)
                                 )
                                 .frame(width: 60, height: 60)
 
                             Image(systemName: "gearshape")
                                 .font(.system(size: 30))
-                                .foregroundColor(.white)
+                                .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
                         }
                         .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .settings)
                     }

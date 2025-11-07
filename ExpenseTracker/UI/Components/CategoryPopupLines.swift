@@ -192,7 +192,7 @@ extension CategoryPopupCard {
         }
         .padding(16)
         .frame(minHeight: 120)
-        .background(selectedCategory.category.getColor())
+        .background(selectedCategory.category.getColor().)
         .cornerRadius(16)
     }
 
@@ -221,14 +221,14 @@ extension CategoryPopupCard {
     private var categoryName: some View {
         Text(selectedCategory.category.name)
             .font(.system(size: 18, weight: .bold))
-            .foregroundColor(.white)
+            .foregroundColor(.black)
             .lineLimit(1)
     }
 
     private var categoryStats: some View {
         Text("\(selectedCategory.expenseCount) \("expense_lowercase".localized) • \(String(format: "%.1f", selectedCategory.percentage * 100))%")
             .font(.system(size: 12))
-            .foregroundColor(.white.opacity(0.8))
+            .foregroundColor(.black)
     }
 
     private func comparisonIndicators(_ comparison: CategoryComparisonData) -> some View {
@@ -236,12 +236,14 @@ extension CategoryPopupCard {
             ComparisonIndicator(
                 percentage: comparison.vsLastMonth,
                 label: "vs_previous_month_colon".localized,
-                textColor: .white
+                textColor: .white,
+                isDarkTheme:isDarkTheme
             )
             ComparisonIndicator(
                 percentage: comparison.vsAverage,
                 label: "vs_average_colon".localized,
-                textColor: .white
+                textColor: .white,
+                isDarkTheme:isDarkTheme
             )
         }
     }
@@ -250,7 +252,7 @@ extension CategoryPopupCard {
         VStack(alignment: .trailing) {
             Text("\(defaultCurrency) \(NumberFormatter.formatAmount(selectedCategory.totalAmount))")
                 .font(.system(size: 14, weight: .bold))
-                .foregroundColor(.white)
+                .foregroundColor(.black)
         }
     }
 }
@@ -259,12 +261,13 @@ struct ComparisonIndicator: View {
     let percentage: Double
     let label: String
     let textColor: Color
+    let isDarkTheme: Bool
 
     var body: some View {
         HStack(spacing: 4) {
             Text(label)
                 .font(.system(size: 12))
-                .foregroundColor(textColor.opacity(0.7))
+                .foregroundColor(.black)
 
             Text(formattedPercentage)
                 .font(.system(size: 12, weight: .medium))

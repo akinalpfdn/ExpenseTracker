@@ -69,7 +69,7 @@ struct AddMainCategoryDialog: View {
     ]
 
     private let availableColors = [
-        "#FF9500", "#007AFF", "#34C759", "#9D73E3",
+        "#87673a", "#007AFF", "#34C759", "#9D73E3",
         "#5856D6", "#64D2FF", "#5AC8FA", "#FFD60A",
         "#30D158", "#3F51B5",  "#4ECDC4", "#45B7D1",
         "#96CEB4", "#FFEAA7", "#DDA0DD", "#98D8C8", "#F7DC6F"
