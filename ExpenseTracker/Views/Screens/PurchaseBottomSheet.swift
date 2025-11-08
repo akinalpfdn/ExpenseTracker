@@ -2,16 +2,17 @@
 //  PurchaseBottomSheet.swift
 //  ExpenseTracker
 //
-//  Created by migration from Android PurchaseBottomSheet.kt
+//  StoreKit 2 integration for in-app donations
+//  Prices are fetched directly from App Store Connect
 //
 
 import SwiftUI
+import StoreKit
 
 struct PurchaseOption: Identifiable {
-    let id = UUID()
+    var id: String { productId }
     let title: String
-    let price: String
-    let icon: String  // SF Symbol name
+    let icon: String
     let productId: String
 }
 
@@ -22,59 +23,52 @@ struct PurchaseBottomSheet: View {
     @StateObject private var storeManager = StoreManager()
     @State private var displayText = ""
     @State private var isAnimationComplete = false
-    @State private var pressedCardId: UUID?
+    @State private var pressedCardId: String?
     @State private var animationTask: Task<Void, Never>?
     @State private var showPurchaseAlert = false
     @State private var purchaseAlertMessage = ""
 
     private let fullText = "no_add_text".localized
 
-    private let purchaseOptions = [
+    // Product metadata (titles and icons) - prices come from StoreKit
+    private let purchaseOptionsMetadata = [
         PurchaseOption(
             title: "buy_water".localized,
-            price: "water_price".localized,
             icon: "drop.fill",
             productId: "su_donation"
         ),
         PurchaseOption(
             title: "buy_tea".localized,
-            price: "tea_price".localized,
             icon: "cup.and.saucer.fill",
             productId: "tea_donation"
         ),
         PurchaseOption(
             title: "buy_bagel".localized,
-            price: "bagel_price".localized,
-            icon: "circle.fill",  // placeholder
+            icon: "circle.fill",
             productId: "bagel_donation"
         ),
         PurchaseOption(
             title: "buy_coffee".localized,
-            price: "coffee_price".localized,
             icon: "cup.and.saucer.fill",
             productId: "coffee_donation"
         ),
         PurchaseOption(
             title: "buy_wrap".localized,
-            price: "wrap_price".localized,
             icon: "takeoutbag.and.cup.and.straw.fill",
             productId: "wrap_donation"
         ),
         PurchaseOption(
             title: "buy_burger".localized,
-            price: "burger_price".localized,
             icon: "fork.knife",
             productId: "burger_donation"
         ),
         PurchaseOption(
             title: "buy_doner".localized,
-            price: "doner_price".localized,
             icon: "takeoutbag.and.cup.and.straw.fill",
             productId: "doner_donation"
         ),
         PurchaseOption(
             title: "max_donation".localized,
-            price: "max_price".localized,
             icon: "star.fill",
             productId: "max_donation"
         )
@@ -87,7 +81,11 @@ struct PurchaseBottomSheet: View {
                 typewriterText
 
                 // Purchase options grid
-                purchaseOptionsGrid
+                if !storeManager.products.isEmpty {
+                    purchaseOptionsGrid
+                } else {
+                    loadingView
+                }
             }
             .padding(24)
         }
@@ -165,70 +163,43 @@ struct PurchaseBottomSheet: View {
             .frame(maxWidth: .infinity, alignment: .leading)
     }
 
+    private var loadingView: some View {
+        HStack {
+            Spacer()
+            ProgressView()
+                .progressViewStyle(CircularProgressViewStyle(tint: AppColors.primaryOrange))
+            Text("loading_products".localized)
+                .font(.system(size: 14))
+                .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
+            Spacer()
+        }
+        .padding(40)
+    }
+
     private var purchaseOptionsGrid: some View {
         VStack(spacing: 12) {
-            // First row (2 cards)
-            HStack(spacing: 12) {
-                PurchaseOptionCard(
-                    option: purchaseOptions[0],
-                    isDarkTheme: isDarkTheme,
-                    isPressed: pressedCardId == purchaseOptions[0].id,
-                    onTap: { handlePurchase(purchaseOptions[0]) }
-                )
-                PurchaseOptionCard(
-                    option: purchaseOptions[1],
-                    isDarkTheme: isDarkTheme,
-                    isPressed: pressedCardId == purchaseOptions[1].id,
-                    onTap: { handlePurchase(purchaseOptions[1]) }
-                )
-            }
-
-            // Second row (2 cards)
-            HStack(spacing: 12) {
-                PurchaseOptionCard(
-                    option: purchaseOptions[2],
-                    isDarkTheme: isDarkTheme,
-                    isPressed: pressedCardId == purchaseOptions[2].id,
-                    onTap: { handlePurchase(purchaseOptions[2]) }
-                )
-                PurchaseOptionCard(
-                    option: purchaseOptions[3],
-                    isDarkTheme: isDarkTheme,
-                    isPressed: pressedCardId == purchaseOptions[3].id,
-                    onTap: { handlePurchase(purchaseOptions[3]) }
-                )
-            }
-
-            // Third row (2 cards)
-            HStack(spacing: 12) {
-                PurchaseOptionCard(
-                    option: purchaseOptions[4],
-                    isDarkTheme: isDarkTheme,
-                    isPressed: pressedCardId == purchaseOptions[4].id,
-                    onTap: { handlePurchase(purchaseOptions[4]) }
-                )
-                PurchaseOptionCard(
-                    option: purchaseOptions[5],
-                    isDarkTheme: isDarkTheme,
-                    isPressed: pressedCardId == purchaseOptions[5].id,
-                    onTap: { handlePurchase(purchaseOptions[5]) }
-                )
-            }
-
-            // Fourth row (2 cards)
-            HStack(spacing: 12) {
-                PurchaseOptionCard(
-                    option: purchaseOptions[6],
-                    isDarkTheme: isDarkTheme,
-                    isPressed: pressedCardId == purchaseOptions[6].id,
-                    onTap: { handlePurchase(purchaseOptions[6]) }
-                )
-                PurchaseOptionCard(
-                    option: purchaseOptions[7],
-                    isDarkTheme: isDarkTheme,
-                    isPressed: pressedCardId == purchaseOptions[7].id,
-                    onTap: { handlePurchase(purchaseOptions[7]) }
-                )
+            // Create rows of 2 cards each
+            ForEach(0..<4, id: \.self) { rowIndex in
+                HStack(spacing: 12) {
+                    ForEach(0..<2, id: \.self) { columnIndex in
+                        let index = rowIndex * 2 + columnIndex
+                        if index < purchaseOptionsMetadata.count {
+                            let option = purchaseOptionsMetadata[index]
+                            if let product = storeManager.products.first(where: { $0.id == option.productId }) {
+                                PurchaseOptionCard(
+                                    option: option,
+                                    product: product,
+                                    isDarkTheme: isDarkTheme,
+                                    isPressed: pressedCardId == option.id,
+                                    onTap: { handlePurchase(option) }
+                                )
+                            } else {
+                                // Fallback if product not found
+                                EmptyCardPlaceholder()
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -246,7 +217,7 @@ struct PurchaseBottomSheet: View {
                 displayText.append(character)
 
                 // Use Task.sleep for smooth animation
-                try? await Task.sleep(nanoseconds: 50_000_000) // 30ms per character
+                try? await Task.sleep(nanoseconds: 50_000_000) // 50ms per character
             }
 
             if !Task.isCancelled {
@@ -270,6 +241,7 @@ struct PurchaseBottomSheet: View {
 
 struct PurchaseOptionCard: View {
     let option: PurchaseOption
+    let product: Product
     let isDarkTheme: Bool
     let isPressed: Bool
     let onTap: () -> Void
@@ -293,9 +265,10 @@ struct PurchaseOptionCard: View {
                     .font(.system(size: 12, weight: .medium))
                     .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
                     .multilineTextAlignment(.center)
+                    .lineLimit(2)
 
-                // Price
-                Text(option.price)
+                // Price from StoreKit
+                Text(product.displayPrice)
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(AppColors.primaryOrange)
             }
@@ -309,6 +282,17 @@ struct PurchaseOptionCard: View {
             )
         }
         .buttonStyle(PlainButtonStyle())
+    }
+}
+
+struct EmptyCardPlaceholder: View {
+    var body: some View {
+        VStack {
+            ProgressView()
+                .progressViewStyle(CircularProgressViewStyle(tint: AppColors.primaryOrange))
+        }
+        .frame(maxWidth: .infinity)
+        .padding(12)
     }
 }
 
