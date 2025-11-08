@@ -1,0 +1,202 @@
+{
+  "appPolicies" : {
+    "eula" : "",
+    "policies" : [
+      {
+        "locale" : "en_US",
+        "policyText" : "",
+        "policyURL" : ""
+      }
+    ]
+  },
+  "identifier" : "A5816AAE",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "6755061421",
+      "localizations" : [
+        {
+          "description" : "Çıtır ve gevrek,lezizz",
+          "displayName" : "Simit",
+          "locale" : "tr"
+        },
+        {
+          "description" : "Yummy Bagel",
+          "displayName" : "Bagel",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "bagel_donation",
+      "referenceName" : "Bagel",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "6755061608",
+      "localizations" : [
+        {
+          "description" : "Smash Burger",
+          "displayName" : "Burger",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "Cheese Burger",
+          "displayName" : "Hamburger",
+          "locale" : "tr"
+        }
+      ],
+      "productID" : "burger_donation",
+      "referenceName" : "Burger",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "1.49",
+      "familyShareable" : false,
+      "internalID" : "6755061331",
+      "localizations" : [
+        {
+          "description" : "Bir türk kahvesi",
+          "displayName" : "Kahve",
+          "locale" : "tr"
+        },
+        {
+          "description" : "A small americano",
+          "displayName" : "Coffee",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "coffee_donation",
+      "referenceName" : "Coffee",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "8.99",
+      "familyShareable" : false,
+      "internalID" : "6755061388",
+      "localizations" : [
+        {
+          "description" : "İskender Kebab",
+          "displayName" : "Turkish Doner",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "Bol Tereyağlı",
+          "displayName" : "İskender Döner",
+          "locale" : "tr"
+        }
+      ],
+      "productID" : "doner_donation",
+      "referenceName" : "Doner",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "14.99",
+      "familyShareable" : false,
+      "internalID" : "6755061701",
+      "localizations" : [
+        {
+          "description" : "Çok heyecanlandımm",
+          "displayName" : "Şaşırt Beni",
+          "locale" : "tr"
+        },
+        {
+          "description" : "I am excitedd",
+          "displayName" : "Surprise Me",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "max_donation",
+      "referenceName" : "Surprise",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "0.49",
+      "familyShareable" : false,
+      "internalID" : "6755061479",
+      "localizations" : [
+        {
+          "description" : "A Cup of tea",
+          "displayName" : "Tea",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "Ohh iyi gitti",
+          "displayName" : "Çay",
+          "locale" : "tr"
+        }
+      ],
+      "productID" : "tea_donation",
+      "referenceName" : "Tea",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "0.29",
+      "familyShareable" : false,
+      "internalID" : "6755061369",
+      "localizations" : [
+        {
+          "description" : "A botah of wotah",
+          "displayName" : "Water",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "Çok susadımm",
+          "displayName" : "Su",
+          "locale" : "tr"
+        }
+      ],
+      "productID" : "su_donation",
+      "referenceName" : "Water",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "2.99",
+      "familyShareable" : false,
+      "internalID" : "6755061636",
+      "localizations" : [
+        {
+          "description" : "Leziz eski usül tavuk döner",
+          "displayName" : "Döner",
+          "locale" : "tr"
+        },
+        {
+          "description" : "A Turkish Chicken Wrap",
+          "displayName" : "Wrap",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "wrap_donation",
+      "referenceName" : "Wrap",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6754943713",
+    "_askToBuyEnabled" : false,
+    "_billingGracePeriodEnabled" : false,
+    "_billingIssuesEnabled" : false,
+    "_developerTeamID" : "WQ54PPL5VQ",
+    "_disableDialogs" : false,
+    "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 784302627.42860603,
+    "_locale" : "en_US",
+    "_renewalBillingIssuesEnabled" : false,
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+
+    ],
+    "_timeRate" : 0
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}

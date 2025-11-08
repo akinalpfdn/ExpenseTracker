@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F410BB152EBBEA3C00B63464 /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F410BB142EBBEA3C00B63464 /* Products.storekit */; };
 		F410BB192EBBED0300B63464 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410BB172EBBED0300B63464 /* StoreManager.swift */; };
+		F410BB292EBF7EC000B63464 /* connect.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F410BB282EBF7EC000B63464 /* connect.storekit */; };
 		F4FE0A712E49C6CA00DBCB51 /* ExpenseTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0A702E49C6CA00DBCB51 /* ExpenseTrackerApp.swift */; };
 		F4FE0A752E49C6CB00DBCB51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4FE0A742E49C6CB00DBCB51 /* Assets.xcassets */; };
 		F4FE0A792E49C6CB00DBCB51 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4FE0A782E49C6CB00DBCB51 /* Preview Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		F410BB142EBBEA3C00B63464 /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
 		F410BB172EBBED0300B63464 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
+		F410BB282EBF7EC000B63464 /* connect.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = connect.storekit; sourceTree = "<group>"; };
 		F4FE0A6D2E49C6CA00DBCB51 /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4FE0A702E49C6CA00DBCB51 /* ExpenseTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerApp.swift; sourceTree = "<group>"; };
 		F4FE0A742E49C6CB00DBCB51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 		F4FE0A642E49C6CA00DBCB51 = {
 			isa = PBXGroup;
 			children = (
+				F410BB282EBF7EC000B63464 /* connect.storekit */,
 				F410BB142EBBEA3C00B63464 /* Products.storekit */,
 				F4FE0A6F2E49C6CA00DBCB51 /* ExpenseTracker */,
 				F4FE0A812E49C6CB00DBCB51 /* ExpenseTrackerTests */,
@@ -297,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F410BB152EBBEA3C00B63464 /* Products.storekit in Resources */,
+				F410BB292EBF7EC000B63464 /* connect.storekit in Resources */,
 				F4FE0A792E49C6CB00DBCB51 /* Preview Assets.xcassets in Resources */,
 				F4FE0A752E49C6CB00DBCB51 /* Assets.xcassets in Resources */,
 			);

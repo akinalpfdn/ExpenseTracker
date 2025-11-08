@@ -92,3 +92,5 @@ By using Penko Expense Tracker, you consent to this Privacy Policy.
 - ✅ You own and control your data completely
 - ✅ Optional in-app purchases processed securely through Apple
 - ✅ COPPA compliant - safe for all ages
+
+---
