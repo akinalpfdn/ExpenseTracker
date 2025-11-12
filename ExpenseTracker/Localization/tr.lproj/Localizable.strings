@@ -23,6 +23,7 @@
 "theme_description" = "Uygulamanın görünümünü değiştirin";
 "cancel" = "İptal";
 "save" = "Kaydet";
+"close" = "Kapat";
 
 // MARK: - RecurringExpensesScreen
 "recurring_expenses" = "Tekrar Eden Harcamalar";

@@ -25,6 +25,11 @@ struct ExpenseRowView: View {
     @State private var editExchangeRate = ""
     @State private var showDeleteConfirmation = false
 
+    enum Field {
+        case amount, description, exchangeRate
+    }
+    @FocusState private var focusedField: Field?
+
     init(
         expense: Expense,
         onUpdate: @escaping (Expense) -> Void,
@@ -221,6 +226,15 @@ extension ExpenseRowView {
             .padding(.horizontal, 12)
             .padding(.bottom, 12)
         }
+        .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button("close".localized) {
+                    focusedField = nil
+                }
+                .foregroundColor(AppColors.primaryOrange)
+            }
+        }
     }
 
     private var editingFields: some View {
@@ -241,6 +255,7 @@ extension ExpenseRowView {
             keyboardType: .decimalPad,
             isDarkTheme: isDarkTheme
         )
+        .focused($focusedField, equals: .amount)
         .onChange(of: editAmount) { newValue in
             editAmount = CurrencyInputFormatter.formatInput(newValue)
         }
@@ -252,6 +267,7 @@ extension ExpenseRowView {
             placeholder: "description".localized,
             isDarkTheme: isDarkTheme
         )
+        .focused($focusedField, equals: .description)
     }
 
     private var exchangeRateField: some View {
@@ -261,6 +277,7 @@ extension ExpenseRowView {
             keyboardType: .decimalPad,
             isDarkTheme: isDarkTheme
         )
+        .focused($focusedField, equals: .exchangeRate)
         .onChange(of: editExchangeRate) { newValue in
             editExchangeRate = CurrencyInputFormatter.formatInput(newValue)
         }

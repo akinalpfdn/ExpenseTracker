@@ -23,6 +23,7 @@
 "theme_description" = "Change the app's appearance";
 "cancel" = "Cancel";
 "save" = "Save";
+"close" = "Close";
 
 // MARK: - RecurringExpensesScreen
 "recurring_expenses" = "Recurring Expenses";
