@@ -228,12 +228,61 @@ extension ExpenseRowView {
         }
         .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
-                Spacer()
-                Button("close".localized) {
-                    focusedField = nil
+                HStack(spacing: 8) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(getFieldPlaceholder())
+                            .font(.system(size: 11))
+                            .foregroundColor(.gray)
+
+                        Text(getFieldValue())
+                            .font(.system(size: 18, weight: .semibold))
+                            .foregroundColor(.white)
+                            .lineLimit(1)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+
+                    Button(action: {
+                        focusedField = nil
+                    }) {
+                        Text(NSLocalizedString("close", comment: ""))
+                            .font(.system(size: 17, weight: .semibold))
+                            .foregroundColor(AppColors.primaryOrange)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 8)
+                            .background(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(AppColors.primaryOrange.opacity(0.2))
+                            )
+                    }
                 }
-                .foregroundColor(AppColors.primaryOrange)
+                .padding(.horizontal, 8)
             }
+        }
+    }
+
+    private func getFieldPlaceholder() -> String {
+        switch focusedField {
+        case .amount:
+            return "amount".localized
+        case .description:
+            return "description".localized
+        case .exchangeRate:
+            return "exchange_rate_field".localized
+        case .none:
+            return ""
+        }
+    }
+
+    private func getFieldValue() -> String {
+        switch focusedField {
+        case .amount:
+            return editAmount.isEmpty ? "-" : editAmount
+        case .description:
+            return editDescription.isEmpty ? "-" : editDescription
+        case .exchangeRate:
+            return editExchangeRate.isEmpty ? "-" : editExchangeRate
+        case .none:
+            return ""
         }
     }
 
