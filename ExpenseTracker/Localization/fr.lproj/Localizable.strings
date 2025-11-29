@@ -1,0 +1,435 @@
+/* Localizable.strings (French)
+   ExpenseTracker
+
+   Created by migration from Android strings.xml
+*/
+
+// MARK: - General
+"app_name" = "Suivi des Dépenses";
+"general_settings" = "Paramètres Généraux";
+"categories" = "Catégories";
+"default_currency" = "Devise par Défaut";
+"currency_description" = "Devise par défaut à utiliser pour les nouvelles dépenses";
+"daily_spending_limit" = "Limite de Dépenses Quotidiennes";
+"enter_daily_limit" = "Saisir la limite quotidienne";
+"daily_limit_description" = "Votre limite de dépenses quotidiennes. Aucune limite appliquée si laissé vide";
+"monthly_spending_limit" = "Limite de Dépenses Mensuelles";
+"enter_monthly_limit" = "Saisir la limite mensuelle";
+"monthly_limit_description" = "Votre limite totale de dépenses mensuelles. L'anneau de progression est affiché basé sur cette valeur";
+"theme" = "Thème";
+"dark_theme" = "Thème Sombre";
+"light_theme" = "Thème Clair";
+"theme_description" = "Changer l'apparence de l'application";
+"cancel" = "Annuler";
+"save" = "Enregistrer";
+"close" = "Fermer";
+
+// MARK: - RecurringExpensesScreen
+"recurring_expenses" = "Dépenses Récurrentes";
+"sort" = "Trier";
+"search" = "Rechercher";
+"back" = "Retour";
+"amount_high_to_low" = "Montant : Élevé à Faible";
+"amount_low_to_high" = "Montant : Faible à Élevé";
+"description_a_to_z" = "Description : A-Z";
+"description_z_to_a" = "Description : Z-A";
+"category_a_to_z" = "Catégorie : A-Z";
+"category_z_to_a" = "Catégorie : Z-A";
+"end_date_recurring" = "Fin : %@";
+"search_placeholder" = "Rechercher par description, montant ou catégorie...";
+"no_search_results" = "Aucun résultat de recherche trouvé";
+"search_no_results_description" = "Aucun résultat trouvé pour \"%@\". Essayez un terme de recherche différent.";
+"no_recurring_expenses" = "Aucune dépense récurrente pour le moment";
+"recurring_expenses_hint" = "Appuyez sur le bouton + pour ajouter des dépenses récurrentes";
+"results_found" = "%d résultats trouvés";
+"daily" = "Quotidien";
+"weekdays" = "Jours ouvrables";
+"weekly" = "Hebdomadaire";
+"monthly" = "Mensuel";
+"exchange_rate" = "Taux de Change : %@";
+"delete" = "Supprimer";
+"amount" = "Montant";
+"description" = "Description";
+"exchange_rate_field" = "Taux de Change";
+"select_date" = "Sélectionner la Date";
+"delete_recurring_expense" = "Supprimer la Dépense Récurrente";
+"delete_recurring_confirmation" = "Êtes-vous sûr de vouloir supprimer cette dépense récurrente à partir d'aujourd'hui ? Cette action ne peut pas être annulée.";
+"ok" = "OK";
+"remaining_amount_recurring" = "Montant restant : %@";
+"total_amount_recurring" = "Montant total : %@";
+
+// MARK: - PlanningScreen
+"financial_planning" = "Planification Financière";
+"planning_description" = "Créez et suivez vos plans futurs";
+"no_plans_yet" = "Aucun plan pour le moment";
+"create_first_plan" = "Appuyez sur le bouton + pour créer votre premier plan financier";
+"add_plan" = "Ajouter un Plan";
+"delete_plan" = "Supprimer le Plan";
+"delete_plan_confirmation" = "Êtes-vous sûr de vouloir supprimer le plan \"%@\" ? Cette action ne peut pas être annulée.";
+
+// MARK: - ExpensesScreen
+"results_count" = "%d résultats";
+"search_expenses_placeholder" = "Rechercher par description, montant ou catégorie...";
+"monthly_limit_exceeded" = "⚠️ Vous avez dépassé votre limite de dépenses mensuelles !";
+"time_newest_first" = "Date : Plus Récent d'Abord";
+"time_oldest_first" = "Date : Plus Ancien d'Abord";
+
+// MARK: - AnalysisScreen
+"current_period_total" = "Total des Dépenses de la Période Actuelle";
+"vs_previous_month" = "Comparé au mois précédent";
+"vs_6_month_average" = "Comparé à la moyenne sur 6 mois";
+"no_expenses_this_period" = "Aucune dépense cette période pour le moment";
+"analysis_will_appear" = "L'analyse apparaîtra ici lorsque vous ajouterez des dépenses";
+"previous_month" = "Mois précédent";
+"next_month" = "Mois suivant";
+"select_date_range" = "Sélectionner la plage de dates";
+"fixed_expenses" = "Dépenses Fixes";
+"recurring_expenses_description" = "Dépenses qui continueront pendant 3+ mois";
+"recurring_expenses_cd" = "Dépenses récurrentes";
+"pick_date_range" = "Choisir la plage de dates";
+
+// MARK: - AddExpenseScreen
+"enter_expense_details" = "Saisir les détails de la dépense";
+"expense_amount_placeholder" = "0,00";
+"search_placeholder_category" = "rechercher...";
+"description_optional" = "Description (Optionnel)";
+"add_description_placeholder" = "Ajouter une description...";
+"recurrence_type" = "Type de Récurrence";
+"end_date" = "Date de Fin";
+"exchange_rate_label" = "Taux de Change (1 %@ = ? %@)";
+"exchange_rate_example" = "ex : 0,035 (1 %@ = 0,035 %@)";
+"exchange_rate_note" = "Ce taux sera utilisé pour les calculs de progression";
+"add_expense" = "Ajouter une Dépense";
+"update_expense" = "Mettre à Jour la Dépense";
+"none" = "Aucun";
+"one_time" = "Une fois";
+"every_day" = "Tous les jours";
+"weekdays_only" = "Jours ouvrables seulement";
+"once_per_week" = "Une fois par semaine";
+"once_per_month" = "Une fois par mois";
+"edit_expense" = "Modifier la Dépense";
+"new_expense" = "Nouvelle Dépense";
+"selectCategory" = "Sélection de catégorie";
+"single_time" = "Une seule fois";
+"okay" = "D'accord";
+
+// MARK: - SubCategoryDetailBottomSheet
+"parent_category" = "Catégorie Parent";
+"total_amount" = "Montant Total";
+"expense_count" = "Nombre de Dépenses";
+"average" = "Moyenne";
+"expenses" = "Dépenses";
+"recurring_label" = "Récurrent";
+
+// MARK: - ProgressRingComponent
+"monthly_label" = "Mensuel";
+"daily_label" = "Quotidien";
+
+// MARK: - PlanDetailBottomSheet
+"update_expense_data" = "Mettre à Jour les Données de Dépenses";
+"update_expense_data_description" = "Recalcule les mois actuels et futurs avec des données mises à jour";
+"total_net_value" = "Valeur Nette Totale";
+"month" = "Mois";
+"income" = "Revenus";
+"expense" = "Dépense";
+"net" = "Net";
+"total" = "Total";
+
+// MARK: - PlanCard
+"avg_monthly_income" = "Revenus Mensuels Moy.";
+"avg_monthly_expense" = "Dépenses Mensuelles Moy.";
+"current_net" = "Net Actuel";
+"target_net" = "Net Cible";
+
+// MARK: - MonthlyLineChart
+"all" = "Tous";
+"one_time_expense" = "Dépense Ponctuelle";
+"period_expense_trend" = "Tendance des Dépenses de la Période";
+"expand" = "Développer";
+"collapse" = "Réduire";
+"no_data_found" = "Aucune donnée trouvée";
+"highest" = "Le plus élevé";
+
+// MARK: - MonthlyExpensesView
+"no_expenses_this_month" = "Aucune dépense ce mois";
+"add_expense_for_month" = "Appuyez sur le bouton + sur l'écran principal pour ajouter des dépenses pour ce mois";
+
+// MARK: - MonthlyCalendarView - Day headers
+"monday_short" = "L";
+"tuesday_short" = "M";
+"wednesday_short" = "M";
+"thursday_short" = "J";
+"friday_short" = "V";
+"saturday_short" = "S";
+"sunday_short" = "D";
+
+// MARK: - MonthlyAnalysisPieChart
+"category_distribution" = "Répartition par Catégories";
+"tap_chart_to_select_category" = "Appuyez sur le graphique pour sélectionner une catégorie";
+
+// MARK: - ExpenseRowView
+"unknown" = "Inconnu";
+"delete_expense" = "Supprimer la Dépense";
+"delete_expense_confirmation" = "Êtes-vous sûr de vouloir supprimer cette dépense ? Cette action ne peut pas être annulée.";
+
+// MARK: - DailyCategoryDetailBottomSheet
+"amount_high_to_low_arrow" = "Montant (Élevé → Faible)";
+"amount_low_to_high_arrow" = "Montant (Faible → Élevé)";
+"time_newest_first_arrow" = "Temps (Nouveau → Ancien)";
+"time_oldest_first_arrow" = "Temps (Ancien → Nouveau)";
+"description_a_to_z_arrow" = "Description (A → Z)";
+"description_z_to_a_arrow" = "Description (Z → A)";
+"total_spending" = "Dépenses Totales";
+"no_expenses_in_category" = "Aucune dépense trouvée dans cette catégorie";
+"expense_singular" = "Dépense";
+
+// MARK: - CreatePlanDialog
+"create_new_plan" = "Créer un Nouveau Plan";
+"plan_name" = "Nom du Plan";
+"plan_name_example" = "ex : Plan d'Épargne 2024";
+"plan_duration" = "Durée du Plan";
+"apply_interest_to_savings" = "Appliquer des Intérêts (à l'Épargne)";
+"simple_interest" = "Intérêts Simples";
+"compound_interest" = "Intérêts Composés";
+"annual_interest_rate" = "Taux d'intérêt annuel %";
+"interest_applied_to_positive_savings" = "Les intérêts sont appliqués à l'épargne positive";
+"interest_type" = "Type d'Intérêt";
+"monthly_income_currency" = "Revenus Mensuels (%@)";
+"use_app_expense_data" = "Utiliser les données de dépenses de l'application";
+"monthly_expenses_currency" = "Dépenses Mensuelles (%@)";
+"manual_monthly_expense_amount" = "Montant manuel des dépenses mensuelles";
+"enter_manual_expense_amount" = "Saisir le montant manuel des dépenses";
+"apply_inflation" = "Appliquer l'Inflation";
+"annual_percentage_rate" = "Taux annuel %";
+"create" = "Créer";
+
+// MARK: - CategorySummarySection
+"category_details" = "Détails de la Catégorie";
+"main_categories" = "Catégories Principales";
+"sub_categories" = "Sous-Catégories";
+"expense_lowercase" = "dépense";
+"see_details" = "Voir les détails";
+
+// MARK: - CategoryPopupLines
+"vs_previous_month_colon" = "Comparé au mois précédent :";
+"vs_average_colon" = "Comparé à la moyenne :";
+
+// MARK: - CategoryManagementScreen
+"add_new_main_category" = "Ajouter une Nouvelle Catégorie Principale";
+"add_main_category_content_desc" = "Ajouter Catégorie Principale";
+"category_name_hint" = "Saisir le nom de la catégorie";
+"unique_category_name_note" = "Choisissez un nom unique pour la catégorie";
+"icon_selection" = "Sélection d'Icône";
+"color_selection" = "Sélection de Couleur";
+"add_button" = "Ajouter";
+"main_category" = "Catégorie Principale";
+"select_category" = "Sélectionner une catégorie";
+"subcategory_name" = "Nom de la Sous-Catégorie";
+"subcategory_name_hint" = "Saisir le nom de la sous-catégorie";
+"unique_subcategory_name_note" = "Choisissez un nom unique pour la sous-catégorie";
+"edit_subcategory" = "Modifier la Sous-Catégorie";
+"edit_category" = "Modifier la Catégorie";
+"edit" = "Modifier";
+"enter_name_hint" = "Saisir le nom";
+"delete_confirmation" = "Confirmation de Suppression";
+"delete_item_confirmation" = "Êtes-vous sûr de vouloir supprimer \"%@\" ? Cette action ne peut pas être annulée.";
+"this_item" = "Cet élément";
+"collapse_desc" = "Réduire";
+"expand_desc" = "Développer";
+"edit_category_desc" = "Modifier la Catégorie";
+"delete_category_desc" = "Supprimer la Catégorie";
+"add_subcategory" = "Ajouter une Sous-Catégorie";
+"add_subcategory_desc" = "Ajouter Sous-Catégorie";
+"edit_subcategory_desc" = "Modifier la Sous-Catégorie";
+"delete_subcategory_desc" = "Supprimer la Sous-Catégorie";
+"selected" = "Sélectionné";
+
+// MARK: - CategoryDistributionChart
+"no_data" = "Aucune donnée";
+"category" = "Catégorie";
+
+// MARK: - CategoryDetailBottomSheet
+"sort_amount_desc" = "Par Montant (Élevé → Faible)";
+"sort_amount_asc" = "Par Montant (Faible → Élevé)";
+"sort_date_desc" = "Par Date (Nouveau → Ancien)";
+"sort_date_asc" = "Par Date (Ancien → Nouveau)";
+"sort_name_asc" = "Par Description (A → Z)";
+"sort_name_desc" = "Par Description (Z → A)";
+
+// MARK: - SubCategory - Default subcategories
+// Food & Drink
+"subcategory_restaurant" = "Restaurant";
+"subcategory_kitchen_shopping" = "Courses de cuisine";
+
+// Housing
+"subcategory_rent" = "Loyer";
+"subcategory_dues" = "Charges";
+"subcategory_mortgage" = "Paiement hypothécaire";
+"subcategory_electricity" = "Facture d'électricité";
+"subcategory_water" = "Facture d'eau";
+"subcategory_heating" = "Chauffage";
+"subcategory_internet_phone" = "Internet et téléphone";
+"subcategory_other_bills" = "Autres Factures";
+"subcategory_general_shopping" = "Courses générales";
+
+// Transportation
+"subcategory_fuel" = "Carburant";
+"subcategory_public_transport" = "Transport public";
+"subcategory_car_maintenance" = "Entretien automobile";
+"subcategory_car_rental" = "Location de voiture";
+"subcategory_taxi_uber" = "Taxi/Uber";
+"subcategory_car_insurance" = "Assurance automobile";
+"subcategory_mtv" = "Taxe véhicule";
+"subcategory_parking_fees" = "Frais de stationnement";
+
+// Health
+"subcategory_doctor_appointment" = "Rendez-vous médical";
+"subcategory_medicines" = "Médicaments";
+"subcategory_gym_membership" = "Abonnement salle de sport";
+"subcategory_cosmetics" = "Cosmétiques";
+
+// Entertainment
+"subcategory_cinema_theater" = "Cinéma et théâtre";
+"subcategory_concerts_events" = "Concerts et événements";
+"subcategory_subscriptions" = "Abonnements";
+"subcategory_books_magazines" = "Livres et magazines";
+"subcategory_travel_vacation" = "Voyages et vacances";
+"subcategory_games_apps" = "Jeux et applications";
+
+// Education
+"subcategory_course_fees" = "Frais de cours";
+"subcategory_education_materials" = "Matériel éducatif";
+"subcategory_seminars" = "Séminaires";
+"subcategory_online_courses" = "Cours en ligne";
+
+// Shopping
+"subcategory_electronics" = "Électronique";
+"subcategory_clothing" = "Vêtements";
+"subcategory_home_goods" = "Articles de maison";
+"subcategory_gifts" = "Cadeaux";
+"subcategory_perfume" = "Parfum";
+
+// Pets
+"subcategory_pet_food_toys" = "Nourriture et jouets";
+"subcategory_vet_services" = "Services vétérinaires";
+"subcategory_pet_insurance" = "Assurance animaux";
+
+// Work
+"subcategory_work_meals" = "Repas de travail";
+"subcategory_office_supplies" = "Fournitures de bureau";
+"subcategory_business_travel" = "Voyages d'affaires";
+"subcategory_work_education" = "Formation et séminaires";
+"subcategory_freelance_payments" = "Paiements travail indépendant";
+
+// Tax
+"subcategory_tax_payments" = "Paiements d'impôts";
+
+// Others
+"subcategory_other_expenses" = "Autres Dépenses";
+
+// MARK: - ExpensesScreen - Empty state messages
+"no_search_results_found" = "Aucun résultat de recherche trouvé";
+"no_expenses_yet" = "Aucune dépense pour le moment";
+"no_expenses_today" = "Aucune dépense aujourd'hui";
+"no_search_results_description" = "Aucun résultat trouvé pour \"%@\". Essayez un terme de recherche différent.";
+"first_expense_hint" = "Appuyez sur le bouton + pour ajouter votre première dépense";
+"add_expense_for_day_hint" = "Appuyez sur le bouton + pour ajouter des dépenses pour cette journée";
+"calendar_tab" = "Calendrier";
+"expenses_tab" = "Dépenses";
+
+// MARK: - PlanningUtils - Plan status and validation
+"plan_status_not_started" = "Non commencé";
+"plan_status_completed" = "Terminé";
+"plan_status_active" = "Actif";
+"validation_plan_name_empty" = "Le nom du plan ne peut pas être vide";
+"validation_monthly_income_positive" = "Les revenus mensuels doivent être supérieurs à 0";
+"validation_duration_positive" = "La durée du plan doit être supérieure à 0";
+"validation_duration_max_10_years" = "La durée du plan ne peut pas dépasser 10 ans";
+"validation_inflation_rate_range" = "Le taux d'inflation doit être entre -50%% et 100%%";
+"duration_3_months" = "3 Mois";
+"duration_6_months" = "6 Mois";
+"duration_1_year" = "1 An";
+"duration_1_5_years" = "1,5 An";
+"duration_2_years" = "2 Ans";
+"duration_3_years" = "3 Ans";
+"duration_5_years" = "5 Ans";
+
+// MARK: - PlanningViewModel - Error messages
+"error_loading_plan" = "Erreur lors du chargement du plan : %@";
+"error_creating_plan" = "Erreur lors de la création du plan : %@";
+"error_deleting_plan" = "Erreur lors de la suppression du plan : %@";
+"error_updating_expense_data" = "Erreur lors de la mise à jour des données de dépenses : %@";
+"error_updating_plan_calculations" = "Erreur lors de la mise à jour des calculs du plan : %@";
+"error_saving_changes" = "Erreur lors de l'enregistrement des modifications : %@";
+
+// MARK: - Category - Default categories
+"category_food" = "Nourriture et Boisson";
+"category_housing" = "Logement";
+"category_transportation" = "Transport";
+"category_health" = "Santé et Soins Personnels";
+"category_entertainment" = "Divertissement et Loisirs";
+"category_education" = "Éducation";
+"category_shopping" = "Achats";
+"category_pets" = "Animaux de Compagnie";
+"category_work" = "Travail et Dépenses Professionnelles";
+"category_tax" = "Impôts et Dépenses Légales";
+"category_donations" = "Dons et Aide";
+"category_others" = "Autres Paiements";
+
+// MARK: - Welcome Screen
+"welcome_skip" = "Passer";
+"welcome_next" = "Suivant";
+"welcome_get_started" = "Commencer";
+"welcome_page1_title" = "Bienvenue sur Suivi de Dépenses";
+"welcome_page1_description" = "Suivez facilement vos dépenses quotidiennes et prenez le contrôle de vos finances. Simple, rapide et entièrement privé.";
+"welcome_page2_title" = "Analyses Intelligentes";
+"welcome_page2_description" = "Visualisez vos dépenses avec de superbes graphiques. Voyez où va votre argent avec des ventilations par catégorie et des tendances mensuelles.";
+"welcome_page3_title" = "Votre Vie Privée Compte";
+"welcome_page3_description" = "Toutes vos données restent sur votre appareil. Pas de stockage cloud, pas de suivi, pas de publicité. Vos informations financières sont entièrement privées.";
+
+// MARK: - Purchase/Donation Screen
+"no_add_text" = "Je ne veux pas vous bombarder de publicités stupides,\n    et je veux que vous puissiez accéder à toutes les fonctionnalités sans avoir besoin de la version premium.\n    Mais j'ai besoin de revenus pour continuer à développer. Si vous aimez mon application et souhaitez me soutenir,\n    n'hésitez pas à offrir un thé (Les prix ne sont pas affectés par l'inflation ici) :).";
+"buy_water" = "Offrir une eau";
+"buy_bagel" = "Offrir un bagel";
+"buy_tea" = "Offrir un thé";
+"buy_coffee" = "Offrir un café";
+"buy_wrap" = "Offrir un wrap";
+"buy_burger" = "Offrir un burger";
+"buy_doner" = "Offrir un kebab";
+"max_donation" = "surprenez-moi";
+// Prices are mapped from XML
+"water_price" = "0.5 USD";
+"tea_price" = "0.24 USD";
+"bagel_price" = "0.60 USD";
+"coffee_price" = "1.20 USD";
+"wrap_price" = "2.40 USD";
+"burger_price" = "6 USD";
+"doner_price" = "9.60 USD";
+"max_price" = "12 USD";
+
+// MARK: - Purchase States
+"purchase_loading" = "⏳ Démarrage du processus d'achat…";
+"purchase_success" = "🎉 Merci ! Achat réussi : %@";
+"purchase_error" = "Erreur : %@";
+"purchase_cancelled" = "Achat annulé";
+
+// MARK: - Tutorial
+"tutorial_add_expense_title" = "Ajouter une dépense";
+"tutorial_add_expense_message" = "Appuyez ici pour ajouter des dépenses";
+"tutorial_recurring_expenses_title" = "Dépenses récurrentes";
+"tutorial_recurring_expenses_message" = "Listez et modifiez vos dépenses récurrentes ici";
+"tutorial_calendar_title" = "Progrès mensuel";
+"tutorial_calendar_message" = "Visualisez l'évolution de vos dépenses mensuelles. Appuyez sur l'anneau central pour voir votre calendrier mensuel et l'historique de vos dépenses. Balayez vers la gauche pour voir les progrès quotidiens et les graphiques par catégorie";
+"tutorial_daily_history_title" = "Historique quotidien";
+"tutorial_daily_history_message" = "Accédez à votre historique de dépenses quotidien ici";
+"tutorial_settings_title" = "Paramètres";
+"tutorial_settings_message" = "Personnalisez la devise, les limites de dépenses, le thème, les catégories et gérez la sauvegarde de vos données";
+"tutorial_secret_title" = "Support";
+"tutorial_secret_message" = "ZONE TOP SECRÈTE";
+"tutorial_expense_list_title" = "Vos dépenses";
+"tutorial_expense_list_message" = "Vos dépenses sont listées ici. Balayez vers la gauche sur l'écran principal pour voir les analyses et les graphiques de dépenses. Balayez à nouveau vers la gauche pour accéder à l'écran de planification financière";
+"tutorial_skip" = "Passer";
+"tutorial_next" = "Suivant";
+"tutorial_finish" = "Terminer";
+"tutorial_tap_to_continue" = "Appuyez pour continuer";
+"loading_products" = "Chargement des produits...";
