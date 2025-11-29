@@ -76,9 +76,9 @@
 "time_oldest_first" = "Datum: Älteste zuerst";
 
 // MARK: - AnalysisScreen
-"current_period_total" = "Aktuelle Periode Gesamtausgaben";
-"vs_previous_month" = "Verglichen mit dem Vormonat";
-"vs_6_month_average" = "Verglichen mit dem 6-Monats-Durchschnitt";
+"current_period_total" = "Gesamtausgaben";
+"vs_previous_month" = "vs. dem Vormonat";
+"vs_6_month_average" = "vs. dem durchschnitt";
 "no_expenses_this_period" = "Noch keine Ausgaben in dieser Periode";
 "analysis_will_appear" = "Die Analyse wird hier angezeigt, wenn Sie Ausgaben hinzufügen";
 "previous_month" = "Vorheriger Monat";
@@ -206,14 +206,14 @@
 
 // MARK: - CategorySummarySection
 "category_details" = "Kategoriedetails";
-"main_categories" = "Hauptkategorien";
+"main_categories" = "Kategorien";
 "sub_categories" = "Unterkategorien";
 "expense_lowercase" = "ausgabe";
 "see_details" = "Details anzeigen";
 
 // MARK: - CategoryPopupLines
-"vs_previous_month_colon" = "Verglichen mit dem Vormonat:";
-"vs_average_colon" = "Verglichen mit dem Durchschnitt:";
+"vs_previous_month_colon" = "vs. dem Vormonat:";
+"vs_average_colon" = "vs dem Durchschnitt:";
 
 // MARK: - CategoryManagementScreen
 "add_new_main_category" = "Neue Hauptkategorie hinzufügen";

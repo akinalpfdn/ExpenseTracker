@@ -75,7 +75,7 @@
 "time_oldest_first" = "Data: od najstarszych";
 
 // MARK: - AnalysisScreen
-"current_period_total" = "Suma wydatków w bieżącym okresie";
+"current_period_total" = "Suma wydatków";
 "vs_previous_month" = "wzgl. ost. miesiąca";
 "vs_6_month_average" = "wzgl. średniej";
 "no_expenses_this_period" = "Brak wydatków w tym okresie";

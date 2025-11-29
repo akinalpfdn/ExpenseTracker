@@ -75,9 +75,9 @@
 "time_oldest_first" = "Data: Più Vecchio Prima";
 
 // MARK: - AnalysisScreen
-"current_period_total" = "Totale Spese Periodo Corrente";
-"vs_previous_month" = "Confrontato al mese precedente";
-"vs_6_month_average" = "Confrontato alla media di 6 mesi";
+"current_period_total" = "Totale Spese";
+"vs_previous_month" = "vs. mese precedente";
+"vs_6_month_average" = "vs. media";
 "no_expenses_this_period" = "Nessuna spesa in questo periodo ancora";
 "analysis_will_appear" = "L'analisi apparirà qui quando aggiungerai delle spese";
 "previous_month" = "Mese precedente";
@@ -205,14 +205,14 @@
 
 // MARK: - CategorySummarySection
 "category_details" = "Dettagli Categoria";
-"main_categories" = "Categorie Principali";
+"main_categories" = "Categorie";
 "sub_categories" = "Sottocategorie";
 "expense_lowercase" = "spesa";
 "see_details" = "Vedi dettagli";
 
 // MARK: - CategoryPopupLines
-"vs_previous_month_colon" = "Confrontato al mese precedente:";
-"vs_average_colon" = "Confrontato alla media:";
+"vs_previous_month_colon" = "vs. mese precedente:";
+"vs_average_colon" = "vs. media:";
 
 // MARK: - CategoryManagementScreen
 "add_new_main_category" = "Aggiungi Nuova Categoria Principale";

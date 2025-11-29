@@ -75,9 +75,9 @@
 "time_oldest_first" = "Date : Plus Ancien d'Abord";
 
 // MARK: - AnalysisScreen
-"current_period_total" = "Total des Dépenses de la Période Actuelle";
-"vs_previous_month" = "Comparé au mois précédent";
-"vs_6_month_average" = "Comparé à la moyenne sur 6 mois";
+"current_period_total" = "Total des Dépenses";
+"vs_previous_month" = "vs. mois précédent";
+"vs_6_month_average" = "vs. moyenne";
 "no_expenses_this_period" = "Aucune dépense cette période pour le moment";
 "analysis_will_appear" = "L'analyse apparaîtra ici lorsque vous ajouterez des dépenses";
 "previous_month" = "Mois précédent";
@@ -144,7 +144,7 @@
 // MARK: - MonthlyLineChart
 "all" = "Tous";
 "one_time_expense" = "Dépense Ponctuelle";
-"period_expense_trend" = "Tendance des Dépenses de la Période";
+"period_expense_trend" = "Tendance des Dépenses";
 "expand" = "Développer";
 "collapse" = "Réduire";
 "no_data_found" = "Aucune donnée trouvée";
@@ -205,14 +205,14 @@
 
 // MARK: - CategorySummarySection
 "category_details" = "Détails de la Catégorie";
-"main_categories" = "Catégories Principales";
+"main_categories" = "Catégories";
 "sub_categories" = "Sous-Catégories";
 "expense_lowercase" = "dépense";
 "see_details" = "Voir les détails";
 
 // MARK: - CategoryPopupLines
-"vs_previous_month_colon" = "Comparé au mois précédent :";
-"vs_average_colon" = "Comparé à la moyenne :";
+"vs_previous_month_colon" = "vs. mois précédent :";
+"vs_average_colon" = "vs. moyenne :";
 
 // MARK: - CategoryManagementScreen
 "add_new_main_category" = "Ajouter une Nouvelle Catégorie Principale";
