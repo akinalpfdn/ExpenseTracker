@@ -13,33 +13,63 @@ struct MainContentView: View {
     @EnvironmentObject var preferencesManager: PreferencesManager
 
     @State private var selectedTab = 0
+    @StateObject private var rateMeManager = RateMeManager()
 
     private var isDarkTheme: Bool {
         preferencesManager.isDarkTheme
     }
 
     var body: some View {
-        Group {
-            // Show loading or welcome screen based on state
-            if let isFirstLaunch = preferencesManager.isFirstLaunch {
-                if isFirstLaunch {
-                    // First launch - show welcome screen
-                    WelcomeScreen(
-                        onFinish: {
-                            preferencesManager.completeFirstLaunch()
-                        },
-                        isDarkTheme: isDarkTheme
-                    )
+        ZStack {
+            Group {
+                // Show loading or welcome screen based on state
+                if let isFirstLaunch = preferencesManager.isFirstLaunch {
+                    if isFirstLaunch {
+                        // First launch - show welcome screen
+                        WelcomeScreen(
+                            onFinish: {
+                                preferencesManager.completeFirstLaunch()
+                            },
+                            isDarkTheme: isDarkTheme
+                        )
+                    } else {
+                        // Not first launch - show main app
+                        mainAppContent
+                            .onAppear {
+                                // Increment launch counter
+                                preferencesManager.incrementLaunchCount()
+
+                                // Check if we should show rate me dialog
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                                    rateMeManager.checkAndShowRateMe()
+                                }
+                            }
+                    }
                 } else {
-                    // Not first launch - show main app
-                    mainAppContent
+                    // Loading state - show splash
+                    ZStack {
+                        ThemeColors.getBackgroundColor(isDarkTheme: false)
+                            .ignoresSafeArea()
+                    }
                 }
-            } else {
-                // Loading state - show splash
-                ZStack {
-                    ThemeColors.getBackgroundColor(isDarkTheme: false)
-                        .ignoresSafeArea()
-                }
+            }
+
+            // Rate Me overlay
+            if rateMeManager.showRateMe {
+                RateMeView(
+                    onRate: {
+                        rateMeManager.requestAppStoreReview()
+                    },
+                    onRemindLater: {
+                        rateMeManager.remindLater()
+                    },
+                    onNever: {
+                        rateMeManager.neverAsk()
+                    }
+                )
+                .themeMode(isDarkTheme)
+                .transition(.opacity)
+                .zIndex(1000)
             }
         }
     }

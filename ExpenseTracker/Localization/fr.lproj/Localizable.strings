@@ -433,3 +433,10 @@
 "tutorial_finish" = "Terminer";
 "tutorial_tap_to_continue" = "Appuyez pour continuer";
 "loading_products" = "Chargement des produits...";
+
+// MARK: - Rate Me Dialog
+"rate_app_title" = "Notez-nous";
+"rate_app_description" = "Si vous aimez notre application, soutenez-nous en la notant sur l'App Store. Vos commentaires sont très précieux pour nous !";
+"rate_app_button" = "Noter l'application";
+"remind_later_button" = "Rappeler plus tard";
+"never_ask_button" = "Ne plus demander";

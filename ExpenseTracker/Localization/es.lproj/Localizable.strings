@@ -433,3 +433,10 @@
 "tutorial_finish" = "Finalizar";
 "tutorial_tap_to_continue" = "Toca para continuar";
 "loading_products" = "Cargando productos...";
+
+// MARK: - Rate Me Dialog
+"rate_app_title" = "Valóranos";
+"rate_app_description" = "Si te gusta nuestra aplicación, por favor apóyanos calificándola en la App Store. ¡Tus comentarios son muy valiosos para nosotros!";
+"rate_app_button" = "Calificar aplicación";
+"remind_later_button" = "Recordar más tarde";
+"never_ask_button" = "No volver a preguntar";

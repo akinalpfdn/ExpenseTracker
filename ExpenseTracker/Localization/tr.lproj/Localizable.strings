@@ -435,3 +435,10 @@ Uygulamamı beğendiysen ve destek olmak istersen bir çayını içerim(Fiyatlar
 "tutorial_finish" = "Bitir";
 "tutorial_tap_to_continue" = "Devam etmek için dokunun";
 "loading_products" = "Ürünler yükleniyor...";
+
+// MARK: - Rate Me Dialog
+"rate_app_title" = "Bizi Değerlendirin";
+"rate_app_description" = "Uygulamamızı beğendiyseniz, lütfen App Store'da değerlendirme yaparak bize destek olun. Sizden gelen geri bildirimler bizim için çok değerli!";
+"rate_app_button" = "Uygulamayı Değerlendir";
+"remind_later_button" = "Sonra Hatırlat";
+"never_ask_button" = "Asla Sorma";

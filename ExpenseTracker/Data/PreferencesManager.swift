@@ -47,6 +47,18 @@ class PreferencesManager: ObservableObject {
         }
     }
 
+    @Published var launchCount: Int {
+        didSet {
+            userDefaults.set(launchCount, forKey: Keys.launchCount)
+        }
+    }
+
+    @Published var hasRatedApp: Bool {
+        didSet {
+            userDefaults.set(hasRatedApp, forKey: Keys.hasRatedApp)
+        }
+    }
+
     // MARK: - Keys
 
     private enum Keys {
@@ -56,6 +68,8 @@ class PreferencesManager: ObservableObject {
         static let theme = "theme"
         static let isFirstLaunch = "is_first_launch"
         static let tutorialCompleted = "tutorial_completed"
+        static let launchCount = "launch_count"
+        static let hasRatedApp = "has_rated_app"
     }
 
     // MARK: - Initialization
@@ -65,6 +79,9 @@ class PreferencesManager: ObservableObject {
         self.dailyLimit = userDefaults.string(forKey: Keys.dailyLimit) ?? ""
         self.monthlyLimit = userDefaults.string(forKey: Keys.monthlyLimit) ?? ""
         self.theme = userDefaults.string(forKey: Keys.theme) ?? "dark"
+
+        self.launchCount = userDefaults.integer(forKey: Keys.launchCount)
+        self.hasRatedApp = userDefaults.bool(forKey: Keys.hasRatedApp)
 
         // Check if first launch key exists
         if userDefaults.object(forKey: Keys.isFirstLaunch) == nil {
@@ -108,6 +125,22 @@ class PreferencesManager: ObservableObject {
 
     func resetTutorial() {
         userDefaults.set(false, forKey: Keys.tutorialCompleted)
+    }
+
+    // MARK: - Launch Counter Methods
+
+    func incrementLaunchCount() {
+        launchCount += 1
+    }
+
+    func shouldShowRateMeReminder() -> Bool {
+        // For now, show on every launch for debugging
+         return launchCount >= 10 && !hasRatedApp
+        //return !hasRatedApp
+    }
+
+    func setAppRated() {
+        hasRatedApp = true
     }
 
     // MARK: - Computed Properties
