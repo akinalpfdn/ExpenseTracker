@@ -149,6 +149,20 @@ class ExpenseViewModel: ObservableObject {
 
     // MARK: - Data Loading
 
+    /// Re-reads everything from the store.
+    ///
+    /// Needed after a backup restore, which rewrites the database underneath us — the
+    /// published arrays still hold the pre-restore rows until this runs.
+    @MainActor
+    func reloadFromStore() async {
+        await loadExpenses()
+        await loadCategories()
+
+        // Nudge the CombineLatest3 binding so the weekly history recomputes against
+        // the new expense set.
+        selectedDate = selectedDate
+    }
+
     @MainActor
     private func loadExpenses() async {
         do {

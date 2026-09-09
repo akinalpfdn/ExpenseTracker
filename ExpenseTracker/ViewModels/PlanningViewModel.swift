@@ -31,6 +31,15 @@ class PlanningViewModel: ObservableObject {
 
     // MARK: - Data Loading
 
+    /// Re-reads plans from the store. Needed after a backup restore replaces them.
+    @MainActor
+    func reloadFromStore() async {
+        selectedPlan = nil
+        currentPosition = nil
+        await loadPlansData()
+        await loadPlansWithBreakdowns()
+    }
+
     private func loadPlans() {
         Task {
             await loadPlansData()

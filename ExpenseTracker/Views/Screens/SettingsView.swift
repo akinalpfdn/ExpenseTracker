@@ -94,6 +94,11 @@ extension SettingsView {
                 monthlyLimitSection
                 themeSection
 
+                Divider()
+                    .background(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
+
+                DataManagementSection(isDarkTheme: isDarkTheme)
+
                 Spacer().frame(height: 20)
 
                 buttonsSection
@@ -268,5 +273,6 @@ struct SettingsView_Previews: PreviewProvider {
         SettingsView(onDismiss: { })
             .environmentObject(preferencesManager)
             .environmentObject(viewModel)
+            .environmentObject(PlanningViewModel())
     }
 }

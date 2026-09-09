@@ -439,3 +439,20 @@
 "rate_app_button" = "Oceń aplikację";
 "remind_later_button" = "Przypomnij później";
 "never_ask_button" = "Nie pytaj ponownie";
+
+/* Kopia zapasowa i przywracanie */
+"backup_restore" = "Kopia zapasowa i przywracanie";
+"backup_restore_description" = "Zapisz wszystkie swoje dane do pliku lub przywróć je z wcześniejszej kopii zapasowej.";
+"export_data" = "Eksportuj dane";
+"import_data" = "Importuj dane";
+"share" = "Udostępnij";
+"save_to_files" = "Zapisz w Plikach";
+"choose_export_destination" = "Gdzie chcesz wysłać plik kopii zapasowej?";
+"import_confirm_title" = "Przywrócić kopię zapasową?";
+"import_confirm_button" = "Przywróć";
+"import_confirm_message" = "Spowoduje to usunięcie wszystkich bieżących danych i zastąpienie ich zawartością tego pliku. Nie można tego cofnąć.";
+"import_success_title" = "Przywracanie zakończone";
+"import_error_invalid_file" = "Ten plik nie jest prawidłowym plikiem kopii zapasowej.";
+"import_error_newer_version" = "Ta kopia zapasowa została utworzona w nowszej wersji aplikacji. Najpierw zaktualizuj aplikację.";
+"import_error_corrupt_data" = "Plik kopii zapasowej jest uszkodzony i nie można go odczytać.";
+"import_error_file_access" = "Nie udało się otworzyć pliku. Spróbuj wybrać go ponownie.";

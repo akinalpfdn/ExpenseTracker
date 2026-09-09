@@ -440,3 +440,20 @@
 "rate_app_button" = "Calificar aplicación";
 "remind_later_button" = "Recordar más tarde";
 "never_ask_button" = "No volver a preguntar";
+
+/* Copia de seguridad y restauración */
+"backup_restore" = "Copia de seguridad y restauración";
+"backup_restore_description" = "Guarda todos tus datos en un archivo o restáuralos desde una copia anterior.";
+"export_data" = "Exportar datos";
+"import_data" = "Importar datos";
+"share" = "Compartir";
+"save_to_files" = "Guardar en Archivos";
+"choose_export_destination" = "¿Adónde quieres enviar el archivo de copia de seguridad?";
+"import_confirm_title" = "¿Restaurar la copia de seguridad?";
+"import_confirm_button" = "Restaurar";
+"import_confirm_message" = "Esto eliminará todos tus datos actuales y los reemplazará por el contenido de este archivo. No se puede deshacer.";
+"import_success_title" = "Restauración completada";
+"import_error_invalid_file" = "Este archivo no es un archivo de copia de seguridad válido.";
+"import_error_newer_version" = "Esta copia de seguridad se creó con una versión más reciente de la app. Actualiza la app primero.";
+"import_error_corrupt_data" = "El archivo de copia de seguridad está dañado y no se pudo leer.";
+"import_error_file_access" = "No se pudo abrir el archivo. Intenta seleccionarlo de nuevo.";

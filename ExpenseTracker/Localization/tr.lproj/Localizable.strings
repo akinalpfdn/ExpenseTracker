@@ -442,3 +442,20 @@ Uygulamamı beğendiysen ve destek olmak istersen bir çayını içerim(Fiyatlar
 "rate_app_button" = "Uygulamayı Değerlendir";
 "remind_later_button" = "Sonra Hatırlat";
 "never_ask_button" = "Asla Sorma";
+
+/* Yedekle ve Geri Yükle */
+"backup_restore" = "Yedekle ve Geri Yükle";
+"backup_restore_description" = "Tüm verilerini bir dosyaya kaydet veya önceki bir yedekten geri yükle.";
+"export_data" = "Verileri Dışa Aktar";
+"import_data" = "Verileri İçe Aktar";
+"share" = "Paylaş";
+"save_to_files" = "Dosyalar'a Kaydet";
+"choose_export_destination" = "Yedek dosyasını nereye göndermek istersin?";
+"import_confirm_title" = "Yedek Geri Yüklensin mi?";
+"import_confirm_button" = "Geri Yükle";
+"import_confirm_message" = "Bu işlem mevcut tüm verilerini silip bu dosyadakilerle değiştirir. Geri alınamaz.";
+"import_success_title" = "Geri Yükleme Tamamlandı";
+"import_error_invalid_file" = "Bu dosya geçerli bir yedek dosyası değil.";
+"import_error_newer_version" = "Bu yedek uygulamanın daha yeni bir sürümüyle oluşturulmuş. Lütfen önce uygulamayı güncelle.";
+"import_error_corrupt_data" = "Yedek dosyası bozuk, okunamadı.";
+"import_error_file_access" = "Dosya açılamadı. Lütfen tekrar seçmeyi dene.";

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ExpensesView: View {
     @EnvironmentObject var viewModel: ExpenseViewModel
+    @EnvironmentObject var planningViewModel: PlanningViewModel
     @StateObject private var tutorialManager: TutorialManager
 
     @State private var showingAddExpense = false
@@ -557,6 +558,7 @@ extension ExpensesView {
     private var settingsSheet: some View {
         SettingsView(onDismiss: { showingSettings = false })
             .environmentObject(viewModel)
+            .environmentObject(planningViewModel)
     }
 
     private var monthlyCalendarSheet: some View {
@@ -657,5 +659,6 @@ struct ExpensesView_Previews: PreviewProvider {
 
         ExpensesView()
             .environmentObject(viewModel)
+            .environmentObject(PlanningViewModel())
     }
 }

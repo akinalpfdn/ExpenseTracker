@@ -13,6 +13,7 @@
 		F4FE0A712E49C6CA00DBCB51 /* ExpenseTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0A702E49C6CA00DBCB51 /* ExpenseTrackerApp.swift */; };
 		F4FE0A752E49C6CB00DBCB51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4FE0A742E49C6CB00DBCB51 /* Assets.xcassets */; };
 		F4FE0A792E49C6CB00DBCB51 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4FE0A782E49C6CB00DBCB51 /* Preview Assets.xcassets */; };
+		AA0000012E49C6CB00DBCB51 /* BackupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000022E49C6CB00DBCB51 /* BackupTests.swift */; };
 		F4FE0A832E49C6CB00DBCB51 /* ExpenseTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0A822E49C6CB00DBCB51 /* ExpenseTrackerTests.swift */; };
 		F4FE0A8D2E49C6CB00DBCB51 /* ExpenseTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0A8C2E49C6CB00DBCB51 /* ExpenseTrackerUITests.swift */; };
 		F4FE0A8F2E49C6CB00DBCB51 /* ExpenseTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0A8E2E49C6CB00DBCB51 /* ExpenseTrackerUITestsLaunchTests.swift */; };
@@ -45,6 +46,7 @@
 		F4FE0A762E49C6CB00DBCB51 /* ExpenseTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExpenseTracker.entitlements; sourceTree = "<group>"; };
 		F4FE0A782E49C6CB00DBCB51 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F4FE0A7E2E49C6CB00DBCB51 /* ExpenseTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpenseTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000022E49C6CB00DBCB51 /* BackupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupTests.swift; sourceTree = "<group>"; };
 		F4FE0A822E49C6CB00DBCB51 /* ExpenseTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerTests.swift; sourceTree = "<group>"; };
 		F4FE0A882E49C6CB00DBCB51 /* ExpenseTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpenseTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4FE0A8C2E49C6CB00DBCB51 /* ExpenseTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerUITests.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 		F4FE0A812E49C6CB00DBCB51 /* ExpenseTrackerTests */ = {
 			isa = PBXGroup;
 			children = (
+				AA0000022E49C6CB00DBCB51 /* BackupTests.swift */,
 				F4FE0A822E49C6CB00DBCB51 /* ExpenseTrackerTests.swift */,
 			);
 			path = ExpenseTrackerTests;
@@ -342,6 +345,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA0000012E49C6CB00DBCB51 /* BackupTests.swift in Sources */,
 				F4FE0A832E49C6CB00DBCB51 /* ExpenseTrackerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

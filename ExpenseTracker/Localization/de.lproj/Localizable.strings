@@ -440,3 +440,20 @@
 "rate_app_button" = "App bewerten";
 "remind_later_button" = "Später erinnern";
 "never_ask_button" = "Nicht mehr fragen";
+
+/* Sichern & Wiederherstellen */
+"backup_restore" = "Sichern & Wiederherstellen";
+"backup_restore_description" = "Speichere alle deine Daten in einer Datei oder stelle sie aus einer früheren Sicherung wieder her.";
+"export_data" = "Daten exportieren";
+"import_data" = "Daten importieren";
+"share" = "Teilen";
+"save_to_files" = "In Dateien sichern";
+"choose_export_destination" = "Wohin soll die Sicherungsdatei gesendet werden?";
+"import_confirm_title" = "Sicherung wiederherstellen?";
+"import_confirm_button" = "Wiederherstellen";
+"import_confirm_message" = "Dadurch werden alle aktuellen Daten gelöscht und durch den Inhalt dieser Datei ersetzt. Dies kann nicht rückgängig gemacht werden.";
+"import_success_title" = "Wiederherstellung abgeschlossen";
+"import_error_invalid_file" = "Diese Datei ist keine gültige Sicherungsdatei.";
+"import_error_newer_version" = "Diese Sicherung wurde mit einer neueren Version der App erstellt. Bitte aktualisiere zuerst die App.";
+"import_error_corrupt_data" = "Die Sicherungsdatei ist beschädigt und konnte nicht gelesen werden.";
+"import_error_file_access" = "Die Datei konnte nicht geöffnet werden. Bitte wähle sie erneut aus.";

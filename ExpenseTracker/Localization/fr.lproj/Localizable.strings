@@ -440,3 +440,20 @@
 "rate_app_button" = "Noter l'application";
 "remind_later_button" = "Rappeler plus tard";
 "never_ask_button" = "Ne plus demander";
+
+/* Sauvegarde et restauration */
+"backup_restore" = "Sauvegarde et restauration";
+"backup_restore_description" = "Enregistre toutes tes données dans un fichier ou restaure-les depuis une sauvegarde précédente.";
+"export_data" = "Exporter les données";
+"import_data" = "Importer les données";
+"share" = "Partager";
+"save_to_files" = "Enregistrer dans Fichiers";
+"choose_export_destination" = "Où souhaites-tu envoyer le fichier de sauvegarde ?";
+"import_confirm_title" = "Restaurer la sauvegarde ?";
+"import_confirm_button" = "Restaurer";
+"import_confirm_message" = "Cette action supprimera toutes tes données actuelles et les remplacera par le contenu de ce fichier. Elle est irréversible.";
+"import_success_title" = "Restauration terminée";
+"import_error_invalid_file" = "Ce fichier n'est pas un fichier de sauvegarde valide.";
+"import_error_newer_version" = "Cette sauvegarde a été créée avec une version plus récente de l'app. Mets d'abord l'app à jour.";
+"import_error_corrupt_data" = "Le fichier de sauvegarde est endommagé et n'a pas pu être lu.";
+"import_error_file_access" = "Impossible d'ouvrir le fichier. Essaie de le sélectionner à nouveau.";

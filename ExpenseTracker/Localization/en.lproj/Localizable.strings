@@ -441,3 +441,20 @@
 "rate_app_button" = "Rate App";
 "remind_later_button" = "Remind Later";
 "never_ask_button" = "Never Ask";
+
+/* Backup & Restore */
+"backup_restore" = "Backup & Restore";
+"backup_restore_description" = "Save all your data to a file, or restore it from a previous backup.";
+"export_data" = "Export Data";
+"import_data" = "Import Data";
+"share" = "Share";
+"save_to_files" = "Save to Files";
+"choose_export_destination" = "Where would you like to send the backup file?";
+"import_confirm_title" = "Restore Backup?";
+"import_confirm_button" = "Restore";
+"import_confirm_message" = "This will delete all your current data and replace it with the contents of this file. This cannot be undone.";
+"import_success_title" = "Restore Complete";
+"import_error_invalid_file" = "This file is not a valid backup file.";
+"import_error_newer_version" = "This backup was created by a newer version of the app. Please update the app first.";
+"import_error_corrupt_data" = "The backup file is damaged and could not be read.";
+"import_error_file_access" = "The file could not be opened. Please try selecting it again.";
