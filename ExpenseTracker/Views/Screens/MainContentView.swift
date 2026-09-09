@@ -12,7 +12,10 @@ struct MainContentView: View {
     @EnvironmentObject var planningViewModel: PlanningViewModel
     @EnvironmentObject var preferencesManager: PreferencesManager
 
-    @State private var selectedTab = 0
+    /// Opens on the expense list, not on tab 0. Overview sits to its left as a place
+    /// you swipe to, but the app should land where the daily work happens — adding and
+    /// reading expenses — rather than on a summary.
+    @State private var selectedTab = 1
     @StateObject private var rateMeManager = RateMeManager()
 
     private var isDarkTheme: Bool {
