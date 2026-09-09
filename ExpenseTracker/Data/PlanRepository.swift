@@ -122,7 +122,7 @@ class PlanRepository:ObservableObject {
                     defaultCurrency: plan.defaultCurrency
                 )
 
-                let averageOneTimeExpenses = try await getAverageOneTimeExpenses()
+                let averageOneTimeExpenses = try await getAverageOneTimeExpenses(defaultCurrency: plan.defaultCurrency)
 
                 baseExpenses = recurringExpenses + averageOneTimeExpenses
             } else {
@@ -185,18 +185,30 @@ class PlanRepository:ObservableObject {
         guard let year = components.year, let month = components.month else { return 0.0 }
 
         let startOfMonth = calendar.date(from: DateComponents(year: year, month: month, day: 1)) ?? monthDate
-        let endOfMonth = calendar.date(byAdding: DateComponents(month: 1, day: -1), to: startOfMonth) ?? monthDate
+        guard let startOfNextMonth = calendar.date(byAdding: .month, value: 1, to: startOfMonth) else {
+            return 0.0
+        }
 
+        // Half-open, and only this month.
+        //
+        // The lower bound used to reach a month further back, which made the window two
+        // months wide and counted a monthly subscription twice in every projection. The
+        // upper bound was the last day of the month at midnight, so anything entered
+        // during that day fell outside it.
         return allExpenses.filter { expense in
             expense.recurrenceType != .NONE &&
-            expense.date <= endOfMonth &&
-            expense.date >= calendar.date(byAdding: .month, value: -1, to: startOfMonth)!
+            expense.date >= startOfMonth &&
+            expense.date < startOfNextMonth
         }.reduce(0.0) { total, expense in
             total + expense.getAmountInDefaultCurrency(defaultCurrency: defaultCurrency)
         }
     }
 
-    private func getAverageOneTimeExpenses() async throws -> Double {
+    /// Takes the currency because it has to convert, like the recurring half of the
+    /// same projection beside it. It used to sum `expense.amount` raw, so anyone
+    /// spending in a foreign currency had it counted at face value — a plan built by
+    /// someone paying in dollars projected expenses far below what they actually spend.
+    private func getAverageOneTimeExpenses(defaultCurrency: String) async throws -> Double {
         let endDate = Date()
         let startDate = Calendar.current.date(byAdding: .month, value: -3, to: endDate) ?? endDate
 
@@ -207,7 +219,9 @@ class PlanRepository:ObservableObject {
             expense.recurrenceType == .NONE
         }
 
-        let totalSpent = oneTimeExpenses.reduce(0.0) { $0 + $1.amount }
+        let totalSpent = oneTimeExpenses.reduce(0.0) {
+            $0 + $1.getAmountInDefaultCurrency(defaultCurrency: defaultCurrency)
+        }
         return totalSpent / 3
     }
 
@@ -245,7 +259,10 @@ class PlanRepository:ObservableObject {
         let allExpenses = try await expenseRepository.getAllExpensesDirect()
         return allExpenses.filter { expense in
             expense.date > planStartDate && expense.date < endDate
-        }.reduce(0.0) { $0 + $1.amount }
+        }.reduce(0.0) {
+            // Converted, for the same reason as everywhere else in this file.
+            $0 + $1.getAmountInDefaultCurrency(defaultCurrency: plan.defaultCurrency)
+        }
     }
 
     func updateExpenseData(planId: String) async throws {
@@ -278,7 +295,7 @@ class PlanRepository:ObservableObject {
                     defaultCurrency: plan.defaultCurrency
                 )
 
-                let averageOneTimeExpenses = try await getAverageOneTimeExpenses()
+                let averageOneTimeExpenses = try await getAverageOneTimeExpenses(defaultCurrency: plan.defaultCurrency)
                 let baseExpenses = recurringExpenses + averageOneTimeExpenses
 
                 let adjustedExpenses: Double
