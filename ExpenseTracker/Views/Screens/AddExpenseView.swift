@@ -27,6 +27,10 @@ struct AddExpenseView: View {
     @State private var selectedRecurrenceType: RecurrenceType
     @State private var endDate: Date
     @State private var showEndDatePicker = false
+
+    /// How many times the expense repeats, including the first. Kept in sync with
+    /// `endDate` in both directions so the two can never contradict each other.
+    @State private var occurrenceCountText = ""
     @State private var isLoading = false
 
     private let currencies = ["₺", "$", "€", "£"]
@@ -96,6 +100,74 @@ struct AddExpenseView: View {
         .sheet(isPresented: $showEndDatePicker) {
             endDatePickerSheet
         }
+        // The count and the end date are two views of one thing. Each updates the
+        // other only when they actually disagree, so the pair settles instead of
+        // bouncing between these two handlers.
+        .onChange(of: occurrenceCountText) { _ in
+            syncEndDateFromCount()
+        }
+        .onChange(of: endDate) { _ in
+            syncCountFromEndDate()
+        }
+        .onChange(of: selectedRecurrenceType) { _ in
+            // Six monthly instalments and six weekly ones end on different days.
+            syncEndDateFromCount()
+        }
+    }
+}
+
+// MARK: - Category Ordering
+
+extension AddExpenseView {
+
+    private var usageRanking: CategoryUsageRanking {
+        CategoryUsageRanking(expenses: viewModel.expenses)
+    }
+
+    /// Most-used first so the categories someone actually lives in are at the top,
+    /// alphabetical among equals.
+    private var orderedCategories: [Category] {
+        usageRanking.sorted(viewModel.categories)
+    }
+
+    private func orderedSubCategories(in category: Category) -> [SubCategory] {
+        usageRanking.sorted(viewModel.subCategories.filter { $0.categoryId == category.id })
+    }
+}
+
+// MARK: - Occurrence Count
+
+extension AddExpenseView {
+
+    private var schedule: RecurrenceSchedule { RecurrenceSchedule() }
+
+    private func syncEndDateFromCount() {
+        guard selectedRecurrenceType != .NONE,
+              let count = Int(occurrenceCountText), count >= 1,
+              let newEndDate = schedule.endDate(
+                startDate: selectedDate,
+                recurrence: selectedRecurrenceType,
+                occurrences: count
+              ),
+              newEndDate != endDate else {
+            return
+        }
+
+        endDate = newEndDate
+    }
+
+    private func syncCountFromEndDate() {
+        guard selectedRecurrenceType != .NONE,
+              let count = schedule.occurrenceCount(
+                startDate: selectedDate,
+                endDate: endDate,
+                recurrence: selectedRecurrenceType
+              ),
+              String(count) != occurrenceCountText else {
+            return
+        }
+
+        occurrenceCountText = String(count)
     }
 }
 
@@ -190,9 +262,9 @@ extension AddExpenseView {
                 .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
 
             Menu {
-                ForEach(viewModel.categories, id: \.id) { category in
+                ForEach(orderedCategories, id: \.id) { category in
                     Menu(category.name) {
-                        ForEach(viewModel.subCategories.filter { $0.categoryId == category.id }.sorted { $0.name < $1.name }, id: \.id) { subCategory in
+                        ForEach(orderedSubCategories(in: category), id: \.id) { subCategory in
                             Button(subCategory.name) {
                                 selectedSubCategoryId = subCategory.id
                             }
@@ -318,6 +390,13 @@ extension AddExpenseView {
     }
 
     private var endDateSection: some View {
+        HStack(alignment: .bottom, spacing: 12) {
+            endDateField
+            occurrenceCountField
+        }
+    }
+
+    private var endDateField: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("end_date".localized)
                 .font(.system(size: 14, weight: .medium))
@@ -341,6 +420,23 @@ extension AddExpenseView {
                         .stroke(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme), lineWidth: 1)
                 )
             }
+        }
+    }
+
+    /// Lets the user say "six instalments" instead of working out which date that
+    /// lands on. Narrow on purpose — the date beside it is the primary control, this
+    /// is the shortcut.
+    private var occurrenceCountField: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("occurrence_count".localized)
+                .font(.system(size: 14, weight: .medium))
+                .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
+
+            TextField("0", text: $occurrenceCountText)
+                .textFieldStyle(CustomTextFieldStyle(isDarkTheme: isDarkTheme))
+                .keyboardType(.numberPad)
+                .multilineTextAlignment(.center)
+                .frame(width: 88)
         }
     }
 
@@ -392,8 +488,14 @@ extension AddExpenseView {
 extension AddExpenseView {
     private func initializeDefaultValues() {
         if selectedSubCategoryId.isEmpty && !viewModel.subCategories.isEmpty {
-            selectedSubCategoryId = viewModel.subCategories.first?.id ?? ""
+            // Preselect the most-used subcategory rather than whichever happened to
+            // load first, for the same reason the menu is ordered by use.
+            selectedSubCategoryId = usageRanking.sorted(viewModel.subCategories).first?.id ?? ""
         }
+
+        // Show the count the existing end date implies, so an expense being edited
+        // opens with both fields already agreeing.
+        syncCountFromEndDate()
     }
 
     private func addOrUpdateExpense() {

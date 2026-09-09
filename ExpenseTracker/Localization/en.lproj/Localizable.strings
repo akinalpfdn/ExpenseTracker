@@ -502,3 +502,5 @@
 "after_12_months" = "After 12 months";
 "edit_monthly_income" = "Edit monthly income";
 "no_data_yet" = "No data yet";
+
+"occurrence_count" = "Count";

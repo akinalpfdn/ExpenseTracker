@@ -500,3 +500,5 @@
 "after_12_months" = "Tra 12 mesi";
 "edit_monthly_income" = "Modifica reddito mensile";
 "no_data_yet" = "Ancora nessun dato";
+
+"occurrence_count" = "Numero";

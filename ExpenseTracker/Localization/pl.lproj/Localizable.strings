@@ -500,3 +500,5 @@
 "after_12_months" = "Za 12 miesięcy";
 "edit_monthly_income" = "Edytuj miesięczny dochód";
 "no_data_yet" = "Brak danych";
+
+"occurrence_count" = "Liczba";

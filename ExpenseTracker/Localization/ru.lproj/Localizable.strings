@@ -505,3 +505,5 @@
 "after_12_months" = "Через 12 месяцев";
 "edit_monthly_income" = "Изменить месячный доход";
 "no_data_yet" = "Пока нет данных";
+
+"occurrence_count" = "Количество";
