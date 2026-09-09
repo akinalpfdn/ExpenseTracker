@@ -31,6 +31,18 @@ class ExpenseRepository: ObservableObject {
         try await expenseDataAccess.insertExpense(expense)
     }
 
+    func insertExpenses(_ expenses: [Expense]) async throws {
+        try await expenseDataAccess.insertExpenses(expenses)
+    }
+
+    func updateExpenses(_ expenses: [Expense]) async throws {
+        try await expenseDataAccess.updateExpenses(expenses)
+    }
+
+    func deleteExpenses(_ expenses: [Expense]) async throws {
+        try await expenseDataAccess.deleteExpenses(expenses)
+    }
+
     func updateExpense(_ expense: Expense) async throws {
         try await expenseDataAccess.updateExpense(expense)
     }

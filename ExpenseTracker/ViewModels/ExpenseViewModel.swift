@@ -294,14 +294,12 @@ class ExpenseViewModel: ObservableObject {
         Task {
             do {
                 if expense.recurrenceType != .NONE && expense.recurrenceGroupId != nil {
-                    let recurringExpenses = generateRecurringExpenses(expense)
-                    // Batch insert to avoid context conflicts
-                    for batch in recurringExpenses.chunked(into: 50) {
-                        for individualExpense in batch {
-                            try await expenseRepository.insertExpense(individualExpense)
-                        }
-                        try await Task.sleep(nanoseconds: 10_000_000) // 10ms delay
-                    }
+                    // One save for the whole series. This used to insert row by row
+                    // with a 10ms sleep every fifty — the sleep was there to dodge
+                    // context conflicts that came from saving hundreds of times in a
+                    // row, which is a symptom of the approach rather than something
+                    // needing a delay.
+                    try await expenseRepository.insertExpenses(generateRecurringExpenses(expense))
                 } else {
                     try await expenseRepository.insertExpense(expense)
                 }
@@ -529,9 +527,7 @@ class ExpenseViewModel: ObservableObject {
                     exp.date >= calendar.startOfDay(for: fromDate)
                 }
 
-                for expenseToDelete in expensesToDelete {
-                    try await expenseRepository.deleteExpense(expenseToDelete)
-                }
+                try await expenseRepository.deleteExpenses(expensesToDelete)
 
                 await loadExpenses()
                 await MainActor.run {
@@ -558,24 +554,27 @@ class ExpenseViewModel: ObservableObject {
                     exp.date >= calendar.startOfDay(for: fromDate)
                 }
 
-                for expenseToUpdate in expensesToUpdate {
-                    let updatedExpense = Expense(
-                        id: expenseToUpdate.id,
+                // Amount, description, exchange rate and end date come from the edit;
+                // everything else stays as that occurrence had it, including its date.
+                let updated = expensesToUpdate.map { occurrence in
+                    Expense(
+                        id: occurrence.id,
                         amount: expense.amount,
-                        currency: expenseToUpdate.currency,
-                        categoryId: expenseToUpdate.categoryId,
-                        subCategoryId: expenseToUpdate.subCategoryId,
+                        currency: occurrence.currency,
+                        categoryId: occurrence.categoryId,
+                        subCategoryId: occurrence.subCategoryId,
                         description: expense.description,
-                        date: expenseToUpdate.date,
-                        dailyLimitAtCreation: expenseToUpdate.dailyLimitAtCreation,
-                        monthlyLimitAtCreation: expenseToUpdate.monthlyLimitAtCreation,
+                        date: occurrence.date,
+                        dailyLimitAtCreation: occurrence.dailyLimitAtCreation,
+                        monthlyLimitAtCreation: occurrence.monthlyLimitAtCreation,
                         exchangeRate: expense.exchangeRate,
-                        recurrenceType: expenseToUpdate.recurrenceType,
+                        recurrenceType: occurrence.recurrenceType,
                         endDate: expense.endDate,
-                        recurrenceGroupId: expenseToUpdate.recurrenceGroupId
+                        recurrenceGroupId: occurrence.recurrenceGroupId
                     )
-                    try await expenseRepository.updateExpense(updatedExpense)
                 }
+
+                try await expenseRepository.updateExpenses(updated)
 
                 await loadExpenses()
                 await MainActor.run {
@@ -596,10 +595,3 @@ struct CategoryExpense: Equatable {
     let percentage: Double
 }
 
-extension Array {
-    func chunked(into size: Int) -> [[Element]] {
-        return stride(from: 0, to: count, by: size).map {
-            Array(self[$0..<Swift.min($0 + size, count)])
-        }
-    }
-}
