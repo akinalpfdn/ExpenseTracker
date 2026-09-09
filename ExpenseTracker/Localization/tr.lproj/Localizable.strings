@@ -481,3 +481,6 @@ Uygulamamı beğendiysen ve destek olmak istersen bir çayını içerim(Fiyatlar
 "recurrence" = "Tekrar";
 "optional" = "İsteğe bağlı";
 "no_description" = "Açıklama yok";
+
+/* Category Management */
+"category_info_text" = "Yeni eklenen kategoriler için alt kategoriler de eklemeniz gerekmektedir. Yeni bir harcama eklerken ana kategoriler değil, alt kategoriler kullanılır.";

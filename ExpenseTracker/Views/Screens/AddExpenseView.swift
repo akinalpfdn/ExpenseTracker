@@ -235,7 +235,7 @@ extension AddExpenseView {
         VStack(alignment: .leading, spacing: 8) {
             
             exchangeLabel
-            TextField("1.0", text: $exchangeRate)
+            TextField(exchangeRateExample, text: $exchangeRate)
                 .textFieldStyle(CustomTextFieldStyle(isDarkTheme: isDarkTheme))
                 .keyboardType(.decimalPad)
                 .onChange(of: exchangeRate) { newValue in
@@ -253,13 +253,36 @@ extension AddExpenseView {
                         exchangeRate = limited
                     }
                 }
+
+            Text("exchange_rate_note".localized)
+                .font(.system(size: 12))
+                .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
+                .fixedSize(horizontal: false, vertical: true)
         }
     }
+
+    /// "Exchange Rate (1 USD = ? TRY)" — the currency pair spelled out, so it is
+    /// unambiguous which direction the rate goes.
     private var exchangeLabel: some View {
-        let labelText = "exchange_rate".localized.replacingOccurrences(of: "%@", with: " (1 " + selectedCurrency + " = ? " + defaultCurrency + ")") 
+        let labelText = String(
+            format: "exchange_rate_label".localized,
+            selectedCurrency,
+            defaultCurrency
+        )
+
         return Text(labelText)
             .font(.system(size: 14, weight: .medium))
             .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
+    }
+
+    /// "e.g: 0.035 (1 USD = 0.035 TRY)" — shown in the empty field, since the rate
+    /// direction is the part users get wrong.
+    private var exchangeRateExample: String {
+        return String(
+            format: "exchange_rate_example".localized,
+            selectedCurrency,
+            defaultCurrency
+        )
     }
     private var recurrenceSection: some View {
         VStack(alignment: .leading, spacing: 8) {

@@ -479,3 +479,6 @@
 "recurrence" = "Wiederholung";
 "optional" = "Optional";
 "no_description" = "Keine Beschreibung";
+
+/* Category Management */
+"category_info_text" = "Sie müssen auch Unterkategorien für neu hinzugefügte Kategorien anlegen. Beim Hinzufügen einer neuen Ausgabe werden Unterkategorien verwendet, nicht die Hauptkategorien.";

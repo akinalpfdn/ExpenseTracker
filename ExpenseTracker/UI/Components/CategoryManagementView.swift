@@ -26,6 +26,7 @@ struct CategoryManagementView: View {
 
     var body: some View {
         VStack(spacing: 20) {
+            infoText
             categoryTreeView
             addButtonsSection
         }
@@ -120,6 +121,17 @@ struct CategoryManagementView: View {
 
 // MARK: - View Components
 extension CategoryManagementView {
+    /// Warns that a new main category is unusable until it has a subcategory, since
+    /// the add-expense form only offers subcategories. Without this the user creates
+    /// a category and then cannot find it.
+    private var infoText: some View {
+        Text("category_info_text".localized)
+            .font(.system(size: 14, weight: .semibold))
+            .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
+            .fixedSize(horizontal: false, vertical: true)
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
     private var categoryTreeView: some View {
         ScrollView {
             LazyVStack(spacing: 8) {

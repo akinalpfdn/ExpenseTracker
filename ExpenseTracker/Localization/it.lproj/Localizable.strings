@@ -478,3 +478,6 @@
 "recurrence" = "Ricorrenza";
 "optional" = "Facoltativo";
 "no_description" = "Nessuna descrizione";
+
+/* Category Management */
+"category_info_text" = "È inoltre necessario aggiungere sottocategorie per le categorie appena aggiunte. Quando si aggiunge una nuova spesa, vengono utilizzate le sottocategorie, non le categorie principali.";

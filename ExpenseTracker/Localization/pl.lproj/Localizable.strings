@@ -478,3 +478,6 @@
 "recurrence" = "Powtarzanie";
 "optional" = "Opcjonalnie";
 "no_description" = "Brak opisu";
+
+/* Category Management */
+"category_info_text" = "Należy również dodać podkategorie dla nowo dodanych kategorii. Podczas dodawania nowego wydatku używane są podkategorie, a nie kategorie główne.";

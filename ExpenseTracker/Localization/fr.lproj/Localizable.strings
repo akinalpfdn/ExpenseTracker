@@ -479,3 +479,6 @@
 "recurrence" = "Récurrence";
 "optional" = "Facultatif";
 "no_description" = "Aucune description";
+
+/* Category Management */
+"category_info_text" = "Vous devez également ajouter des sous-catégories pour les catégories nouvellement créées. Lors de l'ajout d'une nouvelle dépense, ce sont les sous-catégories qui sont utilisées, et non les catégories principales.";

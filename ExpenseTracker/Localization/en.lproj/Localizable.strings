@@ -480,3 +480,6 @@
 "recurrence" = "Recurrence";
 "optional" = "Optional";
 "no_description" = "No description";
+
+/* Category Management */
+"category_info_text" = "You also need to add subcategories for newly added categories. When adding a new expense, subcategories are used, not the main categories.";

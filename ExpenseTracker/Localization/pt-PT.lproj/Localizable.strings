@@ -478,3 +478,6 @@
 "recurrence" = "Recorrência";
 "optional" = "Opcional";
 "no_description" = "Sem descrição";
+
+/* Category Management */
+"category_info_text" = "Você também precisa adicionar subcategorias para categorias recém-adicionadas. Ao adicionar uma nova despesa, as subcategorias são usadas, não as categorias principais.";
