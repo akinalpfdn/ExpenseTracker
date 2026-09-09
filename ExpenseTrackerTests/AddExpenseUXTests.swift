@@ -119,7 +119,7 @@ final class CategoryUsageRankingTests: XCTestCase {
             expense(categoryId: "transport", subCategoryId: "fuel")
         ]
 
-        let ranking = CategoryUsageRanking(expenses: expenses)
+        let ranking = CategoryUsageRanking(expenses: expenses, now: referenceNow)
         let ordered = ranking.sorted([
             category(id: "transport", name: "Transport"),
             category(id: "food", name: "Food")
@@ -131,7 +131,7 @@ final class CategoryUsageRankingTests: XCTestCase {
     /// Without this, frequency ordering would leave never-used categories in an
     /// arbitrary order, which reads as broken.
     func testTiesFallBackToAlphabetical() {
-        let ranking = CategoryUsageRanking(expenses: [])
+        let ranking = CategoryUsageRanking(expenses: [], now: referenceNow)
         let ordered = ranking.sorted([
             category(id: "c", name: "Zebra"),
             category(id: "a", name: "Apple"),
@@ -144,7 +144,7 @@ final class CategoryUsageRankingTests: XCTestCase {
     func testUnusedCategoriesSinkBelowUsedOnes() {
         let expenses = [expense(categoryId: "zebra", subCategoryId: "s1")]
 
-        let ranking = CategoryUsageRanking(expenses: expenses)
+        let ranking = CategoryUsageRanking(expenses: expenses, now: referenceNow)
         let ordered = ranking.sorted([
             category(id: "apple", name: "Apple"),
             category(id: "zebra", name: "Zebra")
@@ -160,7 +160,7 @@ final class CategoryUsageRankingTests: XCTestCase {
             expense(categoryId: "food", subCategoryId: "restaurant")
         ]
 
-        let ranking = CategoryUsageRanking(expenses: expenses)
+        let ranking = CategoryUsageRanking(expenses: expenses, now: referenceNow)
         let ordered = ranking.sorted([
             subCategory(id: "restaurant", name: "Restaurant"),
             subCategory(id: "kitchen", name: "Kitchen")
@@ -169,13 +169,58 @@ final class CategoryUsageRankingTests: XCTestCase {
         XCTAssertEqual(ordered.map(\.id), ["kitchen", "restaurant"])
     }
 
+    /// The window is what the user asked for: the order should follow what they are
+    /// spending on now, not what they spent on a year ago.
+    func testSpendingOlderThanTheWindowIsIgnored() {
+        let expenses = [
+            expense(categoryId: "old", subCategoryId: "s1", on: monthsFromReference(-8)),
+            expense(categoryId: "old", subCategoryId: "s1", on: monthsFromReference(-7)),
+            expense(categoryId: "old", subCategoryId: "s1", on: monthsFromReference(-6)),
+            expense(categoryId: "recent", subCategoryId: "s2", on: monthsFromReference(-1))
+        ]
+
+        let ranking = CategoryUsageRanking(expenses: expenses, now: referenceNow)
+        let ordered = ranking.sorted([
+            category(id: "old", name: "Old"),
+            category(id: "recent", name: "Recent")
+        ])
+
+        XCTAssertEqual(ordered.map(\.id), ["recent", "old"])
+        XCTAssertEqual(ranking.usageCount(forCategory: "old"), 0)
+    }
+
+    /// Recurring expenses are stored as individual occurrences up to a year ahead.
+    /// Counting those would let one subscription set up once outrank a category the
+    /// user picks by hand every week.
+    func testFutureDatedOccurrencesAreIgnored() {
+        var expenses = [expense(categoryId: "manual", subCategoryId: "s1", on: monthsFromReference(-1))]
+
+        for monthsAhead in 1...12 {
+            expenses.append(
+                expense(categoryId: "subscription", subCategoryId: "s2", on: monthsFromReference(monthsAhead))
+            )
+        }
+
+        let ranking = CategoryUsageRanking(expenses: expenses, now: referenceNow)
+
+        XCTAssertEqual(ranking.usageCount(forCategory: "subscription"), 0)
+        XCTAssertEqual(ranking.usageCount(forCategory: "manual"), 1)
+    }
+
+    func testTheWindowBoundaryIsInclusive() {
+        let expenses = [expense(categoryId: "edge", subCategoryId: "s1", on: monthsFromReference(-3))]
+        let ranking = CategoryUsageRanking(expenses: expenses, now: referenceNow)
+
+        XCTAssertEqual(ranking.usageCount(forCategory: "edge"), 1)
+    }
+
     func testCategoryCountSumsItsSubcategories() {
         let expenses = [
             expense(categoryId: "food", subCategoryId: "kitchen"),
             expense(categoryId: "food", subCategoryId: "restaurant")
         ]
 
-        let ranking = CategoryUsageRanking(expenses: expenses)
+        let ranking = CategoryUsageRanking(expenses: expenses, now: referenceNow)
 
         XCTAssertEqual(ranking.usageCount(forCategory: "food"), 2)
         XCTAssertEqual(ranking.usageCount(forSubCategory: "kitchen"), 1)
@@ -208,15 +253,27 @@ private func subCategory(id: String, name: String) -> SubCategory {
     return SubCategory(id: id, name: name, categoryId: "food")
 }
 
-private func expense(categoryId: String, subCategoryId: String) -> Expense {
+private func expense(
+    categoryId: String,
+    subCategoryId: String,
+    on date: Date = referenceNow
+) -> Expense {
     return Expense(
         amount: 100,
         currency: "₺",
         categoryId: categoryId,
         subCategoryId: subCategoryId,
         description: "test",
-        date: Date(),
+        date: date,
         dailyLimitAtCreation: 0,
         monthlyLimitAtCreation: 0
     )
+}
+
+/// Fixed "now" for the ranking tests, so window boundaries do not depend on the day
+/// the suite runs.
+private let referenceNow = date("2026-09-09")
+
+private func monthsFromReference(_ months: Int) -> Date {
+    return Calendar.current.date(byAdding: .month, value: months, to: referenceNow)!
 }

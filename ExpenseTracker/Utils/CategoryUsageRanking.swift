@@ -18,14 +18,26 @@ struct CategoryUsageRanking {
     /// subcategories.
     private let categoryCounts: [String: Int]
 
-    /// Counts every expense in history rather than a recent window. Predictable — the
-    /// order only moves when you actually use something — at the cost of adapting
-    /// slowly if spending habits change.
-    init(expenses: [Expense]) {
+    /// Counts use over a trailing window rather than all history, so the order tracks
+    /// what someone is spending on now instead of what they were spending on a year
+    /// ago. The trade-off is that the order can shift with no user action, when an
+    /// expense ages out of the window — visible only among near-ties.
+    ///
+    /// Future-dated rows are excluded, and that exclusion is load-bearing: recurring
+    /// expenses are stored as individual occurrences up to a year ahead, so counting
+    /// them would let one subscription outrank a category picked by hand every week.
+    init(
+        expenses: [Expense],
+        now: Date = Date(),
+        windowMonths: Int = 3,
+        calendar: Calendar = .current
+    ) {
+        let cutoff = calendar.date(byAdding: .month, value: -windowMonths, to: now) ?? now
+
         var subCounts: [String: Int] = [:]
         var catCounts: [String: Int] = [:]
 
-        for expense in expenses {
+        for expense in expenses where expense.date >= cutoff && expense.date <= now {
             subCounts[expense.subCategoryId, default: 0] += 1
             catCounts[expense.categoryId, default: 0] += 1
         }
