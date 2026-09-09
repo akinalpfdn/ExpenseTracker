@@ -59,6 +59,16 @@ class PreferencesManager: ObservableObject {
         }
     }
 
+    /// Take-home pay per month, used by the overview screen to work out what is left
+    /// and to project a running balance. Stored as text for the same reason the limits
+    /// are: it round-trips through a text field and an empty string means "not set",
+    /// which 0 cannot express.
+    @Published var monthlyNetIncome: String {
+        didSet {
+            userDefaults.set(monthlyNetIncome, forKey: Keys.monthlyNetIncome)
+        }
+    }
+
     // MARK: - Keys
 
     private enum Keys {
@@ -70,6 +80,7 @@ class PreferencesManager: ObservableObject {
         static let tutorialCompleted = "tutorial_completed"
         static let launchCount = "launch_count"
         static let hasRatedApp = "has_rated_app"
+        static let monthlyNetIncome = "monthly_net_income"
     }
 
     // MARK: - Initialization
@@ -82,6 +93,7 @@ class PreferencesManager: ObservableObject {
 
         self.launchCount = userDefaults.integer(forKey: Keys.launchCount)
         self.hasRatedApp = userDefaults.bool(forKey: Keys.hasRatedApp)
+        self.monthlyNetIncome = userDefaults.string(forKey: Keys.monthlyNetIncome) ?? ""
 
         // Check if first launch key exists
         if userDefaults.object(forKey: Keys.isFirstLaunch) == nil {
@@ -95,6 +107,16 @@ class PreferencesManager: ObservableObject {
 
     func setDefaultCurrency(_ currency: String) {
         defaultCurrency = currency
+    }
+
+    func setMonthlyNetIncome(_ income: String) {
+        monthlyNetIncome = income
+    }
+
+    /// Parsed value for calculations. 0 when unset, which the overview screen treats
+    /// as "no income configured" rather than "earns nothing".
+    var monthlyNetIncomeValue: Double {
+        return CurrencyInputFormatter.parseDouble(monthlyNetIncome)
     }
 
     func setDailyLimit(_ limit: String) {

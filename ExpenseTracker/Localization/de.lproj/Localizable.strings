@@ -482,3 +482,22 @@
 
 /* Category Management */
 "category_info_text" = "Sie müssen auch Unterkategorien für neu hinzugefügte Kategorien anlegen. Beim Hinzufügen einer neuen Ausgabe werden Unterkategorien verwendet, nicht die Hauptkategorien.";
+
+/* Overview */
+"overview" = "Übersicht";
+"this_month_spending" = "Ausgaben diesen Monat";
+"monthly_net_income" = "Monatliches Nettoeinkommen";
+"monthly_net_income_description" = "Ihr monatliches Nettoeinkommen. Dient zur Berechnung des Rests und zur Prognose Ihres Saldos.";
+"enter_monthly_net_income" = "Monatliches Nettoeinkommen eingeben";
+"not_set" = "Nicht festgelegt";
+"remaining" = "Verbleibend";
+"range_3_months" = "3 Monate";
+"range_6_months" = "6 Monate";
+"range_1_year" = "1 Jahr";
+"spending_trend" = "Ausgabentrend";
+"forecast_12_months" = "12-Monats-Prognose";
+"forecast_description" = "Wiederkehrende Ausgaben + Durchschnitt der letzten 3 Monate";
+"cumulative_balance" = "Kumulierter Saldo";
+"after_12_months" = "Nach 12 Monaten";
+"edit_monthly_income" = "Monatliches Einkommen bearbeiten";
+"no_data_yet" = "Noch keine Daten";

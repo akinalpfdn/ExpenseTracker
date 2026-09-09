@@ -482,3 +482,22 @@
 
 /* Category Management */
 "category_info_text" = "Vous devez également ajouter des sous-catégories pour les catégories nouvellement créées. Lors de l'ajout d'une nouvelle dépense, ce sont les sous-catégories qui sont utilisées, et non les catégories principales.";
+
+/* Overview */
+"overview" = "Vue d'ensemble";
+"this_month_spending" = "Dépenses du mois";
+"monthly_net_income" = "Revenu net mensuel";
+"monthly_net_income_description" = "Ce que vous percevez chaque mois. Sert à calculer le reste et à projeter votre solde.";
+"enter_monthly_net_income" = "Saisir le revenu net mensuel";
+"not_set" = "Non défini";
+"remaining" = "Restant";
+"range_3_months" = "3 mois";
+"range_6_months" = "6 mois";
+"range_1_year" = "1 an";
+"spending_trend" = "Tendance des dépenses";
+"forecast_12_months" = "Prévision sur 12 mois";
+"forecast_description" = "Dépenses récurrentes + moyenne des 3 derniers mois";
+"cumulative_balance" = "Solde cumulé";
+"after_12_months" = "Dans 12 mois";
+"edit_monthly_income" = "Modifier le revenu mensuel";
+"no_data_yet" = "Pas encore de données";

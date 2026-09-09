@@ -484,3 +484,22 @@ Uygulamamı beğendiysen ve destek olmak istersen bir çayını içerim(Fiyatlar
 
 /* Category Management */
 "category_info_text" = "Yeni eklenen kategoriler için alt kategoriler de eklemeniz gerekmektedir. Yeni bir harcama eklerken ana kategoriler değil, alt kategoriler kullanılır.";
+
+/* Overview */
+"overview" = "Genel Bakış";
+"this_month_spending" = "Bu ayın harcaması";
+"monthly_net_income" = "Aylık net gelir";
+"monthly_net_income_description" = "Aylık eline geçen tutar. Kalanı hesaplamak ve bakiyeni öngörmek için kullanılır.";
+"enter_monthly_net_income" = "Aylık net geliri girin";
+"not_set" = "Belirtilmedi";
+"remaining" = "Kalan";
+"range_3_months" = "3 Ay";
+"range_6_months" = "6 Ay";
+"range_1_year" = "1 Yıl";
+"spending_trend" = "Harcama trendi";
+"forecast_12_months" = "12 aylık tahmin";
+"forecast_description" = "Tekrarlayan harcamalar + son 3 ayın ortalaması";
+"cumulative_balance" = "Kümülatif bakiye";
+"after_12_months" = "12 ay sonra";
+"edit_monthly_income" = "Aylık geliri düzenle";
+"no_data_yet" = "Henüz veri yok";

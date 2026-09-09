@@ -83,20 +83,29 @@ struct MainContentView: View {
 
                 // Main content with TabView
                 TabView(selection: $selectedTab) {
+                    OverviewView(
+                        isDarkTheme: isDarkTheme,
+                        expenseViewModel: expenseViewModel,
+                        preferencesManager: preferencesManager
+                    )
+                    .environmentObject(expenseViewModel)
+                    .environmentObject(preferencesManager)
+                    .tag(0)
+
                     ExpensesView()
                         .environmentObject(expenseViewModel)
-                        .tag(0)
+                        .tag(1)
 
                     AnalysisView(isDarkTheme: isDarkTheme)
                         .environmentObject(expenseViewModel)
-                        .tag(1)
+                        .tag(2)
 
                     PlanningView(
                         isDarkTheme: isDarkTheme,
                         defaultCurrency: expenseViewModel.defaultCurrency
                     )
                     .environmentObject(planningViewModel)
-                    .tag(2)
+                    .tag(3)
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
 
@@ -105,7 +114,7 @@ struct MainContentView: View {
                     Spacer()
 
                     HStack(spacing: 8) {
-                        ForEach(0..<3, id: \.self) { index in
+                        ForEach(0..<4, id: \.self) { index in
                             RoundedRectangle(cornerRadius: 4)
                                 .fill(
                                     selectedTab == index ?

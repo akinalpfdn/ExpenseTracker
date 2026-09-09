@@ -483,3 +483,22 @@
 
 /* Category Management */
 "category_info_text" = "You also need to add subcategories for newly added categories. When adding a new expense, subcategories are used, not the main categories.";
+
+/* Overview */
+"overview" = "Overview";
+"this_month_spending" = "This month's spending";
+"monthly_net_income" = "Monthly net income";
+"monthly_net_income_description" = "Your take-home pay per month. Used to work out what is left and to project your balance.";
+"enter_monthly_net_income" = "Enter monthly net income";
+"not_set" = "Not set";
+"remaining" = "Remaining";
+"range_3_months" = "3 Months";
+"range_6_months" = "6 Months";
+"range_1_year" = "1 Year";
+"spending_trend" = "Spending trend";
+"forecast_12_months" = "12-month forecast";
+"forecast_description" = "Recurring expenses + last 3 months' average";
+"cumulative_balance" = "Cumulative balance";
+"after_12_months" = "After 12 months";
+"edit_monthly_income" = "Edit monthly income";
+"no_data_yet" = "No data yet";

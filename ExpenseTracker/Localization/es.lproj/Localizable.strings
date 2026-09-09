@@ -482,3 +482,22 @@
 
 /* Category Management */
 "category_info_text" = "También debe añadir subcategorías para las categorías recién añadidas. Al añadir un nuevo gasto, se utilizan las subcategorías, no las categorías principales.";
+
+/* Overview */
+"overview" = "Resumen";
+"this_month_spending" = "Gasto de este mes";
+"monthly_net_income" = "Ingreso neto mensual";
+"monthly_net_income_description" = "Lo que ingresas cada mes. Se usa para calcular lo que queda y proyectar tu saldo.";
+"enter_monthly_net_income" = "Introduce el ingreso neto mensual";
+"not_set" = "Sin definir";
+"remaining" = "Restante";
+"range_3_months" = "3 meses";
+"range_6_months" = "6 meses";
+"range_1_year" = "1 año";
+"spending_trend" = "Tendencia de gasto";
+"forecast_12_months" = "Previsión a 12 meses";
+"forecast_description" = "Gastos recurrentes + media de los últimos 3 meses";
+"cumulative_balance" = "Saldo acumulado";
+"after_12_months" = "Dentro de 12 meses";
+"edit_monthly_income" = "Editar ingreso mensual";
+"no_data_yet" = "Aún no hay datos";

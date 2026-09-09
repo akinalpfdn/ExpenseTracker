@@ -481,3 +481,22 @@
 
 /* Category Management */
 "category_info_text" = "Należy również dodać podkategorie dla nowo dodanych kategorii. Podczas dodawania nowego wydatku używane są podkategorie, a nie kategorie główne.";
+
+/* Overview */
+"overview" = "Przegląd";
+"this_month_spending" = "Wydatki w tym miesiącu";
+"monthly_net_income" = "Miesięczny dochód netto";
+"monthly_net_income_description" = "Twoje miesięczne wpływy na rękę. Służą do obliczenia pozostałej kwoty i prognozy salda.";
+"enter_monthly_net_income" = "Podaj miesięczny dochód netto";
+"not_set" = "Nie ustawiono";
+"remaining" = "Pozostało";
+"range_3_months" = "3 miesiące";
+"range_6_months" = "6 miesięcy";
+"range_1_year" = "1 rok";
+"spending_trend" = "Trend wydatków";
+"forecast_12_months" = "Prognoza na 12 miesięcy";
+"forecast_description" = "Wydatki cykliczne + średnia z ostatnich 3 miesięcy";
+"cumulative_balance" = "Saldo skumulowane";
+"after_12_months" = "Za 12 miesięcy";
+"edit_monthly_income" = "Edytuj miesięczny dochód";
+"no_data_yet" = "Brak danych";

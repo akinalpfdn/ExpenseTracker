@@ -481,3 +481,22 @@
 
 /* Category Management */
 "category_info_text" = "È inoltre necessario aggiungere sottocategorie per le categorie appena aggiunte. Quando si aggiunge una nuova spesa, vengono utilizzate le sottocategorie, non le categorie principali.";
+
+/* Overview */
+"overview" = "Panoramica";
+"this_month_spending" = "Spesa di questo mese";
+"monthly_net_income" = "Reddito netto mensile";
+"monthly_net_income_description" = "Quanto percepisci ogni mese. Serve a calcolare il residuo e a proiettare il saldo.";
+"enter_monthly_net_income" = "Inserisci il reddito netto mensile";
+"not_set" = "Non impostato";
+"remaining" = "Residuo";
+"range_3_months" = "3 mesi";
+"range_6_months" = "6 mesi";
+"range_1_year" = "1 anno";
+"spending_trend" = "Andamento delle spese";
+"forecast_12_months" = "Previsione a 12 mesi";
+"forecast_description" = "Spese ricorrenti + media degli ultimi 3 mesi";
+"cumulative_balance" = "Saldo cumulato";
+"after_12_months" = "Tra 12 mesi";
+"edit_monthly_income" = "Modifica reddito mensile";
+"no_data_yet" = "Ancora nessun dato";

@@ -14,6 +14,11 @@ struct AppColors {
     static let primaryOrange = Color(red: 1.0, green: 0.39, blue: 0.0) // 0xFFFF6400
     static let primaryRed = Color(red: 1.0, green: 0.23, blue: 0.19) // 0xFFFF3B30
 
+    /// Forecast bars on the overview. Deliberately not the primary orange: those
+    /// bars are money already spent, these are a projection, and the two should not
+    /// read as the same kind of fact.
+    static let forecastBlue = Color(red: 0.25, green: 0.78, blue: 0.94) // 0xFF40C7F0
+
     // MARK: - Dark Theme Colors
     static let backgroundBlack = Color.black // 0xFF000000
     static let textWhite = Color.white // 0xFFFFFFFF
