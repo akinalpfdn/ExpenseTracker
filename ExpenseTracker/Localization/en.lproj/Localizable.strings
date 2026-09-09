@@ -504,3 +504,12 @@
 "no_data_yet" = "No data yet";
 
 "occurrence_count" = "Count";
+
+/* Daily Reminder */
+"daily_reminder" = "Daily Reminder";
+"reminder_enabled" = "Remind me";
+"reminder_time" = "Time";
+"daily_reminder_description" = "A reminder at the time you choose, only on days you have not logged anything.";
+"reminder_permission_denied" = "Notifications are turned off for this app. Enable them in Settings to use reminders.";
+"reminder_title" = "Track your spending";
+"reminder_body" = "You have not logged anything today.";

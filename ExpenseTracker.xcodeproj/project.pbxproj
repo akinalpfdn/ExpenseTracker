@@ -10,13 +10,16 @@
 		AA0000012E49C6CB00DBCB51 /* BackupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000022E49C6CB00DBCB51 /* BackupTests.swift */; };
 		AA0000032E49C6CB00DBCB51 /* LocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000042E49C6CB00DBCB51 /* LocalizationTests.swift */; };
 		AA0000052E49C6CB00DBCB51 /* OverviewCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000062E49C6CB00DBCB51 /* OverviewCalculatorTests.swift */; };
+		AA0000072E49C6CB00DBCB51 /* AddExpenseUXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000082E49C6CB00DBCB51 /* AddExpenseUXTests.swift */; };
 		F410BB152EBBEA3C00B63464 /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F410BB142EBBEA3C00B63464 /* Products.storekit */; };
+		AA00000B2E49C6CB00DBCB51 /* ReminderPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000C2E49C6CB00DBCB51 /* ReminderPlanner.swift */; };
+		AA00000D2E49C6CB00DBCB51 /* ReminderScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000E2E49C6CB00DBCB51 /* ReminderScheduler.swift */; };
 		F410BB192EBBED0300B63464 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410BB172EBBED0300B63464 /* StoreManager.swift */; };
 		F410BB292EBF7EC000B63464 /* connect.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F410BB282EBF7EC000B63464 /* connect.storekit */; };
 		F4FE0A712E49C6CA00DBCB51 /* ExpenseTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0A702E49C6CA00DBCB51 /* ExpenseTrackerApp.swift */; };
 		F4FE0A752E49C6CB00DBCB51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4FE0A742E49C6CB00DBCB51 /* Assets.xcassets */; };
 		F4FE0A792E49C6CB00DBCB51 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4FE0A782E49C6CB00DBCB51 /* Preview Assets.xcassets */; };
-		AA0000072E49C6CB00DBCB51 /* AddExpenseUXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000082E49C6CB00DBCB51 /* AddExpenseUXTests.swift */; };
+		AA0000092E49C6CB00DBCB51 /* ReminderPlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000A2E49C6CB00DBCB51 /* ReminderPlannerTests.swift */; };
 		F4FE0A832E49C6CB00DBCB51 /* ExpenseTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0A822E49C6CB00DBCB51 /* ExpenseTrackerTests.swift */; };
 		F4FE0A8D2E49C6CB00DBCB51 /* ExpenseTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0A8C2E49C6CB00DBCB51 /* ExpenseTrackerUITests.swift */; };
 		F4FE0A8F2E49C6CB00DBCB51 /* ExpenseTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0A8E2E49C6CB00DBCB51 /* ExpenseTrackerUITestsLaunchTests.swift */; };
@@ -43,7 +46,10 @@
 		AA0000022E49C6CB00DBCB51 /* BackupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupTests.swift; sourceTree = "<group>"; };
 		AA0000042E49C6CB00DBCB51 /* LocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTests.swift; sourceTree = "<group>"; };
 		AA0000062E49C6CB00DBCB51 /* OverviewCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewCalculatorTests.swift; sourceTree = "<group>"; };
+		AA0000082E49C6CB00DBCB51 /* AddExpenseUXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseUXTests.swift; sourceTree = "<group>"; };
 		F410BB142EBBEA3C00B63464 /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
+		AA00000C2E49C6CB00DBCB51 /* ReminderPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderPlanner.swift; sourceTree = "<group>"; };
+		AA00000E2E49C6CB00DBCB51 /* ReminderScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderScheduler.swift; sourceTree = "<group>"; };
 		F410BB172EBBED0300B63464 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
 		F410BB282EBF7EC000B63464 /* connect.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = connect.storekit; sourceTree = "<group>"; };
 		F4FE0A6D2E49C6CA00DBCB51 /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,7 +58,7 @@
 		F4FE0A762E49C6CB00DBCB51 /* ExpenseTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExpenseTracker.entitlements; sourceTree = "<group>"; };
 		F4FE0A782E49C6CB00DBCB51 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F4FE0A7E2E49C6CB00DBCB51 /* ExpenseTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpenseTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA0000082E49C6CB00DBCB51 /* AddExpenseUXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseUXTests.swift; sourceTree = "<group>"; };
+		AA00000A2E49C6CB00DBCB51 /* ReminderPlannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderPlannerTests.swift; sourceTree = "<group>"; };
 		F4FE0A822E49C6CB00DBCB51 /* ExpenseTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerTests.swift; sourceTree = "<group>"; };
 		F4FE0A882E49C6CB00DBCB51 /* ExpenseTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpenseTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4FE0A8C2E49C6CB00DBCB51 /* ExpenseTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerUITests.swift; sourceTree = "<group>"; };
@@ -118,6 +124,8 @@
 		F410BB182EBBED0300B63464 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				AA00000C2E49C6CB00DBCB51 /* ReminderPlanner.swift */,
+				AA00000E2E49C6CB00DBCB51 /* ReminderScheduler.swift */,
 				F410BB172EBBED0300B63464 /* StoreManager.swift */,
 			);
 			path = Services;
@@ -181,6 +189,7 @@
 				AA0000042E49C6CB00DBCB51 /* LocalizationTests.swift */,
 				AA0000062E49C6CB00DBCB51 /* OverviewCalculatorTests.swift */,
 				AA0000082E49C6CB00DBCB51 /* AddExpenseUXTests.swift */,
+				AA00000A2E49C6CB00DBCB51 /* ReminderPlannerTests.swift */,
 				F4FE0A822E49C6CB00DBCB51 /* ExpenseTrackerTests.swift */,
 			);
 			path = ExpenseTrackerTests;
@@ -346,6 +355,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA00000B2E49C6CB00DBCB51 /* ReminderPlanner.swift in Sources */,
+				AA00000D2E49C6CB00DBCB51 /* ReminderScheduler.swift in Sources */,
 				F410BB192EBBED0300B63464 /* StoreManager.swift in Sources */,
 				F4FE0A712E49C6CA00DBCB51 /* ExpenseTrackerApp.swift in Sources */,
 			);
@@ -359,6 +370,7 @@
 				AA0000032E49C6CB00DBCB51 /* LocalizationTests.swift in Sources */,
 				AA0000052E49C6CB00DBCB51 /* OverviewCalculatorTests.swift in Sources */,
 				AA0000072E49C6CB00DBCB51 /* AddExpenseUXTests.swift in Sources */,
+				AA0000092E49C6CB00DBCB51 /* ReminderPlannerTests.swift in Sources */,
 				F4FE0A832E49C6CB00DBCB51 /* ExpenseTrackerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

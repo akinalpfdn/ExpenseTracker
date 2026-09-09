@@ -97,6 +97,11 @@ extension SettingsView {
                 Divider()
                     .background(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
 
+                ReminderSettingsSection(isDarkTheme: isDarkTheme)
+
+                Divider()
+                    .background(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
+
                 DataManagementSection(isDarkTheme: isDarkTheme)
 
                 Spacer().frame(height: 20)

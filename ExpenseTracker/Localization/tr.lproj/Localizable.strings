@@ -505,3 +505,12 @@ Uygulamamı beğendiysen ve destek olmak istersen bir çayını içerim(Fiyatlar
 "no_data_yet" = "Henüz veri yok";
 
 "occurrence_count" = "Adet";
+
+/* Daily Reminder */
+"daily_reminder" = "Günlük Hatırlatma";
+"reminder_enabled" = "Hatırlat";
+"reminder_time" = "Saat";
+"daily_reminder_description" = "Seçtiğin saatte hatırlatır, yalnızca hiçbir şey kaydetmediğin günlerde.";
+"reminder_permission_denied" = "Bu uygulama için bildirimler kapalı. Hatırlatmayı kullanmak için Ayarlar'dan aç.";
+"reminder_title" = "Harcamanı kaydet";
+"reminder_body" = "Bugün hiçbir şey kaydetmedin.";

@@ -502,3 +502,12 @@
 "no_data_yet" = "Ancora nessun dato";
 
 "occurrence_count" = "Numero";
+
+/* Daily Reminder */
+"daily_reminder" = "Promemoria giornaliero";
+"reminder_enabled" = "Ricordamelo";
+"reminder_time" = "Ora";
+"daily_reminder_description" = "Un promemoria all'ora che scegli, solo nei giorni senza registrazioni.";
+"reminder_permission_denied" = "Le notifiche sono disattivate per questa app. Attivale in Impostazioni.";
+"reminder_title" = "Registra le spese";
+"reminder_body" = "Oggi non hai registrato nulla.";

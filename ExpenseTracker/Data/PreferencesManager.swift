@@ -69,6 +69,23 @@ class PreferencesManager: ObservableObject {
         }
     }
 
+    /// Whether the daily "did you log today" reminder is on. Only ever true when the
+    /// system has actually granted permission — a toggle that looks on while
+    /// notifications are denied would be a lie.
+    @Published var reminderEnabled: Bool {
+        didSet {
+            userDefaults.set(reminderEnabled, forKey: Keys.reminderEnabled)
+        }
+    }
+
+    /// Time of day for the reminder, stored as minutes since midnight so it stays a
+    /// wall-clock time rather than an instant that shifts with the time zone.
+    @Published var reminderMinutesSinceMidnight: Int {
+        didSet {
+            userDefaults.set(reminderMinutesSinceMidnight, forKey: Keys.reminderMinutes)
+        }
+    }
+
     // MARK: - Keys
 
     private enum Keys {
@@ -81,6 +98,8 @@ class PreferencesManager: ObservableObject {
         static let launchCount = "launch_count"
         static let hasRatedApp = "has_rated_app"
         static let monthlyNetIncome = "monthly_net_income"
+        static let reminderEnabled = "reminder_enabled"
+        static let reminderMinutes = "reminder_minutes_since_midnight"
     }
 
     // MARK: - Initialization
@@ -94,6 +113,13 @@ class PreferencesManager: ObservableObject {
         self.launchCount = userDefaults.integer(forKey: Keys.launchCount)
         self.hasRatedApp = userDefaults.bool(forKey: Keys.hasRatedApp)
         self.monthlyNetIncome = userDefaults.string(forKey: Keys.monthlyNetIncome) ?? ""
+
+        self.reminderEnabled = userDefaults.bool(forKey: Keys.reminderEnabled)
+
+        // 21:00 by default — late enough that the day is done, early enough to still
+        // act on. Only used until the user picks a time.
+        let storedMinutes = userDefaults.object(forKey: Keys.reminderMinutes) as? Int
+        self.reminderMinutesSinceMidnight = storedMinutes ?? (21 * 60)
 
         // Check if first launch key exists
         if userDefaults.object(forKey: Keys.isFirstLaunch) == nil {
@@ -111,6 +137,22 @@ class PreferencesManager: ObservableObject {
 
     func setMonthlyNetIncome(_ income: String) {
         monthlyNetIncome = income
+    }
+
+    var reminderHour: Int { reminderMinutesSinceMidnight / 60 }
+    var reminderMinute: Int { reminderMinutesSinceMidnight % 60 }
+
+    /// The reminder time as a `Date` today, for binding to a time picker.
+    var reminderTime: Date {
+        get {
+            Calendar.current.date(
+                bySettingHour: reminderHour, minute: reminderMinute, second: 0, of: Date()
+            ) ?? Date()
+        }
+        set {
+            let components = Calendar.current.dateComponents([.hour, .minute], from: newValue)
+            reminderMinutesSinceMidnight = (components.hour ?? 21) * 60 + (components.minute ?? 0)
+        }
     }
 
     /// Parsed value for calculations. 0 when unset, which the overview screen treats

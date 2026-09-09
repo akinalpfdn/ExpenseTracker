@@ -502,3 +502,12 @@
 "no_data_yet" = "Brak danych";
 
 "occurrence_count" = "Liczba";
+
+/* Daily Reminder */
+"daily_reminder" = "Codzienne przypomnienie";
+"reminder_enabled" = "Przypominaj";
+"reminder_time" = "Godzina";
+"daily_reminder_description" = "Przypomnienie o wybranej porze, tylko w dni bez żadnego wpisu.";
+"reminder_permission_denied" = "Powiadomienia dla tej aplikacji są wyłączone. Włącz je w Ustawieniach.";
+"reminder_title" = "Zapisz swoje wydatki";
+"reminder_body" = "Dziś nie zapisałeś żadnego wydatku.";

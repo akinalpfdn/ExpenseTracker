@@ -502,3 +502,12 @@
 "no_data_yet" = "Ainda sem dados";
 
 "occurrence_count" = "Quantidade";
+
+/* Daily Reminder */
+"daily_reminder" = "Lembrete diário";
+"reminder_enabled" = "Lembrar-me";
+"reminder_time" = "Hora";
+"daily_reminder_description" = "Um lembrete à hora que escolheres, apenas nos dias sem registos.";
+"reminder_permission_denied" = "As notificações estão desativadas para esta app. Ativa-as nas Definições.";
+"reminder_title" = "Regista as tuas despesas";
+"reminder_body" = "Hoje ainda não registaste nada.";

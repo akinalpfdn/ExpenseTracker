@@ -46,6 +46,17 @@ struct ExpenseTrackerApp: App {
                 .environmentObject(expenseViewModel)
                 .environmentObject(planningViewModel)
                 .preferredColorScheme(preferencesManager.isDarkTheme ? .dark : .light)
+                .task {
+                    // Tops the rolling window back up, drops today's reminder if
+                    // something has already been logged, and re-localises the text
+                    // if the language changed.
+                    await ReminderScheduler().refresh(
+                        isEnabled: preferencesManager.reminderEnabled,
+                        hour: preferencesManager.reminderHour,
+                        minute: preferencesManager.reminderMinute,
+                        expenses: expenseViewModel.expenses
+                    )
+                }
         }
     }
 }

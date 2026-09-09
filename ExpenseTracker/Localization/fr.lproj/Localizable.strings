@@ -503,3 +503,12 @@
 "no_data_yet" = "Pas encore de données";
 
 "occurrence_count" = "Nombre";
+
+/* Daily Reminder */
+"daily_reminder" = "Rappel quotidien";
+"reminder_enabled" = "Me rappeler";
+"reminder_time" = "Heure";
+"daily_reminder_description" = "Un rappel à l'heure de ton choix, uniquement les jours sans saisie.";
+"reminder_permission_denied" = "Les notifications sont désactivées pour cette app. Active-les dans Réglages.";
+"reminder_title" = "Note tes dépenses";
+"reminder_body" = "Tu n'as rien saisi aujourd'hui.";

@@ -507,3 +507,12 @@
 "no_data_yet" = "Пока нет данных";
 
 "occurrence_count" = "Количество";
+
+/* Daily Reminder */
+"daily_reminder" = "Ежедневное напоминание";
+"reminder_enabled" = "Напоминать";
+"reminder_time" = "Время";
+"daily_reminder_description" = "Напоминание в выбранное время, только в те дни, когда ничего не записано.";
+"reminder_permission_denied" = "Уведомления для этого приложения отключены. Включите их в Настройках.";
+"reminder_title" = "Запишите расходы";
+"reminder_body" = "Сегодня вы ничего не записали.";

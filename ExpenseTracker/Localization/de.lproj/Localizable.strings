@@ -503,3 +503,12 @@
 "no_data_yet" = "Noch keine Daten";
 
 "occurrence_count" = "Anzahl";
+
+/* Daily Reminder */
+"daily_reminder" = "Tägliche Erinnerung";
+"reminder_enabled" = "Erinnern";
+"reminder_time" = "Uhrzeit";
+"daily_reminder_description" = "Eine Erinnerung zur gewählten Zeit, nur an Tagen ohne Eintrag.";
+"reminder_permission_denied" = "Mitteilungen sind für diese App deaktiviert. Aktiviere sie in den Einstellungen.";
+"reminder_title" = "Ausgaben erfassen";
+"reminder_body" = "Du hast heute noch nichts erfasst.";
