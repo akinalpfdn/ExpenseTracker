@@ -187,6 +187,92 @@ final class BackupTests: XCTestCase {
         XCTAssertEqual(expense.recurrenceType, .NONE)
     }
 
+    /// Shaped exactly like a file the shipping Android build produces, taken from a
+    /// real 1039-expense export with the contents replaced.
+    ///
+    /// The quirks it exists to pin down:
+    /// - `exportVersion` and `databaseVersion` are absent. Both are defaulted in the
+    ///   Kotlin declaration, and kotlinx.serialization does not write defaulted
+    ///   properties. Requiring them rejected every real Android backup.
+    /// - Timestamps arrive in two shapes in the same file: no seconds when they are
+    ///   zero, and six fractional digits otherwise.
+    /// - `exchangeRate` is null on same-currency expenses.
+    func testParsesRealAndroidExportShape() throws {
+        let androidJson = """
+        {
+          "appVersion": "1.3",
+          "exportDate": "2026-09-09T18:46:46.058671",
+          "categories": [
+            {"id":"food","name":"Yiyecek","colorHex":"#FF9500","iconName":"restaurant","isDefault":true,"isCustom":false}
+          ],
+          "subCategories": [
+            {"id":"sub1","name":"Restoran","categoryId":"food","isDefault":true,"isCustom":false}
+          ],
+          "expenses": [
+            {"id":"e1","amount":120.0,"currency":"₺","categoryId":"food","subCategoryId":"sub1",
+             "description":"Ogle","date":"2026-09-09T18:46:46.058671","dailyLimitAtCreation":500.0,
+             "monthlyLimitAtCreation":15000.0,"exchangeRate":null,"recurrenceType":"NONE",
+             "endDate":null,"recurrenceGroupId":null},
+            {"id":"e2","amount":40.0,"currency":"$","categoryId":"food","subCategoryId":"sub1",
+             "description":"Abonelik","date":"2026-09-01T09:00","dailyLimitAtCreation":500.0,
+             "monthlyLimitAtCreation":15000.0,"exchangeRate":41.5,"recurrenceType":"MONTHLY",
+             "endDate":"2027-09-01T09:00","recurrenceGroupId":"g1"},
+            {"id":"e3","amount":75.0,"currency":"₺","categoryId":"food","subCategoryId":"sub1",
+             "description":"Yol","date":"2026-09-02T08:30","dailyLimitAtCreation":500.0,
+             "monthlyLimitAtCreation":15000.0,"exchangeRate":null,"recurrenceType":"WEEKDAYS",
+             "endDate":null,"recurrenceGroupId":"g2"}
+          ],
+          "financialPlans": [
+            {"id":"p1","name":"Birikim","startDate":"2026-01-01T00:00","durationInMonths":12,
+             "monthlyIncome":89775.0,"manualMonthlyExpenses":0.0,"useAppExpenseData":true,
+             "isInflationApplied":false,"inflationRate":0.0,"isInterestApplied":true,
+             "interestRate":45.0,"interestType":"COMPOUND","createdAt":"2026-01-01T10:15:30.123456",
+             "updatedAt":"2026-09-09T18:46","defaultCurrency":"₺"}
+          ],
+          "planMonthlyBreakdowns": [
+            {"id":"b1","planId":"p1","monthIndex":0,"projectedIncome":89775.0,"fixedExpenses":0.0,
+             "averageExpenses":35717.33,"totalProjectedExpenses":35717.33,"netAmount":54057.67,
+             "interestEarned":0.0,"cumulativeNet":54057.67}
+          ]
+        }
+        """
+
+        let parsed = try ImportManager().validateImportFile(json: androidJson)
+
+        // The two omitted fields fall back to the Kotlin declaration's defaults.
+        XCTAssertEqual(parsed.exportVersion, BackupSchema.exportVersion)
+        XCTAssertEqual(parsed.databaseVersion, BackupSchema.databaseVersion)
+
+        XCTAssertEqual(parsed.expenses.count, 3)
+        XCTAssertEqual(parsed.financialPlans.count, 1)
+
+        // Six fractional digits, truncated rather than rejected.
+        let withFraction = try parsed.expenses[0].toEntity()
+        XCTAssertNil(withFraction.exchangeRate)
+
+        // Seconds omitted because they were zero.
+        let withoutSeconds = try parsed.expenses[1].toEntity()
+        XCTAssertEqual(withoutSeconds.exchangeRate, 41.5)
+        XCTAssertEqual(withoutSeconds.recurrenceType, .MONTHLY)
+        XCTAssertNotNil(withoutSeconds.endDate)
+
+        XCTAssertEqual(try parsed.expenses[2].toEntity().recurrenceType, .WEEKDAYS)
+
+        let plan = try parsed.financialPlans[0].toEntity()
+        XCTAssertEqual(plan.interestType, .compound)
+        XCTAssertEqual(plan.monthlyIncome, 89_775)
+    }
+
+    /// Guards the other direction: what we write must still declare both fields, so
+    /// an iOS backup carries its version even though Android's does not.
+    func testOurExportDeclaresBothVersions() throws {
+        let json = makeBackupJson(databaseVersion: BackupSchema.databaseVersion)
+        XCTAssertTrue(json.contains("databaseVersion"))
+
+        let parsed = try ImportManager().validateImportFile(json: json)
+        XCTAssertEqual(parsed.databaseVersion, BackupSchema.databaseVersion)
+    }
+
     // MARK: - Restore Transaction
 
     func testRestoreWritesEverything() async throws {

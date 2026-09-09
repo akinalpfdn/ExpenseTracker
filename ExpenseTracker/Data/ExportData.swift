@@ -101,6 +101,57 @@ struct ExportData: Codable {
     let expenses: [ExpenseDto]
     let financialPlans: [FinancialPlanDto]
     let planMonthlyBreakdowns: [PlanMonthlyBreakdownDto]
+
+    init(
+        exportVersion: Int,
+        appVersion: String,
+        exportDate: String,
+        databaseVersion: Int,
+        categories: [CategoryDto],
+        subCategories: [SubCategoryDto],
+        expenses: [ExpenseDto],
+        financialPlans: [FinancialPlanDto],
+        planMonthlyBreakdowns: [PlanMonthlyBreakdownDto]
+    ) {
+        self.exportVersion = exportVersion
+        self.appVersion = appVersion
+        self.exportDate = exportDate
+        self.databaseVersion = databaseVersion
+        self.categories = categories
+        self.subCategories = subCategories
+        self.expenses = expenses
+        self.financialPlans = financialPlans
+        self.planMonthlyBreakdowns = planMonthlyBreakdowns
+    }
+
+    /// `exportVersion` and `databaseVersion` are absent from files the Android build
+    /// writes. Both have default values in its `ExportData`, and kotlinx.serialization
+    /// omits defaulted properties unless `encodeDefaults` is turned on — which it is
+    /// not. Synthesised decoding treats a missing key as an error, so every real
+    /// Android backup would be rejected as malformed.
+    ///
+    /// They fall back to the same defaults the Kotlin declaration uses, so a file
+    /// without them is read exactly as Android reads it.
+    ///
+    /// Only these two are tolerated. A missing collection would mean genuine
+    /// corruption, and defaulting it to empty would quietly wipe that data on a
+    /// replace-all restore.
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        exportVersion = try container.decodeIfPresent(Int.self, forKey: .exportVersion)
+            ?? BackupSchema.exportVersion
+        databaseVersion = try container.decodeIfPresent(Int.self, forKey: .databaseVersion)
+            ?? BackupSchema.databaseVersion
+
+        appVersion = try container.decode(String.self, forKey: .appVersion)
+        exportDate = try container.decode(String.self, forKey: .exportDate)
+        categories = try container.decode([CategoryDto].self, forKey: .categories)
+        subCategories = try container.decode([SubCategoryDto].self, forKey: .subCategories)
+        expenses = try container.decode([ExpenseDto].self, forKey: .expenses)
+        financialPlans = try container.decode([FinancialPlanDto].self, forKey: .financialPlans)
+        planMonthlyBreakdowns = try container.decode([PlanMonthlyBreakdownDto].self, forKey: .planMonthlyBreakdowns)
+    }
 }
 
 // MARK: - DTOs
