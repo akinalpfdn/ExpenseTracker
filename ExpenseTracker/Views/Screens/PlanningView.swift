@@ -59,6 +59,8 @@ struct PlanningView: View {
             set: { if !$0 { planToDelete = nil } }
         )) {
             deleteConfirmationAlert
+        } message: {
+            deleteConfirmationMessage
         }
         .onReceive(planningViewModel.$error) { error in
             if error != nil {
@@ -232,11 +234,22 @@ extension PlanningView {
         }
     }
 
+    /// Names the plan and says the deletion is permanent. Deleting a plan also drops
+    /// its monthly breakdowns, so this is the last point at which the user can stop.
+    @ViewBuilder
+    private var deleteConfirmationMessage: some View {
+        // No message rather than a placeholder if the plan cannot be resolved — it
+        // should not happen, and inventing a name would be worse than staying quiet.
+        if let planId = planToDelete,
+           let name = planningViewModel.plansWithBreakdowns
+               .first(where: { $0.plan.id == planId })?.plan.name {
+            Text(String(format: "delete_plan_confirmation".localized, name))
+        }
+    }
+
     @ViewBuilder
     private var deleteConfirmationAlert: some View {
         if let planId = planToDelete {
-            let planName = planningViewModel.plansWithBreakdowns.first { $0.plan.id == planId }?.plan.name ?? "Plan"
-
             Button("delete".localized, role: .destructive) {
                 planningViewModel.deletePlan(planId: planId)
                 planToDelete = nil

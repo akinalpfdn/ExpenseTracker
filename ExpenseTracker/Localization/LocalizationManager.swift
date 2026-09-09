@@ -66,12 +66,14 @@ extension String {
     var localized: String {
         return LocalizationManager.shared.localizedString(for: self)
     }
-
-    /// Get localized version with format arguments
-    func localized(with arguments: CVarArg...) -> String {
-        return LocalizationManager.shared.localizedString(for: self, arguments: arguments)
-    }
 }
+
+// A `localized(with:)` helper used to live here. It forwarded its variadic array
+// into another variadic parameter, so the whole array arrived as a single argument
+// and formatting produced nonsense. Nothing called it, which is why that went
+// unnoticed. For a key that takes arguments, use `String(format:)` directly:
+//
+//     String(format: "delete_plan_confirmation".localized, planName)
 
 // MARK: - SwiftUI View Extension
 

@@ -1,0 +1,38 @@
+# macOS
+.DS_Store
+
+# Xcode — per-user state
+#
+# xcuserdata holds window layout, open tabs, breakpoints and scheme visibility.
+# It is specific to one person on one machine, rewrites itself constantly while
+# Xcode is open, and conflicts on every merge.
+xcuserdata/
+*.xcuserstate
+*.xcuserdatad/
+
+# Xcode — build output
+build/
+DerivedData/
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+
+# Swift Package Manager
+.build/
+.swiftpm/xcode/package.xcworkspace/xcuserdata/
+Packages/
+
+# CocoaPods / Carthage, if either is ever introduced
+Pods/
+Carthage/Build/
+
+# Fastlane
+fastlane/report.xml
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# Backups produced while testing export
+penko-backup-*.json
