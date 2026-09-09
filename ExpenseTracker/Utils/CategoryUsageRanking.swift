@@ -23,9 +23,14 @@ struct CategoryUsageRanking {
     /// ago. The trade-off is that the order can shift with no user action, when an
     /// expense ages out of the window — visible only among near-ties.
     ///
-    /// Future-dated rows are excluded, and that exclusion is load-bearing: recurring
-    /// expenses are stored as individual occurrences up to a year ahead, so counting
-    /// them would let one subscription outrank a category picked by hand every week.
+    /// This ranking answers "what am I about to pick", not "where does my money go",
+    /// and those give different answers. Two rules follow from that:
+    ///
+    /// - A recurring expense counts **once**, however many occurrences it has. A daily
+    ///   transit pass is stored as ninety rows a quarter but was chosen once; counting
+    ///   the rows would bury the groceries category the user actually picks every week.
+    /// - Future-dated rows are excluded. Recurring occurrences are written up to a year
+    ///   ahead, and a row for next March is not evidence of anything.
     init(
         expenses: [Expense],
         now: Date = Date(),
@@ -36,14 +41,31 @@ struct CategoryUsageRanking {
 
         var subCounts: [String: Int] = [:]
         var catCounts: [String: Int] = [:]
+        var countedGroups: Set<String> = []
 
         for expense in expenses where expense.date >= cutoff && expense.date <= now {
+            if let group = Self.recurrenceGroup(of: expense) {
+                // Every occurrence in a group shares its category, so whichever one is
+                // seen first attributes the group correctly.
+                guard countedGroups.insert(group).inserted else { continue }
+            }
+
             subCounts[expense.subCategoryId, default: 0] += 1
             catCounts[expense.categoryId, default: 0] += 1
         }
 
         self.subCategoryCounts = subCounts
         self.categoryCounts = catCounts
+    }
+
+    /// Identifies the series an occurrence belongs to, or nil for a one-off.
+    ///
+    /// Falls back to the expense's own id when a recurring expense has no group set,
+    /// so it still counts once rather than being lumped in with every other
+    /// group-less recurring expense.
+    private static func recurrenceGroup(of expense: Expense) -> String? {
+        guard expense.recurrenceType != .NONE else { return nil }
+        return expense.recurrenceGroupId ?? expense.id
     }
 
     // MARK: - Ordering

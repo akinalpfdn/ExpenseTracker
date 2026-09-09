@@ -207,6 +207,64 @@ final class CategoryUsageRankingTests: XCTestCase {
         XCTAssertEqual(ranking.usageCount(forCategory: "manual"), 1)
     }
 
+    /// The case the user raised: a daily transit pass generates roughly ninety rows a
+    /// quarter but was chosen once. Counting rows would put it above the groceries
+    /// category actually picked every week.
+    func testARecurringSeriesCountsOnceNoMatterHowManyOccurrences() {
+        var expenses: [Expense] = []
+
+        for daysAgo in 1...90 {
+            let day = Calendar.current.date(byAdding: .day, value: -daysAgo, to: referenceNow)!
+            expenses.append(
+                expense(categoryId: "transit", subCategoryId: "pass", on: day,
+                        recurrence: .DAILY, groupId: "transit-pass")
+            )
+        }
+
+        for weeksAgo in 1...12 {
+            let day = Calendar.current.date(byAdding: .weekOfYear, value: -weeksAgo, to: referenceNow)!
+            expenses.append(expense(categoryId: "groceries", subCategoryId: "market", on: day))
+        }
+
+        let ranking = CategoryUsageRanking(expenses: expenses, now: referenceNow)
+
+        XCTAssertEqual(ranking.usageCount(forCategory: "transit"), 1)
+        XCTAssertEqual(ranking.usageCount(forCategory: "groceries"), 12)
+
+        let ordered = ranking.sorted([
+            category(id: "transit", name: "Transit"),
+            category(id: "groceries", name: "Groceries")
+        ])
+        XCTAssertEqual(ordered.map(\.id), ["groceries", "transit"])
+    }
+
+    func testSeparateSeriesCountSeparately() {
+        let expenses = [
+            expense(categoryId: "bills", subCategoryId: "s1", on: monthsFromReference(-1),
+                    recurrence: .MONTHLY, groupId: "rent"),
+            expense(categoryId: "bills", subCategoryId: "s1", on: monthsFromReference(-2),
+                    recurrence: .MONTHLY, groupId: "rent"),
+            expense(categoryId: "bills", subCategoryId: "s1", on: monthsFromReference(-1),
+                    recurrence: .MONTHLY, groupId: "internet")
+        ]
+
+        let ranking = CategoryUsageRanking(expenses: expenses, now: referenceNow)
+        XCTAssertEqual(ranking.usageCount(forCategory: "bills"), 2, "Two series, counted twice")
+    }
+
+    /// A recurring expense with no group set still counts once, rather than being
+    /// merged with every other group-less recurring expense.
+    func testRecurringWithoutAGroupStillCountsOnce() {
+        let expenses = [
+            expense(categoryId: "a", subCategoryId: "s1", on: monthsFromReference(-1), recurrence: .MONTHLY),
+            expense(categoryId: "b", subCategoryId: "s2", on: monthsFromReference(-1), recurrence: .MONTHLY)
+        ]
+
+        let ranking = CategoryUsageRanking(expenses: expenses, now: referenceNow)
+        XCTAssertEqual(ranking.usageCount(forCategory: "a"), 1)
+        XCTAssertEqual(ranking.usageCount(forCategory: "b"), 1)
+    }
+
     func testTheWindowBoundaryIsInclusive() {
         let expenses = [expense(categoryId: "edge", subCategoryId: "s1", on: monthsFromReference(-3))]
         let ranking = CategoryUsageRanking(expenses: expenses, now: referenceNow)
@@ -256,7 +314,9 @@ private func subCategory(id: String, name: String) -> SubCategory {
 private func expense(
     categoryId: String,
     subCategoryId: String,
-    on date: Date = referenceNow
+    on date: Date = referenceNow,
+    recurrence: RecurrenceType = .NONE,
+    groupId: String? = nil
 ) -> Expense {
     return Expense(
         amount: 100,
@@ -266,7 +326,9 @@ private func expense(
         description: "test",
         date: date,
         dailyLimitAtCreation: 0,
-        monthlyLimitAtCreation: 0
+        monthlyLimitAtCreation: 0,
+        recurrenceType: recurrence,
+        recurrenceGroupId: groupId
     )
 }
 
