@@ -91,16 +91,32 @@ class ExpenseViewModel: ObservableObject {
 
     // MARK: - Computed Properties
 
-    var totalSpent: Double {
-        expenses.reduce(0) { $0 + $1.getAmountInDefaultCurrency(defaultCurrency: defaultCurrency) }
+    /// What has been spent in the month containing `date`, up to `now`.
+    ///
+    /// Occurrences dated later in the month are excluded. Recurring expenses are stored
+    /// a year ahead, so a subscription due on the 25th would otherwise read as money
+    /// already gone on the 9th — and warning someone about spending they have not done
+    /// is worse than not warning them at all.
+    func monthlyTotal(for date: Date = Date(), asOf now: Date = Date()) -> Double {
+        return SpendingCalculator(defaultCurrency: defaultCurrency)
+            .monthSpending(expenses: expenses, in: date, asOf: now)
     }
 
-    private var monthlyLimitValue: Double {
-        Double(monthlyLimit) ?? 10000.0
+    /// 0 means no limit, matching the daily field. The previous fallback of 10,000
+    /// invented a limit for anyone who had not set one.
+    var monthlyLimitValue: Double {
+        Double(monthlyLimit) ?? 0
     }
 
-    var isOverLimit: Bool {
-        totalSpent > monthlyLimitValue && monthlyLimitValue > 0
+    func isMonthlyOverLimit(for date: Date = Date(), asOf now: Date = Date()) -> Bool {
+        guard monthlyLimitValue > 0 else { return false }
+        return monthlyTotal(for: date, asOf: now) > monthlyLimitValue
+    }
+
+    /// Fraction of the monthly limit used, capped at 1. Zero when no limit is set.
+    func monthlyProgress(for date: Date = Date(), asOf now: Date = Date()) -> Double {
+        guard monthlyLimitValue > 0 else { return 0 }
+        return min(monthlyTotal(for: date, asOf: now) / monthlyLimitValue, 1.0)
     }
 
     private var dailyLimitValue: Double {
@@ -271,6 +287,10 @@ class ExpenseViewModel: ObservableObject {
     // MARK: - Expense Management
 
     func addExpense(_ expense: Expense) {
+        // Captured before anything is written, so the check afterwards can tell a
+        // crossing from an already-exceeded limit.
+        let wasOverLimit = isMonthlyOverLimit(for: expense.date)
+
         Task {
             do {
                 if expense.recurrenceType != .NONE && expense.recurrenceGroupId != nil {
@@ -293,8 +313,11 @@ class ExpenseViewModel: ObservableObject {
                     selectedDate = selectedDate
                 }
 
-                // Check if over limit
-                if !isOverLimit && totalSpent > monthlyLimitValue && monthlyLimitValue > 0 {
+                // Only on the crossing. The previous guard read
+                // `!isOverLimit && <the definition of isOverLimit>`, which is never
+                // true, so this warning had never fired. Comparing against the state
+                // captured before the insert is what makes "crossed" mean something.
+                if !wasOverLimit && isMonthlyOverLimit(for: expense.date) {
                     await MainActor.run {
                         showingOverLimitAlert = true
                     }

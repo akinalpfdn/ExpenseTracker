@@ -3,7 +3,7 @@
 //  ExpenseTracker
 //
 //  Derives the overview screen's figures from the expenses the app already holds.
-//  All arithmetic lives in OverviewCalculator; this only decides when to run it.
+//  All arithmetic lives in SpendingCalculator; this only decides when to run it.
 //
 
 import Foundation
@@ -114,7 +114,7 @@ class OverviewViewModel: ObservableObject {
         )
     }
 
-    private func makeCalculator() -> OverviewCalculator {
-        return OverviewCalculator(defaultCurrency: preferencesManager.defaultCurrency)
+    private func makeCalculator() -> SpendingCalculator {
+        return SpendingCalculator(defaultCurrency: preferencesManager.defaultCurrency)
     }
 }

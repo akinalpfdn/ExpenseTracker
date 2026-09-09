@@ -1,5 +1,5 @@
 //
-//  OverviewCalculator.swift
+//  SpendingCalculator.swift
 //  ExpenseTracker
 //
 //  The arithmetic behind the overview screen, kept free of Core Data and SwiftUI so
@@ -9,7 +9,7 @@
 
 import Foundation
 
-struct OverviewCalculator {
+struct SpendingCalculator {
 
     private let calendar: Calendar
     private let defaultCurrency: String
@@ -21,11 +21,20 @@ struct OverviewCalculator {
 
     // MARK: - Current Month
 
-    /// Everything spent in the month containing `now`, converted to the default
-    /// currency. Recurring and one-time alike — this is what the user actually spent.
+    /// What has been spent in the month containing `date`, as of `asOf`.
+    ///
+    /// Occurrences dated later than `asOf` are excluded. Recurring expenses are stored
+    /// as rows a year ahead, so a subscription due on the 25th would otherwise read as
+    /// money already gone on the 9th — wrong under a heading that says "spent", and
+    /// wrong as the basis for a limit warning.
+    func monthSpending(expenses: [Expense], in date: Date, asOf: Date) -> Double {
+        guard let month = monthInterval(containing: date) else { return 0 }
+        return amount(of: expenses.filter { month.contains($0.date) && $0.date <= asOf })
+    }
+
+    /// The month containing `now`, up to `now`.
     func currentMonthSpending(expenses: [Expense], now: Date) -> Double {
-        guard let month = monthInterval(containing: now) else { return 0 }
-        return total(of: expenses, within: month)
+        return monthSpending(expenses: expenses, in: now, asOf: now)
     }
 
     /// Income minus what has been spent this month. Goes negative when overspent,

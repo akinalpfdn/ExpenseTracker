@@ -613,28 +613,21 @@ extension ExpensesView {
         return formatter
     }
 
-    private func getMonthlyTotal() -> Double {
-        let calendar = Calendar.current
-        let month = calendar.dateInterval(of: .month, for: currentCalendarMonth)
-        guard let monthRange = month else { return 0.0 }
+    // These used to be computed here, in parallel with a second implementation on the
+    // view model that disagreed with them. Having two answers to "how much this month"
+    // is how the limit warning came to be measured against a lifetime total. One source
+    // now; the view asks for it.
 
-        return viewModel.expenses
-            .filter {
-                calendar.isDate($0.date, inSameDayAs: monthRange.start) ||
-                (monthRange.contains($0.date))
-            }
-            .reduce(0) { $0 + $1.getAmountInDefaultCurrency(defaultCurrency: viewModel.defaultCurrency) }
+    private func getMonthlyTotal() -> Double {
+        viewModel.monthlyTotal(for: currentCalendarMonth)
     }
 
     private func getMonthlyProgressPercentage() -> Double {
-        let monthlyLimit = Double(viewModel.monthlyLimit) ?? 0.0
-        guard monthlyLimit > 0 else { return 0.0 }
-        return min(getMonthlyTotal() / monthlyLimit, 1.0)
+        viewModel.monthlyProgress(for: currentCalendarMonth)
     }
 
     private func isMonthlyOverLimit() -> Bool {
-        let monthlyLimit = Double(viewModel.monthlyLimit) ?? 0.0
-        return getMonthlyTotal() > monthlyLimit && monthlyLimit > 0
+        viewModel.isMonthlyOverLimit(for: currentCalendarMonth)
     }
 
     private func getSelectedDayTotal() -> Double {

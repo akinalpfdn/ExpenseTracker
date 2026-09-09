@@ -1,5 +1,5 @@
 //
-//  OverviewCalculatorTests.swift
+//  SpendingCalculatorTests.swift
 //  ExpenseTrackerTests
 //
 //  The overview screen is entirely derived numbers, so these cover the arithmetic
@@ -9,10 +9,10 @@
 import XCTest
 @testable import ExpenseTracker
 
-final class OverviewCalculatorTests: XCTestCase {
+final class SpendingCalculatorTests: XCTestCase {
 
     private let currency = "₺"
-    private var calculator: OverviewCalculator!
+    private var calculator: SpendingCalculator!
 
     /// Fixed reference point so nothing depends on the day the suite runs.
     /// 15 June 2026, mid-month, so "current month is partial" is exercised.
@@ -20,7 +20,7 @@ final class OverviewCalculatorTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        calculator = OverviewCalculator(defaultCurrency: currency)
+        calculator = SpendingCalculator(defaultCurrency: currency)
     }
 
     // MARK: - Current Month
@@ -50,6 +50,39 @@ final class OverviewCalculatorTests: XCTestCase {
 
         // Counted at 4000, not 100.
         XCTAssertEqual(calculator.currentMonthSpending(expenses: expenses, now: now), 4000)
+    }
+
+    /// The limit warning was measuring against a lifetime total that also included
+    /// rows dated a year ahead. Excluding the future is what makes "spent" mean spent.
+    func testSpendingExcludesOccurrencesLaterThanTheCutoff() {
+        let expenses = [
+            expense(amount: 100, on: "2026-06-01"),
+            expense(amount: 250, on: "2026-06-15"),
+            expense(amount: 900, on: "2026-06-25", recurrence: .MONTHLY)  // due later this month
+        ]
+
+        let spent = calculator.monthSpending(expenses: expenses, in: now, asOf: now)
+        XCTAssertEqual(spent, 350, "A subscription due on the 25th is not spent on the 15th")
+    }
+
+    func testTheSameMonthCanBeAskedAboutFromALaterVantagePoint() {
+        let expenses = [
+            expense(amount: 100, on: "2026-06-01"),
+            expense(amount: 900, on: "2026-06-25")
+        ]
+
+        let endOfMonth = Self.date("2026-06-30")
+        XCTAssertEqual(calculator.monthSpending(expenses: expenses, in: now, asOf: endOfMonth), 1000)
+    }
+
+    func testAskingAboutAPastMonthCountsAllOfIt() {
+        let expenses = [
+            expense(amount: 400, on: "2026-05-03"),
+            expense(amount: 600, on: "2026-05-28")
+        ]
+
+        let may = Self.date("2026-05-15")
+        XCTAssertEqual(calculator.monthSpending(expenses: expenses, in: may, asOf: now), 1000)
     }
 
     // MARK: - Remaining
@@ -221,7 +254,7 @@ final class OverviewCalculatorTests: XCTestCase {
 
 // MARK: - Fixtures
 
-private extension OverviewCalculatorTests {
+private extension SpendingCalculatorTests {
 
     func expense(
         amount: Double,
@@ -232,7 +265,7 @@ private extension OverviewCalculatorTests {
     ) -> Expense {
         return expense(
             amount: amount,
-            on: OverviewCalculatorTests.date(dateString),
+            on: SpendingCalculatorTests.date(dateString),
             currency: currency,
             exchangeRate: exchangeRate,
             recurrence: recurrence
@@ -277,5 +310,5 @@ private extension OverviewCalculatorTests {
 }
 
 private func date(_ string: String) -> Date {
-    return OverviewCalculatorTests.date(string)
+    return SpendingCalculatorTests.date(string)
 }

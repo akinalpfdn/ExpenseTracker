@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		AA0000012E49C6CB00DBCB51 /* BackupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000022E49C6CB00DBCB51 /* BackupTests.swift */; };
 		AA0000032E49C6CB00DBCB51 /* LocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000042E49C6CB00DBCB51 /* LocalizationTests.swift */; };
-		AA0000052E49C6CB00DBCB51 /* OverviewCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000062E49C6CB00DBCB51 /* OverviewCalculatorTests.swift */; };
+		AA0000052E49C6CB00DBCB51 /* SpendingCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000062E49C6CB00DBCB51 /* SpendingCalculatorTests.swift */; };
 		AA0000072E49C6CB00DBCB51 /* AddExpenseUXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000082E49C6CB00DBCB51 /* AddExpenseUXTests.swift */; };
 		F410BB152EBBEA3C00B63464 /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F410BB142EBBEA3C00B63464 /* Products.storekit */; };
 		AA00000B2E49C6CB00DBCB51 /* ReminderPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000C2E49C6CB00DBCB51 /* ReminderPlanner.swift */; };
@@ -45,7 +45,7 @@
 /* Begin PBXFileReference section */
 		AA0000022E49C6CB00DBCB51 /* BackupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupTests.swift; sourceTree = "<group>"; };
 		AA0000042E49C6CB00DBCB51 /* LocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTests.swift; sourceTree = "<group>"; };
-		AA0000062E49C6CB00DBCB51 /* OverviewCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewCalculatorTests.swift; sourceTree = "<group>"; };
+		AA0000062E49C6CB00DBCB51 /* SpendingCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingCalculatorTests.swift; sourceTree = "<group>"; };
 		AA0000082E49C6CB00DBCB51 /* AddExpenseUXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseUXTests.swift; sourceTree = "<group>"; };
 		F410BB142EBBEA3C00B63464 /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
 		AA00000C2E49C6CB00DBCB51 /* ReminderPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderPlanner.swift; sourceTree = "<group>"; };
@@ -187,7 +187,7 @@
 			children = (
 				AA0000022E49C6CB00DBCB51 /* BackupTests.swift */,
 				AA0000042E49C6CB00DBCB51 /* LocalizationTests.swift */,
-				AA0000062E49C6CB00DBCB51 /* OverviewCalculatorTests.swift */,
+				AA0000062E49C6CB00DBCB51 /* SpendingCalculatorTests.swift */,
 				AA0000082E49C6CB00DBCB51 /* AddExpenseUXTests.swift */,
 				AA00000A2E49C6CB00DBCB51 /* ReminderPlannerTests.swift */,
 				F4FE0A822E49C6CB00DBCB51 /* ExpenseTrackerTests.swift */,
@@ -368,7 +368,7 @@
 			files = (
 				AA0000012E49C6CB00DBCB51 /* BackupTests.swift in Sources */,
 				AA0000032E49C6CB00DBCB51 /* LocalizationTests.swift in Sources */,
-				AA0000052E49C6CB00DBCB51 /* OverviewCalculatorTests.swift in Sources */,
+				AA0000052E49C6CB00DBCB51 /* SpendingCalculatorTests.swift in Sources */,
 				AA0000072E49C6CB00DBCB51 /* AddExpenseUXTests.swift in Sources */,
 				AA0000092E49C6CB00DBCB51 /* ReminderPlannerTests.swift in Sources */,
 				F4FE0A832E49C6CB00DBCB51 /* ExpenseTrackerTests.swift in Sources */,
