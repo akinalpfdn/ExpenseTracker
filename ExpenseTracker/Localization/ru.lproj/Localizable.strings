@@ -1,0 +1,485 @@
+/*
+   Localizable.strings (Russian)
+   ExpenseTracker
+
+   Ported from the Android values-ru resources, with the iOS-only strings translated to match
+*/
+
+// MARK: - General
+"app_name" = "Учёт Расходов";
+"general_settings" = "Общие Настройки";
+"categories" = "Категории";
+"default_currency" = "Валюта по Умолчанию";
+"currency_description" = "Валюта по умолчанию для новых расходов";
+"daily_spending_limit" = "Дневной Лимит Расходов";
+"enter_daily_limit" = "Введите дневной лимит";
+"daily_limit_description" = "Ваш дневной лимит расходов. Лимит не применяется, если оставить пустым";
+"monthly_spending_limit" = "Месячный Лимит Расходов";
+"enter_monthly_limit" = "Введите месячный лимит";
+"monthly_limit_description" = "Ваш общий месячный лимит расходов. Кольцо прогресса отображается на основе этого значения";
+"theme" = "Тема";
+"dark_theme" = "Тёмная Тема";
+"light_theme" = "Светлая Тема";
+"theme_description" = "Измените внешний вид приложения, сохраните для подтверждения.";
+"cancel" = "Отмена";
+"save" = "Сохранить";
+"close" = "Закрыть";
+
+// MARK: - RecurringExpensesScreen
+"recurring_expenses" = "Повторяющиеся Расходы";
+"sort" = "Сортировать";
+"search" = "Поиск";
+"back" = "Назад";
+"amount_high_to_low" = "Сумма: По Убыванию";
+"amount_low_to_high" = "Сумма: По Возрастанию";
+"description_a_to_z" = "Описание: А-Я";
+"description_z_to_a" = "Описание: Я-А";
+"category_a_to_z" = "Категория: А-Я";
+"category_z_to_a" = "Категория: Я-А";
+"end_date_recurring" = "Конец: %@";
+"search_placeholder" = "Поиск по описанию, сумме или категории...";
+"no_search_results" = "Результаты поиска не найдены";
+"search_no_results_description" = "Не найдено результатов для \"%@\". Попробуйте другой поисковый запрос.";
+"no_recurring_expenses" = "Пока нет повторяющихся расходов";
+"recurring_expenses_hint" = "Нажмите кнопку + для добавления повторяющихся расходов";
+"results_found" = "Найдено %d результатов";
+"daily" = "Ежедневно";
+"weekdays" = "Рабочие дни";
+"weekly" = "Еженедельно";
+"monthly" = "Ежемесячно";
+"exchange_rate" = "Обменный Курс: %@";
+"delete" = "Удалить";
+"amount" = "Сумма";
+"description" = "Описание";
+"exchange_rate_field" = "Обменный Курс";
+"select_date" = "Выбрать Дату";
+"delete_recurring_expense" = "Удалить Повторяющийся Расход";
+"delete_recurring_confirmation" = "Вы уверены, что хотите удалить этот повторяющийся расход с сегодняшнего дня? Это действие нельзя отменить.";
+"ok" = "OK";
+"remaining_amount_recurring" = "Оставшаяся сумма: %@";
+"total_amount_recurring" = "Общая сумма: %@";
+
+// MARK: - PlanningScreen
+"financial_planning" = "Финансовое Планирование";
+"planning_description" = "Создавайте и отслеживайте ваши будущие планы";
+"no_plans_yet" = "Пока нет планов";
+"create_first_plan" = "Нажмите кнопку + для создания вашего первого финансового плана";
+"add_plan" = "Добавить План";
+"delete_plan" = "Удалить План";
+"delete_plan_confirmation" = "Вы уверены, что хотите удалить план \"%@\"? Это действие нельзя отменить.";
+
+// MARK: - ExpensesScreen
+"results_count" = "%d результатов";
+"search_expenses_placeholder" = "Поиск по описанию, сумме или категории...";
+"monthly_limit_exceeded" = "⚠️ Вы превысили ваш месячный лимит расходов!";
+"time_newest_first" = "Дата: Сначала Новые";
+"time_oldest_first" = "Дата: Сначала Старые";
+
+// MARK: - AnalysisScreen
+"current_period_total" = "Общие Расходы Текущего Периода";
+"vs_previous_month" = "По сравнению с предыдущим месяцем";
+"vs_6_month_average" = "По сравнению со средним за 6 месяцев";
+"no_expenses_this_period" = "Пока нет расходов в этом периоде";
+"analysis_will_appear" = "Анализ появится здесь, когда вы добавите расходы";
+"previous_month" = "Предыдущий месяц";
+"next_month" = "Следующий месяц";
+"select_date_range" = "Выбрать диапазон дат";
+"fixed_expenses" = "Постоянные Расходы";
+"recurring_expenses_description" = "Расходы, которые будут продолжаться 3+ месяца";
+"recurring_expenses_cd" = "Повторяющиеся расходы";
+"pick_date_range" = "Выбрать диапазон дат";
+
+// MARK: - AddExpenseScreen
+"enter_expense_details" = "Введите детали расхода";
+"expense_amount_placeholder" = "0,00";
+"search_placeholder_category" = "поиск...";
+"description_optional" = "Описание (Необязательно)";
+"add_description_placeholder" = "Добавить описание...";
+"recurrence_type" = "Тип Повторения";
+"end_date" = "Дата Окончания";
+"exchange_rate_label" = "Обменный Курс (1 %@ = ? %@)";
+"exchange_rate_example" = "напр: 0,035 (1 %@ = 0,035 %@)";
+"exchange_rate_note" = "Этот курс будет использоваться для расчёта прогресса";
+"add_expense" = "Добавить Расход";
+"update_expense" = "Обновить Расход";
+"none" = "Нет";
+"one_time" = "Один раз";
+"every_day" = "Каждый день";
+"weekdays_only" = "Только рабочие дни";
+"once_per_week" = "Раз в неделю";
+"once_per_month" = "Раз в месяц";
+"edit_expense" = "Редактировать Расход";
+"new_expense" = "Новый Расход";
+"selectCategory" = "Выбор категории";
+"single_time" = "Один раз";
+"okay" = "Хорошо";
+
+// MARK: - SubCategoryDetailBottomSheet
+"parent_category" = "Родительская Категория";
+"total_amount" = "Общая Сумма";
+"expense_count" = "Количество Расходов";
+"average" = "Среднее";
+"expenses" = "Расходы";
+"recurring_label" = "Повторяющийся";
+
+// MARK: - ProgressRingComponent
+"monthly_label" = "Месячный";
+"daily_label" = "Дневной";
+
+// MARK: - PlanDetailBottomSheet
+"update_expense_data" = "Обновить Данные Расходов";
+"update_expense_data_description" = "Пересчитывает текущие и будущие месяцы с обновлёнными данными";
+"total_net_value" = "Общая Чистая Стоимость";
+"month" = "Месяц";
+"income" = "Доходы";
+"expense" = "Расход";
+"net" = "Чистый";
+"total" = "Итого";
+
+// MARK: - PlanCard
+"avg_monthly_income" = "Средн. Месячный Доход";
+"avg_monthly_expense" = "Средн. Месячные Расходы";
+"current_net" = "Текущий Чистый";
+"target_net" = "Целевой Чистый";
+
+// MARK: - MonthlyLineChart
+"all" = "Все";
+"one_time_expense" = "Разовый Расход";
+"period_expense_trend" = "Тренд Расходов Периода";
+"expand" = "Развернуть";
+"collapse" = "Свернуть";
+"no_data_found" = "Данные не найдены";
+"highest" = "Наивысший";
+
+// MARK: - MonthlyExpensesView
+"no_expenses_this_month" = "Нет расходов в этом месяце";
+"add_expense_for_month" = "Нажмите кнопку + на главном экране для добавления расходов за этот месяц";
+
+// MARK: - MonthlyCalendarView - Day headers
+"monday_short" = "П";
+"tuesday_short" = "В";
+"wednesday_short" = "С";
+"thursday_short" = "Ч";
+"friday_short" = "П";
+"saturday_short" = "С";
+"sunday_short" = "В";
+
+// MARK: - MonthlyAnalysisPieChart
+"category_distribution" = "Распределение по Категориям";
+"tap_chart_to_select_category" = "Нажмите на график для выбора категории";
+
+// MARK: - ExpenseRowView
+"unknown" = "Неизвестно";
+"delete_expense" = "Удалить Расход";
+"delete_expense_confirmation" = "Вы уверены, что хотите удалить этот расход? Это действие нельзя отменить.";
+
+// MARK: - DailyCategoryDetailBottomSheet
+"amount_high_to_low_arrow" = "Сумма (Высокая → Низкая)";
+"amount_low_to_high_arrow" = "Сумма (Низкая → Высокая)";
+"time_newest_first_arrow" = "Время (Новое → Старое)";
+"time_oldest_first_arrow" = "Время (Старое → Новое)";
+"description_a_to_z_arrow" = "Описание (А → Я)";
+"description_z_to_a_arrow" = "Описание (Я → А)";
+"total_spending" = "Общие Расходы";
+"no_expenses_in_category" = "Расходы в этой категории не найдены";
+"expense_singular" = "Расход";
+
+// MARK: - CreatePlanDialog
+"create_new_plan" = "Создать Новый План";
+"plan_name" = "Название Плана";
+"plan_name_example" = "напр: План Сбережений 2024";
+"plan_duration" = "Продолжительность Плана";
+"apply_interest_to_savings" = "Применить Проценты (к Сбережениям)";
+"simple_interest" = "Простые Проценты";
+"compound_interest" = "Сложные Проценты";
+"annual_interest_rate" = "Годовая процентная ставка %";
+"interest_applied_to_positive_savings" = "Проценты применяются к положительным сбережениям";
+"interest_type" = "Тип Процентов";
+"monthly_income_currency" = "Месячный Доход (%@)";
+"use_app_expense_data" = "Использовать данные расходов приложения";
+"monthly_expenses_currency" = "Месячные Расходы (%@)";
+"manual_monthly_expense_amount" = "Ручная сумма месячных расходов";
+"enter_manual_expense_amount" = "Введите ручную сумму расходов";
+"apply_inflation" = "Применить Инфляцию";
+"annual_percentage_rate" = "Годовая ставка %";
+"create" = "Создать";
+
+// MARK: - CategorySummarySection
+"category_details" = "Детали Категории";
+"main_categories" = "Категории";
+"sub_categories" = "Подкategории";
+"expense_lowercase" = "расход";
+"see_details" = "Посмотреть детали";
+
+// MARK: - CategoryPopupLines
+"vs_previous_month_colon" = "По сравнению с предыдущим месяцем:";
+"vs_average_colon" = "По сравнению со средним:";
+
+// MARK: - CategoryManagementScreen
+"add_new_main_category" = "Добавить Новую Основную Категорию";
+"add_main_category_content_desc" = "Добавить Основную Категорию";
+"category_name_hint" = "Введите название категории";
+"unique_category_name_note" = "Выберите уникальное название для категории";
+"icon_selection" = "Выбор Иконки";
+"color_selection" = "Выбор Цвета";
+"add_button" = "Добавить";
+"main_category" = "Основная Категория";
+"select_category" = "Выбрать категорию";
+"subcategory_name" = "Название Подкategории";
+"subcategory_name_hint" = "Введите название подкategории";
+"unique_subcategory_name_note" = "Выберите уникальное название для подкategории";
+"edit_subcategory" = "Редактировать Подкategорию";
+"edit_category" = "Редактировать Категорию";
+"edit" = "Редактировать";
+"enter_name_hint" = "Введите название";
+"delete_confirmation" = "Подтверждение Удаления";
+"delete_item_confirmation" = "Вы уверены, что хотите удалить \"%@\"? Это действие нельзя отменить.";
+"this_item" = "Этот элемент";
+"collapse_desc" = "Свернуть";
+"expand_desc" = "Развернуть";
+"edit_category_desc" = "Редактировать Категорию";
+"delete_category_desc" = "Удалить Категорию";
+"add_subcategory" = "Добавить Подкategорию";
+"add_subcategory_desc" = "Добавить Подкategорию";
+"edit_subcategory_desc" = "Редактировать Подкategорию";
+"delete_subcategory_desc" = "Удалить Подкategорию";
+"selected" = "Выбран";
+
+// MARK: - CategoryDistributionChart
+"no_data" = "Нет данных";
+"category" = "Категория";
+
+// MARK: - CategoryDetailBottomSheet
+"sort_amount_desc" = "По Сумме (Высокая → Низкая)";
+"sort_amount_asc" = "По Сумме (Низкая → Высокая)";
+"sort_date_desc" = "По Дате (Новая → Старая)";
+"sort_date_asc" = "По Дате (Старая → Новая)";
+"sort_name_asc" = "По Описанию (А → Я)";
+"sort_name_desc" = "По Описанию (Я → А)";
+
+// MARK: - SubCategory - Default subcategories
+// Food & Drink
+"subcategory_restaurant" = "Ресторан";
+"subcategory_kitchen_shopping" = "Продукты для кухни";
+
+// Housing
+"subcategory_rent" = "Аренда";
+"subcategory_dues" = "Коммунальные услуги";
+"subcategory_mortgage" = "Платёж по ипотеке";
+"subcategory_electricity" = "Счёт за электричество";
+"subcategory_water" = "Счёт за воду";
+"subcategory_heating" = "Отопление";
+"subcategory_internet_phone" = "Интернет и телефон";
+"subcategory_other_bills" = "Другие Счета";
+"subcategory_general_shopping" = "Общие покупки продуктов";
+
+// Transportation
+"subcategory_fuel" = "Топливо";
+"subcategory_public_transport" = "Общественный транспорт";
+"subcategory_car_maintenance" = "Обслуживание автомобиля";
+"subcategory_car_rental" = "Аренда автомобиля";
+"subcategory_taxi_uber" = "Такси/Убер";
+"subcategory_car_insurance" = "Страхование автомобиля";
+"subcategory_mtv" = "Транспортный налог";
+"subcategory_parking_fees" = "Плата за парковку";
+
+// Health
+"subcategory_doctor_appointment" = "Визит к врачу";
+"subcategory_medicines" = "Лекарства";
+"subcategory_gym_membership" = "Абонемент в спортзал";
+"subcategory_cosmetics" = "Косметика";
+
+// Entertainment
+"subcategory_cinema_theater" = "Кино и театр";
+"subcategory_concerts_events" = "Концерты и мероприятия";
+"subcategory_subscriptions" = "Подписки";
+"subcategory_books_magazines" = "Книги и журналы";
+"subcategory_travel_vacation" = "Путешествия и отпуск";
+"subcategory_games_apps" = "Игры и приложения";
+
+// Education
+"subcategory_course_fees" = "Плата за курсы";
+"subcategory_education_materials" = "Образовательные материалы";
+"subcategory_seminars" = "Семинары";
+"subcategory_online_courses" = "Онлайн курсы";
+
+// Shopping
+"subcategory_electronics" = "Электроника";
+"subcategory_clothing" = "Одежда";
+"subcategory_home_goods" = "Товары для дома";
+"subcategory_gifts" = "Подарки";
+"subcategory_perfume" = "Парфюм";
+
+// Pets
+"subcategory_pet_food_toys" = "Корм и игрушки";
+"subcategory_vet_services" = "Ветеринарные услуги";
+"subcategory_pet_insurance" = "Страхование питомцев";
+
+// Work
+"subcategory_work_meals" = "Рабочие обеды";
+"subcategory_office_supplies" = "Офисные принадлежности";
+"subcategory_business_travel" = "Командировки";
+"subcategory_work_education" = "Обучение и семинары";
+"subcategory_freelance_payments" = "Платежи за фриланс";
+
+// Tax
+"subcategory_tax_payments" = "Налоговые платежи";
+
+// Others
+"subcategory_other_expenses" = "Другие Расходы";
+
+// MARK: - ExpensesScreen - Empty state messages
+"no_search_results_found" = "Результаты поиска не найдены";
+"no_expenses_yet" = "Пока нет расходов";
+"no_expenses_today" = "Сегодня нет расходов";
+"no_search_results_description" = "Не найдено результатов для \"%@\". Попробуйте другой поисковый запрос.";
+"first_expense_hint" = "Нажмите кнопку + для добавления вашего первого расхода";
+"add_expense_for_day_hint" = "Нажмите кнопку + для добавления расходов на этот день";
+"calendar_tab" = "Календарь";
+"expenses_tab" = "Расходы";
+
+// MARK: - PlanningUtils - Plan status and validation
+"plan_status_not_started" = "Не начат";
+"plan_status_completed" = "Завершён";
+"plan_status_active" = "Активен";
+"validation_plan_name_empty" = "Название плана не может быть пустым";
+"validation_monthly_income_positive" = "Месячный доход должен быть больше 0";
+"validation_duration_positive" = "Продолжительность плана должна быть больше 0";
+"validation_duration_max_10_years" = "Продолжительность плана не может быть более 10 лет";
+"validation_inflation_rate_range" = "Уровень инфляции должен быть между -50%% и 100%%";
+"duration_3_months" = "3 Месяца";
+"duration_6_months" = "6 Месяцев";
+"duration_1_year" = "1 Год";
+"duration_1_5_years" = "1,5 Года";
+"duration_2_years" = "2 Года";
+"duration_3_years" = "3 Года";
+"duration_5_years" = "5 Лет";
+
+// MARK: - PlanningViewModel - Error messages
+"error_loading_plan" = "Ошибка загрузки плана: %@";
+"error_creating_plan" = "Ошибка создания плана: %@";
+"error_deleting_plan" = "Ошибка удаления плана: %@";
+"error_updating_expense_data" = "Ошибка обновления данных расходов: %@";
+"error_updating_plan_calculations" = "Ошибка обновления расчётов плана: %@";
+"error_saving_changes" = "Ошибка сохранения изменений: %@";
+
+// MARK: - Category - Default categories
+"category_food" = "Еда и Напитки";
+"category_housing" = "Жильё";
+"category_transportation" = "Транспорт";
+"category_health" = "Здоровье и Личная Гигиена";
+"category_entertainment" = "Развлечения и Хобби";
+"category_education" = "Образование";
+"category_shopping" = "Покупки";
+"category_pets" = "Домашние Животные";
+"category_work" = "Работа и Профессиональные Расходы";
+"category_tax" = "Налоги и Юридические Расходы";
+"category_donations" = "Пожертвования и Помощь";
+"category_others" = "Другие Платежи";
+
+// MARK: - Welcome Screen
+"welcome_skip" = "Пропустить";
+"welcome_next" = "Далее";
+"welcome_get_started" = "Начать";
+"welcome_page1_title" = "Добро пожаловать в Трекер расходов";
+"welcome_page1_description" = "Легко отслеживайте свои ежедневные расходы и контролируйте финансы. Просто, быстро и полностью конфиденциально.";
+"welcome_page2_title" = "Умная аналитика";
+"welcome_page2_description" = "Визуализируйте свои траты с помощью красивых диаграмм. Смотрите, куда уходят ваши деньги, с разбивкой по категориям и месячным трендам.";
+"welcome_page3_title" = "Ваша конфиденциальность важна";
+"welcome_page3_description" = "Все ваши данные остаются на вашем устройстве. Нет облачного хранения, нет отслеживания, нет рекламы. Ваша финансовая информация полностью конфиденциальна.";
+
+// MARK: - Purchase/Donation Screen
+"no_add_text" = "Я не хочу забрасывать вас глупой рекламой,
+    и я хочу, чтобы у вас был доступ ко всем функциям без необходимости премиум-версии.
+    Но мне нужен доход, чтобы продолжать разработку. Если вам нравится мое приложение и вы хотите меня поддержать,
+    можете оставить на чашку чая (Цены здесь не подвержены инфляции) :).";
+"buy_water" = "Оставить на воду";
+"buy_bagel" = "Оставить на бублик";
+"buy_tea" = "Оставить на чай";
+"buy_coffee" = "Оставить на кофе";
+"buy_wrap" = "Оставить на ролл";
+"buy_burger" = "Оставить на бургер";
+"buy_doner" = "Оставить на донер";
+"max_donation" = "Удивите меня";
+"water_price" = "0.5 USD";
+"tea_price" = "0.24 USD";
+"bagel_price" = "0.60 USD";
+"coffee_price" = "1.20 USD";
+"wrap_price" = "2.40 USD";
+"burger_price" = "6 USD";
+"doner_price" = "9.60 USD";
+"max_price" = "12 USD";
+
+// MARK: - Purchase States
+"purchase_loading" = "⏳ Начинается процесс покупки…";
+"purchase_success" = "🎉 Спасибо за вашу поддержку!";
+"purchase_error" = "Ошибка: %@";
+"purchase_cancelled" = "Покупка отменена";
+
+// MARK: - Tutorial
+"tutorial_add_expense_title" = "Добавить расход";
+"tutorial_add_expense_message" = "Нажмите здесь, чтобы добавить расходы";
+"tutorial_recurring_expenses_title" = "Регулярные расходы";
+"tutorial_recurring_expenses_message" = "Просмотр и редактирование регулярных расходов";
+"tutorial_calendar_title" = "Месячный прогресс";
+"tutorial_calendar_message" = "Следите за своими ежемесячными тратами. Нажмите на центральный круг, чтобы увидеть месячный календарь и историю трат. Проведите пальцем влево, чтобы увидеть ежедневный прогресс и диаграммы категорий";
+"tutorial_daily_history_title" = "Дневная история";
+"tutorial_daily_history_message" = "Доступ к вашей ежедневной истории трат";
+"tutorial_settings_title" = "Настройки";
+"tutorial_settings_message" = "Настройте валюту, лимиты трат, тему, категории и управляйте резервным копированием данных";
+"tutorial_secret_title" = "Поддержка";
+"tutorial_secret_message" = "СОВЕРШЕННО СЕКРЕТНАЯ ЗОНА";
+"tutorial_expense_list_title" = "Ваши расходы";
+"tutorial_expense_list_message" = "Ваши расходы перечислены здесь. Проведите пальцем влево на главном экране, чтобы увидеть аналитику и графики расходов. Проведите пальцем влево еще раз, чтобы получить доступ к экрану финансового планирования";
+"tutorial_skip" = "Пропустить";
+"tutorial_next" = "Далее";
+"tutorial_finish" = "Готово";
+"tutorial_tap_to_continue" = "Нажмите, чтобы продолжить";
+"loading_products" = "Загрузка товаров...";
+
+
+// MARK: - Rate Me Dialog
+"rate_app_title" = "Оцените нас";
+"rate_app_description" = "Если вам нравится наше приложение, пожалуйста, оцените его в App Store. Ваш отзыв очень важен для нас!";
+"rate_app_button" = "Оценить приложение";
+"remind_later_button" = "Напомнить позже";
+"never_ask_button" = "Больше не спрашивать";
+
+/* Backup & Restore */
+"backup_restore" = "Резервная копия и восстановление";
+"backup_restore_description" = "Сохраните все свои данные в файл или восстановите их из предыдущей резервной копии.";
+"export_data" = "Экспорт данных";
+"import_data" = "Импорт данных";
+"share" = "Поделиться";
+"save_to_files" = "Сохранить в Файлы";
+"choose_export_destination" = "Куда отправить файл резервной копии?";
+"import_confirm_title" = "Восстановить из резервной копии?";
+"import_confirm_button" = "Восстановить";
+"import_confirm_message" = "Все текущие данные будут удалены и заменены содержимым этого файла. Отменить это действие нельзя.";
+"import_success_title" = "Восстановление завершено";
+"import_error_invalid_file" = "Этот файл не является корректной резервной копией.";
+"import_error_newer_version" = "Эта резервная копия создана более новой версией приложения. Сначала обновите приложение.";
+"import_error_corrupt_data" = "Файл резервной копии повреждён и не может быть прочитан.";
+"import_error_file_access" = "Не удалось открыть файл. Попробуйте выбрать его ещё раз.";
+
+/* Date Range Picker */
+"start_date" = "Дата начала";
+"select_start_date" = "Выберите дату начала";
+"select_end_date" = "Выберите дату окончания";
+"quick_select" = "Быстрый выбор";
+"today" = "Сегодня";
+"yesterday" = "Вчера";
+"this_week" = "Эта неделя";
+"last_week" = "Прошлая неделя";
+"this_month" = "Этот месяц";
+"last_month" = "Прошлый месяц";
+"apply" = "Применить";
+"clear" = "Очистить";
+"done" = "Готово";
+
+/* Shared Labels */
+"calendar" = "Календарь";
+"currency" = "Валюта";
+"recurrence" = "Повторение";
+"optional" = "Необязательно";
+"no_description" = "Без описания";

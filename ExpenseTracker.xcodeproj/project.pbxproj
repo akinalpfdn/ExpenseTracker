@@ -293,6 +293,7 @@
 				pl,
 				es,
 				"pt-PT",
+				ru,
 			);
 			mainGroup = F4FE0A642E49C6CA00DBCB51;
 			productRefGroup = F4FE0A6E2E49C6CA00DBCB51 /* Products */;

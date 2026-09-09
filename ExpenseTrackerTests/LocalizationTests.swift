@@ -60,7 +60,7 @@ final class LocalizationTests: XCTestCase {
     /// Every language ships the same key set. A key present in English but absent in,
     /// say, Polish falls back to English rather than failing, so this is easy to miss.
     func testAllLanguagesDefineTheSameKeys() throws {
-        let languages = ["en", "tr", "de", "es", "fr", "it", "pl", "pt-PT"]
+        let languages = ["en", "tr", "de", "es", "fr", "it", "pl", "pt-PT", "ru"]
 
         var keysByLanguage: [String: Set<String>] = [:]
 
