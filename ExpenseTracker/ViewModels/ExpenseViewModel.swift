@@ -24,6 +24,13 @@ class ExpenseViewModel: ObservableObject {
     @Published var categories: [Category] = []
     @Published var subCategories: [SubCategory] = []
 
+    /// How often each category has been chosen recently, for ordering the picker.
+    ///
+    /// Held here rather than computed where it is read: it walks every expense, and a
+    /// computed property on the add-expense form rebuilt it on every redraw. It only
+    /// changes when the expense set does.
+    @Published private(set) var categoryUsage = CategoryUsageRanking(expenses: [])
+
     // Settings from PreferencesManager
     @Published var defaultCurrency = "₺"
     @Published var dailyLimit = ""
@@ -183,6 +190,7 @@ class ExpenseViewModel: ObservableObject {
     private func loadExpenses() async {
         do {
             expenses = try await expenseRepository.getAllExpenses()
+            categoryUsage = CategoryUsageRanking(expenses: expenses)
         } catch {
             print("Error loading expenses: \(error)")
         }

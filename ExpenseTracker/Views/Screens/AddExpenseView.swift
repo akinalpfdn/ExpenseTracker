@@ -120,8 +120,9 @@ struct AddExpenseView: View {
 
 extension AddExpenseView {
 
+    /// Built once per expense-set change on the view model, not per redraw.
     private var usageRanking: CategoryUsageRanking {
-        CategoryUsageRanking(expenses: viewModel.expenses)
+        viewModel.categoryUsage
     }
 
     /// Most-used first so the categories someone actually lives in are at the top,
