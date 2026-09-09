@@ -456,3 +456,25 @@
 "import_error_newer_version" = "Ta kopia zapasowa została utworzona w nowszej wersji aplikacji. Najpierw zaktualizuj aplikację.";
 "import_error_corrupt_data" = "Plik kopii zapasowej jest uszkodzony i nie można go odczytać.";
 "import_error_file_access" = "Nie udało się otworzyć pliku. Spróbuj wybrać go ponownie.";
+
+/* Wybór zakresu dat */
+"start_date" = "Data początkowa";
+"select_start_date" = "Wybierz datę początkową";
+"select_end_date" = "Wybierz datę końcową";
+"quick_select" = "Szybki wybór";
+"today" = "Dzisiaj";
+"yesterday" = "Wczoraj";
+"this_week" = "Ten tydzień";
+"last_week" = "Zeszły tydzień";
+"this_month" = "Ten miesiąc";
+"last_month" = "Zeszły miesiąc";
+"apply" = "Zastosuj";
+"clear" = "Wyczyść";
+"done" = "Gotowe";
+
+/* Wspólne etykiety */
+"calendar" = "Kalendarz";
+"currency" = "Waluta";
+"recurrence" = "Powtarzanie";
+"optional" = "Opcjonalnie";
+"no_description" = "Brak opisu";

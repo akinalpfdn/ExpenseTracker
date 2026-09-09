@@ -457,3 +457,25 @@
 "import_error_newer_version" = "Esta copia de seguridad se creó con una versión más reciente de la app. Actualiza la app primero.";
 "import_error_corrupt_data" = "El archivo de copia de seguridad está dañado y no se pudo leer.";
 "import_error_file_access" = "No se pudo abrir el archivo. Intenta seleccionarlo de nuevo.";
+
+/* Selector de intervalo de fechas */
+"start_date" = "Fecha de inicio";
+"select_start_date" = "Selecciona la fecha de inicio";
+"select_end_date" = "Selecciona la fecha de fin";
+"quick_select" = "Selección rápida";
+"today" = "Hoy";
+"yesterday" = "Ayer";
+"this_week" = "Esta semana";
+"last_week" = "Semana pasada";
+"this_month" = "Este mes";
+"last_month" = "Mes pasado";
+"apply" = "Aplicar";
+"clear" = "Borrar";
+"done" = "Listo";
+
+/* Etiquetas comunes */
+"calendar" = "Calendario";
+"currency" = "Moneda";
+"recurrence" = "Recurrencia";
+"optional" = "Opcional";
+"no_description" = "Sin descripción";

@@ -457,3 +457,25 @@
 "import_error_newer_version" = "Cette sauvegarde a été créée avec une version plus récente de l'app. Mets d'abord l'app à jour.";
 "import_error_corrupt_data" = "Le fichier de sauvegarde est endommagé et n'a pas pu être lu.";
 "import_error_file_access" = "Impossible d'ouvrir le fichier. Essaie de le sélectionner à nouveau.";
+
+/* Sélecteur de période */
+"start_date" = "Date de début";
+"select_start_date" = "Choisir la date de début";
+"select_end_date" = "Choisir la date de fin";
+"quick_select" = "Sélection rapide";
+"today" = "Aujourd'hui";
+"yesterday" = "Hier";
+"this_week" = "Cette semaine";
+"last_week" = "Semaine dernière";
+"this_month" = "Ce mois-ci";
+"last_month" = "Mois dernier";
+"apply" = "Appliquer";
+"clear" = "Effacer";
+"done" = "OK";
+
+/* Libellés communs */
+"calendar" = "Calendrier";
+"currency" = "Devise";
+"recurrence" = "Récurrence";
+"optional" = "Facultatif";
+"no_description" = "Aucune description";

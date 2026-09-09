@@ -458,3 +458,25 @@
 "import_error_newer_version" = "This backup was created by a newer version of the app. Please update the app first.";
 "import_error_corrupt_data" = "The backup file is damaged and could not be read.";
 "import_error_file_access" = "The file could not be opened. Please try selecting it again.";
+
+/* Date Range Picker */
+"start_date" = "Start Date";
+"select_start_date" = "Select start date";
+"select_end_date" = "Select end date";
+"quick_select" = "Quick Select";
+"today" = "Today";
+"yesterday" = "Yesterday";
+"this_week" = "This Week";
+"last_week" = "Last Week";
+"this_month" = "This Month";
+"last_month" = "Last Month";
+"apply" = "Apply";
+"clear" = "Clear";
+"done" = "Done";
+
+/* Shared Labels */
+"calendar" = "Calendar";
+"currency" = "Currency";
+"recurrence" = "Recurrence";
+"optional" = "Optional";
+"no_description" = "No description";

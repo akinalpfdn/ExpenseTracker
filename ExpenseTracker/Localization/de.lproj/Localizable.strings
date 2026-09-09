@@ -457,3 +457,25 @@
 "import_error_newer_version" = "Diese Sicherung wurde mit einer neueren Version der App erstellt. Bitte aktualisiere zuerst die App.";
 "import_error_corrupt_data" = "Die Sicherungsdatei ist beschädigt und konnte nicht gelesen werden.";
 "import_error_file_access" = "Die Datei konnte nicht geöffnet werden. Bitte wähle sie erneut aus.";
+
+/* Datumsbereich-Auswahl */
+"start_date" = "Startdatum";
+"select_start_date" = "Startdatum wählen";
+"select_end_date" = "Enddatum wählen";
+"quick_select" = "Schnellauswahl";
+"today" = "Heute";
+"yesterday" = "Gestern";
+"this_week" = "Diese Woche";
+"last_week" = "Letzte Woche";
+"this_month" = "Dieser Monat";
+"last_month" = "Letzter Monat";
+"apply" = "Anwenden";
+"clear" = "Löschen";
+"done" = "Fertig";
+
+/* Gemeinsame Beschriftungen */
+"calendar" = "Kalender";
+"currency" = "Währung";
+"recurrence" = "Wiederholung";
+"optional" = "Optional";
+"no_description" = "Keine Beschreibung";

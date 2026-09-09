@@ -456,3 +456,25 @@
 "import_error_newer_version" = "Questo backup è stato creato con una versione più recente dell'app. Aggiorna prima l'app.";
 "import_error_corrupt_data" = "Il file di backup è danneggiato e non può essere letto.";
 "import_error_file_access" = "Impossibile aprire il file. Prova a selezionarlo di nuovo.";
+
+/* Selettore intervallo date */
+"start_date" = "Data di inizio";
+"select_start_date" = "Seleziona la data di inizio";
+"select_end_date" = "Seleziona la data di fine";
+"quick_select" = "Selezione rapida";
+"today" = "Oggi";
+"yesterday" = "Ieri";
+"this_week" = "Questa settimana";
+"last_week" = "Settimana scorsa";
+"this_month" = "Questo mese";
+"last_month" = "Mese scorso";
+"apply" = "Applica";
+"clear" = "Cancella";
+"done" = "Fine";
+
+/* Etichette comuni */
+"calendar" = "Calendario";
+"currency" = "Valuta";
+"recurrence" = "Ricorrenza";
+"optional" = "Facoltativo";
+"no_description" = "Nessuna descrizione";

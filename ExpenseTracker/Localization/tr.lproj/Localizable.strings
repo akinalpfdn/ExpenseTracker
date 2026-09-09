@@ -459,3 +459,25 @@ Uygulamamı beğendiysen ve destek olmak istersen bir çayını içerim(Fiyatlar
 "import_error_newer_version" = "Bu yedek uygulamanın daha yeni bir sürümüyle oluşturulmuş. Lütfen önce uygulamayı güncelle.";
 "import_error_corrupt_data" = "Yedek dosyası bozuk, okunamadı.";
 "import_error_file_access" = "Dosya açılamadı. Lütfen tekrar seçmeyi dene.";
+
+/* Tarih Aralığı Seçici */
+"start_date" = "Başlangıç Tarihi";
+"select_start_date" = "Başlangıç tarihi seçin";
+"select_end_date" = "Bitiş tarihi seçin";
+"quick_select" = "Hızlı Seçim";
+"today" = "Bugün";
+"yesterday" = "Dün";
+"this_week" = "Bu Hafta";
+"last_week" = "Geçen Hafta";
+"this_month" = "Bu Ay";
+"last_month" = "Geçen Ay";
+"apply" = "Uygula";
+"clear" = "Temizle";
+"done" = "Bitti";
+
+/* Ortak Etiketler */
+"calendar" = "Takvim";
+"currency" = "Para Birimi";
+"recurrence" = "Tekrar";
+"optional" = "İsteğe bağlı";
+"no_description" = "Açıklama yok";
