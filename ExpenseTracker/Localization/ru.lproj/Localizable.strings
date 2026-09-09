@@ -567,3 +567,7 @@
 "welcome_limits_description" = "Дневной и месячный потолок. Оставьте пустым, чтобы лимита не было.";
 "welcome_changeable_later" = "Это можно изменить в любой момент в Настройках";
 "welcome_start" = "Начать";
+
+"tutorial_replay" = "Обучение";
+"tutorial_replay_button" = "Пройти заново";
+"tutorial_replay_description" = "Пройдите по приложению ещё раз с начала.";

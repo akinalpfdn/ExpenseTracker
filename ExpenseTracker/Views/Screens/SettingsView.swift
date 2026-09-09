@@ -102,6 +102,14 @@ extension SettingsView {
                 Divider()
                     .background(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
 
+                TutorialSettingsSection(
+                    isDarkTheme: isDarkTheme,
+                    onDismissSettings: onDismiss
+                )
+
+                Divider()
+                    .background(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
+
                 DataManagementSection(isDarkTheme: isDarkTheme)
 
                 Spacer().frame(height: 20)

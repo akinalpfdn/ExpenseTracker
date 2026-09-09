@@ -562,3 +562,7 @@
 "welcome_limits_description" = "Um teto diario e um mensal. Deixa em branco para nao teres limite.";
 "welcome_changeable_later" = "Podes mudar isto quando quiseres nas Definicoes";
 "welcome_start" = "Comecar";
+
+"tutorial_replay" = "Tutorial";
+"tutorial_replay_button" = "Repetir o tutorial";
+"tutorial_replay_description" = "Percorre a app outra vez desde o início.";

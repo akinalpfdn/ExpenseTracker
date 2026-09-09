@@ -562,3 +562,7 @@
 "welcome_limits_description" = "Dzienny i miesieczny pulap. Zostaw puste, aby nie miec limitu.";
 "welcome_changeable_later" = "Mozesz to zmienic w kazdej chwili w Ustawieniach";
 "welcome_start" = "Zaczynamy";
+
+"tutorial_replay" = "Samouczek";
+"tutorial_replay_button" = "Powtórz samouczek";
+"tutorial_replay_description" = "Przejdź przez aplikację jeszcze raz od początku.";

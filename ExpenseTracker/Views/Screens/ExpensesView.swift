@@ -545,6 +545,7 @@ extension ExpensesView {
         SettingsView(onDismiss: { showingSettings = false })
             .environmentObject(viewModel)
             .environmentObject(planningViewModel)
+            .environmentObject(tutorialManager)
     }
 
     private var monthlyCalendarSheet: some View {

@@ -563,3 +563,7 @@
 "welcome_limits_description" = "Eine tägliche und eine monatliche Obergrenze. Leer lassen heißt kein Limit.";
 "welcome_changeable_later" = "Du kannst das jederzeit in den Einstellungen ändern";
 "welcome_start" = "Los geht's";
+
+"tutorial_replay" = "Tutorial";
+"tutorial_replay_button" = "Tour wiederholen";
+"tutorial_replay_description" = "Gehe die App noch einmal von vorn durch.";

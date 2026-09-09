@@ -563,3 +563,7 @@
 "welcome_limits_description" = "Un plafond journalier et un mensuel. Laisse vide pour aucune limite.";
 "welcome_changeable_later" = "Tu peux changer cela à tout moment dans les Réglages";
 "welcome_start" = "Commencer";
+
+"tutorial_replay" = "Tutoriel";
+"tutorial_replay_button" = "Revoir le tutoriel";
+"tutorial_replay_description" = "Reparcours l'app depuis le début.";

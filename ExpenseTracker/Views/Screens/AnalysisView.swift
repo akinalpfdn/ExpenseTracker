@@ -11,6 +11,7 @@ import SwiftUI
 
 struct AnalysisView: View {
     @EnvironmentObject var viewModel: ExpenseViewModel
+    @EnvironmentObject var tutorialManager: TutorialManager
 
     let isDarkTheme: Bool
 
@@ -95,6 +96,7 @@ struct AnalysisView: View {
 
                 // Expense Filter Type Selection
                 expenseFilterTypeSelector
+                    .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .analysisCharts)
 
                 if !categoryAnalysisData.isEmpty {
                     // Box with gesture handling for popup dismissal (matching Kotlin)

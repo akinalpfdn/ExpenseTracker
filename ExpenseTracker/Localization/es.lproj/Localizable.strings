@@ -563,3 +563,7 @@
 "welcome_limits_description" = "Un techo diario y otro mensual. Déjalos en blanco para no tener límite.";
 "welcome_changeable_later" = "Puedes cambiarlo cuando quieras en Ajustes";
 "welcome_start" = "Empezar";
+
+"tutorial_replay" = "Tutorial";
+"tutorial_replay_button" = "Repetir el tutorial";
+"tutorial_replay_description" = "Recorre la app otra vez desde el principio.";

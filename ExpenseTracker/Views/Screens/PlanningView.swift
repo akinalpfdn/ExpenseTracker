@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PlanningView: View {
     @EnvironmentObject var planningViewModel: PlanningViewModel
+    @EnvironmentObject var tutorialManager: TutorialManager
 
     let isDarkTheme: Bool
     let defaultCurrency: String
@@ -27,6 +28,7 @@ struct PlanningView: View {
 
                 // Header
                 headerSection
+                    .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .planningPlans)
 
                 Spacer().frame(height: 24)
 

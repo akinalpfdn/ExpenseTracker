@@ -10,6 +10,7 @@ import SwiftUI
 struct OverviewView: View {
     @EnvironmentObject var expenseViewModel: ExpenseViewModel
     @EnvironmentObject var preferencesManager: PreferencesManager
+    @EnvironmentObject var tutorialManager: TutorialManager
 
     @StateObject private var viewModel: OverviewViewModel
 
@@ -71,6 +72,7 @@ private extension OverviewView {
             isDarkTheme: isDarkTheme,
             onEditIncome: { showingIncomeEditor = true }
         )
+        .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .overviewSummary)
     }
 
     var rangeSelector: some View {
@@ -155,6 +157,7 @@ private extension OverviewView {
                 }
             }
         }
+        .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .overviewForecast)
     }
 
     var cumulativeSection: some View {

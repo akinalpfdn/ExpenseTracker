@@ -565,3 +565,7 @@ Uygulamamı beğendiysen ve destek olmak istersen bir çayını içerim(Fiyatlar
 "welcome_limits_description" = "Altında kalmayı hedeflediğin günlük ve aylık tavan. Boş bırakırsan limit olmaz.";
 "welcome_changeable_later" = "Bunu istediğin zaman Ayarlar'dan değiştirebilirsin";
 "welcome_start" = "Başla";
+
+"tutorial_replay" = "Tanıtım turu";
+"tutorial_replay_button" = "Turu tekrar oynat";
+"tutorial_replay_description" = "Uygulamayı baştan bir daha gez.";
