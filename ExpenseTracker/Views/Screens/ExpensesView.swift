@@ -10,7 +10,7 @@ import SwiftUI
 struct ExpensesView: View {
     @EnvironmentObject var viewModel: ExpenseViewModel
     @EnvironmentObject var planningViewModel: PlanningViewModel
-    @StateObject private var tutorialManager: TutorialManager
+    @EnvironmentObject var tutorialManager: TutorialManager
 
     @State private var showingAddExpense = false
     @State private var showingSettings = false
@@ -25,7 +25,6 @@ struct ExpensesView: View {
     init() {
         // Initialize tutorial manager with preferences
         let preferencesManager = PreferencesManager.shared
-        _tutorialManager = StateObject(wrappedValue: TutorialManager(preferencesManager: preferencesManager))
     }
 
     // Computed property that updates based on selectedDate
@@ -125,7 +124,7 @@ struct ExpensesView: View {
                     },
                     isDarkTheme: isDarkTheme
                 )
-                .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .dailyHistory)
+                .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .progressRing)
 
                 Spacer().frame(height: 6)
 
@@ -203,23 +202,6 @@ struct ExpensesView: View {
             )
             .environmentObject(viewModel)
         }
-        .overlay {
-            // Tutorial overlay
-            TutorialOverlay(
-                tutorialState: tutorialManager.state,
-                onNext: { tutorialManager.nextStep() },
-                onSkip: { tutorialManager.skipTutorial() },
-                isDarkTheme: isDarkTheme
-            )
-        }
-        .onAppear {
-            // Start tutorial if not completed
-            if !viewModel.preferencesManager.isTutorialCompleted() {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    tutorialManager.startTutorial()
-                }
-            }
-        }
     }
 }
 
@@ -233,8 +215,8 @@ extension ExpensesView {
                 progressPercentage: getMonthlyProgressPercentage(),
                 isOverLimit: isMonthlyOverLimit(),
                 onTap: {
-                    if tutorialManager.state.isActive {
-                        tutorialManager.nextStep()
+                    if tutorialManager.isActive {
+                        tutorialManager.next()
                     }
                     showingMonthlyCalendar = true
                 },
@@ -325,8 +307,8 @@ extension ExpensesView {
 
                     // Purchase/Donation Button
                     Button(action: {
-                        if tutorialManager.state.isActive {
-                            tutorialManager.nextStep()
+                        if tutorialManager.isActive {
+                            tutorialManager.next()
                         }
                         showingPurchase = true
                     }) {
@@ -341,13 +323,13 @@ extension ExpensesView {
                                 .font(.system(size: 30))
                                 .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
                         }
-                        .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .secretArea)
+                        .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .categories)
                     }
 
                     // Settings Button
                     Button(action: {
-                        if tutorialManager.state.isActive {
-                            tutorialManager.nextStep()
+                        if tutorialManager.isActive {
+                            tutorialManager.next()
                         }
                         showingSettings = true
                     }) {
@@ -372,8 +354,8 @@ extension ExpensesView {
                 VStack(spacing: 12) {
                     // Recurring Expenses Button
                     Button(action: {
-                        if tutorialManager.state.isActive {
-                            tutorialManager.nextStep()
+                        if tutorialManager.isActive {
+                            tutorialManager.next()
                         }
                         showingRecurringExpenses = true
                     }) {
@@ -398,9 +380,9 @@ extension ExpensesView {
 
                     // Add Expense Button
                     Button(action: {
-                        if tutorialManager.state.isActive {
-                            tutorialManager.nextStep()
-                        }
+                        // Advances only when this is the step being pointed at, so a
+                        // tap here during some other step does not skip ahead.
+                        tutorialManager.completeAction(.addExpense)
                         showingAddExpense = true
                     }) {
                         ZStack {
@@ -545,6 +527,10 @@ extension ExpensesView {
                     // Add new expense
                     viewModel.addExpense(expense)
                 }
+
+                // The tour's second step waits for a real expense to exist rather than
+                // for the form to merely have been opened.
+                tutorialManager.completeAction(.fillForm)
             },
             onDismiss: {
                 showingAddExpense = false

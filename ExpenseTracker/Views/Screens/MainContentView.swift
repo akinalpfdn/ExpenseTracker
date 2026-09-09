@@ -18,6 +18,18 @@ struct MainContentView: View {
     @State private var selectedTab = 1
     @StateObject private var rateMeManager = RateMeManager()
 
+    /// Owned here rather than inside a screen, which is what lets the tour move between
+    /// tabs. It publishes the screen it needs; the binding below puts it on display.
+    @StateObject private var tutorialManager: TutorialManager
+
+    init() {
+        // The tour only reads and writes the tutorial-completed flag, which lives in
+        // UserDefaults, so it does not need to share the environment's instance.
+        _tutorialManager = StateObject(
+            wrappedValue: TutorialManager(preferencesManager: PreferencesManager())
+        )
+    }
+
     private var isDarkTheme: Bool {
         preferencesManager.isDarkTheme
     }
@@ -29,12 +41,9 @@ struct MainContentView: View {
                 if let isFirstLaunch = preferencesManager.isFirstLaunch {
                     if isFirstLaunch {
                         // First launch - show welcome screen
-                        WelcomeScreen(
-                            onFinish: {
-                                preferencesManager.completeFirstLaunch()
-                            },
-                            isDarkTheme: isDarkTheme
-                        )
+                        WelcomeScreen(onComplete: {
+                            preferencesManager.completeFirstLaunch()
+                        })
                     } else {
                         // Not first launch - show main app
                         mainAppContent
@@ -46,6 +55,8 @@ struct MainContentView: View {
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                                     rateMeManager.checkAndShowRateMe()
                                 }
+
+                                startTourIfNeeded()
                             }
                     }
                 } else {
@@ -56,6 +67,10 @@ struct MainContentView: View {
                     }
                 }
             }
+
+            // The tour sits above everything so a step can point at any tab.
+            TutorialOverlay(manager: tutorialManager, isDarkTheme: isDarkTheme)
+                .zIndex(900)
 
             // Rate Me overlay
             if rateMeManager.showRateMe {
@@ -74,6 +89,15 @@ struct MainContentView: View {
                 .transition(.opacity)
                 .zIndex(1000)
             }
+        }
+    }
+
+    /// Waits a beat so the first screen has settled before a tooltip lands on it.
+    private func startTourIfNeeded() {
+        guard !preferencesManager.isTutorialCompleted(), !tutorialManager.isActive else { return }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            tutorialManager.start()
         }
     }
 
@@ -111,6 +135,13 @@ struct MainContentView: View {
                     .tag(3)
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .environmentObject(tutorialManager)
+                .onChange(of: tutorialManager.requestedScreen) { screen in
+                    // A step declares which tab it belongs to; this is what puts that
+                    // tab on display before its tooltip appears.
+                    guard let screen = screen, selectedTab != screen.rawValue else { return }
+                    withAnimation { selectedTab = screen.rawValue }
+                }
 
                 // Custom page indicator at the bottom
                 VStack {
