@@ -163,7 +163,7 @@ final class TutorialManagerTests: XCTestCase {
         XCTAssertFalse(manager.isWaitingForUserAction)
 
         manager.next()
-        XCTAssertEqual(manager.currentStepId, .progressRing)
+        XCTAssertEqual(manager.currentStepId, .weekStrip)
     }
 
     // MARK: - Going Back
@@ -227,7 +227,7 @@ final class TutorialManagerTests: XCTestCase {
         let manager = makeManager()
         manager.start(from: .screens)
 
-        XCTAssertEqual(manager.currentStepId, .calendar)
+        XCTAssertEqual(manager.currentStepId, .monthlyRing)
         manager.previous()
 
         XCTAssertEqual(manager.currentStep?.chapter, .firstExpense)

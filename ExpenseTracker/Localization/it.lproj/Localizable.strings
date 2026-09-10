@@ -414,20 +414,10 @@
 "purchase_cancelled" = "Acquisto annullato";
 
 // MARK: - Tutorial
-"tutorial_add_expense_title" = "Aggiungi Spesa";
-"tutorial_add_expense_message" = "Tocca qui per aggiungere spese";
-"tutorial_recurring_expenses_title" = "Spese Ricorrenti";
-"tutorial_recurring_expenses_message" = "Elenca e modifica le spese ricorrenti qui";
-"tutorial_calendar_title" = "Progresso Mensile";
-"tutorial_calendar_message" = "Visualizza l'andamento delle tue spese mensili. Tocca l'anello centrale per vedere il calendario mensile e la cronologia delle spese. Scorri a sinistra per vedere i progressi giornalieri e i grafici delle categorie";
 "tutorial_daily_history_title" = "Cronologia Giornaliera";
 "tutorial_daily_history_message" = "Accedi alla cronologia delle tue spese giornaliere qui";
-"tutorial_settings_title" = "Impostazioni";
-"tutorial_settings_message" = "Personalizza valuta, limiti di spesa, tema, categorie e gestisci il backup dei tuoi dati";
 "tutorial_secret_title" = "Supporto";
 "tutorial_secret_message" = "AREA TOP SECRET";
-"tutorial_expense_list_title" = "Le tue Spese";
-"tutorial_expense_list_message" = "Le tue spese sono elencate qui. Scorri a sinistra nella schermata principale per vedere analisi e grafici delle spese. Scorri di nuovo a sinistra per accedere alla schermata di pianificazione finanziaria";
 "tutorial_skip" = "Salta";
 "tutorial_next" = "Avanti";
 "tutorial_finish" = "Fine";
@@ -524,11 +514,11 @@
 "tutorial_fill_form_title" = "Compilala";
 "tutorial_fill_form_message" = "Importo e categoria bastano. Le spese vanno nelle sottocategorie, non nelle principali.";
 "tutorial_expense_list_title" = "Eccola";
-"tutorial_expense_list_message" = "Le spese del giorno stanno qui. Scorri una riga per modificarla o eliminarla.";
-"tutorial_progress_ring_title" = "Come va la giornata";
-"tutorial_progress_ring_message" = "L'anello si riempie mentre spendi e diventa rosso oltre il limite giornaliero.";
-"tutorial_calendar_title" = "Qualsiasi giorno, qualsiasi mese";
-"tutorial_calendar_message" = "Tocca una data per vedere o aggiungere spese. Dimenticato ieri? Aggiungilo qui.";
+"tutorial_expense_list_message" = "Le spese del giorno stanno qui. Tocca per modificare, tieni premuto per eliminare.";
+"tutorial_week_strip_title" = "La tua settimana";
+"tutorial_week_strip_message" = "Ogni giorno con quanto hai speso. Tocca quello a cui vuoi passare.";
+"tutorial_monthly_ring_title" = "Il mese finora";
+"tutorial_monthly_ring_message" = "Il totale di questo mese rispetto al tuo limite. Tocca per il calendario completo.";
 "tutorial_recurring_expenses_title" = "Abbonamenti e rate";
 "tutorial_recurring_expenses_message" = "Tutto cio che si ripete si inserisce una volta. Sei rate? Scrivi 6 e la data finale si calcola da se.";
 "tutorial_overview_summary_title" = "A che punto sei";

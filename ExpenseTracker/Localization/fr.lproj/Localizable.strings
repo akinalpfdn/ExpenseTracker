@@ -414,20 +414,10 @@
 "purchase_cancelled" = "Achat annulé";
 
 // MARK: - Tutorial
-"tutorial_add_expense_title" = "Ajouter une dépense";
-"tutorial_add_expense_message" = "Appuyez ici pour ajouter des dépenses";
-"tutorial_recurring_expenses_title" = "Dépenses récurrentes";
-"tutorial_recurring_expenses_message" = "Listez et modifiez vos dépenses récurrentes ici";
-"tutorial_calendar_title" = "Progrès mensuel";
-"tutorial_calendar_message" = "Visualisez l'évolution de vos dépenses mensuelles. Appuyez sur l'anneau central pour voir votre calendrier mensuel et l'historique de vos dépenses. Balayez vers la gauche pour voir les progrès quotidiens et les graphiques par catégorie";
 "tutorial_daily_history_title" = "Historique quotidien";
 "tutorial_daily_history_message" = "Accédez à votre historique de dépenses quotidien ici";
-"tutorial_settings_title" = "Paramètres";
-"tutorial_settings_message" = "Personnalisez la devise, les limites de dépenses, le thème, les catégories et gérez la sauvegarde de vos données";
 "tutorial_secret_title" = "Support";
 "tutorial_secret_message" = "ZONE TOP SECRÈTE";
-"tutorial_expense_list_title" = "Vos dépenses";
-"tutorial_expense_list_message" = "Vos dépenses sont listées ici. Balayez vers la gauche sur l'écran principal pour voir les analyses et les graphiques de dépenses. Balayez à nouveau vers la gauche pour accéder à l'écran de planification financière";
 "tutorial_skip" = "Passer";
 "tutorial_next" = "Suivant";
 "tutorial_finish" = "Terminer";
@@ -525,11 +515,11 @@
 "tutorial_fill_form_title" = "Remplis-la";
 "tutorial_fill_form_message" = "Un montant et une catégorie suffisent. Les dépenses vont dans les sous-catégories, pas les principales.";
 "tutorial_expense_list_title" = "La voilà";
-"tutorial_expense_list_message" = "Les dépenses du jour sont ici. Balaie une ligne pour la modifier ou la supprimer.";
-"tutorial_progress_ring_title" = "Où en est la journée";
-"tutorial_progress_ring_message" = "L'anneau se remplit à mesure que tu dépenses et passe au rouge au-delà de ta limite.";
-"tutorial_calendar_title" = "N'importe quel jour, n'importe quel mois";
-"tutorial_calendar_message" = "Touche une date pour voir ou ajouter des dépenses. Hier oublié ? Ajoute-le ici.";
+"tutorial_expense_list_message" = "Les dépenses du jour sont ici. Touche pour modifier, maintiens pour supprimer.";
+"tutorial_week_strip_title" = "Ta semaine";
+"tutorial_week_strip_message" = "Chaque jour avec ce que tu as dépensé. Touche-en un pour y passer.";
+"tutorial_monthly_ring_title" = "Le mois jusqu'ici";
+"tutorial_monthly_ring_message" = "Ton total du mois face à ta limite. Touche pour le calendrier complet.";
 "tutorial_recurring_expenses_title" = "Abonnements et échéances";
 "tutorial_recurring_expenses_message" = "Tout ce qui se répète se saisit une fois. Six mensualités ? Tape 6 et la date de fin se calcule.";
 "tutorial_overview_summary_title" = "Où tu en es";

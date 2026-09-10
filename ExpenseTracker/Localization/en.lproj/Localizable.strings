@@ -414,20 +414,10 @@
 "purchase_cancelled" = "Purchase cancelled";
 
 // MARK: - Tutorial
-"tutorial_add_expense_title" = "Add Expense";
-"tutorial_add_expense_message" = "Tap here to add expenses";
-"tutorial_recurring_expenses_title" = "Recurring Expenses";
-"tutorial_recurring_expenses_message" = "List and edit recurring expenses here";
-"tutorial_calendar_title" = "Monthly Progress";
-"tutorial_calendar_message" = "View your monthly spending progress. Tap the center ring to view your monthly calendar and spending history. Swipe left to see daily progress and category charts";
 "tutorial_daily_history_title" = "Daily History";
 "tutorial_daily_history_message" = "Access your daily spending history here";
-"tutorial_settings_title" = "Settings";
-"tutorial_settings_message" = "Customize currency, spending limits, theme, categories and manage your data backup";
 "tutorial_secret_title" = "Support";
 "tutorial_secret_message" = "ULTIMATE TOP SECRET AREA";
-"tutorial_expense_list_title" = "Your Expenses";
-"tutorial_expense_list_message" = "Your expenses are listed here. Swipe left on the main screen to see spending analytics and charts. Swipe left again to access financial planning screen";
 "tutorial_skip" = "Skip";
 "tutorial_next" = "Next";
 "tutorial_finish" = "Finish";
@@ -526,11 +516,11 @@
 "tutorial_fill_form_title" = "Fill it in";
 "tutorial_fill_form_message" = "Amount and a category are all you need. Expenses go under subcategories, not the main ones — that catches people out.";
 "tutorial_expense_list_title" = "There it is";
-"tutorial_expense_list_message" = "Your day's expenses live here. Swipe a row to edit or delete it.";
-"tutorial_progress_ring_title" = "How the day is going";
-"tutorial_progress_ring_message" = "The ring fills as you spend against your daily limit, and turns red past it.";
-"tutorial_calendar_title" = "Any day, any month";
-"tutorial_calendar_message" = "Tap a date to see or add expenses for it. Forgot yesterday? Add it here.";
+"tutorial_expense_list_message" = "Your day's expenses live here. Tap one to edit it, hold to delete.";
+"tutorial_week_strip_title" = "Your week";
+"tutorial_week_strip_message" = "Each day with what you spent on it. Tap one to switch to it.";
+"tutorial_monthly_ring_title" = "The month so far";
+"tutorial_monthly_ring_message" = "Your total this month against your limit. Tap it for the full calendar.";
 "tutorial_recurring_expenses_title" = "Subscriptions and instalments";
 "tutorial_recurring_expenses_message" = "Anything that repeats goes in once. Six instalments? Type 6 and the end date works itself out.";
 "tutorial_overview_summary_title" = "Where you stand";

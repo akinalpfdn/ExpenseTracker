@@ -417,20 +417,10 @@
 "purchase_cancelled" = "Покупка отменена";
 
 // MARK: - Tutorial
-"tutorial_add_expense_title" = "Добавить расход";
-"tutorial_add_expense_message" = "Нажмите здесь, чтобы добавить расходы";
-"tutorial_recurring_expenses_title" = "Регулярные расходы";
-"tutorial_recurring_expenses_message" = "Просмотр и редактирование регулярных расходов";
-"tutorial_calendar_title" = "Месячный прогресс";
-"tutorial_calendar_message" = "Следите за своими ежемесячными тратами. Нажмите на центральный круг, чтобы увидеть месячный календарь и историю трат. Проведите пальцем влево, чтобы увидеть ежедневный прогресс и диаграммы категорий";
 "tutorial_daily_history_title" = "Дневная история";
 "tutorial_daily_history_message" = "Доступ к вашей ежедневной истории трат";
-"tutorial_settings_title" = "Настройки";
-"tutorial_settings_message" = "Настройте валюту, лимиты трат, тему, категории и управляйте резервным копированием данных";
 "tutorial_secret_title" = "Поддержка";
 "tutorial_secret_message" = "СОВЕРШЕННО СЕКРЕТНАЯ ЗОНА";
-"tutorial_expense_list_title" = "Ваши расходы";
-"tutorial_expense_list_message" = "Ваши расходы перечислены здесь. Проведите пальцем влево на главном экране, чтобы увидеть аналитику и графики расходов. Проведите пальцем влево еще раз, чтобы получить доступ к экрану финансового планирования";
 "tutorial_skip" = "Пропустить";
 "tutorial_next" = "Далее";
 "tutorial_finish" = "Готово";
@@ -529,11 +519,11 @@
 "tutorial_fill_form_title" = "Заполните";
 "tutorial_fill_form_message" = "Достаточно суммы и категории. Расходы записываются в подкатегории, а не в основные.";
 "tutorial_expense_list_title" = "Вот он";
-"tutorial_expense_list_message" = "Расходы дня хранятся здесь. Проведите по строке, чтобы изменить или удалить.";
-"tutorial_progress_ring_title" = "Как проходит день";
-"tutorial_progress_ring_message" = "Кольцо заполняется по мере трат и краснеет при превышении дневного лимита.";
-"tutorial_calendar_title" = "Любой день, любой месяц";
-"tutorial_calendar_message" = "Нажмите на дату, чтобы посмотреть или добавить расходы. Забыли вчерашний? Добавьте здесь.";
+"tutorial_expense_list_message" = "Расходы дня хранятся здесь. Нажмите, чтобы изменить, удерживайте, чтобы удалить.";
+"tutorial_week_strip_title" = "Ваша неделя";
+"tutorial_week_strip_message" = "Каждый день с тем, сколько вы потратили. Нажмите, чтобы перейти к нему.";
+"tutorial_monthly_ring_title" = "Месяц на сегодня";
+"tutorial_monthly_ring_message" = "Ваша сумма за месяц против лимита. Нажмите, чтобы открыть календарь.";
 "tutorial_recurring_expenses_title" = "Подписки и рассрочки";
 "tutorial_recurring_expenses_message" = "Всё повторяющееся вводится один раз. Шесть платежей? Введите 6, и дата окончания посчитается сама.";
 "tutorial_overview_summary_title" = "Где вы сейчас";

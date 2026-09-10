@@ -416,20 +416,10 @@ Uygulamamı beğendiysen ve destek olmak istersen bir çayını içerim(Fiyatlar
 "purchase_cancelled" = "Satın alma iptal edildi";
 
 // MARK: - Tutorial
-"tutorial_add_expense_title" = "Harcama Ekle";
-"tutorial_add_expense_message" = "Harcama eklemek için buraya dokunun";
-"tutorial_recurring_expenses_title" = "Tekrarlayan Harcamalar";
-"tutorial_recurring_expenses_message" = "Tekrarlayan harcamaları buradan listeleyin ve düzenleyin";
-"tutorial_calendar_title" = "Aylık İlerleme";
-"tutorial_calendar_message" = "Aylık harcama ilerlemenizi görüntüleyin. Aylık takviminizi ve harcama geçmişinizi görmek için orta halkaya dokunun. Günlük ilerlemeyi ve kategori grafiklerini görmek için sola kaydırın";
 "tutorial_daily_history_title" = "Günlük Geçmiş";
 "tutorial_daily_history_message" = "Günlük harcama geçmişinize buradan erişin";
-"tutorial_settings_title" = "Ayarlar";
-"tutorial_settings_message" = "Para birimini, harcama limitlerini, temayı, kategorileri özelleştirin ve veri yedeklemenizi yönetin";
 "tutorial_secret_title" = "Destek";
 "tutorial_secret_message" = "ÇOK GİZLİ BÖLGE";
-"tutorial_expense_list_title" = "Harcamalarınız";
-"tutorial_expense_list_message" = "Harcamalarınız burada listelenir. Harcama analizlerini ve grafikleri görmek için ana ekranda sola kaydırın. Finansal planlama ekranına erişmek için tekrar sola kaydırın";
 "tutorial_skip" = "Atla";
 "tutorial_next" = "İleri";
 "tutorial_finish" = "Bitir";
@@ -527,11 +517,11 @@ Uygulamamı beğendiysen ve destek olmak istersen bir çayını içerim(Fiyatlar
 "tutorial_fill_form_title" = "Doldur";
 "tutorial_fill_form_message" = "Tutar ve kategori yeterli. Harcamalar ana kategoriye değil alt kategoriye yazılır — burası çok kişiyi şaşırtıyor.";
 "tutorial_expense_list_title" = "İşte burada";
-"tutorial_expense_list_message" = "Günün harcamaları burada durur. Düzenlemek veya silmek için satırı kaydır.";
-"tutorial_progress_ring_title" = "Gün nasıl gidiyor";
-"tutorial_progress_ring_message" = "Halka günlük limitine göre dolar, limiti aşınca kırmızıya döner.";
-"tutorial_calendar_title" = "Herhangi bir gün, herhangi bir ay";
-"tutorial_calendar_message" = "Bir tarihe bas, o günün harcamalarını gör veya ekle. Dünü unuttun mu? Buradan gir.";
+"tutorial_expense_list_message" = "Günün harcamaları burada. Düzenlemek için dokun, silmek için basılı tut.";
+"tutorial_week_strip_title" = "Haftan";
+"tutorial_week_strip_message" = "Her gün, o gün ne harcadığınla. Geçmek istediğine dokun.";
+"tutorial_monthly_ring_title" = "Ay şimdiye kadar";
+"tutorial_monthly_ring_message" = "Bu ayki toplamın limitine karşı. Tam takvim için dokun.";
 "tutorial_recurring_expenses_title" = "Abonelikler ve taksitler";
 "tutorial_recurring_expenses_message" = "Tekrar eden her şey bir kez girilir. Altı taksit mi? 6 yaz, bitiş tarihi kendiliğinden çıksın.";
 "tutorial_overview_summary_title" = "Durumun ne";

@@ -73,10 +73,10 @@ enum TutorialStepId: String, CaseIterable {
     case addExpense
     case fillForm
     case expenseList
-    case progressRing
+    case weekStrip
 
     // Chapter 2 — the screens
-    case calendar
+    case monthlyRing
     case recurringExpenses
     case overviewSummary
     case overviewForecast
@@ -154,11 +154,11 @@ extension TutorialStep {
                 highlightRadius: 80
             ),
             TutorialStep(
-                id: .progressRing,
+                id: .weekStrip,
                 chapter: .firstExpense,
                 screen: .expenses,
-                title: "tutorial_progress_ring_title".localized,
-                message: "tutorial_progress_ring_message".localized,
+                title: "tutorial_week_strip_title".localized,
+                message: "tutorial_week_strip_message".localized,
                 advance: .tapNext,
                 highlightRadius: 90
             )
@@ -170,11 +170,11 @@ extension TutorialStep {
     private static func chapterTwo() -> [TutorialStep] {
         return [
             TutorialStep(
-                id: .calendar,
+                id: .monthlyRing,
                 chapter: .screens,
                 screen: .expenses,
-                title: "tutorial_calendar_title".localized,
-                message: "tutorial_calendar_message".localized,
+                title: "tutorial_monthly_ring_title".localized,
+                message: "tutorial_monthly_ring_message".localized,
                 advance: .tapNext,
                 highlightRadius: 150
             ),

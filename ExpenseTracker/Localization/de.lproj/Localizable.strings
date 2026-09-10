@@ -414,20 +414,10 @@
 "purchase_cancelled" = "Kauf abgebrochen";
 
 // MARK: - Tutorial
-"tutorial_add_expense_title" = "Ausgabe hinzufügen";
-"tutorial_add_expense_message" = "Tippen Sie hier, um Ausgaben hinzuzufügen";
-"tutorial_recurring_expenses_title" = "Wiederkehrende Ausgaben";
-"tutorial_recurring_expenses_message" = "Listen Sie hier wiederkehrende Ausgaben auf und bearbeiten Sie sie";
-"tutorial_calendar_title" = "Monatlicher Fortschritt";
-"tutorial_calendar_message" = "Sehen Sie sich Ihren monatlichen Ausgabenfortschritt an. Tippen Sie auf den mittleren Ring, um Ihren Monatskalender und den Ausgabenverlauf anzuzeigen. Wischen Sie nach links, um den täglichen Fortschritt und Kategoriendiagramme zu sehen";
 "tutorial_daily_history_title" = "Täglicher Verlauf";
 "tutorial_daily_history_message" = "Greifen Sie hier auf Ihren täglichen Ausgabenverlauf zu";
-"tutorial_settings_title" = "Einstellungen";
-"tutorial_settings_message" = "Passen Sie Währung, Ausgabenlimits, Thema, Kategorien an und verwalten Sie Ihre Datensicherung";
 "tutorial_secret_title" = "Support";
 "tutorial_secret_message" = "STRENG GEHEIMER BEREICH";
-"tutorial_expense_list_title" = "Ihre Ausgaben";
-"tutorial_expense_list_message" = "Ihre Ausgaben werden hier aufgelistet. Wischen Sie auf dem Hauptbildschirm nach links, um Ausgabenanalysen und Diagramme anzuzeigen. Wischen Sie erneut nach links, um zum Finanzplanungsbildschirm zu gelangen";
 "tutorial_skip" = "Überspringen";
 "tutorial_next" = "Weiter";
 "tutorial_finish" = "Fertig";
@@ -525,11 +515,11 @@
 "tutorial_fill_form_title" = "Ausfüllen";
 "tutorial_fill_form_message" = "Betrag und Kategorie genügen. Ausgaben gehören zu Unterkategorien, nicht zu den Hauptkategorien.";
 "tutorial_expense_list_title" = "Da ist sie";
-"tutorial_expense_list_message" = "Die Ausgaben des Tages stehen hier. Wische über eine Zeile zum Bearbeiten oder Löschen.";
-"tutorial_progress_ring_title" = "Wie der Tag läuft";
-"tutorial_progress_ring_message" = "Der Ring füllt sich mit deinen Ausgaben und wird rot, wenn du das Tageslimit überschreitest.";
-"tutorial_calendar_title" = "Jeder Tag, jeder Monat";
-"tutorial_calendar_message" = "Tippe auf ein Datum, um Ausgaben zu sehen oder einzutragen. Gestern vergessen? Trag es hier nach.";
+"tutorial_expense_list_message" = "Die Ausgaben des Tages stehen hier. Tippen zum Bearbeiten, halten zum Löschen.";
+"tutorial_week_strip_title" = "Deine Woche";
+"tutorial_week_strip_message" = "Jeder Tag mit dem, was du ausgegeben hast. Tippe einen an, um dorthin zu wechseln.";
+"tutorial_monthly_ring_title" = "Der Monat bisher";
+"tutorial_monthly_ring_message" = "Deine Summe diesen Monat gegen dein Limit. Tippe für den ganzen Kalender.";
 "tutorial_recurring_expenses_title" = "Abos und Raten";
 "tutorial_recurring_expenses_message" = "Alles Wiederkehrende wird einmal eingetragen. Sechs Raten? Tippe 6 und das Enddatum ergibt sich.";
 "tutorial_overview_summary_title" = "Wo du stehst";

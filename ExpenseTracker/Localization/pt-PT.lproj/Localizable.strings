@@ -414,20 +414,10 @@
 "purchase_cancelled" = "Compra cancelada";
 
 // MARK: - Tutorial
-"tutorial_add_expense_title" = "Adicionar Despesa";
-"tutorial_add_expense_message" = "Toque aqui para adicionar despesas";
-"tutorial_recurring_expenses_title" = "Despesas Recorrentes";
-"tutorial_recurring_expenses_message" = "Liste e edite despesas recorrentes aqui";
-"tutorial_calendar_title" = "Progresso Mensal";
-"tutorial_calendar_message" = "Veja o progresso dos seus gastos mensais. Toque no anel central para ver seu calendário mensal e histórico de gastos. Deslize para a esquerda para ver o progresso diário e gráficos de categoria";
 "tutorial_daily_history_title" = "Histórico Diário";
 "tutorial_daily_history_message" = "Acesse seu histórico diário de gastos aqui";
-"tutorial_settings_title" = "Configurações";
-"tutorial_settings_message" = "Personalize moeda, limites de gastos, tema, categorias e gerencie seu backup de dados";
 "tutorial_secret_title" = "Suporte";
 "tutorial_secret_message" = "ÁREA ULTRASSECRETA";
-"tutorial_expense_list_title" = "Suas Despesas";
-"tutorial_expense_list_message" = "Suas despesas estão listadas aqui. Deslize para a esquerda na tela principal para ver análises e gráficos de gastos. Deslize para a esquerda novamente para acessar a tela de planejamento financeiro";
 "tutorial_skip" = "Pular";
 "tutorial_next" = "Próximo";
 "tutorial_finish" = "Concluir";
@@ -524,11 +514,11 @@
 "tutorial_fill_form_title" = "Preenche";
 "tutorial_fill_form_message" = "Valor e categoria bastam. As despesas vao para subcategorias, nao para as principais.";
 "tutorial_expense_list_title" = "Aqui esta";
-"tutorial_expense_list_message" = "As despesas do dia ficam aqui. Desliza uma linha para editar ou apagar.";
-"tutorial_progress_ring_title" = "Como vai o dia";
-"tutorial_progress_ring_message" = "O anel enche-se a medida que gastas e fica vermelho acima do limite diario.";
-"tutorial_calendar_title" = "Qualquer dia, qualquer mes";
-"tutorial_calendar_message" = "Toca numa data para ver ou adicionar despesas. Esqueceste-te de ontem? Adiciona aqui.";
+"tutorial_expense_list_message" = "As despesas do dia ficam aqui. Toca para editar, mantem premido para apagar.";
+"tutorial_week_strip_title" = "A tua semana";
+"tutorial_week_strip_message" = "Cada dia com o que gastaste. Toca num para mudares para ele.";
+"tutorial_monthly_ring_title" = "O mes ate agora";
+"tutorial_monthly_ring_message" = "O teu total deste mes face ao teu limite. Toca para o calendario completo.";
 "tutorial_recurring_expenses_title" = "Subscricoes e prestacoes";
 "tutorial_recurring_expenses_message" = "Tudo o que se repete regista-se uma vez. Seis prestacoes? Escreve 6 e a data final sai sozinha.";
 "tutorial_overview_summary_title" = "Onde estas";

@@ -414,20 +414,10 @@
 "purchase_cancelled" = "Zakup anulowany";
 
 // MARK: - Tutorial
-"tutorial_add_expense_title" = "Dodaj wydatek";
-"tutorial_add_expense_message" = "Stuknij tutaj, aby dodać wydatki";
-"tutorial_recurring_expenses_title" = "Wydatki cykliczne";
-"tutorial_recurring_expenses_message" = "Przeglądaj i edytuj wydatki cykliczne tutaj";
-"tutorial_calendar_title" = "Postęp miesięczny";
-"tutorial_calendar_message" = "Wyświetl postęp miesięcznych wydatków. Stuknij środkowy pierścień, aby zobaczyć kalendarz miesięczny i historię wydatków. Przesuń w lewo, aby zobaczyć dzienny postęp i wykresy kategorii";
 "tutorial_daily_history_title" = "Historia dzienna";
 "tutorial_daily_history_message" = "Uzyskaj dostęp do dziennej historii wydatków tutaj";
-"tutorial_settings_title" = "Ustawienia";
-"tutorial_settings_message" = "Dostosuj walutę, limity wydatków, motyw, kategorie i zarządzaj kopią zapasową danych";
 "tutorial_secret_title" = "Wsparcie";
 "tutorial_secret_message" = "NAJTAJNIEJSZA STREFA";
-"tutorial_expense_list_title" = "Twoje wydatki";
-"tutorial_expense_list_message" = "Twoje wydatki są tutaj wymienione. Przesuń w lewo na ekranie głównym, aby zobaczyć analizy i wykresy wydatków. Przesuń ponownie w lewo, aby uzyskać dostęp do ekranu planowania finansowego";
 "tutorial_skip" = "Pomiń";
 "tutorial_next" = "Dalej";
 "tutorial_finish" = "Zakończ";
@@ -524,11 +514,11 @@
 "tutorial_fill_form_title" = "Wypelnij";
 "tutorial_fill_form_message" = "Kwota i kategoria wystarcza. Wydatki trafiaja do podkategorii, nie do glownych.";
 "tutorial_expense_list_title" = "Jest";
-"tutorial_expense_list_message" = "Wydatki dnia sa tutaj. Przesun wiersz, aby edytowac lub usunac.";
-"tutorial_progress_ring_title" = "Jak idzie dzien";
-"tutorial_progress_ring_message" = "Pierscien wypelnia sie w miare wydawania i czerwienieje po przekroczeniu limitu.";
-"tutorial_calendar_title" = "Dowolny dzien, dowolny miesiac";
-"tutorial_calendar_message" = "Dotknij daty, aby zobaczyc lub dodac wydatki. Zapomniales wczoraj? Dodaj tutaj.";
+"tutorial_expense_list_message" = "Wydatki dnia sa tutaj. Dotknij, aby edytowac, przytrzymaj, aby usunac.";
+"tutorial_week_strip_title" = "Twoj tydzien";
+"tutorial_week_strip_message" = "Kazdy dzien z tym, co wydales. Dotknij, aby na niego przejsc.";
+"tutorial_monthly_ring_title" = "Miesiac do tej pory";
+"tutorial_monthly_ring_message" = "Twoja suma w tym miesiacu wobec limitu. Dotknij, aby zobaczyc caly kalendarz.";
 "tutorial_recurring_expenses_title" = "Subskrypcje i raty";
 "tutorial_recurring_expenses_message" = "Wszystko, co sie powtarza, wpisujesz raz. Szesc rat? Wpisz 6, a data koncowa wyliczy sie sama.";
 "tutorial_overview_summary_title" = "Na czym stoisz";

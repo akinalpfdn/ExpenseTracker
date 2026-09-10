@@ -124,7 +124,7 @@ struct ExpensesView: View {
                     },
                     isDarkTheme: isDarkTheme
                 )
-                .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .progressRing)
+                .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .weekStrip)
 
                 Spacer().frame(height: 6)
 
@@ -225,7 +225,7 @@ extension ExpensesView {
                 month: monthFormatter.string(from: currentCalendarMonth),
                 selectedDate: viewModel.selectedDate
             )
-            .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .calendar)
+            .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .monthlyRing)
             .tag(0)
 
             // Daily Progress Ring
@@ -323,7 +323,6 @@ extension ExpensesView {
                                 .font(.system(size: 30))
                                 .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
                         }
-                        .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .categories)
                     }
 
                     // Settings Button

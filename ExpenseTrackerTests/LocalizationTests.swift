@@ -40,6 +40,38 @@ final class LocalizationTests: XCTestCase {
         }
     }
 
+    /// Duplicate keys do not fail to parse — the later definition simply wins, so a
+    /// stale copy left behind by an edit silently overrides the new one. That is how
+    /// the tour ended up describing gestures the app does not have.
+    func testNoLanguageDefinesAKeyTwice() throws {
+        for language in ["en", "tr", "de", "es", "fr", "it", "pl", "pt-PT", "ru"] {
+            guard let path = Bundle.main.path(forResource: language, ofType: "lproj"),
+                  let stringsPath = Bundle(path: path)?.path(forResource: "Localizable", ofType: "strings"),
+                  let contents = try? String(contentsOfFile: stringsPath, encoding: .utf8) else {
+                return XCTFail("Could not read \(language).lproj")
+            }
+
+            let declared = contents
+                .split(separator: "\n")
+                .compactMap { line -> String? in
+                    guard let range = line.range(of: #"^\s*"[^"]+""#, options: .regularExpression) else {
+                        return nil
+                    }
+                    return line[range].trimmingCharacters(in: .whitespaces)
+                }
+
+            let duplicates = Dictionary(grouping: declared, by: { $0 })
+                .filter { $0.value.count > 1 }
+                .keys
+                .sorted()
+
+            XCTAssertTrue(
+                duplicates.isEmpty,
+                "\(language) declares these twice: \(duplicates.joined(separator: ", "))"
+            )
+        }
+    }
+
     /// A spot check on keys the backup UI depends on, added in Phase 001.
     func testBackupKeysResolve() {
         let backupKeys = [
