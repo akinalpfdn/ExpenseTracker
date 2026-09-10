@@ -65,6 +65,7 @@
 		F4FE0A782E49C6CB00DBCB51 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F4FE0A7E2E49C6CB00DBCB51 /* ExpenseTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpenseTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA0000142E49C6CB00DBCB51 /* CurrencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTests.swift; sourceTree = "<group>"; };
+		AA0000152E49C6CB00DBCB51 /* ExpenseTracker.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ExpenseTracker.xctestplan; sourceTree = "<group>"; };
 		F4FE0A822E49C6CB00DBCB51 /* ExpenseTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerTests.swift; sourceTree = "<group>"; };
 		F4FE0A882E49C6CB00DBCB51 /* ExpenseTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpenseTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4FE0A8C2E49C6CB00DBCB51 /* ExpenseTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerUITests.swift; sourceTree = "<group>"; };
@@ -143,6 +144,7 @@
 				F410BB282EBF7EC000B63464 /* connect.storekit */,
 				F410BB142EBBEA3C00B63464 /* Products.storekit */,
 				F4FE0A6F2E49C6CA00DBCB51 /* ExpenseTracker */,
+				AA0000152E49C6CB00DBCB51 /* ExpenseTracker.xctestplan */,
 				F4FE0A812E49C6CB00DBCB51 /* ExpenseTrackerTests */,
 				F4FE0A8B2E49C6CB00DBCB51 /* ExpenseTrackerUITests */,
 				F4FE0A6E2E49C6CA00DBCB51 /* Products */,

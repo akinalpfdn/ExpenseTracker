@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "5E1C3A0E-6B1D-4C8F-9E2A-0D6F4B7A1C21",
+      "name" : "Default",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:ExpenseTracker.xcodeproj",
+        "identifier" : "F4FE0A7D2E49C6CB00DBCB51",
+        "name" : "ExpenseTrackerTests"
+      }
+    }
+  ],
+  "version" : 1
+}
