@@ -5,7 +5,7 @@
 */
 
 // MARK: - General
-"app_name" = "Tracciatore Spese";
+"app_name" = "Penko";
 "general_settings" = "Impostazioni Generali";
 "categories" = "Categorie";
 "default_currency" = "Valuta Predefinita";
@@ -380,7 +380,7 @@
 "welcome_skip" = "Salta";
 "welcome_next" = "Avanti";
 "welcome_get_started" = "Inizia";
-"welcome_page1_title" = "Benvenuto in Gestore Spese";
+"welcome_page1_title" = "Benvenuto in Penko";
 "welcome_page1_description" = "Tieni traccia delle tue spese quotidiane facilmente e prendi il controllo delle tue finanze. Semplice, veloce e completamente privato.";
 "welcome_page2_title" = "Analisi Intelligente";
 "welcome_page2_description" = "Visualizza le tue spese con splendidi grafici. Scopri dove vanno i tuoi soldi con suddivisioni per categoria e tendenze mensili.";
@@ -531,3 +531,8 @@
 "tour_replay_title" = "Tour guidato";
 "tour_replay_button" = "Rivedi il tour";
 "tour_replay_description" = "Ripercorri l'app dall'inizio.";
+
+/* Currency picker */
+"currency_search" = "Cerca valuta";
+"currency_common" = "Comuni";
+"currency_all" = "Tutte le valute";

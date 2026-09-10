@@ -21,7 +21,7 @@ struct SettingsView: View {
     @State private var showCurrencyMenu = false
 
     private let tabs = ["general_settings".localized, "categories".localized]
-    private let currencies = ["₺", "$", "€", "£"]
+    @State private var showingCurrencyPicker = false
 
     private var isDarkTheme: Bool {
         newTheme == "dark"
@@ -54,6 +54,9 @@ struct SettingsView: View {
         .background(ThemeColors.getBackgroundColor(isDarkTheme: isDarkTheme))
         .onAppear {
             initializeWithCurrentSettings()
+        }
+        .sheet(isPresented: $showingCurrencyPicker) {
+            CurrencyPickerSheet(selection: $newDefaultCurrency, isDarkTheme: isDarkTheme)
         }
     }
 }
@@ -131,15 +134,9 @@ extension SettingsView {
                 .font(.system(size: 18, weight: .medium))
                 .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
 
-            Menu {
-                ForEach(currencies, id: \.self) { currency in
-                    Button(currency) {
-                        newDefaultCurrency = currency
-                    }
-                }
-            } label: {
+            Button(action: { showingCurrencyPicker = true }) {
                 HStack {
-                    Text(newDefaultCurrency)
+                    Text("\(newDefaultCurrency)  \(Currency.from(symbol: newDefaultCurrency).name)")
                         .font(.system(size: 14, weight: .semibold))
                         .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
                     Spacer()

@@ -5,7 +5,7 @@
 */
 
 // MARK: - General
-"app_name" = "Suivi des Dépenses";
+"app_name" = "Penko";
 "general_settings" = "Paramètres Généraux";
 "categories" = "Catégories";
 "default_currency" = "Devise par Défaut";
@@ -380,7 +380,7 @@
 "welcome_skip" = "Passer";
 "welcome_next" = "Suivant";
 "welcome_get_started" = "Commencer";
-"welcome_page1_title" = "Bienvenue sur Suivi de Dépenses";
+"welcome_page1_title" = "Bienvenue sur Penko";
 "welcome_page1_description" = "Suivez facilement vos dépenses quotidiennes et prenez le contrôle de vos finances. Simple, rapide et entièrement privé.";
 "welcome_page2_title" = "Analyses Intelligentes";
 "welcome_page2_description" = "Visualisez vos dépenses avec de superbes graphiques. Voyez où va votre argent avec des ventilations par catégorie et des tendances mensuelles.";
@@ -532,3 +532,8 @@
 "tour_replay_title" = "Visite guidée";
 "tour_replay_button" = "Revoir la visite";
 "tour_replay_description" = "Parcourir l'app depuis le début.";
+
+/* Currency picker */
+"currency_search" = "Rechercher une devise";
+"currency_common" = "Courantes";
+"currency_all" = "Toutes les devises";

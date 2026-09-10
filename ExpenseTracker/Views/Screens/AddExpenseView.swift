@@ -33,8 +33,11 @@ struct AddExpenseView: View {
     /// `endDate` in both directions so the two can never contradict each other.
     @State private var occurrenceCountText = ""
     @State private var isLoading = false
+    @State private var showingCurrencyPicker = false
 
-    private let currencies = ["₺", "$", "€", "£"]
+    /// The amount is what every expense starts with, so the keyboard comes up on it
+    /// when the form opens instead of after a tap.
+    @FocusState private var amountFocused: Bool
 
     private var recurrenceTypes: [(RecurrenceType, String)] {
         [
@@ -97,6 +100,17 @@ struct AddExpenseView: View {
         }
         .onAppear {
             initializeDefaultValues()
+
+            // After the sheet's presentation animation, or the keyboard fights it.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                amountFocused = true
+            }
+        }
+        .sheet(isPresented: $showingCurrencyPicker) {
+            CurrencyPickerSheet(selection: $selectedCurrency, isDarkTheme: isDarkTheme)
+        }
+        .onChange(of: selectedCurrency) { _ in
+            prefillExchangeRate()
         }
         .sheet(isPresented: $showEndDatePicker) {
             endDatePickerSheet
@@ -223,6 +237,7 @@ extension AddExpenseView {
                 TextField("expense_amount_placeholder".localized, text: $amount)
                     .textFieldStyle(CustomTextFieldStyle(isDarkTheme: isDarkTheme))
                     .keyboardType(.decimalPad)
+                    .focused($amountFocused)
                     .onChange(of: amount) { newValue in
                         amount = CurrencyInputFormatter.formatInput(newValue)
                     }
@@ -235,13 +250,7 @@ extension AddExpenseView {
                     .font(.system(size: 14, weight: .medium))
                     .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
 
-                Menu {
-                    ForEach(currencies, id: \.self) { currency in
-                        Button(currency) {
-                            selectedCurrency = currency
-                        }
-                    }
-                } label: {
+                Button(action: { showingCurrencyPicker = true }) {
                     HStack {
                         Text(selectedCurrency)
                             .font(.system(size: 14))
@@ -516,7 +525,12 @@ extension AddExpenseView {
 
         let finalExchangeRate: Double?
         if selectedCurrency != defaultCurrency {
-            finalExchangeRate = Double(exchangeRate)
+            // Same parser as validation. This used to be Double(_:), which returns
+            // nil for the "41,5" the field itself normalises to — so a rate the user
+            // had typed and the form had accepted was saved as no rate at all.
+            let rate = CurrencyInputFormatter.parseDouble(exchangeRate)
+            finalExchangeRate = rate
+            viewModel.preferencesManager.rememberExchangeRate(rate, from: selectedCurrency, to: defaultCurrency)
         } else {
             finalExchangeRate = 0
         }
@@ -556,6 +570,7 @@ extension AddExpenseView {
             )
         }
 
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
         onExpenseAdded(expense)
 
         // Loading will be handled by the parent view when expense is added
@@ -563,6 +578,14 @@ extension AddExpenseView {
             isLoading = false
             onDismiss()
         }
+    }
+
+    /// A different pair means a different rate, so whatever was typed for the old
+    /// pair is replaced by the last one used for the new pair — or cleared.
+    private func prefillExchangeRate() {
+        guard selectedCurrency != defaultCurrency else { exchangeRate = ""; return }
+        let remembered = viewModel.preferencesManager.lastExchangeRate(from: selectedCurrency, to: defaultCurrency)
+        exchangeRate = remembered.map { CurrencyInputFormatter.format($0) } ?? ""
     }
 
     private func hideKeyboard() {

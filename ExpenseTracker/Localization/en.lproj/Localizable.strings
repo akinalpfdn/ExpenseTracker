@@ -6,7 +6,7 @@
 */
 
 // MARK: - General
-"app_name" = "Expense Tracker";
+"app_name" = "Penko";
 "general_settings" = "General Settings";
 "categories" = "Categories";
 "default_currency" = "Default Currency";
@@ -381,7 +381,7 @@
 "welcome_skip" = "Skip";
 "welcome_next" = "Next";
 "welcome_get_started" = "Get Started";
-"welcome_page1_title" = "Welcome to Expense Tracker";
+"welcome_page1_title" = "Welcome to Penko";
 "welcome_page1_description" = "Track your daily expenses easily and take control of your finances. Simple, fast, and completely private.";
 "welcome_page2_title" = "Smart Analytics";
 "welcome_page2_description" = "Visualize your spending with beautiful charts. See where your money goes with category breakdowns and monthly trends.";
@@ -533,3 +533,8 @@
 "tour_replay_title" = "Guided tour";
 "tour_replay_button" = "Show me around again";
 "tour_replay_description" = "Walk through the app from the beginning.";
+
+/* Currency picker */
+"currency_search" = "Search currency";
+"currency_common" = "Common";
+"currency_all" = "All currencies";

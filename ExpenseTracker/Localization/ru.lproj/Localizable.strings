@@ -6,7 +6,7 @@
 */
 
 // MARK: - General
-"app_name" = "Учёт Расходов";
+"app_name" = "Penko";
 "general_settings" = "Общие Настройки";
 "categories" = "Категории";
 "default_currency" = "Валюта по Умолчанию";
@@ -381,7 +381,7 @@
 "welcome_skip" = "Пропустить";
 "welcome_next" = "Далее";
 "welcome_get_started" = "Начать";
-"welcome_page1_title" = "Добро пожаловать в Трекер расходов";
+"welcome_page1_title" = "Добро пожаловать в Penko";
 "welcome_page1_description" = "Легко отслеживайте свои ежедневные расходы и контролируйте финансы. Просто, быстро и полностью конфиденциально.";
 "welcome_page2_title" = "Умная аналитика";
 "welcome_page2_description" = "Визуализируйте свои траты с помощью красивых диаграмм. Смотрите, куда уходят ваши деньги, с разбивкой по категориям и месячным трендам.";
@@ -536,3 +536,8 @@
 "tour_replay_title" = "Обучение";
 "tour_replay_button" = "Показать ещё раз";
 "tour_replay_description" = "Пройти по приложению с начала.";
+
+/* Currency picker */
+"currency_search" = "Поиск валюты";
+"currency_common" = "Популярные";
+"currency_all" = "Все валюты";

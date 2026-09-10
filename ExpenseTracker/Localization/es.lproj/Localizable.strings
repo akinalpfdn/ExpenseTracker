@@ -5,7 +5,7 @@
 */
 
 // MARK: - General
-"app_name" = "Rastreador de Gastos";
+"app_name" = "Penko";
 "general_settings" = "Configuración General";
 "categories" = "Categorías";
 "default_currency" = "Moneda Predeterminada";
@@ -380,7 +380,7 @@
 "welcome_skip" = "Omitir";
 "welcome_next" = "Siguiente";
 "welcome_get_started" = "Comenzar";
-"welcome_page1_title" = "Bienvenido al Seguimiento de Gastos";
+"welcome_page1_title" = "Bienvenido a Penko";
 "welcome_page1_description" = "Realiza un seguimiento de tus gastos diarios fácilmente y toma el control de tus finanzas. Simple, rápido y completamente privado.";
 "welcome_page2_title" = "Análisis Inteligente";
 "welcome_page2_description" = "Visualiza tus gastos con hermosos gráficos. Mira a dónde va tu dinero con desgloses por categoría y tendencias mensuales.";
@@ -532,3 +532,8 @@
 "tour_replay_title" = "Tutorial guiado";
 "tour_replay_button" = "Volver a verlo";
 "tour_replay_description" = "Recorre la app desde el principio.";
+
+/* Currency picker */
+"currency_search" = "Buscar moneda";
+"currency_common" = "Habituales";
+"currency_all" = "Todas las monedas";

@@ -5,7 +5,7 @@
 */
 
 // MARK: - General
-"app_name" = "Controle de Gastos";
+"app_name" = "Penko";
 "general_settings" = "Configurações Gerais";
 "categories" = "Categorias";
 "default_currency" = "Moeda Padrão";
@@ -380,7 +380,7 @@
 "welcome_skip" = "Pular";
 "welcome_next" = "Próximo";
 "welcome_get_started" = "Começar";
-"welcome_page1_title" = "Bem-vindo ao Gerenciador de Despesas";
+"welcome_page1_title" = "Bem-vindo ao Penko";
 "welcome_page1_description" = "Acompanhe suas despesas diárias facilmente e assuma o controle de suas finanças. Simples, rápido e totalmente privado.";
 "welcome_page2_title" = "Análises Inteligentes";
 "welcome_page2_description" = "Visualize seus gastos com belos gráficos. Veja para onde vai o seu dinheiro com detalhamento por categoria e tendências mensais.";
@@ -531,3 +531,8 @@
 "tour_replay_title" = "Visita guiada";
 "tour_replay_button" = "Mostrar outra vez";
 "tour_replay_description" = "Percorre a app desde o início.";
+
+/* Currency picker */
+"currency_search" = "Procurar moeda";
+"currency_common" = "Comuns";
+"currency_all" = "Todas as moedas";

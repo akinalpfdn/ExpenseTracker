@@ -5,7 +5,7 @@
 */
 
 // MARK: - General
-"app_name" = "Śledzenie wydatków";
+"app_name" = "Penko";
 "general_settings" = "Ustawienia ogólne";
 "categories" = "Kategorie";
 "default_currency" = "Domyślna waluta";
@@ -380,7 +380,7 @@
 "welcome_skip" = "Pomiń";
 "welcome_next" = "Dalej";
 "welcome_get_started" = "Rozpocznij";
-"welcome_page1_title" = "Witamy w Śledzeniu Wydatków";
+"welcome_page1_title" = "Witaj w Penko";
 "welcome_page1_description" = "Śledź swoje codzienne wydatki z łatwością i przejmij kontrolę nad swoimi finansami. Prosto, szybko i całkowicie prywatnie.";
 "welcome_page2_title" = "Inteligentna Analityka";
 "welcome_page2_description" = "Wizualizuj swoje wydatki za pomocą pięknych wykresów. Zobacz, na co idą Twoje pieniądze, dzięki podziałom na kategorie i trendom miesięcznym.";
@@ -531,3 +531,8 @@
 "tour_replay_title" = "Przewodnik";
 "tour_replay_button" = "Pokaż jeszcze raz";
 "tour_replay_description" = "Przejdź przez aplikację od początku.";
+
+/* Currency picker */
+"currency_search" = "Szukaj waluty";
+"currency_common" = "Popularne";
+"currency_all" = "Wszystkie waluty";

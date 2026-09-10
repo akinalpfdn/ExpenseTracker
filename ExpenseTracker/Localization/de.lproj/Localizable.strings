@@ -6,7 +6,7 @@
 */
 
 // MARK: - General
-"app_name" = "Ausgaben Tracker";
+"app_name" = "Penko";
 "general_settings" = "Allgemeine Einstellungen";
 "categories" = "Kategorien";
 "default_currency" = "Standardwährung";
@@ -381,7 +381,7 @@
 "welcome_skip" = "Überspringen";
 "welcome_next" = "Weiter";
 "welcome_get_started" = "Los geht's";
-"welcome_page1_title" = "Willkommen beim Ausgaben Tracker";
+"welcome_page1_title" = "Willkommen bei Penko";
 "welcome_page1_description" = "Verfolgen Sie Ihre täglichen Ausgaben einfach und übernehmen Sie die Kontrolle über Ihre Finanzen. Einfach, schnell und absolut privat.";
 "welcome_page2_title" = "Intelligente Analysen";
 "welcome_page2_description" = "Visualisieren Sie Ihre Ausgaben mit ansprechenden Diagrammen. Sehen Sie, wohin Ihr Geld fließt, mit Kategorieaufschlüsselungen und monatlichen Trends.";
@@ -532,3 +532,8 @@
 "tour_replay_title" = "Geführte Tour";
 "tour_replay_button" = "Noch einmal zeigen";
 "tour_replay_description" = "Die App von Anfang an durchgehen.";
+
+/* Currency picker */
+"currency_search" = "Währung suchen";
+"currency_common" = "Häufig";
+"currency_all" = "Alle Währungen";

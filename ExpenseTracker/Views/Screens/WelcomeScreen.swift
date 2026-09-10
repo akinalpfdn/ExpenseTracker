@@ -24,6 +24,7 @@ struct WelcomeScreen: View {
     @State private var monthlyIncome = ""
     @State private var dailyLimit = ""
     @State private var monthlyLimit = ""
+    @State private var showingCurrencyPicker = false
 
     private var isDarkTheme: Bool { preferencesManager.theme == "dark" }
     private let pages = WelcomePage.allCases
@@ -37,6 +38,9 @@ struct WelcomeScreen: View {
         }
         .background(ThemeColors.getBackgroundColor(isDarkTheme: isDarkTheme))
         .onAppear { currency = preferencesManager.defaultCurrency }
+        .sheet(isPresented: $showingCurrencyPicker) {
+            CurrencyPickerSheet(selection: $currency, isDarkTheme: isDarkTheme)
+        }
     }
 }
 
@@ -253,26 +257,33 @@ private extension WelcomeScreen {
 
 private extension WelcomeScreen {
 
+    /// Four buttons in a row fit four currencies; with forty, the row opens a picker.
     var currencyPicker: some View {
-        HStack(spacing: 12) {
-            ForEach(["₺", "$", "€", "£"], id: \.self) { option in
-                Button(action: { currency = option }) {
-                    Text(option)
-                        .font(.system(size: 22, weight: .semibold))
-                        .foregroundColor(
-                            currency == option
-                                ? AppColors.textWhite
-                                : ThemeColors.getTextColor(isDarkTheme: isDarkTheme)
-                        )
-                        .frame(width: 60, height: 60)
-                        .background(
-                            currency == option
-                                ? AppColors.primaryOrange
-                                : ThemeColors.getInputBackgroundColor(isDarkTheme: isDarkTheme)
-                        )
-                        .cornerRadius(16)
+        Button(action: { showingCurrencyPicker = true }) {
+            HStack(spacing: 14) {
+                Text(currency)
+                    .font(.system(size: 22, weight: .semibold))
+                    .foregroundColor(AppColors.primaryOrange)
+                    .frame(minWidth: 44, alignment: .leading)
+
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(Currency.from(symbol: currency).name)
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
+                    Text(Currency.from(symbol: currency).code)
+                        .font(.system(size: 12))
+                        .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
                 }
+
+                Spacer()
+
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
             }
+            .padding(16)
+            .background(ThemeColors.getInputBackgroundColor(isDarkTheme: isDarkTheme))
+            .cornerRadius(16)
         }
     }
 

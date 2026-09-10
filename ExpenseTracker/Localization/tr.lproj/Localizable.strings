@@ -6,7 +6,7 @@
 */
 
 // MARK: - General
-"app_name" = "Expense Tracker";
+"app_name" = "Penko";
 "general_settings" = "Genel Ayarlar";
 "categories" = "Kategoriler";
 "default_currency" = "Varsayılan Para Birimi";
@@ -381,7 +381,7 @@
 "welcome_skip" = "Atla";
 "welcome_next" = "İleri";
 "welcome_get_started" = "Başlayın";
-"welcome_page1_title" = "ExpenseTracker'a Hoş Geldiniz";
+"welcome_page1_title" = "Penko'ya hoş geldin";
 "welcome_page1_description" = "Günlük harcamalarınızı kolayca takip edin ve mali durumunuzu kontrol altına alın. Basit, hızlı ve tamamen özel.";
 "welcome_page2_title" = "Akıllı Analizler";
 "welcome_page2_description" = "Harcamalarınızı güzel grafiklerle görselleştirin. Kategori dökümleri ve aylık trendlerle paranızın nereye gittiğini görün.";
@@ -534,3 +534,8 @@ Uygulamamı beğendiysen ve destek olmak istersen bir çayını içerim(Fiyatlar
 "tour_replay_title" = "Tanıtım turu";
 "tour_replay_button" = "Tekrar gezdir";
 "tour_replay_description" = "Uygulamayı baştan dolaş.";
+
+/* Currency picker */
+"currency_search" = "Para birimi ara";
+"currency_common" = "Sık kullanılan";
+"currency_all" = "Tüm para birimleri";

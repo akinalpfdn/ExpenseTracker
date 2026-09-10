@@ -100,6 +100,7 @@ class PreferencesManager: ObservableObject {
         static let monthlyNetIncome = "monthly_net_income"
         static let reminderEnabled = "reminder_enabled"
         static let reminderMinutes = "reminder_minutes_since_midnight"
+        static let lastExchangeRates = "last_exchange_rates"
     }
 
     // MARK: - Initialization
@@ -138,6 +139,27 @@ class PreferencesManager: ObservableObject {
     func setMonthlyNetIncome(_ income: String) {
         monthlyNetIncome = income
     }
+
+    // MARK: - Exchange Rate Memory
+
+    /// The rate last used for a currency pair, keyed "from→to".
+    ///
+    /// Someone who spends in dollars types the same 41.5 every time; the form prefills
+    /// it. Per pair, not per currency, because the default currency can change and a
+    /// USD→TRY rate says nothing about USD→EUR.
+    func lastExchangeRate(from: String, to: String) -> Double? {
+        let rates = userDefaults.dictionary(forKey: Keys.lastExchangeRates) as? [String: Double]
+        return rates?[Self.pairKey(from: from, to: to)]
+    }
+
+    func rememberExchangeRate(_ rate: Double, from: String, to: String) {
+        guard rate > 0, from != to else { return }
+        var rates = userDefaults.dictionary(forKey: Keys.lastExchangeRates) as? [String: Double] ?? [:]
+        rates[Self.pairKey(from: from, to: to)] = rate
+        userDefaults.set(rates, forKey: Keys.lastExchangeRates)
+    }
+
+    private static func pairKey(from: String, to: String) -> String { "\(from)→\(to)" }
 
     var reminderHour: Int { reminderMinutesSinceMidnight / 60 }
     var reminderMinute: Int { reminderMinutesSinceMidnight % 60 }
