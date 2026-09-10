@@ -101,6 +101,38 @@ final class TutorialManagerTests: XCTestCase {
         XCTAssertEqual(manager.currentStepId, .fillForm)
     }
 
+    /// Cancelling the expense form should put the tour back on the step that asked
+    /// the user to open it, not leave "fill it in" pointing at a form that has gone.
+    func testAbandoningAnActionReturnsToTheStepThatAskedForIt() {
+        let manager = makeManager()
+        manager.start()
+        manager.completeAction(.addExpense)
+
+        XCTAssertEqual(manager.currentStepId, .fillForm)
+
+        manager.returnTo(.addExpense)
+
+        XCTAssertEqual(manager.currentStepId, .addExpense)
+        XCTAssertTrue(manager.isWaitingForUserAction)
+    }
+
+    /// Only ever backwards. Otherwise a stray dismiss could jump the tour forward.
+    func testReturningToALaterStepDoesNothing() {
+        let manager = makeManager()
+        manager.start()
+
+        manager.returnTo(.planningPlans)
+
+        XCTAssertEqual(manager.currentStepId, .addExpense)
+    }
+
+    func testReturningWhileInactiveDoesNothing() {
+        let manager = makeManager()
+        manager.returnTo(.addExpense)
+
+        XCTAssertFalse(manager.isActive)
+    }
+
     // MARK: - Ordinary Steps
 
     func testNextAdvancesAnOrdinaryStep() {

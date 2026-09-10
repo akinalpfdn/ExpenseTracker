@@ -535,10 +535,15 @@ extension ExpensesView {
             onDismiss: {
                 showingAddExpense = false
                 viewModel.editingExpenseId = nil
+
+                // Closing the form without saving puts the tour back on "tap the plus",
+                // rather than leaving "fill it in" pointing at a form that has gone.
+                tutorialManager.returnTo(.addExpense)
             },
             editingExpense: viewModel.editingExpenseId != nil ? viewModel.expenses.first { $0.id == viewModel.editingExpenseId } : nil
         )
         .environmentObject(viewModel)
+        .environmentObject(tutorialManager)
     }
 
     private var settingsSheet: some View {

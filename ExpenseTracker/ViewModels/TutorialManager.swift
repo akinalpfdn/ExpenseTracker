@@ -95,6 +95,21 @@ class TutorialManager: ObservableObject {
         advance()
     }
 
+    /// Steps back to an earlier step, if that is where the tour currently is ahead of.
+    ///
+    /// Used when the user abandons the thing a step asked for — cancelling the expense
+    /// form returns the tour to "tap the plus" rather than leaving "fill it in"
+    /// pointing at a form that is no longer on screen.
+    func returnTo(_ id: TutorialStepId) {
+        guard isActive,
+              let target = script.firstIndex(where: { $0.id == id }),
+              target < currentIndex else {
+            return
+        }
+
+        move(to: target)
+    }
+
     private func advance() {
         let finishedChapter = currentStep?.chapter
         let nextIndex = currentIndex + 1
