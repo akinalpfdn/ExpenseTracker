@@ -1,0 +1,538 @@
+/*
+   Localizable.strings (Indonesian)
+   ExpenseTracker
+*/
+
+// MARK: - General
+"app_name" = "Penko";
+"general_settings" = "Pengaturan Umum";
+"categories" = "Kategori";
+"default_currency" = "Mata Uang Default";
+"currency_description" = "Mata uang default untuk pengeluaran baru";
+"daily_spending_limit" = "Batas Pengeluaran Harian";
+"enter_daily_limit" = "Masukkan batas harian";
+"daily_limit_description" = "Batas pengeluaran harian Anda. Tidak ada batas jika dikosongkan";
+"monthly_spending_limit" = "Batas Pengeluaran Bulanan";
+"enter_monthly_limit" = "Masukkan batas bulanan";
+"monthly_limit_description" = "Batas total pengeluaran bulanan Anda. Cincin progres ditampilkan berdasarkan nilai ini";
+"theme" = "Tema";
+"dark_theme" = "Tema Gelap";
+"light_theme" = "Tema Terang";
+"theme_description" = "Ubah tampilan aplikasi";
+"cancel" = "Batal";
+"save" = "Simpan";
+"close" = "Tutup";
+
+// MARK: - RecurringExpensesScreen
+"recurring_expenses" = "Pengeluaran Berulang";
+"sort" = "Urutkan";
+"search" = "Cari";
+"back" = "Kembali";
+"amount_high_to_low" = "Jumlah: Tinggi ke Rendah";
+"amount_low_to_high" = "Jumlah: Rendah ke Tinggi";
+"description_a_to_z" = "Deskripsi: A-Z";
+"description_z_to_a" = "Deskripsi: Z-A";
+"category_a_to_z" = "Kategori: A-Z";
+"category_z_to_a" = "Kategori: Z-A";
+"end_date_recurring" = "Berakhir: %@";
+"search_placeholder" = "Cari berdasarkan deskripsi, jumlah, atau kategori...";
+"no_search_results" = "Tidak ada hasil pencarian";
+"search_no_results_description" = "Tidak ada hasil untuk \"%@\". Coba kata kunci lain.";
+"no_recurring_expenses" = "Belum ada pengeluaran berulang";
+"recurring_expenses_hint" = "Tekan tombol + untuk menambahkan pengeluaran berulang";
+"results_found" = "%d hasil ditemukan";
+"daily" = "Harian";
+"weekdays" = "Hari kerja";
+"weekly" = "Mingguan";
+"monthly" = "Bulanan";
+"exchange_rate" = "Kurs: %@";
+"delete" = "Hapus";
+"amount" = "Jumlah";
+"description" = "Deskripsi";
+"exchange_rate_field" = "Kurs";
+"select_date" = "Pilih Tanggal";
+"delete_recurring_expense" = "Hapus Pengeluaran Berulang";
+"delete_recurring_confirmation" = "Yakin ingin menghapus pengeluaran berulang ini mulai hari ini? Tindakan ini tidak dapat dibatalkan.";
+"ok" = "OK";
+"remaining_amount_recurring" = "Sisa Jumlah: %@";
+"total_amount_recurring" = "Jumlah Total: %@";
+
+// MARK: - PlanningScreen
+"financial_planning" = "Perencanaan Keuangan";
+"planning_description" = "Buat dan pantau rencana masa depan Anda";
+"no_plans_yet" = "Belum ada rencana";
+"create_first_plan" = "Tekan tombol + untuk membuat rencana keuangan pertama Anda";
+"add_plan" = "Tambah Rencana";
+"delete_plan" = "Hapus Rencana";
+"delete_plan_confirmation" = "Yakin ingin menghapus rencana \"%@\"? Tindakan ini tidak dapat dibatalkan.";
+
+// MARK: - ExpensesScreen
+"results_count" = "%d hasil";
+"search_expenses_placeholder" = "Cari berdasarkan deskripsi, jumlah, atau kategori...";
+"monthly_limit_exceeded" = "⚠️ Anda telah melampaui batas pengeluaran bulanan!";
+"time_newest_first" = "Tanggal: Terbaru Dulu";
+"time_oldest_first" = "Tanggal: Terlama Dulu";
+
+// MARK: - AnalysisScreen
+"current_period_total" = "Total Pengeluaran Periode Ini";
+"vs_previous_month" = "vs. bulan lalu";
+"vs_6_month_average" = "vs. rata-rata";
+"no_expenses_this_period" = "Belum ada pengeluaran di periode ini";
+"analysis_will_appear" = "Analisis akan muncul di sini setelah Anda menambahkan pengeluaran";
+"previous_month" = "Bulan sebelumnya";
+"next_month" = "Bulan berikutnya";
+"select_date_range" = "Pilih rentang tanggal";
+"fixed_expenses" = "Pengeluaran Tetap";
+"recurring_expenses_description" = "Pengeluaran yang berlanjut 3 bulan atau lebih";
+"recurring_expenses_cd" = "Pengeluaran berulang";
+"pick_date_range" = "Pilih rentang tanggal";
+
+// MARK: - AddExpenseScreen
+"enter_expense_details" = "Masukkan detail pengeluaran";
+"expense_amount_placeholder" = "0,00";
+"search_placeholder_category" = "cari...";
+"description_optional" = "Deskripsi (Opsional)";
+"add_description_placeholder" = "Tambahkan deskripsi...";
+"recurrence_type" = "Jenis Pengulangan";
+"end_date" = "Tanggal Berakhir";
+"exchange_rate_label" = "Kurs (1 %@ = ? %@)";
+"exchange_rate_example" = "mis: 0,035 (1 %@ = 0,035 %@)";
+"exchange_rate_note" = "Kurs ini digunakan untuk perhitungan progres";
+"add_expense" = "Tambah Pengeluaran";
+"update_expense" = "Perbarui Pengeluaran";
+"none" = "Tidak ada";
+"one_time" = "Sekali";
+"every_day" = "Setiap hari";
+"weekdays_only" = "Hanya hari kerja";
+"once_per_week" = "Sekali seminggu";
+"once_per_month" = "Sekali sebulan";
+"edit_expense" = "Edit Pengeluaran";
+"new_expense" = "Pengeluaran Baru";
+"selectCategory" = "Pilihan kategori";
+"single_time" = "Satu kali";
+"okay" = "Oke";
+
+// MARK: - SubCategoryDetailBottomSheet
+"parent_category" = "Kategori Induk";
+"total_amount" = "Jumlah Total";
+"expense_count" = "Jumlah Transaksi";
+"average" = "Rata-rata";
+"expenses" = "Pengeluaran";
+"recurring_label" = "Berulang";
+
+// MARK: - ProgressRingComponent
+"monthly_label" = "Bulanan";
+"daily_label" = "Harian";
+
+// MARK: - PlanDetailBottomSheet
+"update_expense_data" = "Perbarui Data Pengeluaran";
+"update_expense_data_description" = "Menghitung ulang bulan ini dan bulan-bulan mendatang dengan data terbaru";
+"total_net_value" = "Total Nilai Neto";
+"month" = "Bulan";
+"income" = "Pemasukan";
+"expense" = "Pengeluaran";
+"net" = "Neto";
+"total" = "Total";
+
+// MARK: - PlanCard
+"avg_monthly_income" = "Rata-rata Pemasukan Bulanan";
+"avg_monthly_expense" = "Rata-rata Pengeluaran Bulanan";
+"current_net" = "Neto Saat Ini";
+"target_net" = "Target Neto";
+
+// MARK: - MonthlyLineChart
+"all" = "Semua";
+"one_time_expense" = "Pengeluaran Sekali";
+"period_expense_trend" = "Tren Pengeluaran Periode";
+"expand" = "Perluas";
+"collapse" = "Ciutkan";
+"no_data_found" = "Data tidak ditemukan";
+"highest" = "Tertinggi";
+
+// MARK: - MonthlyExpensesView
+"no_expenses_this_month" = "Tidak ada pengeluaran bulan ini";
+"add_expense_for_month" = "Tekan tombol + di layar utama untuk menambahkan pengeluaran bulan ini";
+
+// MARK: - MonthlyCalendarView - Day headers
+"monday_short" = "S";
+"tuesday_short" = "S";
+"wednesday_short" = "R";
+"thursday_short" = "K";
+"friday_short" = "J";
+"saturday_short" = "S";
+"sunday_short" = "M";
+
+// MARK: - MonthlyAnalysisPieChart
+"category_distribution" = "Distribusi Kategori";
+"tap_chart_to_select_category" = "Ketuk grafik untuk memilih kategori";
+
+// MARK: - ExpenseRowView
+"unknown" = "Tidak diketahui";
+"delete_expense" = "Hapus Pengeluaran";
+"delete_expense_confirmation" = "Yakin ingin menghapus pengeluaran ini? Tindakan ini tidak dapat dibatalkan.";
+
+// MARK: - DailyCategoryDetailBottomSheet
+"amount_high_to_low_arrow" = "Jumlah (Tinggi → Rendah)";
+"amount_low_to_high_arrow" = "Jumlah (Rendah → Tinggi)";
+"time_newest_first_arrow" = "Waktu (Baru → Lama)";
+"time_oldest_first_arrow" = "Waktu (Lama → Baru)";
+"description_a_to_z_arrow" = "Deskripsi (A → Z)";
+"description_z_to_a_arrow" = "Deskripsi (Z → A)";
+"total_spending" = "Total Pengeluaran";
+"no_expenses_in_category" = "Tidak ada pengeluaran di kategori ini";
+"expense_singular" = "Pengeluaran";
+
+// MARK: - CreatePlanDialog
+"create_new_plan" = "Buat Rencana Baru";
+"plan_name" = "Nama Rencana";
+"plan_name_example" = "mis: Rencana Tabungan 2024";
+"plan_duration" = "Durasi Rencana";
+"apply_interest_to_savings" = "Terapkan Bunga (pada Tabungan)";
+"simple_interest" = "Bunga Sederhana";
+"compound_interest" = "Bunga Majemuk";
+"annual_interest_rate" = "Suku bunga tahunan %";
+"interest_applied_to_positive_savings" = "Bunga diterapkan pada tabungan positif";
+"interest_type" = "Jenis Bunga";
+"monthly_income_currency" = "Pemasukan Bulanan (%@)";
+"use_app_expense_data" = "Gunakan data pengeluaran aplikasi";
+"monthly_expenses_currency" = "Pengeluaran Bulanan (%@)";
+"manual_monthly_expense_amount" = "Jumlah pengeluaran bulanan manual";
+"enter_manual_expense_amount" = "Masukkan jumlah pengeluaran manual";
+"apply_inflation" = "Terapkan Inflasi";
+"annual_percentage_rate" = "Persentase tahunan";
+"create" = "Buat";
+
+// MARK: - CategorySummarySection
+"category_details" = "Detail Kategori";
+"main_categories" = "Kategori Utama";
+"sub_categories" = "Subkategori";
+"expense_lowercase" = "pengeluaran";
+"see_details" = "Lihat detail";
+
+// MARK: - CategoryPopupLines
+"vs_previous_month_colon" = "vs. bulan lalu:";
+"vs_average_colon" = "vs. rata-rata:";
+
+// MARK: - CategoryManagementScreen
+"add_new_main_category" = "Tambah Kategori Utama Baru";
+"add_main_category_content_desc" = "Tambah Kategori Utama";
+"category_name_hint" = "Masukkan nama kategori";
+"unique_category_name_note" = "Pilih nama unik untuk kategori ini";
+"icon_selection" = "Pilih Ikon";
+"color_selection" = "Pilih Warna";
+"add_button" = "Tambah";
+"main_category" = "Kategori Utama";
+"select_category" = "Pilih kategori";
+"subcategory_name" = "Nama Subkategori";
+"subcategory_name_hint" = "Masukkan nama subkategori";
+"unique_subcategory_name_note" = "Pilih nama unik untuk subkategori ini";
+"edit_subcategory" = "Edit Subkategori";
+"edit_category" = "Edit Kategori";
+"edit" = "Edit";
+"enter_name_hint" = "Masukkan nama";
+"delete_confirmation" = "Konfirmasi Hapus";
+"delete_item_confirmation" = "Yakin ingin menghapus \"%@\"? Tindakan ini tidak dapat dibatalkan.";
+"this_item" = "Item ini";
+"collapse_desc" = "Ciutkan";
+"expand_desc" = "Perluas";
+"edit_category_desc" = "Edit Kategori";
+"delete_category_desc" = "Hapus Kategori";
+"add_subcategory" = "Tambah Subkategori";
+"add_subcategory_desc" = "Tambah Subkategori";
+"edit_subcategory_desc" = "Edit Subkategori";
+"delete_subcategory_desc" = "Hapus Subkategori";
+"selected" = "Dipilih";
+
+// MARK: - CategoryDistributionChart
+"no_data" = "Tidak ada data";
+"category" = "Kategori";
+
+// MARK: - CategoryDetailBottomSheet
+"sort_amount_desc" = "Berdasarkan Jumlah (Tinggi → Rendah)";
+"sort_amount_asc" = "Berdasarkan Jumlah (Rendah → Tinggi)";
+"sort_date_desc" = "Berdasarkan Tanggal (Baru → Lama)";
+"sort_date_asc" = "Berdasarkan Tanggal (Lama → Baru)";
+"sort_name_asc" = "Berdasarkan Deskripsi (A → Z)";
+"sort_name_desc" = "Berdasarkan Deskripsi (Z → A)";
+
+// MARK: - SubCategory - Default subcategories
+// Food & Drink
+"subcategory_restaurant" = "Restoran";
+"subcategory_kitchen_shopping" = "Belanja dapur";
+
+// Housing
+"subcategory_rent" = "Sewa";
+"subcategory_dues" = "Iuran";
+"subcategory_mortgage" = "Cicilan KPR";
+"subcategory_electricity" = "Tagihan listrik";
+"subcategory_water" = "Tagihan air";
+"subcategory_heating" = "Pemanas";
+"subcategory_internet_phone" = "Internet dan telepon";
+"subcategory_other_bills" = "Tagihan Lainnya";
+"subcategory_general_shopping" = "Belanja kebutuhan sehari-hari";
+
+// Transportation
+"subcategory_fuel" = "Bahan bakar";
+"subcategory_public_transport" = "Transportasi umum";
+"subcategory_car_maintenance" = "Perawatan mobil";
+"subcategory_car_rental" = "Sewa mobil";
+"subcategory_taxi_uber" = "Taksi/Ojek online";
+"subcategory_car_insurance" = "Asuransi mobil";
+"subcategory_mtv" = "Pajak kendaraan";
+"subcategory_parking_fees" = "Biaya parkir";
+
+// Health
+"subcategory_doctor_appointment" = "Janji dokter";
+"subcategory_medicines" = "Obat-obatan";
+"subcategory_gym_membership" = "Keanggotaan gym";
+"subcategory_cosmetics" = "Kosmetik";
+
+// Entertainment
+"subcategory_cinema_theater" = "Bioskop dan teater";
+"subcategory_concerts_events" = "Konser dan acara";
+"subcategory_subscriptions" = "Langganan";
+"subcategory_books_magazines" = "Buku dan majalah";
+"subcategory_travel_vacation" = "Perjalanan dan liburan";
+"subcategory_games_apps" = "Game dan aplikasi";
+
+// Education
+"subcategory_course_fees" = "Biaya kursus";
+"subcategory_education_materials" = "Materi pendidikan";
+"subcategory_seminars" = "Seminar";
+"subcategory_online_courses" = "Kursus online";
+
+// Shopping
+"subcategory_electronics" = "Elektronik";
+"subcategory_clothing" = "Pakaian";
+"subcategory_home_goods" = "Perlengkapan rumah";
+"subcategory_gifts" = "Hadiah";
+"subcategory_perfume" = "Parfum";
+
+// Pets
+"subcategory_pet_food_toys" = "Makanan dan mainan";
+"subcategory_vet_services" = "Layanan dokter hewan";
+"subcategory_pet_insurance" = "Asuransi hewan peliharaan";
+
+// Work
+"subcategory_work_meals" = "Makan saat kerja";
+"subcategory_office_supplies" = "Perlengkapan kantor";
+"subcategory_business_travel" = "Perjalanan dinas";
+"subcategory_work_education" = "Pelatihan dan seminar";
+"subcategory_freelance_payments" = "Pembayaran kerja lepas";
+
+// Tax
+"subcategory_tax_payments" = "Pembayaran pajak";
+
+// Others
+"subcategory_other_expenses" = "Pengeluaran Lainnya";
+
+// MARK: - ExpensesScreen - Empty state messages
+"no_search_results_found" = "Tidak ada hasil pencarian";
+"no_expenses_yet" = "Belum ada pengeluaran";
+"no_expenses_today" = "Tidak ada pengeluaran hari ini";
+"no_search_results_description" = "Tidak ada hasil untuk \"%@\". Coba kata kunci lain.";
+"first_expense_hint" = "Tekan tombol + untuk menambahkan pengeluaran pertama Anda";
+"add_expense_for_day_hint" = "Tekan tombol + untuk menambahkan pengeluaran hari ini";
+"calendar_tab" = "Kalender";
+"expenses_tab" = "Pengeluaran";
+
+// MARK: - PlanningUtils - Plan status and validation
+"plan_status_not_started" = "Belum dimulai";
+"plan_status_completed" = "Selesai";
+"plan_status_active" = "Aktif";
+"validation_plan_name_empty" = "Nama rencana tidak boleh kosong";
+"validation_monthly_income_positive" = "Pemasukan bulanan harus lebih dari 0";
+"validation_duration_positive" = "Durasi rencana harus lebih dari 0";
+"validation_duration_max_10_years" = "Durasi rencana tidak boleh lebih dari 10 tahun";
+"validation_inflation_rate_range" = "Tingkat inflasi harus antara -50%% dan 100%%";
+"duration_3_months" = "3 Bulan";
+"duration_6_months" = "6 Bulan";
+"duration_1_year" = "1 Tahun";
+"duration_1_5_years" = "1,5 Tahun";
+"duration_2_years" = "2 Tahun";
+"duration_3_years" = "3 Tahun";
+"duration_5_years" = "5 Tahun";
+
+// MARK: - PlanningViewModel - Error messages
+"error_loading_plan" = "Gagal memuat rencana: %@";
+"error_creating_plan" = "Gagal membuat rencana: %@";
+"error_deleting_plan" = "Gagal menghapus rencana: %@";
+"error_updating_expense_data" = "Gagal memperbarui data pengeluaran: %@";
+"error_updating_plan_calculations" = "Gagal memperbarui perhitungan rencana: %@";
+"error_saving_changes" = "Gagal menyimpan perubahan: %@";
+
+// MARK: - Category - Default categories
+"category_food" = "Makanan dan Minuman";
+"category_housing" = "Tempat Tinggal";
+"category_transportation" = "Transportasi";
+"category_health" = "Kesehatan dan Perawatan Diri";
+"category_entertainment" = "Hiburan dan Hobi";
+"category_education" = "Pendidikan";
+"category_shopping" = "Belanja";
+"category_pets" = "Hewan Peliharaan";
+"category_work" = "Pekerjaan dan Biaya Profesional";
+"category_tax" = "Pajak dan Biaya Hukum";
+"category_donations" = "Donasi dan Bantuan";
+"category_others" = "Pembayaran Lainnya";
+
+// MARK: - Welcome Screen
+"welcome_skip" = "Lewati";
+"welcome_next" = "Lanjut";
+"welcome_get_started" = "Mulai";
+"welcome_page1_title" = "Selamat Datang di Penko";
+"welcome_page1_description" = "Catat pengeluaran harian dengan mudah dan kendalikan keuangan Anda. Sederhana, cepat, dan sepenuhnya privat.";
+"welcome_page2_title" = "Analisis Cerdas";
+"welcome_page2_description" = "Lihat pengeluaran Anda lewat grafik yang jelas. Ketahui ke mana uang Anda pergi dengan rincian kategori dan tren bulanan.";
+"welcome_page3_title" = "Privasi Anda Penting";
+"welcome_page3_description" = "Semua data tetap di perangkat Anda. Tanpa penyimpanan cloud, tanpa pelacakan, tanpa iklan. Informasi keuangan Anda sepenuhnya privat.";
+
+// MARK: - Purchase/Donation Screen
+"no_add_text" = "Saya tidak ingin membanjiri Anda dengan iklan, dan saya ingin semua fitur bisa dipakai tanpa versi premium. Tapi saya butuh pemasukan untuk terus mengembangkan aplikasi ini. Kalau Anda suka dan ingin mendukung, silakan traktir secangkir teh (harga di sini tidak kena inflasi) :).";
+"buy_water" = "traktir air";
+"buy_bagel" = "traktir bagel";
+"buy_tea" = "traktir teh";
+"buy_coffee" = "traktir kopi";
+"buy_wrap" = "traktir wrap";
+"buy_burger" = "traktir burger";
+"buy_doner" = "traktir doner";
+"max_donation" = "kejutkan saya";
+"water_price" = "0,24 USD";
+"tea_price" = "0,60 USD";
+"bagel_price" = "1,50 USD";
+"coffee_price" = "1,20 USD";
+"wrap_price" = "2,40 USD";
+"burger_price" = "6 USD";
+"doner_price" = "9,60 USD";
+"max_price" = "12 USD";
+
+// MARK: - Purchase States
+"purchase_loading" = "Memproses...";
+"purchase_success" = "🎉 Terima kasih atas dukungan Anda!";
+"purchase_error" = "⚠️ Pembelian gagal: %@";
+"purchase_cancelled" = "Pembelian dibatalkan";
+
+// MARK: - Tutorial
+"loading_products" = "Memuat produk...";
+
+
+// MARK: - Rate Me Dialog
+"rate_app_title" = "Beri Nilai";
+"rate_app_description" = "Jika Anda menyukai aplikasi ini, mohon beri nilai di App Store. Masukan Anda sangat berarti bagi kami!";
+"rate_app_button" = "Beri Nilai";
+"remind_later_button" = "Ingatkan Nanti";
+"never_ask_button" = "Jangan Tanya Lagi";
+
+/* Backup & Restore */
+"backup_restore" = "Cadangkan & Pulihkan";
+"backup_restore_description" = "Simpan semua data Anda ke sebuah file, atau pulihkan dari cadangan sebelumnya.";
+"export_data" = "Ekspor Data";
+"import_data" = "Impor Data";
+"share" = "Bagikan";
+"save_to_files" = "Simpan ke File";
+"choose_export_destination" = "Ke mana file cadangan ingin dikirim?";
+"import_confirm_title" = "Pulihkan Cadangan?";
+"import_confirm_button" = "Pulihkan";
+"import_confirm_message" = "Semua data saat ini akan dihapus dan diganti dengan isi file ini. Tindakan ini tidak dapat dibatalkan.";
+"import_success_title" = "Pemulihan Selesai";
+"import_error_invalid_file" = "File ini bukan file cadangan yang valid.";
+"import_error_newer_version" = "Cadangan ini dibuat oleh versi aplikasi yang lebih baru. Perbarui aplikasi terlebih dahulu.";
+"import_error_corrupt_data" = "File cadangan rusak dan tidak dapat dibaca.";
+"import_error_file_access" = "File tidak dapat dibuka. Coba pilih lagi.";
+
+/* Date Range Picker */
+"start_date" = "Tanggal Mulai";
+"select_start_date" = "Pilih tanggal mulai";
+"select_end_date" = "Pilih tanggal berakhir";
+"quick_select" = "Pilihan Cepat";
+"today" = "Hari Ini";
+"yesterday" = "Kemarin";
+"this_week" = "Minggu Ini";
+"last_week" = "Minggu Lalu";
+"this_month" = "Bulan Ini";
+"last_month" = "Bulan Lalu";
+"apply" = "Terapkan";
+"clear" = "Bersihkan";
+"done" = "Selesai";
+
+/* Shared Labels */
+"calendar" = "Kalender";
+"currency" = "Mata Uang";
+"recurrence" = "Pengulangan";
+"optional" = "Opsional";
+"no_description" = "Tanpa deskripsi";
+
+/* Category Management */
+"category_info_text" = "Kategori yang baru ditambahkan juga perlu subkategori. Saat menambahkan pengeluaran, yang dipakai adalah subkategori, bukan kategori utama.";
+
+/* Overview */
+"overview" = "Ringkasan";
+"this_month_spending" = "Pengeluaran bulan ini";
+"monthly_net_income" = "Pemasukan bersih bulanan";
+"monthly_net_income_description" = "Gaji bersih Anda per bulan. Dipakai untuk menghitung sisa dan memproyeksikan saldo.";
+"enter_monthly_net_income" = "Masukkan pemasukan bersih bulanan";
+"not_set" = "Belum diatur";
+"remaining" = "Sisa";
+"range_3_months" = "3 Bulan";
+"range_6_months" = "6 Bulan";
+"range_1_year" = "1 Tahun";
+"spending_trend" = "Tren pengeluaran";
+"forecast_12_months" = "Proyeksi 12 bulan";
+"forecast_description" = "Pengeluaran berulang + rata-rata 3 bulan terakhir";
+"cumulative_balance" = "Saldo kumulatif";
+"after_12_months" = "Setelah 12 bulan";
+"edit_monthly_income" = "Edit pemasukan bulanan";
+"no_data_yet" = "Belum ada data";
+
+"occurrence_count" = "Jumlah";
+
+/* Daily Reminder */
+"daily_reminder" = "Pengingat Harian";
+"reminder_enabled" = "Ingatkan saya";
+"reminder_time" = "Waktu";
+"daily_reminder_description" = "Pengingat pada waktu yang Anda pilih, hanya di hari Anda belum mencatat apa pun.";
+"reminder_permission_denied" = "Notifikasi untuk aplikasi ini dimatikan. Aktifkan di Pengaturan untuk memakai pengingat.";
+"reminder_title" = "Catat pengeluaran Anda";
+"reminder_body" = "Anda belum mencatat apa pun hari ini.";
+
+"welcome_currency_title" = "Mata uang apa?";
+"welcome_currency_description" = "Yang biasa Anda pakai. Pengeluaran dalam mata uang lain tetap bisa dicatat.";
+"welcome_income_title" = "Berapa pemasukan tiap bulan?";
+"welcome_income_description" = "Gaji bersih Anda. Ini yang jadi acuan layar ringkasan — lewati, dan layar itu tetap kosong.";
+"welcome_limits_title" = "Tentukan batas Anda";
+"welcome_limits_description" = "Batas harian dan bulanan agar pengeluaran tetap terkendali. Kosongkan jika tidak ingin ada batas.";
+"welcome_changeable_later" = "Bisa diubah kapan saja di Pengaturan";
+"welcome_start" = "Mulai";
+
+/* Guided tour */
+"tour_add_expense_title" = "Tambahkan pengeluaran pertama";
+"tour_add_expense_message" = "Ketuk tombol + dan simpan sebuah pengeluaran. Semua yang ditampilkan aplikasi dibangun dari sini.";
+"tour_save_expense_title" = "Isi datanya";
+"tour_save_expense_message" = "Masukkan jumlah dan pilih kategori — pengeluaran masuk ke subkategori, bukan kategori utama — lalu simpan.";
+"tour_expense_list_title" = "Pengeluaran Anda";
+"tour_expense_list_message" = "Pengeluaran hari ini muncul di sini. Ketuk untuk mengedit, tahan untuk menghapus.";
+"tour_monthly_ring_title" = "Bulan ini";
+"tour_monthly_ring_message" = "Total sejauh ini dibandingkan batas bulanan Anda. Ketuk cincin untuk membuka kalender.";
+"tour_recurring_list_title" = "Pengeluaran berulang";
+"tour_recurring_list_message" = "Langganan dan cicilan ada di sini. Saat menambahkan, ketik berapa kali berulang dan tanggal berakhir dihitung otomatis.";
+"tour_overview_title" = "Ringkasan";
+"tour_overview_message" = "Bulan ini dibandingkan pemasukan Anda, berapa yang tersisa, dan proyeksi dua belas bulan di bawahnya.";
+"tour_analysis_title" = "Analisis";
+"tour_analysis_message" = "Ke mana uang Anda pergi, per kategori dan per bulan. Ketuk irisan grafik untuk melihat pengeluaran di dalamnya.";
+"tour_planning_title" = "Perencanaan";
+"tour_planning_message" = "Atur pemasukan dan durasi untuk melihat berapa yang bisa Anda sisihkan — dengan inflasi dan bunga jika diinginkan.";
+"tour_settings_title" = "Pengaturan";
+"tour_settings_message" = "Mata uang, batas, kategori Anda, cadangan, dan pengingat harian — semuanya di balik tombol ini.";
+"tour_next" = "Lanjut";
+"tour_back" = "Kembali";
+"tour_skip" = "Lewati";
+"tour_done" = "Selesai";
+"tour_tap_hint" = "Ketuk tombol yang disorot";
+"tour_skip_step" = "Lewati langkah ini";
+"tour_replay_title" = "Tur panduan";
+"tour_replay_button" = "Tunjukkan lagi";
+"tour_replay_description" = "Telusuri aplikasi dari awal.";
+
+/* Currency picker */
+"currency_search" = "Cari mata uang";
+"currency_common" = "Umum";
+"currency_all" = "Semua mata uang";

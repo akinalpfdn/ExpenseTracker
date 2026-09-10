@@ -52,7 +52,7 @@ final class LocalizationTests: XCTestCase {
             .deletingLastPathComponent()          // repo root
             .appendingPathComponent("ExpenseTracker/Localization")
 
-        for language in ["en", "tr", "de", "es", "fr", "it", "pl", "pt-PT", "ru"] {
+        for language in ["en", "tr", "de", "es", "fr", "it", "pl", "pt-PT", "ru", "id"] {
             let file = localization
                 .appendingPathComponent("\(language).lproj")
                 .appendingPathComponent("Localizable.strings")
@@ -102,7 +102,7 @@ final class LocalizationTests: XCTestCase {
     /// Every language ships the same key set. A key present in English but absent in,
     /// say, Polish falls back to English rather than failing, so this is easy to miss.
     func testAllLanguagesDefineTheSameKeys() throws {
-        let languages = ["en", "tr", "de", "es", "fr", "it", "pl", "pt-PT", "ru"]
+        let languages = ["en", "tr", "de", "es", "fr", "it", "pl", "pt-PT", "ru", "id"]
 
         var keysByLanguage: [String: Set<String>] = [:]
 
