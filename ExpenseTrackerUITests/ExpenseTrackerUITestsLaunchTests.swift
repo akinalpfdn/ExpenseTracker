@@ -9,8 +9,12 @@ import XCTest
 
 final class ExpenseTrackerUITestsLaunchTests: XCTestCase {
 
+    // Xcode's template sets this to true, which runs the class once per UI
+    // configuration — light/dark, left-to-right/right-to-left — each on a cloned
+    // simulator, regardless of the scheme's parallel setting. Four clones for a test
+    // that launches the app and takes a screenshot. Off.
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
-        true
+        false
     }
 
     override func setUpWithError() throws {
