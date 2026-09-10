@@ -22,10 +22,6 @@ struct ExpensesView: View {
     @State private var showingDailyCategoryDetail = false
     @State private var selectedCategoryForDetail: Category?
 
-    init() {
-        let preferencesManager = PreferencesManager.shared
-    }
-
     // Computed property that updates based on selectedDate
     private var currentCalendarMonth: Date {
         Calendar.current.dateInterval(of: .month, for: viewModel.selectedDate)?.start ?? viewModel.selectedDate
@@ -562,8 +558,6 @@ extension ExpensesView {
 
     @ViewBuilder
     private var dailyCategoryDetailSheet: some View {
-        let _ = print("Sheet opened with category: \(selectedCategoryForDetail?.name)")
-        
         if let category = selectedCategoryForDetail {
             DailyCategoryDetailBottomSheet(
                 category: category,
