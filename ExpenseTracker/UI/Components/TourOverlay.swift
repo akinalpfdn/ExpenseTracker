@@ -25,9 +25,14 @@ struct TourOverlayHost: View {
     let targets: [TourStepID: TourTargetInfo]
     let isDarkTheme: Bool
 
+    /// Which hierarchy this host is rooted in. It draws only the steps that belong
+    /// there, so the main overlay stays dark while a form step is showing in a sheet
+    /// and the form's overlay ignores every step that is not its own.
+    var surface: TourSurface = .main
+
     var body: some View {
         GeometryReader { proxy in
-            if let step = tour.current, !tour.isSuspended {
+            if let step = tour.current, step.surface == surface, !tour.isSuspended {
                 let cutout = resolveCutout(for: step, in: proxy)
 
                 TourOverlay(
@@ -78,7 +83,9 @@ struct TourOverlay: View {
 
     var body: some View {
         ZStack {
-            dim
+            if step.dimsBackground {
+                dim
+            }
             if step.requiresAction, let cutout = cutout {
                 pulse(around: cutout)
             }

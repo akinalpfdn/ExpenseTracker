@@ -509,6 +509,8 @@ Uygulamamı beğendiysen ve destek olmak istersen bir çayını içerim(Fiyatlar
 /* Guided tour */
 "tour_add_expense_title" = "İlk harcamanı ekle";
 "tour_add_expense_message" = "+ düğmesine bas ve bir harcama kaydet. Uygulamanın gösterdiği her şey bunlardan üretiliyor.";
+"tour_save_expense_title" = "Doldur";
+"tour_save_expense_message" = "Tutarı gir ve bir kategori seç — harcamalar ana kategoriye değil alt kategoriye yazılır — sonra kaydet.";
 "tour_expense_list_title" = "Harcamaların";
 "tour_expense_list_message" = "Bugünün harcamaları burada görünür. Düzenlemek için dokun, silmek için basılı tut.";
 "tour_monthly_ring_title" = "Bu ay";

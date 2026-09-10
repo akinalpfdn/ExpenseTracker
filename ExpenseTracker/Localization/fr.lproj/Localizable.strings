@@ -507,6 +507,8 @@
 /* Guided tour */
 "tour_add_expense_title" = "Ajoute ta première dépense";
 "tour_add_expense_message" = "Touche + et enregistre une dépense. Tout ce que l'app affiche en découle.";
+"tour_save_expense_title" = "Remplis-la";
+"tour_save_expense_message" = "Saisis un montant et choisis une catégorie — les dépenses vont dans les sous-catégories, pas les principales — puis enregistre.";
 "tour_expense_list_title" = "Tes dépenses";
 "tour_expense_list_message" = "Les dépenses du jour apparaissent ici. Touche pour modifier, maintiens pour supprimer.";
 "tour_monthly_ring_title" = "Ce mois-ci";

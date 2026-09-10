@@ -507,6 +507,8 @@
 /* Guided tour */
 "tour_add_expense_title" = "Añade tu primer gasto";
 "tour_add_expense_message" = "Toca + y guarda un gasto. Todo lo que muestra la app se construye a partir de ellos.";
+"tour_save_expense_title" = "Rellénalo";
+"tour_save_expense_message" = "Introduce un importe y elige una categoría (los gastos van en subcategorías, no en las principales) y guarda.";
 "tour_expense_list_title" = "Tus gastos";
 "tour_expense_list_message" = "Los gastos de hoy aparecen aquí. Toca uno para editarlo, mantén pulsado para borrarlo.";
 "tour_monthly_ring_title" = "Este mes";

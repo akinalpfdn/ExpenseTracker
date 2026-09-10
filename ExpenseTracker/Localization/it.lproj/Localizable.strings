@@ -506,6 +506,8 @@
 /* Guided tour */
 "tour_add_expense_title" = "Aggiungi la prima spesa";
 "tour_add_expense_message" = "Tocca + e salva una spesa. Tutto ciò che l'app mostra nasce da queste.";
+"tour_save_expense_title" = "Compilala";
+"tour_save_expense_message" = "Inserisci un importo e scegli una categoria — le spese vanno nelle sottocategorie, non nelle principali — poi salva.";
 "tour_expense_list_title" = "Le tue spese";
 "tour_expense_list_message" = "Le spese di oggi compaiono qui. Tocca per modificare, tieni premuto per eliminare.";
 "tour_monthly_ring_title" = "Questo mese";

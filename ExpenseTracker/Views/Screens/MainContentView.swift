@@ -162,7 +162,7 @@ struct MainContentView: View {
         // current step wants and cuts the spotlight there. Attached here so every tab's
         // targets are in scope and the dim covers the tab content, not just one screen.
         .overlayPreferenceValue(TourTargetsKey.self) { targets in
-            TourOverlayHost(tour: tour, targets: targets, isDarkTheme: isDarkTheme)
+            TourOverlayHost(tour: tour, targets: targets, isDarkTheme: isDarkTheme, surface: .main)
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
     }

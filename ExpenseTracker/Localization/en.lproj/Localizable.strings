@@ -508,6 +508,8 @@
 /* Guided tour */
 "tour_add_expense_title" = "Add your first expense";
 "tour_add_expense_message" = "Tap the + button and save an expense. Everything the app shows is built from these.";
+"tour_save_expense_title" = "Fill it in";
+"tour_save_expense_message" = "Enter an amount and pick a category — expenses go under subcategories, not the main ones — then save.";
 "tour_expense_list_title" = "Your expenses";
 "tour_expense_list_message" = "Today's expenses appear here. Tap one to edit it, hold to delete it.";
 "tour_monthly_ring_title" = "This month";

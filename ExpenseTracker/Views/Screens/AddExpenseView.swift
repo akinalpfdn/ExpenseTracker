@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddExpenseView: View {
     @EnvironmentObject var viewModel: ExpenseViewModel
+    @EnvironmentObject var tour: TourController
 
     let selectedDate: Date
     let defaultCurrency: String
@@ -99,6 +100,13 @@ struct AddExpenseView: View {
         }
         .sheet(isPresented: $showEndDatePicker) {
             endDatePickerSheet
+        }
+        // This sheet is its own hierarchy above the app, so the tour's main overlay
+        // cannot appear here. The form hosts a second one for the step that belongs
+        // to it. No dim: the user has to use the amount field and the category menu
+        // before the spotlit button means anything.
+        .overlayPreferenceValue(TourTargetsKey.self) { targets in
+            TourOverlayHost(tour: tour, targets: targets, isDarkTheme: isDarkTheme, surface: .addExpenseForm)
         }
         // The count and the end date are two views of one thing. Each updates the
         // other only when they actually disagree, so the pair settles instead of
@@ -468,6 +476,7 @@ extension AddExpenseView {
                     .progressViewStyle(CircularProgressViewStyle(tint: .white))
                     .scaleEffect(0.8) : nil
             )
+            .tourTarget(.saveExpense, shape: .rounded(16))
         }
     }
 
@@ -576,6 +585,7 @@ struct AddExpenseView_Previews: PreviewProvider {
             onExpenseAdded: { _ in },
             onDismiss: { }
         )
+        .environmentObject(TourController(preferences: PreferencesManager()))
         .environmentObject(viewModel)
     }
 }

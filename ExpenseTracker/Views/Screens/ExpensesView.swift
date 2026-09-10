@@ -174,9 +174,8 @@ struct ExpensesView: View {
         .sheet(isPresented: $showingAddExpense) {
             addExpenseSheet
         }
-        // A sheet is presented above the whole app, so the tour draws nothing while
-        // one is up and picks up where it was once the sheet is gone.
-        .onChange(of: showingAddExpense) { tour.isSuspended = $0 }
+        // The settings sheet has no tour step of its own; the tour waits behind it.
+        // The add-expense sheet hosts its own overlay and needs no suspension.
         .onChange(of: showingSettings) { tour.isSuspended = $0 }
         .sheet(isPresented: $showingSettings) {
             settingsSheet
@@ -369,6 +368,9 @@ extension ExpensesView {
 
                     // Add Expense Button
                     Button(action: {
+                        // Opening the form is what step one asks for; the form's own
+                        // step takes over from here.
+                        tour.complete(.addExpense)
                         showingAddExpense = true
                     }) {
                         ZStack {
@@ -515,18 +517,20 @@ extension ExpensesView {
                     viewModel.addExpense(expense)
                 }
 
-                // The tour's first step is done when an expense exists, not when the
-                // form opened. Cancelling the form completes nothing, so the tour is
-                // still on that step when the sheet goes away.
-                tour.complete(.addExpense)
+                tour.complete(.saveExpense)
             },
             onDismiss: {
                 showingAddExpense = false
                 viewModel.editingExpenseId = nil
+
+                // Cancelled without saving: back to the plus, which opened the form.
+                // After a save the tour has already moved on and this does nothing.
+                tour.retreat(from: .saveExpense, to: .addExpense)
             },
             editingExpense: viewModel.editingExpenseId != nil ? viewModel.expenses.first { $0.id == viewModel.editingExpenseId } : nil
         )
         .environmentObject(viewModel)
+        .environmentObject(tour)
     }
 
     private var settingsSheet: some View {

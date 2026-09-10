@@ -94,6 +94,16 @@ final class TourController: ObservableObject {
         show(target)
     }
 
+    /// The user walked away from what a step asked for — cancelled the form — so the
+    /// tour goes back to the step that opened it. Guarded on `from` so a dismiss after
+    /// a successful save, when the tour has already moved on, does nothing.
+    func retreat(from step: TourStepID, to fallback: TourStepID) {
+        guard current?.id == step,
+              let target = steps.firstIndex(where: { $0.id == fallback }),
+              target < index else { return }
+        show(target)
+    }
+
     func skipTour() {
         finish()
     }

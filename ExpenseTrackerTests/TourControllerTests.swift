@@ -59,11 +59,47 @@ final class TourControllerTests: XCTestCase {
         XCTAssertEqual(tour.current?.id, .addExpense)
     }
 
-    func testCompletingTheActionAdvances() {
+    /// Tapping the plus hands over to the form's own step.
+    func testTappingThePlusMovesIntoTheForm() {
         let tour = makeTour()
         tour.startIfNeeded()
 
         tour.complete(.addExpense)
+
+        XCTAssertEqual(tour.current?.id, .saveExpense)
+        XCTAssertEqual(tour.current?.surface, .addExpenseForm)
+        XCTAssertFalse(tour.current?.dimsBackground ?? true, "The form must stay usable")
+    }
+
+    func testSavingCompletesTheForm() {
+        let tour = makeTour()
+        tour.startIfNeeded()
+        tour.complete(.addExpense)
+
+        tour.complete(.saveExpense)
+
+        XCTAssertEqual(tour.current?.id, .expenseList)
+    }
+
+    /// Cancelling the form returns to the plus that opened it. After a save the tour
+    /// has already moved on and the same call must do nothing.
+    func testCancellingTheFormReturnsToThePlus() {
+        let tour = makeTour()
+        tour.startIfNeeded()
+        tour.complete(.addExpense)
+
+        tour.retreat(from: .saveExpense, to: .addExpense)
+
+        XCTAssertEqual(tour.current?.id, .addExpense)
+    }
+
+    func testRetreatAfterASaveDoesNothing() {
+        let tour = makeTour()
+        tour.startIfNeeded()
+        tour.complete(.addExpense)
+        tour.complete(.saveExpense)
+
+        tour.retreat(from: .saveExpense, to: .addExpense)
 
         XCTAssertEqual(tour.current?.id, .expenseList)
     }
@@ -85,19 +121,7 @@ final class TourControllerTests: XCTestCase {
 
         tour.skipStep()
 
-        XCTAssertEqual(tour.current?.id, .expenseList)
-    }
-
-    /// Cancelling the form completes nothing, so the tour is still on the action step
-    /// when the sheet goes away. No rewind logic is needed because nothing moved.
-    func testAnAbandonedActionLeavesTheTourWhereItWas() {
-        let tour = makeTour()
-        tour.startIfNeeded()
-
-        tour.isSuspended = true      // sheet opened
-        tour.isSuspended = false     // sheet closed without saving
-
-        XCTAssertEqual(tour.current?.id, .addExpense)
+        XCTAssertEqual(tour.current?.id, .saveExpense)
     }
 
     // MARK: - Information Steps
@@ -106,6 +130,7 @@ final class TourControllerTests: XCTestCase {
         let tour = makeTour()
         tour.startIfNeeded()
         tour.complete(.addExpense)
+        tour.complete(.saveExpense)
 
         let expected: [TourStepID] = [.expenseList, .monthlyRing, .recurringList, .overview, .analysis, .planning, .settings]
         for id in expected {
@@ -139,10 +164,11 @@ final class TourControllerTests: XCTestCase {
 
     /// Back never lands on an action step. Its precondition is gone — the expense is
     /// saved — so it would ask for something that cannot happen again.
-    func testNoBackFromTheStepAfterTheAction() {
+    func testNoBackFromTheStepAfterTheActions() {
         let tour = makeTour()
         tour.startIfNeeded()
         tour.complete(.addExpense)
+        tour.complete(.saveExpense)
 
         XCTAssertEqual(tour.current?.id, .expenseList)
         XCTAssertFalse(tour.canGoBack)
@@ -152,6 +178,7 @@ final class TourControllerTests: XCTestCase {
         let tour = makeTour()
         tour.startIfNeeded()
         tour.complete(.addExpense)
+        tour.complete(.saveExpense)
         tour.next()
 
         XCTAssertEqual(tour.current?.id, .monthlyRing)
@@ -164,6 +191,7 @@ final class TourControllerTests: XCTestCase {
         let tour = makeTour()
         tour.startIfNeeded()
         tour.complete(.addExpense)
+        tour.complete(.saveExpense)
 
         while tour.isActive {
             if tour.canGoBack {
@@ -191,13 +219,21 @@ final class TourControllerTests: XCTestCase {
         XCTAssertEqual(Set(ids).count, ids.count)
     }
 
-    /// Exactly one step asks the user to do something, and it is the first. Later
-    /// action steps could strand someone who has jumped to a screen whose control
-    /// they cannot find.
-    func testOnlyTheFirstStepRequiresAction() {
-        let script = TourStep.script
-        XCTAssertTrue(script.first?.requiresAction ?? false)
-        XCTAssertFalse(script.dropFirst().contains { $0.requiresAction })
+    /// The action steps are the first two — open the form, save an expense — and
+    /// nothing after. A later action step could strand someone who has jumped to a
+    /// screen whose control they cannot find.
+    func testOnlyTheFirstTwoStepsRequireAction() {
+        let flags = TourStep.script.map(\.requiresAction)
+        XCTAssertEqual(flags.prefix(2), [true, true])
+        XCTAssertFalse(flags.dropFirst(2).contains(true))
+    }
+
+    /// The form step is the only one drawn inside a sheet, and the only one that
+    /// leaves the screen undimmed.
+    func testOnlyTheFormStepLivesInTheForm() {
+        let inForm = TourStep.script.filter { $0.surface == .addExpenseForm }
+        XCTAssertEqual(inForm.map(\.id), [.saveExpense])
+        XCTAssertEqual(TourStep.script.filter { !$0.dimsBackground }.map(\.id), [.saveExpense])
     }
 
     func testEveryStepIdHasAScriptEntry() {

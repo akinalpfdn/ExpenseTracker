@@ -507,6 +507,8 @@
 /* Guided tour */
 "tour_add_expense_title" = "Erste Ausgabe hinzufügen";
 "tour_add_expense_message" = "Tippe auf + und speichere eine Ausgabe. Alles, was die App zeigt, entsteht daraus.";
+"tour_save_expense_title" = "Ausfüllen";
+"tour_save_expense_message" = "Gib einen Betrag ein und wähle eine Kategorie – Ausgaben gehören zu Unterkategorien, nicht zu den Hauptkategorien – und speichere.";
 "tour_expense_list_title" = "Deine Ausgaben";
 "tour_expense_list_message" = "Die Ausgaben von heute erscheinen hier. Tippen zum Bearbeiten, halten zum Löschen.";
 "tour_monthly_ring_title" = "Dieser Monat";

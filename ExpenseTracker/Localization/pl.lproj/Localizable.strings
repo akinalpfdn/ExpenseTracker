@@ -506,6 +506,8 @@
 /* Guided tour */
 "tour_add_expense_title" = "Dodaj pierwszy wydatek";
 "tour_add_expense_message" = "Dotknij + i zapisz wydatek. Wszystko, co pokazuje aplikacja, powstaje z nich.";
+"tour_save_expense_title" = "Wypełnij";
+"tour_save_expense_message" = "Wpisz kwotę i wybierz kategorię — wydatki trafiają do podkategorii, nie do głównych — i zapisz.";
 "tour_expense_list_title" = "Twoje wydatki";
 "tour_expense_list_message" = "Dzisiejsze wydatki pojawiają się tutaj. Dotknij, aby edytować, przytrzymaj, aby usunąć.";
 "tour_monthly_ring_title" = "Ten miesiąc";

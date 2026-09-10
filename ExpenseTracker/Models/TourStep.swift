@@ -23,6 +23,16 @@ enum TourTab: Int {
     case planning = 3
 }
 
+// MARK: - Which Hierarchy a Step Is Drawn In
+
+/// A sheet is a separate view hierarchy presented above the whole app, so an overlay
+/// rooted in the main view can never appear inside one. Each surface hosts its own
+/// overlay and draws only the steps that belong to it.
+enum TourSurface {
+    case main
+    case addExpenseForm
+}
+
 // MARK: - Step Identity
 
 /// Each case is also the identifier a view uses to register itself as the target:
@@ -30,6 +40,7 @@ enum TourTab: Int {
 /// spotlight on the same thing.
 enum TourStepID: String, CaseIterable {
     case addExpense
+    case saveExpense
     case expenseList
     case monthlyRing
     case recurringList
@@ -44,6 +55,7 @@ enum TourStepID: String, CaseIterable {
 struct TourStep: Identifiable, Equatable {
     let id: TourStepID
     let tab: TourTab
+    var surface: TourSurface = .main
 
     /// Localization key stem — `tour_<key>_title` and `tour_<key>_message`.
     let key: String
@@ -52,6 +64,10 @@ struct TourStep: Identifiable, Equatable {
     /// no Next button; the control itself is the only way forward, and the overlay
     /// lets touches through to it and nothing else.
     let requiresAction: Bool
+
+    /// The form needs several of its controls used before the spotlit one, so it is
+    /// not dimmed — the callout and the pulse are guidance, not a fence.
+    var dimsBackground: Bool { surface == .main }
 
     var title: String { "tour_\(key)_title".localized }
     var message: String { "tour_\(key)_message".localized }
@@ -67,6 +83,10 @@ extension TourStep {
         // The one thing the user has to do. Everything else the app shows is derived
         // from expenses, so the tour is empty talk until there is one.
         TourStep(id: .addExpense, tab: .expenses, key: "add_expense", requiresAction: true),
+
+        // Inside the form. Tapping the plus completes the step above and opens the
+        // sheet; saving completes this one. Cancelling the sheet returns to the plus.
+        TourStep(id: .saveExpense, tab: .expenses, surface: .addExpenseForm, key: "save_expense", requiresAction: true),
 
         // The rest of the expense screen, now that there is something on it.
         TourStep(id: .expenseList, tab: .expenses, key: "expense_list", requiresAction: false),
