@@ -133,9 +133,12 @@ private struct SpotlightPulse: View {
         RoundedRectangle(cornerRadius: cutout.cornerRadius)
             .stroke(AppColors.primaryOrange, lineWidth: 3)
             .frame(width: cutout.rect.width, height: cutout.rect.height)
-            .position(x: cutout.rect.midX, y: cutout.rect.midY)
+            // Scale first, then place. The other way round, `.position` has already
+            // grown the view to fill the screen, and the scale then happens around
+            // the screen's centre — the ring drifts away from the button as it grows.
             .scaleEffect(expanded ? 1.18 : 1.0)
             .opacity(expanded ? 0 : 0.9)
+            .position(x: cutout.rect.midX, y: cutout.rect.midY)
             .onAppear {
                 withAnimation(.easeOut(duration: 1.3).repeatForever(autoreverses: false)) {
                     expanded = true
