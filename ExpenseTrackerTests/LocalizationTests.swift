@@ -43,12 +43,22 @@ final class LocalizationTests: XCTestCase {
     /// Duplicate keys do not fail to parse — the later definition simply wins, so a
     /// stale copy left behind by an edit silently overrides the new one. That is how
     /// the tour ended up describing gestures the app does not have.
+    ///
+    /// Read from the source tree, not the bundle: Xcode compiles `.strings` into a
+    /// binary plist, which has already collapsed any duplicate by the time it ships.
     func testNoLanguageDefinesAKeyTwice() throws {
+        let localization = URL(fileURLWithPath: #filePath)
+            .deletingLastPathComponent()          // ExpenseTrackerTests
+            .deletingLastPathComponent()          // repo root
+            .appendingPathComponent("ExpenseTracker/Localization")
+
         for language in ["en", "tr", "de", "es", "fr", "it", "pl", "pt-PT", "ru"] {
-            guard let path = Bundle.main.path(forResource: language, ofType: "lproj"),
-                  let stringsPath = Bundle(path: path)?.path(forResource: "Localizable", ofType: "strings"),
-                  let contents = try? String(contentsOfFile: stringsPath, encoding: .utf8) else {
-                return XCTFail("Could not read \(language).lproj")
+            let file = localization
+                .appendingPathComponent("\(language).lproj")
+                .appendingPathComponent("Localizable.strings")
+
+            guard let contents = try? String(contentsOf: file, encoding: .utf8) else {
+                return XCTFail("Could not read \(file.path)")
             }
 
             let declared = contents

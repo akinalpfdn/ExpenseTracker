@@ -25,8 +25,6 @@ struct RecurrenceSchedule {
         guard recurrence != .NONE, count >= 1 else { return nil }
 
         let intervals = count - 1
-        guard intervals > 0 else { return calendar.startOfDay(for: startDate) }
-
         let start = calendar.startOfDay(for: startDate)
 
         switch recurrence {
@@ -40,6 +38,9 @@ struct RecurrenceSchedule {
             return calendar.date(byAdding: .month, value: intervals, to: start)
 
         case .WEEKDAYS:
+            // Even a single occurrence goes through the walk: a Saturday start has
+            // its first occurrence on the Monday, and an early return for count == 1
+            // used to skip that rule and hand back the Saturday.
             return weekdayDate(from: start, advancing: intervals)
 
         case .NONE:

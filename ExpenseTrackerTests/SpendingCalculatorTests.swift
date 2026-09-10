@@ -37,10 +37,13 @@ final class SpendingCalculatorTests: XCTestCase {
     }
 
     /// An expense timestamped on the last day of the month must not fall through the
-    /// interval boundary.
+    /// interval boundary. Asked as of that day: spending later than "now" is excluded
+    /// on purpose (see `testSpendingExcludesOccurrencesLaterThanTheCutoff`), so asking
+    /// on the 15th about the 30th would rightly give zero.
     func testCurrentMonthIncludesTheFinalDay() {
         let expenses = [expense(amount: 75, on: "2026-06-30")]
-        XCTAssertEqual(calculator.currentMonthSpending(expenses: expenses, now: now), 75)
+        let lastDay = Self.date("2026-06-30")
+        XCTAssertEqual(calculator.currentMonthSpending(expenses: expenses, now: lastDay), 75)
     }
 
     func testForeignCurrencyIsConverted() {
