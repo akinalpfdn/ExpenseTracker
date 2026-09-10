@@ -417,10 +417,6 @@
 "purchase_cancelled" = "Покупка отменена";
 
 // MARK: - Tutorial
-"tutorial_skip" = "Пропустить";
-"tutorial_next" = "Далее";
-"tutorial_finish" = "Готово";
-"tutorial_tap_to_continue" = "Нажмите, чтобы продолжить";
 "loading_products" = "Загрузка товаров...";
 
 
@@ -503,18 +499,6 @@
 "reminder_title" = "Запишите расходы";
 "reminder_body" = "Сегодня вы ничего не записали.";
 
-/* Onboarding */
-"tutorial_chapter_first_expense" = "Ваш первый расход";
-"tutorial_chapter_first_expense_invite" = "Давайте что-нибудь запишем. Без расходов приложению нечего показывать.";
-"tutorial_chapter_screens" = "Четыре экрана";
-"tutorial_chapter_screens_invite" = "Листайте между ними. Каждый отвечает на свой вопрос о ваших деньгах.";
-"tutorial_chapter_making_it_yours" = "Настройте под себя";
-"tutorial_chapter_making_it_yours_invite" = "Категории, лимиты, резервные копии и вечернее напоминание.";
-"tutorial_skip_tour" = "Пропустить обучение";
-"tutorial_skip_step" = "Пропустить";
-"tutorial_your_turn" = "Ваша очередь";
-"tutorial_continue" = "Продолжить";
-"tutorial_stop_here" = "Остановиться здесь";
 "welcome_currency_title" = "Какая валюта?";
 "welcome_currency_description" = "Та, в которой вы считаете. Расходы можно вести и в других.";
 "welcome_income_title" = "Сколько приходит в месяц?";
@@ -524,48 +508,29 @@
 "welcome_changeable_later" = "Это можно изменить в любой момент в Настройках";
 "welcome_start" = "Начать";
 
-"tutorial_replay" = "Обучение";
-"tutorial_replay_button" = "Пройти заново";
-"tutorial_replay_description" = "Пройдите по приложению ещё раз с начала.";
-
-"tutorial_back" = "Назад";
-
-/* Tour steps */
-"tutorial_add_expense_title" = "Добавьте расход";
-"tutorial_add_expense_message" = "Нажмите оранжевую кнопку. Продолжим, когда вы сохраните первый.";
-"tutorial_fill_form_title" = "Заполните";
-"tutorial_fill_form_message" = "Достаточно суммы и категории. Расходы записываются в подкатегории, а не в основные.";
-"tutorial_expense_list_title" = "Вот он";
-"tutorial_expense_list_message" = "Расходы дня хранятся здесь. Нажмите, чтобы изменить, удерживайте, чтобы удалить.";
-"tutorial_week_strip_title" = "Ваша неделя";
-"tutorial_week_strip_message" = "Каждый день с тем, сколько вы потратили. Нажмите, чтобы перейти к нему.";
-"tutorial_monthly_ring_title" = "Месяц на сегодня";
-"tutorial_monthly_ring_message" = "Ваша сумма за месяц против лимита. Нажмите, чтобы открыть календарь.";
-"tutorial_recurring_list_title" = "Повторяющиеся расходы";
-"tutorial_recurring_list_message" = "Здесь ваши подписки и рассрочки — всё, что возвращается каждую неделю или месяц, одним списком.";
-"tutorial_overview_summary_title" = "Где вы сейчас";
-"tutorial_overview_summary_message" = "Расходы месяца против того, что приходит, и что остаётся. Карандаш задаёт доход.";
-"tutorial_overview_trend_title" = "Как шло до сих пор";
-"tutorial_overview_trend_message" = "Ваши месячные суммы, под ними среднее и итог. Кнопки сверху переключают три месяца, шесть и год.";
-"tutorial_overview_forecast_title" = "Год впереди";
-"tutorial_overview_forecast_message" = "Регулярные расходы плюс недавнее среднее, месяц за месяцем, а ниже — баланс, который они оставляют.";
-"tutorial_analysis_period_title" = "Выберите период";
-"tutorial_analysis_period_message" = "По месяцам или нажмите на диапазон дат для чего-то другого.";
-"tutorial_analysis_filter_title" = "Все, регулярные или разовые";
-"tutorial_analysis_filter_message" = "Подписки могут заглушить всё остальное. Это их разделяет.";
-"tutorial_analysis_breakdown_title" = "Куда ушло";
-"tutorial_analysis_breakdown_message" = "Каждая категория — сектор. Нажмите на один, чтобы увидеть расходы внутри.";
-"tutorial_planning_what_title" = "Планы";
-"tutorial_planning_what_message" = "Укажите доход и срок, чтобы увидеть, сколько сможете отложить — с инфляцией и процентами, если нужно.";
-"tutorial_planning_create_title" = "Создать план";
-"tutorial_planning_create_message" = "Отсюда создаётся новый. Он берёт ваши реальные расходы, поэтому прогноз следует тому, как вы тратите.";
-"tutorial_settings_title" = "Всё остальное здесь";
-"tutorial_settings_message" = "Валюта, лимиты, ваши категории, копии и напоминания. Следующие шаги подскажут, что искать.";
-"tutorial_categories_title" = "Категории";
-"tutorial_categories_message" = "Добавляйте свои. Новой категории нужна хотя бы одна подкатегория, чтобы ею пользоваться.";
-"tutorial_limits_title" = "Дневной и месячный лимит";
-"tutorial_limits_message" = "Оставьте пустым, чтобы лимита не было. Кольцо и предупреждения считают по ним.";
-"tutorial_backup_title" = "Резервные копии";
-"tutorial_backup_message" = "Выгрузите всё в файл, который храните сами. Он восстанавливается и на Android.";
-"tutorial_reminder_title" = "Вечернее напоминание";
-"tutorial_reminder_message" = "Напоминание в выбранное время, только в дни без записей.";
+/* Guided tour */
+"tour_add_expense_title" = "Добавьте первый расход";
+"tour_add_expense_message" = "Нажмите + и сохраните расход. Всё, что показывает приложение, строится из них.";
+"tour_expense_list_title" = "Ваши расходы";
+"tour_expense_list_message" = "Сегодняшние расходы появляются здесь. Нажмите, чтобы изменить, удерживайте, чтобы удалить.";
+"tour_monthly_ring_title" = "Этот месяц";
+"tour_monthly_ring_message" = "Ваша сумма на сегодня против месячного лимита. Нажмите на кольцо, чтобы открыть календарь.";
+"tour_recurring_list_title" = "Регулярные расходы";
+"tour_recurring_list_message" = "Подписки и рассрочки здесь. При добавлении укажите, сколько раз повторяется, и дата окончания посчитается сама.";
+"tour_overview_title" = "Обзор";
+"tour_overview_message" = "Этот месяц против дохода, что остаётся, а ниже прогноз на двенадцать месяцев.";
+"tour_analysis_title" = "Анализ";
+"tour_analysis_message" = "Куда ушли деньги, по категориям и месяцам. Нажмите на сектор, чтобы увидеть расходы внутри.";
+"tour_planning_title" = "Планирование";
+"tour_planning_message" = "Укажите доход и срок, чтобы увидеть, сколько сможете отложить — с инфляцией и процентами, если нужно.";
+"tour_settings_title" = "Настройки";
+"tour_settings_message" = "Валюта, лимиты, ваши категории, копии и вечернее напоминание — всё за этой кнопкой.";
+"tour_next" = "Далее";
+"tour_back" = "Назад";
+"tour_skip" = "Пропустить";
+"tour_done" = "Готово";
+"tour_tap_hint" = "Нажмите на выделенную кнопку";
+"tour_skip_step" = "Пропустить шаг";
+"tour_replay_title" = "Обучение";
+"tour_replay_button" = "Показать ещё раз";
+"tour_replay_description" = "Пройти по приложению с начала.";

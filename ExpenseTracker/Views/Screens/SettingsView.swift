@@ -102,7 +102,7 @@ extension SettingsView {
                 Divider()
                     .background(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
 
-                TutorialSettingsSection(
+                TourSettingsRow(
                     isDarkTheme: isDarkTheme,
                     onDismissSettings: onDismiss
                 )

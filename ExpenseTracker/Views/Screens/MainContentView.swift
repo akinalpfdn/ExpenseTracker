@@ -18,16 +18,14 @@ struct MainContentView: View {
     @State private var selectedTab = 1
     @StateObject private var rateMeManager = RateMeManager()
 
-    /// Owned here rather than inside a screen, which is what lets the tour move between
-    /// tabs. It publishes the screen it needs; the binding below puts it on display.
-    @StateObject private var tutorialManager: TutorialManager
+    /// Owned here, above the tab view, which is what lets the tour move between tabs.
+    /// Each step names its tab; the binding below puts that tab on display.
+    @StateObject private var tour: TourController
 
     init() {
-        // The tour only reads and writes the tutorial-completed flag, which lives in
+        // The tour only reads and writes the tour-completed flag, which lives in
         // UserDefaults, so it does not need to share the environment's instance.
-        _tutorialManager = StateObject(
-            wrappedValue: TutorialManager(preferencesManager: PreferencesManager())
-        )
+        _tour = StateObject(wrappedValue: TourController(preferences: PreferencesManager()))
     }
 
     private var isDarkTheme: Bool {
@@ -68,10 +66,6 @@ struct MainContentView: View {
                 }
             }
 
-            // The tour sits above everything so a step can point at any tab.
-            TutorialOverlay(manager: tutorialManager, isDarkTheme: isDarkTheme)
-                .zIndex(900)
-
             // Rate Me overlay
             if rateMeManager.showRateMe {
                 RateMeView(
@@ -92,12 +86,10 @@ struct MainContentView: View {
         }
     }
 
-    /// Waits a beat so the first screen has settled before a tooltip lands on it.
+    /// Waits a beat so the first screen has settled before the spotlight opens on it.
     private func startTourIfNeeded() {
-        guard !preferencesManager.isTutorialCompleted(), !tutorialManager.isActive else { return }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            tutorialManager.start()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+            tour.startIfNeeded()
         }
     }
 
@@ -135,12 +127,12 @@ struct MainContentView: View {
                     .tag(3)
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                .environmentObject(tutorialManager)
-                .onChange(of: tutorialManager.requestedScreen) { screen in
-                    // A step declares which tab it belongs to; this is what puts that
-                    // tab on display before its tooltip appears.
-                    guard let screen = screen, selectedTab != screen.rawValue else { return }
-                    withAnimation { selectedTab = screen.rawValue }
+                .environmentObject(tour)
+                .onChange(of: tour.current?.tab) { tab in
+                    // A step names the tab its target sits on; this is what puts that
+                    // tab on display before the spotlight opens.
+                    guard let tab = tab, selectedTab != tab.rawValue else { return }
+                    withAnimation { selectedTab = tab.rawValue }
                 }
 
                 // Custom page indicator at the bottom
@@ -165,6 +157,12 @@ struct MainContentView: View {
                     .padding(.bottom, 20)
                 }
             }
+        }
+        // Targets register their bounds up the tree; the overlay resolves the one the
+        // current step wants and cuts the spotlight there. Attached here so every tab's
+        // targets are in scope and the dim covers the tab content, not just one screen.
+        .overlayPreferenceValue(TourTargetsKey.self) { targets in
+            TourOverlayHost(tour: tour, targets: targets, isDarkTheme: isDarkTheme)
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
     }

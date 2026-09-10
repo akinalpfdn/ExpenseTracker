@@ -10,7 +10,7 @@ import SwiftUI
 struct ExpensesView: View {
     @EnvironmentObject var viewModel: ExpenseViewModel
     @EnvironmentObject var planningViewModel: PlanningViewModel
-    @EnvironmentObject var tutorialManager: TutorialManager
+    @EnvironmentObject var tour: TourController
 
     @State private var showingAddExpense = false
     @State private var showingSettings = false
@@ -23,7 +23,6 @@ struct ExpensesView: View {
     @State private var selectedCategoryForDetail: Category?
 
     init() {
-        // Initialize tutorial manager with preferences
         let preferencesManager = PreferencesManager.shared
     }
 
@@ -124,7 +123,6 @@ struct ExpensesView: View {
                     },
                     isDarkTheme: isDarkTheme
                 )
-                .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .weekStrip)
 
                 Spacer().frame(height: 6)
 
@@ -176,6 +174,10 @@ struct ExpensesView: View {
         .sheet(isPresented: $showingAddExpense) {
             addExpenseSheet
         }
+        // A sheet is presented above the whole app, so the tour draws nothing while
+        // one is up and picks up where it was once the sheet is gone.
+        .onChange(of: showingAddExpense) { tour.isSuspended = $0 }
+        .onChange(of: showingSettings) { tour.isSuspended = $0 }
         .sheet(isPresented: $showingSettings) {
             settingsSheet
         }
@@ -215,9 +217,6 @@ extension ExpensesView {
                 progressPercentage: getMonthlyProgressPercentage(),
                 isOverLimit: isMonthlyOverLimit(),
                 onTap: {
-                    if tutorialManager.isActive {
-                        tutorialManager.next()
-                    }
                     showingMonthlyCalendar = true
                 },
                 currency: viewModel.defaultCurrency,
@@ -225,7 +224,7 @@ extension ExpensesView {
                 month: monthFormatter.string(from: currentCalendarMonth),
                 selectedDate: viewModel.selectedDate
             )
-            .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .monthlyRing)
+            .tourTarget(.monthlyRing, shape: .circle)
             .tag(0)
 
             // Daily Progress Ring
@@ -307,9 +306,6 @@ extension ExpensesView {
 
                     // Purchase/Donation Button
                     Button(action: {
-                        if tutorialManager.isActive {
-                            tutorialManager.next()
-                        }
                         showingPurchase = true
                     }) {
                         ZStack {
@@ -327,9 +323,6 @@ extension ExpensesView {
 
                     // Settings Button
                     Button(action: {
-                        if tutorialManager.isActive {
-                            tutorialManager.next()
-                        }
                         showingSettings = true
                     }) {
                         ZStack {
@@ -343,9 +336,7 @@ extension ExpensesView {
                                 .font(.system(size: 30))
                                 .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
                         }
-                        // Lit for the whole of chapter three: everything that chapter
-                        // describes is behind this button.
-                        .tutorialHighlight(isHighlighted: tutorialManager.currentStep?.chapter == .makingItYours)
+                        .tourTarget(.settings, shape: .circle)
                     }
                 }
 
@@ -355,9 +346,6 @@ extension ExpensesView {
                 VStack(spacing: 12) {
                     // Recurring Expenses Button
                     Button(action: {
-                        if tutorialManager.isActive {
-                            tutorialManager.next()
-                        }
                         showingRecurringExpenses = true
                     }) {
                         ZStack {
@@ -376,14 +364,11 @@ extension ExpensesView {
                                 .font(.system(size: 30))
                                 .foregroundColor(.white)
                         }
-                        .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .recurringList)
+                        .tourTarget(.recurringList, shape: .circle)
                     }
 
                     // Add Expense Button
                     Button(action: {
-                        // Advances only when this is the step being pointed at, so a
-                        // tap here during some other step does not skip ahead.
-                        tutorialManager.completeAction(.addExpense)
                         showingAddExpense = true
                     }) {
                         ZStack {
@@ -402,7 +387,7 @@ extension ExpensesView {
                                 .font(.system(size: 30, weight: .medium))
                                 .foregroundColor(.white)
                         }
-                        .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .addExpense)
+                        .tourTarget(.addExpense, shape: .circle)
                     }
                 }
             }
@@ -470,7 +455,7 @@ extension ExpensesView {
                     }
                     .padding(.horizontal, 20)
                     .padding(.top, 16)
-                    .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .expenseList)
+                    .tourTarget(.expenseList)
                 }
             }
         }
@@ -530,29 +515,25 @@ extension ExpensesView {
                     viewModel.addExpense(expense)
                 }
 
-                // The tour's second step waits for a real expense to exist rather than
-                // for the form to merely have been opened.
-                tutorialManager.completeAction(.fillForm)
+                // The tour's first step is done when an expense exists, not when the
+                // form opened. Cancelling the form completes nothing, so the tour is
+                // still on that step when the sheet goes away.
+                tour.complete(.addExpense)
             },
             onDismiss: {
                 showingAddExpense = false
                 viewModel.editingExpenseId = nil
-
-                // Only when the form was closed without saving. A successful save has
-                // already moved the tour past this step, and the guard inside notices.
-                tutorialManager.abandon(.fillForm, returningTo: .addExpense)
             },
             editingExpense: viewModel.editingExpenseId != nil ? viewModel.expenses.first { $0.id == viewModel.editingExpenseId } : nil
         )
         .environmentObject(viewModel)
-        .environmentObject(tutorialManager)
     }
 
     private var settingsSheet: some View {
         SettingsView(onDismiss: { showingSettings = false })
             .environmentObject(viewModel)
             .environmentObject(planningViewModel)
-            .environmentObject(tutorialManager)
+            .environmentObject(tour)
     }
 
     private var monthlyCalendarSheet: some View {

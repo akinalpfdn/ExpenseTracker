@@ -1,5 +1,5 @@
 //
-//  TutorialSettingsSection.swift
+//  TourSettingsRow.swift
 //  ExpenseTracker
 //
 //  Replays the tour from Settings.
@@ -7,18 +7,18 @@
 
 import SwiftUI
 
-struct TutorialSettingsSection: View {
-    @EnvironmentObject var tutorialManager: TutorialManager
+struct TourSettingsRow: View {
+    @EnvironmentObject var tour: TourController
 
     let isDarkTheme: Bool
 
-    /// Closing Settings is part of the action: the tour points at controls on the
-    /// screens behind this sheet, so leaving it open would hide everything it means.
+    /// Settings is a sheet, and the tour's first target is on the screen behind it.
+    /// Closing the sheet is part of starting.
     let onDismissSettings: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("tutorial_replay".localized)
+            Text("tour_replay_title".localized)
                 .font(.system(size: 18, weight: .medium))
                 .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
 
@@ -26,8 +26,7 @@ struct TutorialSettingsSection: View {
                 HStack(spacing: 8) {
                     Image(systemName: "arrow.counterclockwise")
                         .font(.system(size: 15, weight: .medium))
-
-                    Text("tutorial_replay_button".localized)
+                    Text("tour_replay_button".localized)
                         .font(.system(size: 16, weight: .medium))
                 }
                 .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
@@ -39,7 +38,7 @@ struct TutorialSettingsSection: View {
                 )
             }
 
-            Text("tutorial_replay_description".localized)
+            Text("tour_replay_description".localized)
                 .font(.system(size: 14))
                 .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
                 .fixedSize(horizontal: false, vertical: true)
@@ -49,9 +48,10 @@ struct TutorialSettingsSection: View {
     private func replay() {
         onDismissSettings()
 
-        // A beat for the sheet to get out of the way before the first tooltip lands.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-            tutorialManager.restart()
+        // The sheet's dismissal suspends the tour until it is fully gone; a short wait
+        // means the first spotlight opens on a settled screen rather than mid-animation.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            tour.restart()
         }
     }
 }

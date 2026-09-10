@@ -15,7 +15,7 @@
 		AA00000B2E49C6CB00DBCB51 /* ReminderPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000C2E49C6CB00DBCB51 /* ReminderPlanner.swift */; };
 		AA00000D2E49C6CB00DBCB51 /* ReminderScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000E2E49C6CB00DBCB51 /* ReminderScheduler.swift */; };
 		AA00000F2E49C6CB00DBCB51 /* BulkExpenseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000102E49C6CB00DBCB51 /* BulkExpenseTests.swift */; };
-		AA0000112E49C6CB00DBCB51 /* TutorialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000122E49C6CB00DBCB51 /* TutorialTests.swift */; };
+		AA0000112E49C6CB00DBCB51 /* TourControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000122E49C6CB00DBCB51 /* TourControllerTests.swift */; };
 		F410BB152EBBEA3C00B63464 /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F410BB142EBBEA3C00B63464 /* Products.storekit */; };
 		F410BB192EBBED0300B63464 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410BB172EBBED0300B63464 /* StoreManager.swift */; };
 		F410BB292EBF7EC000B63464 /* connect.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F410BB282EBF7EC000B63464 /* connect.storekit */; };
@@ -53,7 +53,7 @@
 		AA00000C2E49C6CB00DBCB51 /* ReminderPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderPlanner.swift; sourceTree = "<group>"; };
 		AA00000E2E49C6CB00DBCB51 /* ReminderScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderScheduler.swift; sourceTree = "<group>"; };
 		AA0000102E49C6CB00DBCB51 /* BulkExpenseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkExpenseTests.swift; sourceTree = "<group>"; };
-		AA0000122E49C6CB00DBCB51 /* TutorialTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialTests.swift; sourceTree = "<group>"; };
+		AA0000122E49C6CB00DBCB51 /* TourControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourControllerTests.swift; sourceTree = "<group>"; };
 		F410BB142EBBEA3C00B63464 /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
 		F410BB172EBBED0300B63464 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
 		F410BB282EBF7EC000B63464 /* connect.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = connect.storekit; sourceTree = "<group>"; };
@@ -195,7 +195,7 @@
 				AA0000082E49C6CB00DBCB51 /* AddExpenseUXTests.swift */,
 				AA00000A2E49C6CB00DBCB51 /* ReminderPlannerTests.swift */,
 				AA0000102E49C6CB00DBCB51 /* BulkExpenseTests.swift */,
-				AA0000122E49C6CB00DBCB51 /* TutorialTests.swift */,
+				AA0000122E49C6CB00DBCB51 /* TourControllerTests.swift */,
 				F4FE0A822E49C6CB00DBCB51 /* ExpenseTrackerTests.swift */,
 			);
 			path = ExpenseTrackerTests;
@@ -378,7 +378,7 @@
 				AA0000072E49C6CB00DBCB51 /* AddExpenseUXTests.swift in Sources */,
 				AA0000092E49C6CB00DBCB51 /* ReminderPlannerTests.swift in Sources */,
 				AA00000F2E49C6CB00DBCB51 /* BulkExpenseTests.swift in Sources */,
-				AA0000112E49C6CB00DBCB51 /* TutorialTests.swift in Sources */,
+				AA0000112E49C6CB00DBCB51 /* TourControllerTests.swift in Sources */,
 				F4FE0A832E49C6CB00DBCB51 /* ExpenseTrackerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

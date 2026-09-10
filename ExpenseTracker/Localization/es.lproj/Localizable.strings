@@ -414,10 +414,6 @@
 "purchase_cancelled" = "Compra cancelada";
 
 // MARK: - Tutorial
-"tutorial_skip" = "Omitir";
-"tutorial_next" = "Siguiente";
-"tutorial_finish" = "Finalizar";
-"tutorial_tap_to_continue" = "Toca para continuar";
 "loading_products" = "Cargando productos...";
 
 // MARK: - Rate Me Dialog
@@ -499,18 +495,6 @@
 "reminder_title" = "Registra tus gastos";
 "reminder_body" = "Hoy no has registrado nada.";
 
-/* Onboarding */
-"tutorial_chapter_first_expense" = "Tu primer gasto";
-"tutorial_chapter_first_expense_invite" = "Vamos a registrar algo. Sin gastos la app no tiene nada que mostrar.";
-"tutorial_chapter_screens" = "Las cuatro pantallas";
-"tutorial_chapter_screens_invite" = "Desliza entre ellas. Cada una responde una pregunta distinta sobre tu dinero.";
-"tutorial_chapter_making_it_yours" = "Ajústala a ti";
-"tutorial_chapter_making_it_yours_invite" = "Categorías, límites, copias de seguridad y un recordatorio nocturno.";
-"tutorial_skip_tour" = "Saltar el tutorial";
-"tutorial_skip_step" = "Saltar esto";
-"tutorial_your_turn" = "Te toca";
-"tutorial_continue" = "Continuar";
-"tutorial_stop_here" = "Parar aquí";
 "welcome_currency_title" = "¿Qué moneda?";
 "welcome_currency_description" = "Aquella en la que piensas. Puedes registrar gastos en otras.";
 "welcome_income_title" = "¿Cuánto entra al mes?";
@@ -520,48 +504,29 @@
 "welcome_changeable_later" = "Puedes cambiarlo cuando quieras en Ajustes";
 "welcome_start" = "Empezar";
 
-"tutorial_replay" = "Tutorial";
-"tutorial_replay_button" = "Repetir el tutorial";
-"tutorial_replay_description" = "Recorre la app otra vez desde el principio.";
-
-"tutorial_back" = "Atrás";
-
-/* Tour steps */
-"tutorial_add_expense_title" = "Añadir un gasto";
-"tutorial_add_expense_message" = "Toca el botón naranja. Seguimos cuando hayas guardado uno.";
-"tutorial_fill_form_title" = "Rellénalo";
-"tutorial_fill_form_message" = "Importe y categoría bastan. Los gastos van en subcategorías, no en las principales.";
-"tutorial_expense_list_title" = "Ahí está";
-"tutorial_expense_list_message" = "Los gastos del día viven aquí. Toca uno para editarlo, mantén pulsado para borrarlo.";
-"tutorial_week_strip_title" = "Tu semana";
-"tutorial_week_strip_message" = "Cada día con lo que gastaste. Toca uno para cambiar a él.";
-"tutorial_monthly_ring_title" = "El mes hasta ahora";
-"tutorial_monthly_ring_message" = "Tu total de este mes frente a tu límite. Tócalo para ver el calendario completo.";
-"tutorial_recurring_list_title" = "Gastos que se repiten";
-"tutorial_recurring_list_message" = "Esto abre tus suscripciones y plazos — todo lo que vuelve cada semana o mes, en una lista.";
-"tutorial_overview_summary_title" = "Cómo estás";
-"tutorial_overview_summary_message" = "El gasto de este mes frente a lo que entra, y lo que queda. El lápiz fija tus ingresos.";
-"tutorial_overview_trend_title" = "Cómo ha ido";
-"tutorial_overview_trend_message" = "Tus totales mensuales, con la media y la suma debajo. Los botones de arriba cambian entre tres meses, seis y un año.";
-"tutorial_overview_forecast_title" = "El año que viene";
-"tutorial_overview_forecast_message" = "Tus gastos recurrentes más tu media reciente, mes a mes — y debajo, el saldo que te dejan.";
-"tutorial_analysis_period_title" = "Elige un periodo";
-"tutorial_analysis_period_message" = "Mes a mes, o toca el rango de fechas para cualquier otra cosa.";
-"tutorial_analysis_filter_title" = "Todos, recurrentes o puntuales";
-"tutorial_analysis_filter_message" = "Las suscripciones pueden tapar todo lo demás. Esto las separa.";
-"tutorial_analysis_breakdown_title" = "Adónde fue";
-"tutorial_analysis_breakdown_message" = "Cada categoría como una porción. Toca una para ver los gastos que hay dentro.";
-"tutorial_planning_what_title" = "Planes";
-"tutorial_planning_what_message" = "Indica ingresos y duración para ver cuánto podrías ahorrar — con inflación e intereses si quieres.";
-"tutorial_planning_create_title" = "Crear un plan";
-"tutorial_planning_create_message" = "Aquí se crea uno. Usa tus gastos reales, así que la previsión sigue cómo gastas de verdad.";
-"tutorial_settings_title" = "Todo lo demás está aquí";
-"tutorial_settings_message" = "Moneda, límites, tus categorías, copias y recordatorios. Los siguientes pasos te dicen qué buscar.";
-"tutorial_categories_title" = "Categorías";
-"tutorial_categories_message" = "Crea las tuyas. Una categoría nueva necesita al menos una subcategoría para poder usarse.";
-"tutorial_limits_title" = "Límite diario y mensual";
-"tutorial_limits_message" = "Déjalo en blanco para no tener límite. El anillo y los avisos miden con esto.";
-"tutorial_backup_title" = "Copias de seguridad";
-"tutorial_backup_message" = "Exporta todo a un archivo que guardas tú. También se restaura en Android.";
-"tutorial_reminder_title" = "Un aviso por la noche";
-"tutorial_reminder_message" = "Un recordatorio a la hora que elijas, solo los días sin registros.";
+/* Guided tour */
+"tour_add_expense_title" = "Añade tu primer gasto";
+"tour_add_expense_message" = "Toca + y guarda un gasto. Todo lo que muestra la app se construye a partir de ellos.";
+"tour_expense_list_title" = "Tus gastos";
+"tour_expense_list_message" = "Los gastos de hoy aparecen aquí. Toca uno para editarlo, mantén pulsado para borrarlo.";
+"tour_monthly_ring_title" = "Este mes";
+"tour_monthly_ring_message" = "Tu total hasta ahora frente a tu límite mensual. Toca el anillo para ver el calendario.";
+"tour_recurring_list_title" = "Gastos recurrentes";
+"tour_recurring_list_message" = "Las suscripciones y los plazos viven aquí. Al añadir uno, escribe cuántas veces se repite y la fecha final se calcula sola.";
+"tour_overview_title" = "Resumen";
+"tour_overview_message" = "Este mes frente a tus ingresos, lo que queda y, debajo, una previsión a doce meses.";
+"tour_analysis_title" = "Análisis";
+"tour_analysis_message" = "Adónde fue el dinero, por categoría y por mes. Toca una porción para ver los gastos que contiene.";
+"tour_planning_title" = "Planificación";
+"tour_planning_message" = "Indica ingresos y duración para ver cuánto podrías ahorrar, con inflación e intereses si quieres.";
+"tour_settings_title" = "Ajustes";
+"tour_settings_message" = "Moneda, límites, tus categorías, copias de seguridad y un recordatorio nocturno, todo detrás de este botón.";
+"tour_next" = "Siguiente";
+"tour_back" = "Atrás";
+"tour_skip" = "Saltar";
+"tour_done" = "Listo";
+"tour_tap_hint" = "Toca el botón resaltado";
+"tour_skip_step" = "Saltar este paso";
+"tour_replay_title" = "Tutorial guiado";
+"tour_replay_button" = "Volver a verlo";
+"tour_replay_description" = "Recorre la app desde el principio.";

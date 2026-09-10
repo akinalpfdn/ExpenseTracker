@@ -9,7 +9,6 @@ import SwiftUI
 
 struct PlanningView: View {
     @EnvironmentObject var planningViewModel: PlanningViewModel
-    @EnvironmentObject var tutorialManager: TutorialManager
 
     let isDarkTheme: Bool
     let defaultCurrency: String
@@ -28,7 +27,7 @@ struct PlanningView: View {
 
                 // Header
                 headerSection
-                    .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .planningWhat)
+                    .tourTarget(.planning)
 
                 Spacer().frame(height: 24)
 
@@ -184,7 +183,6 @@ extension PlanningView {
                             .font(.system(size: 30, weight: .medium))
                             .foregroundColor(.white)
                     }
-                    .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .planningCreate)
                 }
                 .padding(.trailing, 20)
                 .padding(.bottom, 20)

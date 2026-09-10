@@ -9,7 +9,6 @@ import SwiftUI
 
 struct AddExpenseView: View {
     @EnvironmentObject var viewModel: ExpenseViewModel
-    @EnvironmentObject var tutorialManager: TutorialManager
 
     let selectedDate: Date
     let defaultCurrency: String
@@ -100,14 +99,6 @@ struct AddExpenseView: View {
         }
         .sheet(isPresented: $showEndDatePicker) {
             endDatePickerSheet
-        }
-        // A sheet is presented above the whole app, so the tour's overlay back in
-        // MainContentView is hidden behind it — exactly while the step about this form
-        // is the one showing. The form carries its own copy for that step.
-        .overlay {
-            if tutorialManager.currentStepId == .fillForm {
-                TutorialOverlay(manager: tutorialManager, isDarkTheme: isDarkTheme)
-            }
         }
         // The count and the end date are two views of one thing. Each updates the
         // other only when they actually disagree, so the pair settles instead of
@@ -585,7 +576,6 @@ struct AddExpenseView_Previews: PreviewProvider {
             onExpenseAdded: { _ in },
             onDismiss: { }
         )
-        .environmentObject(TutorialManager(preferencesManager: PreferencesManager()))
         .environmentObject(viewModel)
     }
 }

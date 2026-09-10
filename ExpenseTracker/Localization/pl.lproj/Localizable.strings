@@ -414,10 +414,6 @@
 "purchase_cancelled" = "Zakup anulowany";
 
 // MARK: - Tutorial
-"tutorial_skip" = "Pomiń";
-"tutorial_next" = "Dalej";
-"tutorial_finish" = "Zakończ";
-"tutorial_tap_to_continue" = "Stuknij, aby kontynuować";
 "loading_products" = "Ładowanie produktów...";
 // MARK: - Rate Me Dialog
 "rate_app_title" = "Oceń nas";
@@ -498,18 +494,6 @@
 "reminder_title" = "Zapisz swoje wydatki";
 "reminder_body" = "Dziś nie zapisałeś żadnego wydatku.";
 
-/* Onboarding */
-"tutorial_chapter_first_expense" = "Twoj pierwszy wydatek";
-"tutorial_chapter_first_expense_invite" = "Wpiszmy cos. Bez wydatkow aplikacja nie ma czego pokazac.";
-"tutorial_chapter_screens" = "Cztery ekrany";
-"tutorial_chapter_screens_invite" = "Przesuwaj miedzy nimi. Kazdy odpowiada na inne pytanie o twoje pieniadze.";
-"tutorial_chapter_making_it_yours" = "Dopasuj do siebie";
-"tutorial_chapter_making_it_yours_invite" = "Kategorie, limity, kopie zapasowe i wieczorne przypomnienie.";
-"tutorial_skip_tour" = "Pomin samouczek";
-"tutorial_skip_step" = "Pomin";
-"tutorial_your_turn" = "Twoja kolej";
-"tutorial_continue" = "Dalej";
-"tutorial_stop_here" = "Zatrzymaj sie tutaj";
 "welcome_currency_title" = "Jaka waluta?";
 "welcome_currency_description" = "Ta, w ktorej myslisz. Wydatki mozesz zapisywac takze w innych.";
 "welcome_income_title" = "Ile wplywa miesiecznie?";
@@ -519,48 +503,29 @@
 "welcome_changeable_later" = "Mozesz to zmienic w kazdej chwili w Ustawieniach";
 "welcome_start" = "Zaczynamy";
 
-"tutorial_replay" = "Samouczek";
-"tutorial_replay_button" = "Powtórz samouczek";
-"tutorial_replay_description" = "Przejdź przez aplikację jeszcze raz od początku.";
-
-"tutorial_back" = "Wstecz";
-
-/* Tour steps */
-"tutorial_add_expense_title" = "Dodaj wydatek";
-"tutorial_add_expense_message" = "Dotknij pomaranczowego przycisku. Wracamy, gdy zapiszesz pierwszy.";
-"tutorial_fill_form_title" = "Wypelnij";
-"tutorial_fill_form_message" = "Kwota i kategoria wystarcza. Wydatki trafiaja do podkategorii, nie do glownych.";
-"tutorial_expense_list_title" = "Jest";
-"tutorial_expense_list_message" = "Wydatki dnia sa tutaj. Dotknij, aby edytowac, przytrzymaj, aby usunac.";
-"tutorial_week_strip_title" = "Twoj tydzien";
-"tutorial_week_strip_message" = "Kazdy dzien z tym, co wydales. Dotknij, aby na niego przejsc.";
-"tutorial_monthly_ring_title" = "Miesiac do tej pory";
-"tutorial_monthly_ring_message" = "Twoja suma w tym miesiacu wobec limitu. Dotknij, aby zobaczyc caly kalendarz.";
-"tutorial_recurring_list_title" = "Wydatki, ktore wracaja";
-"tutorial_recurring_list_message" = "To otwiera subskrypcje i raty: wszystko, co wraca co tydzien lub co miesiac, na jednej liscie.";
-"tutorial_overview_summary_title" = "Na czym stoisz";
-"tutorial_overview_summary_message" = "Wydatki tego miesiaca wobec wplywow i to, co zostaje. Olowek ustawia dochod.";
-"tutorial_overview_trend_title" = "Jak szlo";
-"tutorial_overview_trend_message" = "Sumy miesieczne, pod nimi srednia i laczna kwota. Przyciski powyzej przelaczaja trzy miesiace, szesc i rok.";
-"tutorial_overview_forecast_title" = "Nadchodzacy rok";
-"tutorial_overview_forecast_message" = "Wydatki cykliczne plus ostatnia srednia, miesiac po miesiacu, a pod spodem saldo, ktore zostawiaja.";
-"tutorial_analysis_period_title" = "Wybierz okres";
-"tutorial_analysis_period_message" = "Miesiac po miesiacu albo dotknij zakresu dat dla czegokolwiek innego.";
-"tutorial_analysis_filter_title" = "Wszystkie, cykliczne lub jednorazowe";
-"tutorial_analysis_filter_message" = "Subskrypcje potrafia zagluszyc reszte. To je rozdziela.";
-"tutorial_analysis_breakdown_title" = "Dokad poszlo";
-"tutorial_analysis_breakdown_message" = "Kazda kategoria to wycinek. Dotknij jednego, aby zobaczyc wydatki w srodku.";
-"tutorial_planning_what_title" = "Plany";
-"tutorial_planning_what_message" = "Podaj dochod i czas, aby zobaczyc, ile mozesz odlozyc, z inflacja i odsetkami, jesli chcesz.";
-"tutorial_planning_create_title" = "Utworz plan";
-"tutorial_planning_create_message" = "Stad powstaje nowy. Korzysta z twoich prawdziwych wydatkow, wiec prognoza idzie za tym, jak naprawde wydajesz.";
-"tutorial_settings_title" = "Cala reszta jest tutaj";
-"tutorial_settings_message" = "Waluta, limity, twoje kategorie, kopie i przypomnienia. Kolejne kroki mowia, czego szukac.";
-"tutorial_categories_title" = "Kategorie";
-"tutorial_categories_message" = "Dodaj wlasne. Nowa kategoria potrzebuje co najmniej jednej podkategorii, zanim jej uzyjesz.";
-"tutorial_limits_title" = "Limit dzienny i miesieczny";
-"tutorial_limits_message" = "Zostaw puste, aby nie miec limitu. Pierscien i ostrzezenia mierza wzgledem nich.";
-"tutorial_backup_title" = "Kopie zapasowe";
-"tutorial_backup_message" = "Wyeksportuj wszystko do pliku, ktory trzymasz u siebie. Przywraca sie takze na Androidzie.";
-"tutorial_reminder_title" = "Wieczorne przypomnienie";
-"tutorial_reminder_message" = "Przypomnienie o wybranej porze, tylko w dni bez wpisow.";
+/* Guided tour */
+"tour_add_expense_title" = "Dodaj pierwszy wydatek";
+"tour_add_expense_message" = "Dotknij + i zapisz wydatek. Wszystko, co pokazuje aplikacja, powstaje z nich.";
+"tour_expense_list_title" = "Twoje wydatki";
+"tour_expense_list_message" = "Dzisiejsze wydatki pojawiają się tutaj. Dotknij, aby edytować, przytrzymaj, aby usunąć.";
+"tour_monthly_ring_title" = "Ten miesiąc";
+"tour_monthly_ring_message" = "Twoja dotychczasowa suma wobec miesięcznego limitu. Dotknij pierścienia, aby otworzyć kalendarz.";
+"tour_recurring_list_title" = "Wydatki cykliczne";
+"tour_recurring_list_message" = "Subskrypcje i raty są tutaj. Dodając, wpisz liczbę powtórzeń, a data końcowa wyliczy się sama.";
+"tour_overview_title" = "Przegląd";
+"tour_overview_message" = "Ten miesiąc wobec dochodu, to, co zostaje, a poniżej prognoza na dwanaście miesięcy.";
+"tour_analysis_title" = "Analiza";
+"tour_analysis_message" = "Dokąd poszły pieniądze, według kategorii i miesiąca. Dotknij wycinka, aby zobaczyć wydatki w środku.";
+"tour_planning_title" = "Planowanie";
+"tour_planning_message" = "Podaj dochód i czas, aby zobaczyć, ile możesz odłożyć, z inflacją i odsetkami, jeśli chcesz.";
+"tour_settings_title" = "Ustawienia";
+"tour_settings_message" = "Waluta, limity, twoje kategorie, kopie zapasowe i wieczorne przypomnienie, wszystko za tym przyciskiem.";
+"tour_next" = "Dalej";
+"tour_back" = "Wstecz";
+"tour_skip" = "Pomiń";
+"tour_done" = "Gotowe";
+"tour_tap_hint" = "Dotknij podświetlonego przycisku";
+"tour_skip_step" = "Pomiń ten krok";
+"tour_replay_title" = "Przewodnik";
+"tour_replay_button" = "Pokaż jeszcze raz";
+"tour_replay_description" = "Przejdź przez aplikację od początku.";

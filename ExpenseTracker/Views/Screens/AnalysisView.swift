@@ -11,7 +11,6 @@ import SwiftUI
 
 struct AnalysisView: View {
     @EnvironmentObject var viewModel: ExpenseViewModel
-    @EnvironmentObject var tutorialManager: TutorialManager
 
     let isDarkTheme: Bool
 
@@ -93,11 +92,9 @@ struct AnalysisView: View {
             VStack(spacing: 16) {
                 // Month/Year Selector
                 monthYearSelector
-                    .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .analysisPeriod)
 
                 // Expense Filter Type Selection
                 expenseFilterTypeSelector
-                    .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .analysisFilter)
 
                 if !categoryAnalysisData.isEmpty {
                     // Box with gesture handling for popup dismissal (matching Kotlin)
@@ -118,7 +115,7 @@ struct AnalysisView: View {
                                         }
                                     }
                                 )
-                                .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .analysisBreakdown)
+                                .tourTarget(.analysis)
 
                                 // Monthly Line Chart
                                 MonthlyLineChart(

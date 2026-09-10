@@ -414,10 +414,6 @@
 "purchase_cancelled" = "Purchase cancelled";
 
 // MARK: - Tutorial
-"tutorial_skip" = "Skip";
-"tutorial_next" = "Next";
-"tutorial_finish" = "Finish";
-"tutorial_tap_to_continue" = "Tap to continue";
 "loading_products" = "Loading products...";
 
 
@@ -500,18 +496,6 @@
 "reminder_title" = "Track your spending";
 "reminder_body" = "You have not logged anything today.";
 
-/* Onboarding */
-"tutorial_chapter_first_expense" = "Your first expense";
-"tutorial_chapter_first_expense_invite" = "Let's put something in. The app has nothing to show until it has an expense to show.";
-"tutorial_chapter_screens" = "The four screens";
-"tutorial_chapter_screens_invite" = "Swipe between them. Each answers a different question about your money.";
-"tutorial_chapter_making_it_yours" = "Making it yours";
-"tutorial_chapter_making_it_yours_invite" = "Categories, limits, backups and a nightly nudge — the settings worth knowing about.";
-"tutorial_skip_tour" = "Skip tour";
-"tutorial_skip_step" = "Skip this";
-"tutorial_your_turn" = "Your turn";
-"tutorial_continue" = "Continue";
-"tutorial_stop_here" = "Stop here";
 "welcome_currency_title" = "Which currency?";
 "welcome_currency_description" = "The one you think in. You can still record expenses in others.";
 "welcome_income_title" = "What comes in each month?";
@@ -521,48 +505,29 @@
 "welcome_changeable_later" = "You can change this any time in Settings";
 "welcome_start" = "Start";
 
-"tutorial_replay" = "Tutorial";
-"tutorial_replay_button" = "Replay the tour";
-"tutorial_replay_description" = "Walk through the app again from the beginning.";
-
-"tutorial_back" = "Back";
-
-/* Tour steps */
-"tutorial_add_expense_title" = "Add an expense";
-"tutorial_add_expense_message" = "Tap the orange button. We'll pick this back up once you've saved one.";
-"tutorial_fill_form_title" = "Fill it in";
-"tutorial_fill_form_message" = "Amount and a category are all you need. Expenses go under subcategories, not the main ones — that catches people out.";
-"tutorial_expense_list_title" = "There it is";
-"tutorial_expense_list_message" = "Your day's expenses live here. Tap one to edit it, hold to delete.";
-"tutorial_week_strip_title" = "Your week";
-"tutorial_week_strip_message" = "Each day with what you spent on it. Tap one to switch to it.";
-"tutorial_monthly_ring_title" = "The month so far";
-"tutorial_monthly_ring_message" = "Your total this month against your limit. Tap it for the full calendar.";
-"tutorial_recurring_list_title" = "Repeating expenses";
-"tutorial_recurring_list_message" = "This opens your subscriptions and instalments — everything that comes back every week or month, in one list.";
-"tutorial_overview_summary_title" = "Where you stand";
-"tutorial_overview_summary_message" = "This month's spending against what comes in, and what is left. The pencil sets your income.";
-"tutorial_overview_trend_title" = "How it has been going";
-"tutorial_overview_trend_message" = "Your monthly totals, with the average and the sum underneath. The pills above switch between three months, six and a year.";
-"tutorial_overview_forecast_title" = "The year ahead";
-"tutorial_overview_forecast_message" = "Your repeating expenses plus your recent average, month by month — and below it, the balance those leave you with.";
-"tutorial_analysis_period_title" = "Pick a period";
-"tutorial_analysis_period_message" = "A month at a time, or tap the date range for anything else.";
-"tutorial_analysis_filter_title" = "All, repeating, or one-off";
-"tutorial_analysis_filter_message" = "Subscriptions can drown out everything else. This splits them apart.";
-"tutorial_analysis_breakdown_title" = "Where it went";
-"tutorial_analysis_breakdown_message" = "Every category as a slice. Tap one to open it and see the expenses inside.";
-"tutorial_planning_what_title" = "Plans";
-"tutorial_planning_what_message" = "Set an income and a duration to see what you could put aside — with inflation and interest if you want them.";
-"tutorial_planning_create_title" = "Start a plan";
-"tutorial_planning_create_message" = "This creates one. It uses your real expenses, so the projection follows how you actually spend.";
-"tutorial_settings_title" = "Everything else is here";
-"tutorial_settings_message" = "Currency, limits, your categories, backups and reminders. The next few tell you what to look for.";
-"tutorial_categories_title" = "Categories";
-"tutorial_categories_message" = "Add your own. A new category needs at least one subcategory before you can use it.";
-"tutorial_limits_title" = "Daily and monthly limits";
-"tutorial_limits_message" = "Leave one blank for no limit. The ring and the warnings measure against these.";
-"tutorial_backup_title" = "Backups";
-"tutorial_backup_message" = "Export everything to a file you keep. It restores on Android too.";
-"tutorial_reminder_title" = "A nightly nudge";
-"tutorial_reminder_message" = "A reminder at a time you choose, only on days you have not logged anything.";
+/* Guided tour */
+"tour_add_expense_title" = "Add your first expense";
+"tour_add_expense_message" = "Tap the + button and save an expense. Everything the app shows is built from these.";
+"tour_expense_list_title" = "Your expenses";
+"tour_expense_list_message" = "Today's expenses appear here. Tap one to edit it, hold to delete it.";
+"tour_monthly_ring_title" = "This month";
+"tour_monthly_ring_message" = "Your total so far against your monthly limit. Tap the ring for the calendar.";
+"tour_recurring_list_title" = "Repeating expenses";
+"tour_recurring_list_message" = "Subscriptions and instalments live here. When you add one, type how many times it repeats and the end date is worked out for you.";
+"tour_overview_title" = "Overview";
+"tour_overview_message" = "This month against your income, what is left, and a twelve-month forecast below.";
+"tour_analysis_title" = "Analysis";
+"tour_analysis_message" = "Where the money went, by category and by month. Tap a slice to see the expenses inside.";
+"tour_planning_title" = "Planning";
+"tour_planning_message" = "Set an income and a duration to see what you could put aside — with inflation and interest if you want them.";
+"tour_settings_title" = "Settings";
+"tour_settings_message" = "Currency, limits, your categories, backups and a nightly reminder — all behind this button.";
+"tour_next" = "Next";
+"tour_back" = "Back";
+"tour_skip" = "Skip";
+"tour_done" = "Done";
+"tour_tap_hint" = "Tap the highlighted button";
+"tour_skip_step" = "Skip this step";
+"tour_replay_title" = "Guided tour";
+"tour_replay_button" = "Show me around again";
+"tour_replay_description" = "Walk through the app from the beginning.";
