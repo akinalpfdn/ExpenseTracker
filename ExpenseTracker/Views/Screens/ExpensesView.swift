@@ -343,7 +343,9 @@ extension ExpensesView {
                                 .font(.system(size: 30))
                                 .foregroundColor(ThemeColors.getTextColor(isDarkTheme: isDarkTheme))
                         }
-                        .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .settings)
+                        // Lit for the whole of chapter three: everything that chapter
+                        // describes is behind this button.
+                        .tutorialHighlight(isHighlighted: tutorialManager.currentStep?.chapter == .makingItYours)
                     }
                 }
 
@@ -374,7 +376,7 @@ extension ExpensesView {
                                 .font(.system(size: 30))
                                 .foregroundColor(.white)
                         }
-                        .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .recurringExpenses)
+                        .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .recurringList)
                     }
 
                     // Add Expense Button
@@ -468,6 +470,7 @@ extension ExpensesView {
                     }
                     .padding(.horizontal, 20)
                     .padding(.top, 16)
+                    .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .expenseList)
                 }
             }
         }

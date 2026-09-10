@@ -86,7 +86,7 @@ final class TutorialManagerTests: XCTestCase {
         let manager = makeManager()
         manager.start()
 
-        manager.completeAction(.planningPlans)
+        manager.completeAction(.planningWhat)
 
         XCTAssertEqual(manager.currentStepId, .addExpense)
     }
@@ -139,7 +139,7 @@ final class TutorialManagerTests: XCTestCase {
         manager.start()
         manager.completeAction(.addExpense)
 
-        manager.abandon(.fillForm, returningTo: .planningPlans)
+        manager.abandon(.fillForm, returningTo: .planningWhat)
 
         XCTAssertEqual(manager.currentStepId, .fillForm)
     }

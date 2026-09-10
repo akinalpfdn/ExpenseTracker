@@ -115,6 +115,7 @@ private extension OverviewView {
                 trendFooter
             }
         }
+        .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .overviewTrend)
     }
 
     var trendFooter: some View {

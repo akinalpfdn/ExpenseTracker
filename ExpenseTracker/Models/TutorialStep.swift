@@ -31,10 +31,10 @@ enum TutorialChapter: Int, CaseIterable {
     /// Add a real expense. The core loop, and the only chapter that insists.
     case firstExpense = 0
 
-    /// What the other three tabs are for.
+    /// The overview, analysis and planning tabs.
     case screens = 1
 
-    /// Categories, limits, backup, reminders.
+    /// Everything behind the settings gear.
     case makingItYours = 2
 
     var title: String {
@@ -69,21 +69,25 @@ enum TutorialAdvance: Equatable {
 // MARK: - Steps
 
 enum TutorialStepId: String, CaseIterable {
-    // Chapter 1 — first expense
-    case addExpense
-    case fillForm
-    case expenseList
-    case weekStrip
+    // Chapter 1 — the expense screen
+    case addExpense       // the orange + button
+    case fillForm         // the add-expense sheet
+    case expenseList      // the day's rows
+    case weekStrip        // the seven-day strip at the top
+    case monthlyRing      // the month total ring
+    case recurringList    // the blue repeat button
 
-    // Chapter 2 — the screens
-    case monthlyRing
-    case recurringExpenses
-    case overviewSummary
-    case overviewForecast
-    case analysisCharts
-    case planningPlans
+    // Chapter 2 — the other three tabs
+    case overviewSummary  // OverviewView.summaryCard
+    case overviewTrend    // OverviewView.trendCard
+    case overviewForecast // OverviewView.forecastCard
+    case analysisPeriod   // AnalysisView.monthYearSelector
+    case analysisFilter   // AnalysisView.expenseFilterTypeSelector
+    case analysisBreakdown// AnalysisView pie chart
+    case planningWhat     // PlanningView.headerSection
+    case planningCreate   // PlanningView.floatingActionButton
 
-    // Chapter 3 — making it yours
+    // Chapter 3 — everything behind the gear
     case settings
     case categories
     case limits
@@ -119,162 +123,75 @@ extension TutorialStep {
         return script().filter { $0.chapter == chapter }
     }
 
-    // MARK: Chapter 1 — First Expense
+    // MARK: Chapter 1 — The Expense Screen
 
     /// The only chapter that asks the user to act. Everything the app does starts with
     /// an expense in it, and a tour that describes that without doing it leaves someone
     /// staring at an empty list.
     private static func chapterOne() -> [TutorialStep] {
         return [
-            TutorialStep(
-                id: .addExpense,
-                chapter: .firstExpense,
-                screen: .expenses,
-                title: "tutorial_add_expense_title".localized,
-                message: "tutorial_add_expense_message".localized,
-                advance: .userAction,
-                highlightRadius: 70
-            ),
-            TutorialStep(
-                id: .fillForm,
-                chapter: .firstExpense,
-                screen: .expenses,
-                title: "tutorial_fill_form_title".localized,
-                message: "tutorial_fill_form_message".localized,
-                advance: .userAction,
-                highlightRadius: 90
-            ),
-            TutorialStep(
-                id: .expenseList,
-                chapter: .firstExpense,
-                screen: .expenses,
-                title: "tutorial_expense_list_title".localized,
-                message: "tutorial_expense_list_message".localized,
-                advance: .tapNext,
-                highlightRadius: 80
-            ),
-            TutorialStep(
-                id: .weekStrip,
-                chapter: .firstExpense,
-                screen: .expenses,
-                title: "tutorial_week_strip_title".localized,
-                message: "tutorial_week_strip_message".localized,
-                advance: .tapNext,
-                highlightRadius: 90
-            )
+            step(.addExpense, .firstExpense, .expenses, "add_expense", .userAction, 70),
+            step(.fillForm, .firstExpense, .expenses, "fill_form", .userAction, 90),
+            step(.expenseList, .firstExpense, .expenses, "expense_list", .tapNext, 80),
+            step(.weekStrip, .firstExpense, .expenses, "week_strip", .tapNext, 90),
+            step(.monthlyRing, .firstExpense, .expenses, "monthly_ring", .tapNext, 150),
+            step(.recurringList, .firstExpense, .expenses, "recurring_list", .tapNext, 70)
         ]
     }
 
-    // MARK: Chapter 2 — The Screens
+    // MARK: Chapter 2 — The Other Screens
 
+    /// Three tabs, and enough of each that the user knows why they would swipe there.
+    /// One tooltip per screen was the previous shape and it explained nothing.
     private static func chapterTwo() -> [TutorialStep] {
         return [
-            TutorialStep(
-                id: .monthlyRing,
-                chapter: .screens,
-                screen: .expenses,
-                title: "tutorial_monthly_ring_title".localized,
-                message: "tutorial_monthly_ring_message".localized,
-                advance: .tapNext,
-                highlightRadius: 150
-            ),
-            TutorialStep(
-                id: .recurringExpenses,
-                chapter: .screens,
-                screen: .expenses,
-                title: "tutorial_recurring_expenses_title".localized,
-                message: "tutorial_recurring_expenses_message".localized,
-                advance: .tapNext,
-                highlightRadius: 70
-            ),
-            TutorialStep(
-                id: .overviewSummary,
-                chapter: .screens,
-                screen: .overview,
-                title: "tutorial_overview_summary_title".localized,
-                message: "tutorial_overview_summary_message".localized,
-                advance: .tapNext,
-                highlightRadius: 120
-            ),
-            TutorialStep(
-                id: .overviewForecast,
-                chapter: .screens,
-                screen: .overview,
-                title: "tutorial_overview_forecast_title".localized,
-                message: "tutorial_overview_forecast_message".localized,
-                advance: .tapNext,
-                highlightRadius: 120
-            ),
-            TutorialStep(
-                id: .analysisCharts,
-                chapter: .screens,
-                screen: .analysis,
-                title: "tutorial_analysis_title".localized,
-                message: "tutorial_analysis_message".localized,
-                advance: .tapNext,
-                highlightRadius: 120
-            ),
-            TutorialStep(
-                id: .planningPlans,
-                chapter: .screens,
-                screen: .planning,
-                title: "tutorial_planning_title".localized,
-                message: "tutorial_planning_message".localized,
-                advance: .tapNext,
-                highlightRadius: 120
-            )
+            step(.overviewSummary, .screens, .overview, "overview_summary", .tapNext, 120),
+            step(.overviewTrend, .screens, .overview, "overview_trend", .tapNext, 120),
+            step(.overviewForecast, .screens, .overview, "overview_forecast", .tapNext, 120),
+
+            step(.analysisPeriod, .screens, .analysis, "analysis_period", .tapNext, 100),
+            step(.analysisFilter, .screens, .analysis, "analysis_filter", .tapNext, 100),
+            step(.analysisBreakdown, .screens, .analysis, "analysis_breakdown", .tapNext, 130),
+
+            step(.planningWhat, .screens, .planning, "planning_what", .tapNext, 120),
+            step(.planningCreate, .screens, .planning, "planning_create", .tapNext, 70)
         ]
     }
 
-    // MARK: Chapter 3 — Making It Yours
+    // MARK: Chapter 3 — Behind the Gear
 
+    /// Every one of these lives inside the Settings sheet, which the tour cannot open
+    /// and point inside of. The gear stays lit for the whole chapter instead — honest
+    /// about where the user has to go, rather than glowing at unrelated controls.
     private static func chapterThree() -> [TutorialStep] {
         return [
-            TutorialStep(
-                id: .settings,
-                chapter: .makingItYours,
-                screen: .expenses,
-                title: "tutorial_settings_title".localized,
-                message: "tutorial_settings_message".localized,
-                advance: .tapNext,
-                highlightRadius: 55
-            ),
-            TutorialStep(
-                id: .categories,
-                chapter: .makingItYours,
-                screen: .expenses,
-                title: "tutorial_categories_title".localized,
-                message: "tutorial_categories_message".localized,
-                advance: .tapNext,
-                highlightRadius: 55
-            ),
-            TutorialStep(
-                id: .limits,
-                chapter: .makingItYours,
-                screen: .expenses,
-                title: "tutorial_limits_title".localized,
-                message: "tutorial_limits_message".localized,
-                advance: .tapNext,
-                highlightRadius: 55
-            ),
-            TutorialStep(
-                id: .backup,
-                chapter: .makingItYours,
-                screen: .expenses,
-                title: "tutorial_backup_title".localized,
-                message: "tutorial_backup_message".localized,
-                advance: .tapNext,
-                highlightRadius: 55
-            ),
-            TutorialStep(
-                id: .reminder,
-                chapter: .makingItYours,
-                screen: .expenses,
-                title: "tutorial_reminder_title".localized,
-                message: "tutorial_reminder_message".localized,
-                advance: .tapNext,
-                highlightRadius: 55
-            )
+            step(.settings, .makingItYours, .expenses, "settings", .tapNext, 55),
+            step(.categories, .makingItYours, .expenses, "categories", .tapNext, 55),
+            step(.limits, .makingItYours, .expenses, "limits", .tapNext, 55),
+            step(.backup, .makingItYours, .expenses, "backup", .tapNext, 55),
+            step(.reminder, .makingItYours, .expenses, "reminder", .tapNext, 55)
         ]
+    }
+
+    /// Keeps the script readable: the localization keys are always
+    /// `tutorial_<name>_title` and `tutorial_<name>_message`, so naming them twice per
+    /// step was only an opportunity to get one wrong.
+    private static func step(
+        _ id: TutorialStepId,
+        _ chapter: TutorialChapter,
+        _ screen: TutorialScreen,
+        _ name: String,
+        _ advance: TutorialAdvance,
+        _ radius: CGFloat
+    ) -> TutorialStep {
+        return TutorialStep(
+            id: id,
+            chapter: chapter,
+            screen: screen,
+            title: "tutorial_\(name)_title".localized,
+            message: "tutorial_\(name)_message".localized,
+            advance: advance,
+            highlightRadius: radius
+        )
     }
 }

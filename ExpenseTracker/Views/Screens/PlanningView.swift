@@ -28,7 +28,7 @@ struct PlanningView: View {
 
                 // Header
                 headerSection
-                    .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .planningPlans)
+                    .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .planningWhat)
 
                 Spacer().frame(height: 24)
 
@@ -184,6 +184,7 @@ extension PlanningView {
                             .font(.system(size: 30, weight: .medium))
                             .foregroundColor(.white)
                     }
+                    .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .planningCreate)
                 }
                 .padding(.trailing, 20)
                 .padding(.bottom, 20)

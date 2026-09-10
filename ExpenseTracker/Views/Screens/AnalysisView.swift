@@ -93,10 +93,11 @@ struct AnalysisView: View {
             VStack(spacing: 16) {
                 // Month/Year Selector
                 monthYearSelector
+                    .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .analysisPeriod)
 
                 // Expense Filter Type Selection
                 expenseFilterTypeSelector
-                    .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .analysisCharts)
+                    .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .analysisFilter)
 
                 if !categoryAnalysisData.isEmpty {
                     // Box with gesture handling for popup dismissal (matching Kotlin)
@@ -117,6 +118,7 @@ struct AnalysisView: View {
                                         }
                                     }
                                 )
+                                .tutorialHighlight(isHighlighted: tutorialManager.currentStepId == .analysisBreakdown)
 
                                 // Monthly Line Chart
                                 MonthlyLineChart(
