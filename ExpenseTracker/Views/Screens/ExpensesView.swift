@@ -536,9 +536,9 @@ extension ExpensesView {
                 showingAddExpense = false
                 viewModel.editingExpenseId = nil
 
-                // Closing the form without saving puts the tour back on "tap the plus",
-                // rather than leaving "fill it in" pointing at a form that has gone.
-                tutorialManager.returnTo(.addExpense)
+                // Only when the form was closed without saving. A successful save has
+                // already moved the tour past this step, and the guard inside notices.
+                tutorialManager.abandon(.fillForm, returningTo: .addExpense)
             },
             editingExpense: viewModel.editingExpenseId != nil ? viewModel.expenses.first { $0.id == viewModel.editingExpenseId } : nil
         )

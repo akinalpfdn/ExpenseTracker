@@ -110,25 +110,43 @@ final class TutorialManagerTests: XCTestCase {
 
         XCTAssertEqual(manager.currentStepId, .fillForm)
 
-        manager.returnTo(.addExpense)
+        manager.abandon(.fillForm, returningTo: .addExpense)
 
         XCTAssertEqual(manager.currentStepId, .addExpense)
         XCTAssertTrue(manager.isWaitingForUserAction)
     }
 
-    /// Only ever backwards. Otherwise a stray dismiss could jump the tour forward.
-    func testReturningToALaterStepDoesNothing() {
+    /// Saving and cancelling both end with the sheet closing, so the dismiss handler
+    /// runs either way. After a save the tour has already advanced, and rewinding then
+    /// would drag the user back to step one having just completed step two.
+    func testFinishingAnActionIsNotTreatedAsAbandoningIt() {
         let manager = makeManager()
         manager.start()
+        manager.completeAction(.addExpense)
+        manager.completeAction(.fillForm)
 
-        manager.returnTo(.planningPlans)
+        XCTAssertEqual(manager.currentStepId, .expenseList)
 
-        XCTAssertEqual(manager.currentStepId, .addExpense)
+        // What the dismiss handler does after a successful save.
+        manager.abandon(.fillForm, returningTo: .addExpense)
+
+        XCTAssertEqual(manager.currentStepId, .expenseList, "A saved expense rewound the tour")
     }
 
-    func testReturningWhileInactiveDoesNothing() {
+    /// Only ever backwards. Otherwise a stray dismiss could jump the tour forward.
+    func testAbandoningTowardsALaterStepDoesNothing() {
         let manager = makeManager()
-        manager.returnTo(.addExpense)
+        manager.start()
+        manager.completeAction(.addExpense)
+
+        manager.abandon(.fillForm, returningTo: .planningPlans)
+
+        XCTAssertEqual(manager.currentStepId, .fillForm)
+    }
+
+    func testAbandoningWhileInactiveDoesNothing() {
+        let manager = makeManager()
+        manager.abandon(.fillForm, returningTo: .addExpense)
 
         XCTAssertFalse(manager.isActive)
     }

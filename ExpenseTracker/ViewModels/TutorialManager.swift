@@ -122,14 +122,18 @@ class TutorialManager: ObservableObject {
         move(to: target)
     }
 
-    /// Steps back to an earlier step, if that is where the tour currently is ahead of.
+    /// Rewinds when the user walks away from what a step asked for.
     ///
-    /// Used when the user abandons the thing a step asked for — cancelling the expense
-    /// form returns the tour to "tap the plus" rather than leaving "fill it in"
-    /// pointing at a form that is no longer on screen.
-    func returnTo(_ id: TutorialStepId) {
-        guard isActive,
-              let target = script.firstIndex(where: { $0.id == id }),
+    /// Cancelling the expense form returns the tour to "tap the plus", rather than
+    /// leaving "fill it in" pointing at a form that is no longer on screen.
+    ///
+    /// The `step` guard is what distinguishes abandoning from finishing. Both end with
+    /// the sheet closing, so the dismiss handler fires either way — but after a save
+    /// the tour has already moved on, and rewinding then would drag the user back to
+    /// step one having just completed step two.
+    func abandon(_ step: TutorialStepId, returningTo fallback: TutorialStepId) {
+        guard currentStepId == step,
+              let target = script.firstIndex(where: { $0.id == fallback }),
               target < currentIndex else {
             return
         }
