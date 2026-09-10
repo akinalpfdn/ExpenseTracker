@@ -566,3 +566,5 @@
 "tutorial_replay" = "Samouczek";
 "tutorial_replay_button" = "Powtórz samouczek";
 "tutorial_replay_description" = "Przejdź przez aplikację jeszcze raz od początku.";
+
+"tutorial_back" = "Wstecz";

@@ -566,3 +566,5 @@
 "tutorial_replay" = "Tutorial";
 "tutorial_replay_button" = "Rivedi il tour";
 "tutorial_replay_description" = "Ripercorri l'app da capo.";
+
+"tutorial_back" = "Indietro";

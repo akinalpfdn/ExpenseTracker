@@ -567,3 +567,5 @@
 "tutorial_replay" = "Tutorial";
 "tutorial_replay_button" = "Repetir el tutorial";
 "tutorial_replay_description" = "Recorre la app otra vez desde el principio.";
+
+"tutorial_back" = "Atrás";

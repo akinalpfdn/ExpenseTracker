@@ -567,3 +567,5 @@
 "tutorial_replay" = "Tutorial";
 "tutorial_replay_button" = "Tour wiederholen";
 "tutorial_replay_description" = "Gehe die App noch einmal von vorn durch.";
+
+"tutorial_back" = "Zurück";

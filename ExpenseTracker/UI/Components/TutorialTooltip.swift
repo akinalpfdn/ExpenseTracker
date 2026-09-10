@@ -16,6 +16,9 @@ struct TutorialTooltip: View {
     let totalSteps: Int
     let isDarkTheme: Bool
 
+    let canGoBack: Bool
+
+    let onBack: () -> Void
     let onNext: () -> Void
     let onSkipStep: () -> Void
     let onSkipTour: () -> Void
@@ -73,6 +76,14 @@ private extension TutorialTooltip {
                 .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
 
             Spacer()
+
+            if canGoBack {
+                Button(action: onBack) {
+                    Label("tutorial_back".localized, systemImage: "chevron.left")
+                        .font(.system(size: 13))
+                        .foregroundColor(ThemeColors.getTextGrayColor(isDarkTheme: isDarkTheme))
+                }
+            }
 
             if step.requiresUserAction {
                 Button("tutorial_skip_step".localized, action: onSkipStep)
@@ -174,6 +185,8 @@ struct TutorialOverlay: View {
                 stepNumber: manager.stepNumber,
                 totalSteps: manager.totalSteps,
                 isDarkTheme: isDarkTheme,
+                canGoBack: manager.canGoBack,
+                onBack: { manager.previous() },
                 onNext: { manager.next() },
                 onSkipStep: { manager.skipStep() },
                 onSkipTour: { manager.skipTour() }

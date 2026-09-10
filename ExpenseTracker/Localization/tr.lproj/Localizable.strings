@@ -569,3 +569,5 @@ Uygulamamı beğendiysen ve destek olmak istersen bir çayını içerim(Fiyatlar
 "tutorial_replay" = "Tanıtım turu";
 "tutorial_replay_button" = "Turu tekrar oynat";
 "tutorial_replay_description" = "Uygulamayı baştan bir daha gez.";
+
+"tutorial_back" = "Geri";

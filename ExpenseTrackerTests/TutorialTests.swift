@@ -148,6 +148,89 @@ final class TutorialManagerTests: XCTestCase {
         XCTAssertEqual(manager.currentStepId, .progressRing)
     }
 
+    // MARK: - Going Back
+
+    /// Nothing precedes the opening step.
+    func testNoBackOnTheFirstStep() {
+        let manager = makeManager()
+        manager.start()
+
+        XCTAssertFalse(manager.canGoBack)
+    }
+
+    /// Chapter one opens with two action steps, and back skips over those, so there is
+    /// nowhere to go until the tour reaches a step that merely describes something.
+    func testNoBackWhileOnlyActionStepsPrecede() {
+        let manager = makeManager()
+        manager.start()
+        manager.skipStep()   // addExpense
+        manager.skipStep()   // fillForm
+
+        XCTAssertEqual(manager.currentStepId, .expenseList)
+        XCTAssertFalse(manager.canGoBack, "Back would land on an action already done")
+    }
+
+    func testBackReturnsToThePreviousDescribingStep() {
+        let manager = makeManager()
+        manager.start()
+        manager.skipStep()
+        manager.skipStep()
+        manager.next()   // expenseList -> progressRing
+
+        XCTAssertTrue(manager.canGoBack)
+        manager.previous()
+
+        XCTAssertEqual(manager.currentStepId, .expenseList)
+    }
+
+    /// Landing on an action step going backwards would show a prompt for something the
+    /// user has already done, waiting for an interaction that cannot happen again.
+    func testBackNeverLandsOnAnActionStep() {
+        let manager = makeManager()
+        manager.start(from: .screens)
+
+        // Walk to the end of the tour, stepping back at every opportunity.
+        while manager.isActive {
+            if manager.canGoBack {
+                manager.previous()
+                XCTAssertFalse(
+                    manager.isWaitingForUserAction,
+                    "Stepped back onto \(String(describing: manager.currentStepId))"
+                )
+            }
+            manager.isWaitingForUserAction ? manager.skipStep() : manager.next()
+            if case .chapterBreak = manager.phase { manager.continueToNextChapter() }
+        }
+    }
+
+    /// The break card invites you onwards; showing it to someone heading back would
+    /// read as a dead end.
+    func testBackAcrossAChapterBoundaryGoesStraightToTheStep() {
+        let manager = makeManager()
+        manager.start(from: .screens)
+
+        XCTAssertEqual(manager.currentStepId, .calendar)
+        manager.previous()
+
+        XCTAssertEqual(manager.currentStep?.chapter, .firstExpense)
+        if case .chapterBreak = manager.phase {
+            XCTFail("Going back re-showed the chapter break")
+        }
+    }
+
+    func testBackDoesNothingDuringAChapterBreak() {
+        let manager = makeManager()
+        manager.start()
+        runOutChapter(manager)
+
+        XCTAssertFalse(manager.canGoBack)
+        manager.previous()
+
+        guard case .chapterBreak = manager.phase else {
+            return XCTFail("Back disturbed the chapter break")
+        }
+    }
+
     // MARK: - Chapter Boundaries
 
     func testACharacterBoundaryPausesForAnOffer() {

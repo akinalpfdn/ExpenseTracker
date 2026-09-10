@@ -59,6 +59,23 @@ class TutorialManager: ObservableObject {
     /// True when the tooltip must not offer a Next button.
     var isWaitingForUserAction: Bool { currentStep?.requiresUserAction ?? false }
 
+    /// Whether there is somewhere sensible to go back to.
+    var canGoBack: Bool { previousIndex != nil }
+
+    /// The nearest earlier step that only describes something.
+    ///
+    /// Action steps are skipped over on the way back on purpose. Their precondition is
+    /// gone — the form has been saved, the button already tapped — so landing on one
+    /// would show "fill it in" with no form open, waiting for something that cannot
+    /// happen. That is exactly the stranding the tour is built to avoid.
+    private var previousIndex: Int? {
+        guard case .running = phase, currentIndex > 0 else { return nil }
+
+        return (0..<currentIndex)
+            .reversed()
+            .first { !script[$0].requiresUserAction }
+    }
+
     // MARK: - Starting
 
     func start(from chapter: TutorialChapter = .firstExpense) {
@@ -93,6 +110,16 @@ class TutorialManager: ObservableObject {
     /// thing can never strand anyone.
     func skipStep() {
         advance()
+    }
+
+    /// Back one readable step.
+    ///
+    /// Crossing a chapter boundary backwards goes straight to the step, without
+    /// re-showing the chapter break — that card is an invitation onwards, and offering
+    /// it to someone heading the other way would read as a dead end.
+    func previous() {
+        guard let target = previousIndex else { return }
+        move(to: target)
     }
 
     /// Steps back to an earlier step, if that is where the tour currently is ahead of.

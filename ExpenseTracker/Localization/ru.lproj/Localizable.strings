@@ -571,3 +571,5 @@
 "tutorial_replay" = "Обучение";
 "tutorial_replay_button" = "Пройти заново";
 "tutorial_replay_description" = "Пройдите по приложению ещё раз с начала.";
+
+"tutorial_back" = "Назад";
